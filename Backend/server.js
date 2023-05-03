@@ -3,32 +3,15 @@ const app = express();
 const PORT = process.env.PORT || 7005;
 const path = require("path");
 const bodyParser = require("body-parser");
-let UsersRoute = require("./Routes/UsersRoute")
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+let UsersRoute = require("./Routes/UsersRouter");
 
 //#region UserRoutes
 app.use("/api/users", UsersRoute);
 //#endregion
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.listen(PORT, () => {
-    console.log("http://localhost:" + PORT);
-  });
+  console.log("http://localhost:" + PORT);
+});
