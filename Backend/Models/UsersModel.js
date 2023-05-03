@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 var valid = require("validator");
-
+const autoIncrement = require("mongoose-auto-increment");
 var DB_URL = "mongodb://127.0.0.1:27017/homeflavor";
 
 mongoose.connect(DB_URL, { useNewUrlParser: true });
@@ -19,5 +19,7 @@ var userSchema = new mongoose.Schema({
   },
   password: { type: String, minlength: 5, required: true },
 });
+
+
 
 module.exports = mongoose.model("users", userSchema);

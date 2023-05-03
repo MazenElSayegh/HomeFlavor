@@ -1,9 +1,16 @@
 let UserModel = require("../Models/UsersModel");
+const bcrypt = require("bcrypt");
 
-let AddNewUser = async (req, res) => {
-  var newUserFromBody = req.body;
-  //{name, age, dept}//==>ajv.validate(newUserFromBody)
-  var newUserModel = new UserModel(newUserFromBody);
+id = 0;
+let AddNewUser = async (req, res, next) => {
+  var salt = await bcrypt.genSalt(10);
+  var hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+  var newUserModel = new UserModel({
+    name: req.body.name,
+    email: req.body.email,
+    password: hashedPassword,
+  });
   await newUserModel.save();
   await res.json(newUserModel);
 };
