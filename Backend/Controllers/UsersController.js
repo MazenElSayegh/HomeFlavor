@@ -37,8 +37,34 @@ let GetAllUsers = async (req, res) => {
   res.status(201).json(users);
 };
 
-let GetUserById = async (req, res) => {};
-let UpdateUser = async (req, res) => {};
+let GetUserById = async (req, res) => {
+  let Id = req.params.id;
+  let user = await UserModel.find({ _id: Id });
+  res.json(user);
+};
+let UpdateUser = async (req, res) => {
+  let Id = req.params.id;
+  let data = req.body;
+  const valid = userValid(data);
+  if (!valid) res.send("Not Compatible..");
+  else {
+    var salt = await bcrypt.genSalt(10);
+    var hashedPassword = await bcrypt.hash(data.password, salt);
+    await UserModel.updateOne(
+      { _id: Id },
+      {
+        user_name: req.body.user_name,
+        email: req.body.email, //can not update email logic
+        password: hashedPassword,
+        user_image: req.body.user_image,
+        gender: req.body.gender,
+        role: req.body.role,
+      }
+    );
+    await res.send("updated successfully");
+  }
+};
+
 let DeleteUser = async (req, res) => {};
 
 module.exports = {
