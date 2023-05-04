@@ -1,5 +1,5 @@
 // Requires
-// const validate = require("../utils/OrdersValidation");
+//const validate = require("../utils/OrdersValidation");
 let OrderModel = require("../Models/OrdersModel");
 
 // Get all orders (ADMIN only)
@@ -27,10 +27,10 @@ let GetOrderByID = async (req, res) => {
 };
 
 // Make new Order (USER)
-let MakeOrder = async (req, res) => {
+let CreateOrder = async (req, res) => {
   console.log("add orders");
   let newOrder = req.body;
-  if (validateorder(newOrder)) {
+  if (true) {
     console.log(newOrder);
     let order = new orderModel(newOrder);
     console.log("2");
@@ -60,6 +60,6 @@ var UpdateOrderByID = (req, res) => {
 module.exports = {
   GetAllOrders,
   GetOrderByID,
-  MakeOrder,
+  CreateOrder,
   UpdateOrderByID,
 };
