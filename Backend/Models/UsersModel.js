@@ -21,7 +21,6 @@ var userSchema = new mongoose.Schema({
   password: { type: String, minlength: 5, required: true },
   user_image: { type: String },
   gender: { type: String, enum: ["male", "female"], required: true },
-  store_id: { type: Number, unique: true },
   role: { type: String, enum: ["admin", "seller", "buyer"], required: true },
 });
 

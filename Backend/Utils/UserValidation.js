@@ -10,7 +10,6 @@ userSchema = {
     },
     password: { type: "string", minLength: 5 },
     gender: { type: "string", enum: ["male", "female"] },
-    store_id: { type: "number" },
     user_image: { type: "string" },
     role: { type: "string" },
   },

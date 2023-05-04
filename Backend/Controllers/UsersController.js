@@ -6,7 +6,7 @@ id = 0;
 let AddNewUser = async (req, res, next) => {
   var salt = await bcrypt.genSalt(10);
   var hashedPassword = await bcrypt.hash(req.body.password, salt);
-  
+
   // check if existing user
   let foundUser = await UserModel.findOne({ email: req.body.email }).exec();
   if (foundUser) return res.status(400).send("User Already Exist");
@@ -17,7 +17,6 @@ let AddNewUser = async (req, res, next) => {
     password: hashedPassword,
     user_image: req.body.user_image,
     gender: req.body.gender,
-    store_id: req.body.store_id,
     role: req.body.role,
   });
   // await newUserModel.save();
@@ -33,6 +32,15 @@ let AddNewUser = async (req, res, next) => {
   }
 };
 
+let GetAllUsers = async (req, res) => {};
+let GetUserById = async (req, res) => {};
+let UpdateUser = async (req, res) => {};
+let DeleteUser = async (req, res) => {};
+
 module.exports = {
   AddNewUser,
+  GetAllUsers,
+  GetUserById,
+  UpdateUser,
+  DeleteUser,
 };
