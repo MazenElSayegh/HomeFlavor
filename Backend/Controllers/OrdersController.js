@@ -1,5 +1,5 @@
 // Requires
-//const validate = require("../utils/OrdersValidation");
+const validateOrder = require("../Utils/OrderValidation");
 let OrderModel = require("../Models/OrdersModel");
 
 // Get all orders (ADMIN only)
@@ -30,7 +30,7 @@ let GetOrderByID = async (req, res) => {
 let CreateOrder = async (req, res) => {
   console.log("add orders");
   let newOrder = req.body;
-  if (true) {
+  if (validateOrder(newOrder)) {
     console.log(newOrder);
     let order = new OrderModel(newOrder);
     console.log("2");
@@ -44,10 +44,30 @@ let CreateOrder = async (req, res) => {
 
 // Update Order  -> when status:"pending" only  (ADMIN)  //products or status
 var UpdateOrderByID = async (req, res) => {
-  var ID = req.params.id;
-  var updatedOrder = req.body;
-  let Order=await OrderModel.findOneAndUpdate({ _id: ID }, { status:updatedOrder.status });
-   res.json(Order || "Not Found");
+  // var ID = req.params.id;
+  // var updatedOrder = req.body;
+  // let Order=await OrderModel.findOneAndUpdate({ _id: ID }, { status:updatedOrder.status });
+  // console.log(Order.total_price)
+  //  res.json(Order || "Not Found");
+    console.log("update students")
+    var ID = req.params.id;
+    var updatedOrder = req.body;
+    let updatedStudent;
+    if(validateOrder(updatedOrder)){
+        try{
+            updatedStudent=await studentModel.findOneAndUpdate({"_id":ID},
+            { status:updatedOrder.status });
+        }catch(err){
+        }
+        if(updatedStudent){
+            res.status(201).json(updatedStudent);
+        }else{
+            res.status(401).json("couldnt update");
+        }
+        
+    }else{
+        res.status(401).send("check ur data")
+    }
 };
 
 //Export to route
