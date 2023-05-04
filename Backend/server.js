@@ -11,7 +11,7 @@ let LoginRoute = require("./Routes/LoginRoute");
 let OrdersRoute = require("./Routes/OrdersRoutes");
 
 //#region Routes
-//app.use("/api/users", UsersRoute);
+app.use("/api/users", UsersRoute);
 app.use("/api/orders", OrdersRoute);
 //#endregion
 
