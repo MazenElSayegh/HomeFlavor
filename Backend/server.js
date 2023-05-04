@@ -8,10 +8,12 @@ app.use(bodyParser.json());
 
 // let UsersRoute = require("./Routes/UsersRouter");
 let OrdersRoute = require("./Routes/OrdersRoutes");
+let StoresRoute = require("./Routes/StoresRoutes");
 
 //#region Routes
 //app.use("/api/users", UsersRoute);
 app.use("/api/orders", OrdersRoute);
+app.use("/api/stores", StoresRoute);
 //#endregion
 
 app.listen(PORT, () => {
