@@ -6,14 +6,14 @@ const UsersController = require("../Controllers/UsersController");
 // Adding new User
 
 router.get("/", UsersController.GetAllUsers);
-//Get Student By ID
+//Get user By ID
 router.get("/:id", UsersController.GetUserById);
-//Create New Student
+//Create New user
 router.post("/", UsersController.AddNewUser);
 
-//Update Student
+//Update user
 router.put("/:id", UsersController.UpdateUser);
-//Delete Student
+//Delete user
 router.delete("/:id", UsersController.DeleteUser);
 
 module.exports = router;

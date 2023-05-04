@@ -32,7 +32,11 @@ let AddNewUser = async (req, res, next) => {
   }
 };
 
-let GetAllUsers = async (req, res) => {};
+let GetAllUsers = async (req, res) => {
+  let users = await User.find({});
+  res.status(201).json(users);
+};
+
 let GetUserById = async (req, res) => {};
 let UpdateUser = async (req, res) => {};
 let DeleteUser = async (req, res) => {};
