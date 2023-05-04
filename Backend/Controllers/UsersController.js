@@ -28,11 +28,15 @@ let AddNewUser = async (req, res, next) => {
     await newUserModel.save();
     res.status(201).send("User Added Successfully");
   } else {
-    res.status(400).send(userValid.errors);
+    res.status(400).send("Not Compatible..");
   }
 };
 
-let GetAllUsers = async (req, res) => {};
+let GetAllUsers = async (req, res) => {
+  let users = await User.find({});
+  res.status(201).json(users);
+};
+
 let GetUserById = async (req, res) => {
   let Id = req.params.id;
   let user = await UserModel.find({ _id: Id });
@@ -59,34 +63,8 @@ let UpdateUser = async (req, res) => {
     );
     await res.send("updated successfully");
   }
-
-  // var salt = await bcrypt.genSalt(10);
-  // var hashedPassword = await bcrypt.hash(req.body.password, salt);
-
-  // // check if existing user
-  // let foundUser = await UserModel.findOne({ email: req.body.email }).exec();
-  // if (foundUser) return res.status(400).send("User Already Exist");
-
-  // var newUserModel = new UserModel({
-  //   user_name: req.body.user_name,
-  //   email: req.body.email,
-  //   password: hashedPassword,
-  //   user_image: req.body.user_image,
-  //   gender: req.body.gender,
-  //   role: req.body.role,
-  // });
-  // // await newUserModel.save();
-  // // await res.json(newUserModel);
-
-  // var valid = userValid(newUserModel);
-
-  // if (valid) {
-  //   await newUserModel.save();
-  //   res.status(201).send("User Added Successfully");
-  // } else {
-  //   res.status(400).send("Not Compatible..");
-  // }
 };
+
 let DeleteUser = async (req, res) => {};
 
 module.exports = {
