@@ -14,7 +14,7 @@ userSchema = {
     user_image: { type: "string" },
     role: { type: "string" },
   },
-  required: ["user_name", "email", "password"],
+  required: ["user_name", "email", "password", "gender", "role"],
 };
 
 module.exports = ajv.compile(userSchema);
