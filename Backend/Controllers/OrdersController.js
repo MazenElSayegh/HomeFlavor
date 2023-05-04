@@ -32,7 +32,7 @@ let CreateOrder = async (req, res) => {
   let newOrder = req.body;
   if (true) {
     console.log(newOrder);
-    let order = new orderModel(newOrder);
+    let order = new OrderModel(newOrder);
     console.log("2");
     await order.save();
     console.log("3");
@@ -46,14 +46,8 @@ let CreateOrder = async (req, res) => {
 var UpdateOrderByID = (req, res) => {
   var ID = req.params.id;
   var updatedOrder = req.body;
-  var index;
-  Orders.find((order, i) => {
-    if (order.id == ID) {
-      index = i;
-      order.status = updatedOrder.status;
-    }
-  });
-  res.json(Orders[index] || "Not Found");
+  OrderModel.updateOne({_id: ID},{ status: updatedOrder.status});
+   res.json(updatedOrder || "Not Found");
 };
 
 //Export to route
