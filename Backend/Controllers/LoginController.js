@@ -6,7 +6,7 @@ let bcrypt = require("bcrypt");
 var loginUser = async (req, res) => {
   var data = req.body;
   const valid = validate(data);
-  if (!valid) res.send(validate.errors);
+  if (!valid) res.send("Not Compatible..");
   else {
     let checkUser = await userModel.findOne({ email: data.email });
     if (!checkUser) return res.send("invalid email or password");
