@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 let UsersRoute = require("./Routes/UsersRouter");
 let LoginRoute = require("./Routes/LoginRoute");
 let OrdersRoute = require("./Routes/OrdersRoutes");
+let StoresRoute = require("./Routes/StoresRoutes");
 
 //#region Routes
 app.use("/api/users", UsersRoute);
@@ -17,6 +18,7 @@ app.use("/api/users", UsersRoute);
 app.use("/api/login", LoginRoute);
 
 app.use("/api/orders", OrdersRoute);
+app.use("/api/stores", StoresRoute);
 //#endregion
 
 
