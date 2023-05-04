@@ -1,11 +1,14 @@
 const Ajv = require("ajv");
 const ajv = new Ajv();
 
-const studentSchema = {
+const orderSchema = {
     type: "object",
     properties: {
-        name: { type: "string", pattern: "[a-zA-Z]{3,}$" },
-        age: { type: "number", minimum: 15, maximum: 50 }
+        products: { type: "string", pattern: "[a-zA-Z]{3,}$" },
+        date: { type: "number", minimum: 15, maximum: 50 },
+        status: { type: "number", minimum: 15, maximum: 50 },
+        status: { type: "number", minimum: 15, maximum: 50 },
+        status: { type: "number", minimum: 15, maximum: 50 },
     },
     required: ["name", "age"],
     additionalProperties: false,

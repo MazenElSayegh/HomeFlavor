@@ -43,11 +43,11 @@ let CreateOrder = async (req, res) => {
 };
 
 // Update Order  -> when status:"pending" only  (ADMIN)  //products or status
-var UpdateOrderByID = (req, res) => {
+var UpdateOrderByID = async (req, res) => {
   var ID = req.params.id;
   var updatedOrder = req.body;
-  OrderModel.updateOne({_id: ID},{ status: updatedOrder.status});
-   res.json(updatedOrder || "Not Found");
+  let Order=await OrderModel.findOneAndUpdate({ _id: ID }, { status:updatedOrder.status });
+   res.json(Order || "Not Found");
 };
 
 //Export to route
