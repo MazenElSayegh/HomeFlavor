@@ -1,6 +1,7 @@
 let UserModel = require("../Models/UsersModel");
 const bcrypt = require("bcrypt");
 const userValid = require("../Utils/UserValidation");
+let jwt = require("jsonwebtoken");
 
 id = 0;
 let AddNewUser = async (req, res, next) => {
@@ -26,6 +27,8 @@ let AddNewUser = async (req, res, next) => {
 
   if (valid) {
     await newUserModel.save();
+    let Token = jwt.sign({ role: req.body.role }, "token");
+    res.header("x-auth-token", Token);
     res.status(201).send("User Added Successfully");
   } else {
     res.status(400).send("Not Compatible..");
@@ -33,7 +36,7 @@ let AddNewUser = async (req, res, next) => {
 };
 
 let GetAllUsers = async (req, res) => {
-  let users = await User.find({});
+  let users = await UserModel.find({});
   res.status(201).json(users);
 };
 

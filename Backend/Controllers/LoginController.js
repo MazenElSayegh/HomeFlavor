@@ -1,7 +1,7 @@
 let userModel = require("../Models/UsersModel");
 let validate = require("../Utils/loginValidation");
 let bcrypt = require("bcrypt");
-// let jwt = require("jsonwebtoken");
+let jwt = require("jsonwebtoken");
 
 var loginUser = async (req, res) => {
   var data = req.body;
@@ -12,6 +12,8 @@ var loginUser = async (req, res) => {
     if (!checkUser) return res.send("invalid email or password");
     let checkPass = await bcrypt.compare(data.password, checkUser.password);
     if (!checkPass) return res.send("invalid email or password");
+    let Token = jwt.sign({ role: checkUser.role }, "token");
+    res.header("x-auth-token", Token);
     await res.send("Login Successfully");
   }
 
