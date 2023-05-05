@@ -12,8 +12,27 @@ let getAllMenu = async (req, res) => {
   res.status(201).json(menus);
 };
 
-//delete item from menu
+//creatr menu item
+let CreateMenuItem = async (req, res) => {
+    let id = req.params.id;
+    let newItem = req.body;
+    console.log(newItem);
+    try {
+        const result = await StoreModel.updateOne(
+          { _id: id },
+          // { $push: { menu: { $each: newItem.menu }  } }
+             { $push: { menu: newItem  } }
+        );
+        console.log(result);
+        res.status(200).send(result);
+      } catch (err) {
+        console.error(err);
+        res.status(500).send(err);
+      }
+  };
 
+
+//delete item from menu
 var deleteMenuItemByID = async (req, res) => {
     var id = req.params.id;
     var itemName = req.params.itemName;
@@ -30,9 +49,12 @@ var deleteMenuItemByID = async (req, res) => {
     }
   };
 
+
+
 //Export to route
 module.exports = {
   getAllMenu,
-  deleteMenuItemByID
+  deleteMenuItemByID,
+  CreateMenuItem
 
 };

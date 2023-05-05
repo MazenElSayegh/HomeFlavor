@@ -12,9 +12,12 @@ Router.delete("/:id", StoresController.deleteStoreByID);
 
 Router.get("/menu/:id", MenuController.getAllMenu);
 Router.delete("/:id/menu/:itemName", MenuController.deleteMenuItemByID);
+Router.post("/menu/create/:id", MenuController.CreateMenuItem );
 
 Router.get("/feedback/:id", FeedBackController.getAllFeedBack);
 Router.delete("/:id/feedback/:feedbackId", FeedBackController.deleteFeedBackByID);
+Router.post("/feedback/create/:id", FeedBackController.CreateFeedBack );
+
 
 
 
