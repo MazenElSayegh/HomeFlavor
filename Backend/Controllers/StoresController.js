@@ -27,13 +27,16 @@ let getStoreByID = async (req, res) => {
 // Make new Store
 let createStore = async (req, res) => {
   let newStore = req.body;
-  if (true) {
-    // AJV Later
-    let store = new StoreModel(newStore);
-    await store.save();
-    res.status(201).json(newStore);
+  if (validate(newStore)) {
+    try {
+      let store = new StoreModel(newStore);
+      await store.save();
+      res.status(201).json(newStore);
+    } catch (err) {
+      res.status(301).send(err.message);
+    }
   } else {
-    res.status(301).send("check ur data");
+    res.status(301).send(validate.errors);
   }
 };
 
@@ -41,8 +44,17 @@ let createStore = async (req, res) => {
 var updateStoreByID = async (req, res) => {
   var ID = req.params.id;
   var updatedStore = req.body;
-  await StoreModel.updateOne({ _id: ID }, updatedStore);
-  res.json(updatedStore || "Not Found");
+
+  if (validate(updatedStore)) {
+    try {
+      await StoreModel.updateOne({ _id: ID }, updatedStore);
+      res.json(updatedStore);
+    } catch (err) {
+      res.status(301).send(err.message);
+    }
+  } else {
+    res.status(301).send(validate.errors);
+  }
 };
 
 var deleteStoreByID = async (req, res) => {

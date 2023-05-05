@@ -10,10 +10,10 @@ mongoose.connect(DB_URL, { useNewUrlParser: true });
 //Stores schema
 let StoresSchema = new mongoose.Schema({
   user_id: {
-    // type: Schema.Types.ObjectId,
-    // ref: "users",
-    // required: true,
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "users",
+    required: true,
+    // type: String,
   },
   menu: [
     {
@@ -27,9 +27,9 @@ let StoresSchema = new mongoose.Schema({
   feedback: [
     {
       user_id: {
-        // type: Schema.Types.ObjectId,
-        // ref: "users",
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: "users",
+        // type: String,
       },
       comment: String,
       date: String,
