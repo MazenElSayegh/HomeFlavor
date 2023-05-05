@@ -68,7 +68,12 @@ let UpdateUser = async (req, res) => {
   }
 };
 
-let DeleteUser = async (req, res) => {};
+let DeleteUser = async (req, res) => {
+  var ID = req.params.id;
+  var UserToDelete = await UserModel.find({ _id: ID });
+  await UserModel.deleteOne({ _id: ID });
+  res.json(UserToDelete || "Not Found");
+};
 
 module.exports = {
   AddNewUser,
