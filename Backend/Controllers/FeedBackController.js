@@ -1,5 +1,5 @@
 // Requires
-const validate = require("../Utils/StoreValidation");
+const validate = require("../Utils/FeedBackValidation");
 let StoreModel = require("../Models/StoresModel");
 
 // Get all menu
@@ -15,6 +15,7 @@ let CreateFeedBack = async (req, res) => {
   let id = req.params.id;
   let newfeedback = req.body;
   console.log(newfeedback);
+  if (validate(newfeedback)) {
   try {
       const result = await StoreModel.updateOne(
         { _id: id },
@@ -28,6 +29,10 @@ let CreateFeedBack = async (req, res) => {
       console.error(err);
       res.status(500).send(err);
     }
+  }
+  else {
+    res.status(301).send(validate.errors);
+  }
 };
 
 
