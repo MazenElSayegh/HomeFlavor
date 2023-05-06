@@ -17,10 +17,10 @@ let StoresSchema = new mongoose.Schema({
   },
   menu: [
     {
-      product_title: String,
-      product_image: String,
-      price: Number,
-      product_details: String,
+      product_image: { type: String, required: true },
+      product_title: { type: String, required: true },
+      price: { type: Number, required: true },
+      product_details: { type: String, required: true },
     },
   ],
 
@@ -29,14 +29,16 @@ let StoresSchema = new mongoose.Schema({
       user_id: {
         type: Schema.Types.ObjectId,
         ref: "users",
+        required: true,
         // type: String,
       },
-      comment: String,
-      date: String,
+      comment: { type: String, required: true },
+      date: { type: Date, required: true, default: Date.now },
       stars: {
         type: Number,
         min: 1,
         max: 5,
+        required: true,
       },
     },
   ],
