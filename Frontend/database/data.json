@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "user_name": "khalid",
+      "email": "khalid75@gmail.com",
+      "password": "123456",
+      "image": "aysora",
+      "gender": "male",
+      "role": "admin"
+    },
+    {
+      "user_name": "omar",
+      "email": "omar@gmail.com",
+      "password": "123456789",
+      "gender": "male",
+      "role": "buyer",
+      "file": "C:\\fakepath\\Screenshot 2023-05-06 144216.jpg",
+      "id": 2
+    }
+  ]
+}

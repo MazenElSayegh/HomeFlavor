@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { ErrorComponent } from './Components/error/error.component';
 
 @NgModule({
@@ -15,7 +17,13 @@ import { ErrorComponent } from './Components/error/error.component';
     LoginComponent,
     ErrorComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
