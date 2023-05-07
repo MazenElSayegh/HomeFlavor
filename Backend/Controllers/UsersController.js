@@ -31,7 +31,7 @@ let AddNewUser = async (req, res, next) => {
     res.header("x-auth-token", Token);
     res.status(201).send("User Added Successfully");
   } else {
-    res.status(400).send("Not Compatible..");
+    res.status(400).send("Not Compatible, check validation..");
   }
 };
 

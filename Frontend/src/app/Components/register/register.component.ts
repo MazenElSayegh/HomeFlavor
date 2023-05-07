@@ -10,7 +10,7 @@ import { BackendService } from 'src/app/Services/backend.service';
 export class RegisterComponent {
   constructor(private myService: BackendService, public myRouter: Router) {}
 
-  add(
+  async add(
     user_name: any,
     email: any,
     password: any,
