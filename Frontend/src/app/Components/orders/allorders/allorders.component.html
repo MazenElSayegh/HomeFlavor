@@ -1,0 +1,18 @@
+<p class="alert alert-dark">allorders works!</p>
+<table class="table table-bordered text-center table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let o of orders">
+      <td>{{o._id}}</td>
+      <td>{{o.date}}</td>
+      <td>{{o.status}}</td>
+      <!-- <td><input type="submit" routerLink="/students/{{o.id}}" value="view" class="btn btn-warning"/></td> -->
+    </tr>
+  </tbody>
+</table>
