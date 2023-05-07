@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,9 @@ export class OrdersService {
   GetAllOrders(){
     return this.myClient.get(this.Base_URL);
   }
-  // GetUserByID(id:any){
-  //   return this.myClient.get(this.Base_URL+"/"+id);
-  // }
+  UpdateOrderByID(id:any,updatedOrder:any){
+    return this.myClient.put(this.Base_URL+"/"+id,updatedOrder);
+  }
   // AddNewStudent(newUser:any){
   //   return this.myClient.post(this.Base_URL, newUser);
   // }

@@ -6,16 +6,18 @@ var DB_URL = "mongodb://127.0.0.1:27017/homeflavor";
 
 mongoose.connect(DB_URL,{useNewUrlParser:true});    
 
-
+const { Schema } = mongoose;
 //Orders schema
+const opts = { toJSON: { virtuals: true } };
 let OrdersSchema = new mongoose.Schema({
     products:{type:[{ product_name: String, product_image: String, price: Number,product_details: String,quantity:Number}],required:true},
     // total_price:{type:Number,required:true},
     date:{type:Date,required:true,default:Date.now},
     status:{type:String, enum:['Pending', 'Accepted', 'Canceled'],required:true},
-    // user_id:{type: Schema.Types.ObjectId, ref: 'users',required:true},
-    // store_id:{type: Schema.Types.ObjectId, ref: 'stores',required:true}
-})
+    user_id:{type: Schema.Types.ObjectId, ref: 'users',required:true},
+    store_id:{type: Schema.Types.ObjectId, ref: 'stores',required:true}
+},
+opts)
 
 // Function to make virtual field
 OrdersSchema.virtual('total_price').get(function() {

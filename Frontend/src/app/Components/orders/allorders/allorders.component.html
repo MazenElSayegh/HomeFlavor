@@ -4,7 +4,8 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Name</th>
-      <th scope="col">Email</th>
+      <th scope="col">Status</th>
+      <th scope="col">Total Price</th>
     </tr>
   </thead>
   <tbody>
@@ -12,6 +13,10 @@
       <td>{{o._id}}</td>
       <td>{{o.date}}</td>
       <td>{{o.status}}</td>
+      <td>{{o.total_price}}</td>
+      <!-- <td><a class='bg-primary text-light border border-primary rounded text-decoration-none p-1' (click)="Update(o._id)">Accept</a></td>
+          <td><a class='bg-warning text-light border border-warning rounded text-decoration-none p-1' routerLink="/students/{{s.id}}/edit">Reject</a></td>
+          <td><a class='bg-danger text-light border border-danger rounded text-decoration-none p-1' href="#" (click)="Delete(s.id)">More details</a></td> -->
       <!-- <td><input type="submit" routerLink="/students/{{o.id}}" value="view" class="btn btn-warning"/></td> -->
     </tr>
   </tbody>

@@ -1,1 +1,48 @@
-<p>createorder works!</p>
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="img-fluid" alt="Sample image">
+      </div>
+
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
+        <form [formGroup]="validationForm" (ngSubmit)="Add(name.value,age.value, email.value, phone.value)">
+          <!-- Name input -->
+          <div class="form-outline">
+            <input formControlName="name" #name type="text" id="name" class="form-control form-control-lg"
+              placeholder="Enter a valid name" />
+            <label class="form-label" for="form3Example3">Name</label>
+          </div>
+          <div *ngIf="!NameValid" class="alert alert-danger mb-4">
+            Name must be at least 3 characters long.
+          </div>
+
+          <!-- Age input -->
+          <div class="form-outline mb-3">
+            <input formControlName="age" #age type="number" id="form3Example4" class="form-control form-control-lg"
+              placeholder="Enter a valid age" />
+            <label class="form-label" for="form3Example4">Age</label>
+          </div>
+          <div *ngIf="!AgeValid" class="alert alert-danger">
+            <p> 20 &lt; Age &lt; 40</p>
+          </div>
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input formControlName="email" #email  type="email" id="form3Example3" class="form-control form-control-lg"
+              placeholder="Enter your email address" />
+            <label class="form-label" for="form3Example3">Email address</label>
+          </div>
+          <!-- Phone input -->
+          <div class="form-outline mb-4">
+            <input formControlName="phone" #phone  type="text" id="form3Example3" class="form-control form-control-lg"
+              placeholder="Enter your phone number" />
+            <label class="form-label" for="form3Example3">Phone number</label>
+          </div>
+              <input type="submit" class="btn btn-outline-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Register"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
