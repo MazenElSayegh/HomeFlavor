@@ -7,6 +7,9 @@ import { RegisterComponent } from './Components/register/register.component';
 import { LoginComponent } from './Components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './Components/error/error.component';
+import { AllordersComponent } from './Components/orders/allorders/allorders.component';
+import { CreateorderComponent } from './Components/orders/createorder/createorder.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,8 +17,10 @@ import { ErrorComponent } from './Components/error/error.component';
     RegisterComponent,
     LoginComponent,
     ErrorComponent,
+    AllordersComponent,
+    CreateorderComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
