@@ -12,6 +12,11 @@ import { AllordersComponent } from './Components/orders/allorders/allorders.comp
 import { CreateorderComponent } from './Components/orders/createorder/createorder.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderdetailsComponent } from './Components/orders/orderdetails/orderdetails.component';
+import { AllStoresComponent } from './components/stores/all-stores/all-stores.component';
+import { StoreDetailsComponent } from './Components/stores/store-details/store-details.component';
+import { CreateStoreComponent } from './Components/stores/create-store/create-store.component';
+import { UpdateStoreComponent } from './Components/stores/update-store/update-store.component';
+import { DeleteStoreComponent } from './Components/stores/delete-store/delete-store.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +27,19 @@ import { OrderdetailsComponent } from './Components/orders/orderdetails/orderdet
     AllordersComponent,
     CreateorderComponent,
     OrderdetailsComponent,
+    AllStoresComponent,
+    StoreDetailsComponent,
+    CreateStoreComponent,
+    UpdateStoreComponent,
+    DeleteStoreComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
