@@ -6,6 +6,7 @@
       <th scope="col">Date</th>
       <th scope="col">Status</th>
       <th scope="col">Total Price</th>
+      <th scope="col">Action</th>
       <th scope="col">More</th>
     </tr>
   </thead>
@@ -15,10 +16,13 @@
       <td>{{o.date}}</td>
       <td>{{o.status}}</td>
       <td>{{o.total_price}}</td>
-      <!-- <td><a class='bg-primary text-light border border-primary rounded text-decoration-none p-1' (click)="Update(o._id)">Accept</a></td>
-          <td><a class='bg-warning text-light border border-warning rounded text-decoration-none p-1' routerLink="/students/{{s.id}}/edit">Reject</a></td>
-          <td><a class='bg-danger text-light border border-danger rounded text-decoration-none p-1' href="#" (click)="Delete(s.id)">More details</a></td> -->
-      <td><input type="submit" routerLink="/orders/{{o.id}}" value="view" class="btn btn-warning"/></td>
+      <td><div class="d-flex flex-row justify-content-around"><form (ngSubmit)="Update(o._id,'Accepted')">
+          <input type="submit" class="btn btn-outline-primary"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Accept"/></form>
+              <form (ngSubmit)="Update(o._id,'Cancelled')">
+                <input type="submit" class="btn btn-outline-danger"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Reject"/></form></div></td>
+      <td><input type="submit" routerLink="/orders/{{o.id}}" value="view" class="btn btn-outline-warning" style="padding-left: 2.5rem; padding-right: 2.5rem; color:white"/></td>
     </tr>
   </tbody>
 </table>

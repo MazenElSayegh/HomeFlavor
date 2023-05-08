@@ -13,7 +13,7 @@ let OrdersSchema = new mongoose.Schema({
     products:{type:[{ product_name: String, product_image: String, price: Number,product_details: String,quantity:Number}],required:true},
     // total_price:{type:Number,required:true},
     date:{type:Date,required:true,default:Date.now},
-    status:{type:String, enum:['Pending', 'Accepted', 'Canceled'],required:true},
+    status:{type:String, enum:['Pending', 'Accepted', 'Cancelled'],required:true},
     // user_id:{type: Schema.Types.ObjectId, ref: 'users',required:true},
     // store_id:{type: Schema.Types.ObjectId, ref: 'stores',required:true}
 },

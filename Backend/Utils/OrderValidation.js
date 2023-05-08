@@ -20,7 +20,7 @@ const orderSchema = {
     },
     status: {
       type: "string",
-      enum: ["Pending", "Accepted", "Canceled"],
+      enum: ["Pending", "Accepted", "Cancelled"],
     },
   },
   required: ["status"],
