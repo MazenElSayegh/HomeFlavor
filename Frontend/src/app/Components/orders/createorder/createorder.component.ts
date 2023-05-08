@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl,FormGroup,Validators} from '@angular/forms';
+import { FormControl,FormGroup,Validators, FormBuilder} from '@angular/forms';
 import { OrdersService } from 'src/app/Services/orders.service';
 import { Router } from '@angular/router';
 
@@ -9,25 +9,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./createorder.component.css']
 })
 export class CreateorderComponent {
-  constructor(private myService:OrdersService,private router:Router){  }
+  constructor(private myService:OrdersService,private router:Router){ }
+
   validationForm=new FormGroup({
-    name:new FormControl(null,[Validators.minLength(3)]),
-    age:new FormControl(null,[Validators.min(20),Validators.max(40)]),
-    email:new FormControl(null,Validators.required),
+    product_name:new FormControl(null),
+    price:new FormControl(null),
+    product_image:new FormControl(null),
+    product_details:new FormControl(null),
+    quantity:new FormControl(null),
   })
-  get NameValid(){
-    return this.validationForm.controls["name"].valid;
-  }
-  get AgeValid(){
-    return this.validationForm.controls["age"].valid;
-  }
 
 
-  Add(name:any,age:any, email:any, phone:any){
-    let newStudent = {name, age, email, phone};
-    //this.myService.AddNewOrder(newStudent).subscribe();
+  AddOrder(product_name:any,product_image:any,price:any,product_details:any,quantity:any){
+    console.log(product_name)
+    let integerQuantity=parseInt(quantity)
+    let floatPrice=parseFloat(price)
+    let product={product_name,product_image,floatPrice,product_details,integerQuantity}
+    let products=[product]
+    let newOrder = {products};
+    this.myService.AddNewOrder(newOrder).subscribe();
     alert("added successfully");
-    this.router.navigateByUrl('/students');
+    this.router.navigateByUrl('/orders');
   }
 
 }

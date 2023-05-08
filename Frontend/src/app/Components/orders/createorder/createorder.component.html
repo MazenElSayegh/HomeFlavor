@@ -5,42 +5,35 @@
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
           class="img-fluid" alt="Sample image">
       </div>
-
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
-        <form [formGroup]="validationForm" (ngSubmit)="Add(name.value,age.value, email.value, phone.value)">
-          <!-- Name input -->
+        <form [formGroup]="validationForm" (ngSubmit)="AddOrder(product_name.value,product_image.value, price.value, product_details.value, quantity.value)">
           <div class="form-outline">
-            <input formControlName="name" #name type="text" id="name" class="form-control form-control-lg"
-              placeholder="Enter a valid name" />
-            <label class="form-label" for="form3Example3">Name</label>
+            <input formControlName="product_name" #product_name type="text" id="productName" class="form-control form-control-lg"
+              placeholder="Enter product name" />
+            <label class="form-label" for="form3Example3">Product Name</label>
           </div>
-          <div *ngIf="!NameValid" class="alert alert-danger mb-4">
-            Name must be at least 3 characters long.
+          <div class="form-outline">
+            <input formControlName="product_image" #product_image type="text" id="name" class="form-control form-control-lg"
+              placeholder="Enter image path" />
+            <label class="form-label" for="form3Example3">Image</label>
           </div>
-
-          <!-- Age input -->
-          <div class="form-outline mb-3">
-            <input formControlName="age" #age type="number" id="form3Example4" class="form-control form-control-lg"
-              placeholder="Enter a valid age" />
-            <label class="form-label" for="form3Example4">Age</label>
+          <div class="form-outline">
+            <input formControlName="price" #price type="number" id="name" class="form-control form-control-lg"
+              placeholder="Enter product price" />
+            <label class="form-label" for="form3Example3">Price</label>
           </div>
-          <div *ngIf="!AgeValid" class="alert alert-danger">
-            <p> 20 &lt; Age &lt; 40</p>
+          <div class="form-outline">
+            <input formControlName="product_details" #product_details type="text" id="name" class="form-control form-control-lg"
+              placeholder="Enter product details" />
+            <label class="form-label" for="form3Example3">Details</label>
           </div>
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <input formControlName="email" #email  type="email" id="form3Example3" class="form-control form-control-lg"
-              placeholder="Enter your email address" />
-            <label class="form-label" for="form3Example3">Email address</label>
-          </div>
-          <!-- Phone input -->
-          <div class="form-outline mb-4">
-            <input formControlName="phone" #phone  type="text" id="form3Example3" class="form-control form-control-lg"
-              placeholder="Enter your phone number" />
-            <label class="form-label" for="form3Example3">Phone number</label>
+          <div class="form-outline">
+            <input formControlName="quantity" #quantity type="number" id="name" class="form-control form-control-lg"
+              placeholder="Enter quantity" />
+            <label class="form-label" for="form3Example3">Quantity</label>
           </div>
               <input type="submit" class="btn btn-outline-primary btn-lg"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Register"/>
+              style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Submit Order"/>
         </form>
       </div>
     </div>
