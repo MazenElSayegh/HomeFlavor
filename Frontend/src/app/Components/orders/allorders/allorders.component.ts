@@ -9,7 +9,6 @@ import { OrdersService } from 'src/app/Services/orders.service';
 export class AllordersComponent {
   orders:any;
   constructor(private myService:OrdersService){
-    console.log("HENA",myService.GetAllOrders().subscribe());
     myService.GetAllOrders().subscribe(
       {
         next: (data)=>{
@@ -40,4 +39,5 @@ export class AllordersComponent {
     alert("updated successfully");
 
   }
+
 }
