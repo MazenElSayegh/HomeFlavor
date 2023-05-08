@@ -11,6 +11,7 @@ import { ErrorComponent } from './Components/error/error.component';
 import { AllordersComponent } from './Components/orders/allorders/allorders.component';
 import { CreateorderComponent } from './Components/orders/createorder/createorder.component';
 import { HttpClientModule } from '@angular/common/http';
+import { OrderdetailsComponent } from './Components/orders/orderdetails/orderdetails.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     ErrorComponent,
     AllordersComponent,
     CreateorderComponent,
+    OrderdetailsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,HttpClientModule],
   providers: [],

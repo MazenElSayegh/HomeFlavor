@@ -17,6 +17,9 @@ export class OrdersService {
   UpdateOrderByID(id:any,updatedOrder:any){
     return this.myClient.put(this.Base_URL+"/"+id,updatedOrder);
   }
+  GetOrderByID(id:any){
+    return this.myClient.get(this.Base_URL+"/"+id);
+  }
   // AddNewStudent(newUser:any){
   //   return this.myClient.post(this.Base_URL, newUser);
   // }

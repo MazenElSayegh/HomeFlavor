@@ -3,9 +3,10 @@
   <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Name</th>
+      <th scope="col">Date</th>
       <th scope="col">Status</th>
       <th scope="col">Total Price</th>
+      <th scope="col">More</th>
     </tr>
   </thead>
   <tbody>
@@ -17,7 +18,7 @@
       <!-- <td><a class='bg-primary text-light border border-primary rounded text-decoration-none p-1' (click)="Update(o._id)">Accept</a></td>
           <td><a class='bg-warning text-light border border-warning rounded text-decoration-none p-1' routerLink="/students/{{s.id}}/edit">Reject</a></td>
           <td><a class='bg-danger text-light border border-danger rounded text-decoration-none p-1' href="#" (click)="Delete(s.id)">More details</a></td> -->
-      <!-- <td><input type="submit" routerLink="/students/{{o.id}}" value="view" class="btn btn-warning"/></td> -->
+      <td><input type="submit" routerLink="/orders/{{o.id}}" value="view" class="btn btn-warning"/></td>
     </tr>
   </tbody>
 </table>
