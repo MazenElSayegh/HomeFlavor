@@ -15,15 +15,14 @@ const orderSchema = {
           quantity: { type: "number" },
           product_details: { type: "string" },
         },
-        required: ["product_name", "price", "quantity"],
+       
       },
     },
     status: {
       type: "string",
-      enum: ["Pending", "Accepted", "Canceled"],
+      enum: ["Pending", "Accepted", "Cancelled"],
     },
   },
-  required: ["status"],
   additionalProperties: false,
 };
 

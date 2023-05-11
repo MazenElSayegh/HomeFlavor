@@ -14,6 +14,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './Components/header/header.component';
 import { HomeComponent } from './Components/home/home.component';
 import { FooterComponent } from './Components/footer/footer.component';
+import { OrderdetailsComponent } from './Components/orders/orderdetails/orderdetails.component';
+import { AllStoresComponent } from './Components/stores/all-stores/all-stores.component';
+import { StoreDetailsComponent } from './Components/stores/store-details/store-details.component';
+import { CreateStoreComponent } from './Components/stores/create-store/create-store.component';
+import { UpdateStoreComponent } from './Components/stores/update-store/update-store.component';
+import { DeleteStoreComponent } from './Components/stores/delete-store/delete-store.component';
 
 @NgModule({
   declarations: [
@@ -23,16 +29,6 @@ import { FooterComponent } from './Components/footer/footer.component';
     ErrorComponent,
     AllordersComponent,
     CreateorderComponent,
-    HeaderComponent,
-    HomeComponent,
-    FooterComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

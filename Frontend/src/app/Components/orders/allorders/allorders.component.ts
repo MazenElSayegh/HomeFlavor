@@ -9,7 +9,6 @@ import { OrdersService } from 'src/app/Services/orders.service';
 export class AllordersComponent {
   orders:any;
   constructor(private myService:OrdersService){
-    console.log("HENA",myService.GetAllOrders().subscribe());
     myService.GetAllOrders().subscribe(
       {
         next: (data)=>{
@@ -31,4 +30,14 @@ export class AllordersComponent {
       });
 
   }
+
+  Update(id:any,status:any){
+    let updatedStudent = {status};
+    console.log(updatedStudent);
+    console.log(this.orders);
+    this.myService.UpdateOrderByID(id,updatedStudent).subscribe(data=>console.log(data));
+    alert("updated successfully");
+
+  }
+
 }
