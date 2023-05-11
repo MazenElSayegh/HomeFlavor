@@ -12,26 +12,12 @@
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
         <form
           (ngSubmit)="
-            AddStore(
-              userID.value,
-              name.value,
-              image.value,
-              city.value,
-              product_image.value,
-              product_title.value,
-              price.value,
-              product_details.value,
-              fbUserID.value,
-              comment.value,
-              date.value,
-              stars.value
-            )
+            AddStore(userID.value, name.value, image.value, city.value)
           "
         >
           <!-- UserID input -->
           <div class="form-outline">
             <input
-              formControlName="userID"
               #userID
               type="text"
               class="form-control form-control-lg"
@@ -46,7 +32,6 @@
           <!-- Name input -->
           <div class="form-outline">
             <input
-              formControlName="name"
               #name
               type="text"
               class="form-control form-control-lg"
@@ -58,9 +43,8 @@
           <!-- Image input -->
           <div class="form-outline">
             <input
-              formControlName="image"
               #image
-              type="text"
+              type="file"
               class="form-control form-control-lg"
               placeholder="Enter Image"
             />
@@ -70,88 +54,12 @@
           <!-- city input -->
           <div class="form-outline">
             <input
-              formControlName="city"
               #city
               type="text"
               class="form-control form-control-lg"
               placeholder="Enter city"
             />
             <label class="form-label" for="form3Example3">city</label>
-          </div>
-
-          <h3>Menu</h3>
-          <input
-            type="text"
-            class="form-control form-control-lg"
-            placeholder="Product Image"
-            #product_image
-          />
-          <input
-            type="text"
-            class="form-control form-control-lg"
-            placeholder="Product Title"
-            #product_title
-          />
-          <input
-            type="text"
-            class="form-control form-control-lg"
-            placeholder="Price"
-            #price
-          />
-          <input
-            type="text"
-            class="form-control form-control-lg"
-            placeholder="product_details"
-            #product_details
-          />
-
-          <h3>Feedback</h3>
-
-          <div class="form-outline">
-            <input
-              formControlName="fbUserID"
-              #fbUserID
-              type="text"
-              class="form-control form-control-lg"
-              placeholder="Enter fbUserID"
-            />
-            <label class="form-label" for="form3Example3"
-              >feedback UserID</label
-            >
-          </div>
-          <div class="form-outline">
-            <input
-              formControlName="comment"
-              #comment
-              type="text"
-              class="form-control form-control-lg"
-              placeholder="Enter comment"
-            />
-            <label class="form-label" for="form3Example3">Comment</label>
-          </div>
-
-          <div class="form-outline">
-            <input
-              formControlName="date"
-              #date
-              type="date"
-              class="form-control form-control-lg"
-              placeholder="Enter date"
-            />
-            <label class="form-label" for="form3Example3">date</label>
-          </div>
-
-          <div class="form-outline">
-            <input
-              formControlName="stars"
-              #stars
-              type="number"
-              min="1"
-              max="5"
-              class="form-control form-control-lg"
-              placeholder="Enter stars"
-            />
-            <label class="form-label" for="form3Example3">stars</label>
           </div>
 
           <input
