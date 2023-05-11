@@ -1,1 +1,54 @@
-<p>login works!</p>
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>Taste Of Home</p>
+          <h1>Login</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+
+<div id="formContainer">
+  <form
+    [formGroup]="validationForm"
+    class="form"
+    (ngSubmit)="add(email.value, password.value)"
+  >
+    <div class="mb-3">
+      <label for="email" class="form-label">Enter Email</label>
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Email"
+        #email
+      />
+      <div class="mt-1" *ngIf="!emailValid">
+        <p>Enter correct Email</p>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Enter Password</label>
+      <input
+        formControlName="password"
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+        #password
+      />
+      <div class="mt-1" *ngIf="!passwordValid">
+        <p>not less than 8 characters</p>
+      </div>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Login" />
+  </form>
+</div>
