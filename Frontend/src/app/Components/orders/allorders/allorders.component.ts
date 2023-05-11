@@ -11,11 +11,16 @@ import { StoresService } from 'src/app/Services/stores.service';
 })
 export class AllordersComponent {
   orders:any;
+  test:any;
   constructor(private ordersService:OrdersService,private usersService:BackendService,private storesService:StoresService, private router:Router){
     ordersService.GetAllOrders().subscribe(
       {
         next: (data)=>{
           this.orders=data;
+          // localStorage.setItem('data',JSON.stringify(this.orders));
+          // let temp:any=localStorage.getItem('data');
+          // this.test=JSON.parse(temp);
+          // console.log(this.test);
         },
         error: (err)=>{console.log(err);
         }

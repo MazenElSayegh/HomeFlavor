@@ -36,7 +36,8 @@
       <td>{{o.user_id.user_name}}</td>
       <td>{{o.store_id.name}}</td>
       <td>
-        <div class="d-flex flex-row justify-content-around">
+        <div class="d-flex flex-row
+        justify-content-around">
           <form (ngSubmit)="Update(o._id, 'Accepted',o.user_id._id,o.store_id._id,o.products)">
             <input
               type="submit"
