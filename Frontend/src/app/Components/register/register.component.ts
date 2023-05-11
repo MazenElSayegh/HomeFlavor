@@ -38,7 +38,7 @@ export class RegisterComponent {
     return this.validationForm.controls['role'].valid;
   }
 
-  async add(
+  add(
     user_name: any,
     email: any,
     password: any,
