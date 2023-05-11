@@ -52,20 +52,22 @@ let CreateOrder = async (req, res) => {
 
 // Update Order  -> when status:"pending" only  (ADMIN)  //products or status
 var UpdateOrderByID = async (req, res) => {
-    console.log("update students")
+    console.log("update order")
     var ID = req.params.id;
     var updatedOrder = req.body;
-    let updatedStudent;
+    let oldOrder;
     if(validateOrder(updatedOrder)){
+      console.log("gowa el validate");
         try{
-            updatedStudent=await OrderModel.findOneAndUpdate({_id:ID},
+            oldOrder=await OrderModel.findOneAndUpdate({_id:ID},
             { status:updatedOrder.status});
+            console.log("hello");
             
         }catch(err){
-          res.status(301).json("errorrrrr")
+          res.status(301).json(err)
         }
-        if(updatedStudent){
-            res.status(201).json(updatedStudent);
+        if(oldOrder){
+            res.status(201).json(oldOrder);
         }else{
             res.status(401).json("couldnt update");
         }

@@ -46,7 +46,7 @@
               routerLink="/orders"
             />
           </form>
-          <form (ngSubmit)="Update(o._id, 'Cancelled',o.user_id,o.store_id,o.products)">
+          <form (ngSubmit)="Update(o._id, 'Cancelled',o.user_id._id,o.store_id._id,o.products)">
             <input
               type="submit"
               class="btn btn-outline-danger"
