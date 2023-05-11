@@ -9,7 +9,7 @@ const feedbackSchema = {
     date: { type: "string" },
     stars: { type: "number", minimum: 1, maximum: 5 },
   },
-  required: ["user_id", "comment", "date", "stars"],
+  required: ["user_id", "comment", "stars"],
     
 };
 
