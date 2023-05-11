@@ -8,3 +8,7 @@
 #formContainer label {
   color: #f28123;
 }
+
+#formContainer p {
+  color: red;
+}
