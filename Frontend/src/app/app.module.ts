@@ -20,6 +20,10 @@ import { StoreDetailsComponent } from './Components/stores/store-details/store-d
 import { CreateStoreComponent } from './Components/stores/create-store/create-store.component';
 import { UpdateStoreComponent } from './Components/stores/update-store/update-store.component';
 import { DeleteStoreComponent } from './Components/stores/delete-store/delete-store.component';
+import { AllMenuComponent } from './Components/menus/all-menu/all-menu.component';
+import { CreateMenuItemComponent } from './Components/menus/create-menu-item/create-menu-item.component';
+import { DeleteMenuItemComponent } from './Components/menus/delete-menu-item/delete-menu-item.component';
+import { UpdateMenuItemComponent } from './Components/menus/update-menu-item/update-menu-item.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,10 @@ import { DeleteStoreComponent } from './Components/stores/delete-store/delete-st
     HeaderComponent,
     HomeComponent,
     FooterComponent,
+    AllMenuComponent,
+    CreateMenuItemComponent,
+    DeleteMenuItemComponent,
+    UpdateMenuItemComponent,
   ],
   imports: [
     BrowserModule,

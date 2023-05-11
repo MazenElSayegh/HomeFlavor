@@ -1,0 +1,82 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="img-fluid"
+          alt="Sample image"
+        />
+      </div>
+
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
+        <form
+          (ngSubmit)="
+          updateMenuItem(storeID.value, productImage.value, productTitle.value,price.value,productDetails.value)
+          "
+        >
+          <!-- storeID input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">storeID</label>
+            <input
+              #storeID
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Enter storeID"
+            />
+          </div>
+
+          <!-- image input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">Image</label>
+            <input
+              #productImage
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Enter Image Name"
+            />
+          </div>
+
+          <!-- titel input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">title</label>
+            <input
+              #productTitle
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Enter titel"
+            />
+          </div>
+
+          <!-- price input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">stars</label>
+            <input
+              #price
+              type="number"
+              class="form-control form-control-lg"
+              placeholder="Enter price"
+            />
+          </div>
+          <!-- details input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">stars</label>
+            <input
+              #productDetails
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Enter details"
+            />
+          </div>
+
+          <input
+            type="submit"
+            class="btn btn-outline-primary btn-lg"
+            style="padding-left: 2.5rem; padding-right: 2.5rem"
+            value="Register"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
