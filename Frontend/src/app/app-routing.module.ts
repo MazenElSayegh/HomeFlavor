@@ -17,6 +17,10 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { AllFeedbacksComponent } from './Components/feedbacks/all-feedbacks/all-feedbacks.component';
 import { CreateFeedbackComponent } from './Components/feedbacks/create-feedback/create-feedback.component';
 import { DeleteFeedbackComponent } from './Components/feedbacks/delete-feedback/delete-feedback.component';
+import { AllMenuComponent } from './Components/menus/all-menu/all-menu.component';
+import { CreateMenuItemComponent } from './Components/menus/create-menu-item/create-menu-item.component';
+import { DeleteMenuItemComponent } from './Components/menus/delete-menu-item/delete-menu-item.component';
+import { UpdateMenuItemComponent } from './Components/menus/update-menu-item/update-menu-item.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,6 +37,12 @@ const routes: Routes = [
   { path: 'feedbacks/create', component: CreateFeedbackComponent },
   { path: 'feedbacks/delete/:id', component: DeleteFeedbackComponent },
   { path: 'feedbacks/:id', component: AllFeedbacksComponent },
+
+  { path: 'menu/create', component: CreateMenuItemComponent },
+  { path: 'menu/delete/:id', component: DeleteMenuItemComponent },
+  { path: 'menu/:id', component: AllMenuComponent },
+  { path: 'menu/update/:id', component: UpdateMenuItemComponent },
+
   { path: '**', component: ErrorComponent },
 ];
 
