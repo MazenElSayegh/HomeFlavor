@@ -40,12 +40,4 @@ export class AllordersComponent {
     this.router.navigateByUrl('/orders');
   }
 
-  GetUserName(id:any){
-    this.usersService.getUserbyID(id).subscribe(data=>console.log(data));
-  }
-
-  GetStoreName(id:any){
-    this.storesService.getStoreByID(id).subscribe(data=>console.log(data));
-  }
-
 }

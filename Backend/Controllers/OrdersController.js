@@ -5,7 +5,14 @@ let OrderModel = require("../Models/OrdersModel");
 // Get all orders (ADMIN only)
 let GetAllOrders = async (req, res) => {
   console.log("get all Orders");
-  let orders = await OrderModel.find({});
+  let orders = await OrderModel.find({}).populate({
+    path: 'user_id',
+    model: 'users'
+  })
+  .populate({
+    path: 'store_id',
+    model: 'stores'
+  });
   res.status(201).json(orders);
 };
 
@@ -24,6 +31,16 @@ let GetOrderByID = async (req, res) => {
   } else {
     res.status(401).json("not found");
   }
+  // let b=function(error, order) {
+  //   if (error) {
+  //     return handleError(error);
+  //   }
+  //   order.user_id = user_id;
+  //   console.log(order.user_id.user_name); // prints "Ian Fleming"
+  // }
+  // OrderModel.findOne({ _id: id },b );
+  
+console.log(order.user_id)
 };
 
 // Make new Order (USER)
