@@ -1,5 +1,5 @@
 <p class="alert alert-dark">allorders works!</p>
-<table class="table table-bordered text-center table-dark table-striped">
+<table class="table table-bordered text-center table-dark table-striped m-5">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -18,7 +18,7 @@
       <td>{{o.total_price}}</td>
       <td><div class="d-flex flex-row justify-content-around"><form (ngSubmit)="Update(o._id,'Accepted')">
           <input type="submit" class="btn btn-outline-primary"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Accept"/></form>
+              style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Accept"  routerLink="/orders"></form>
               <form (ngSubmit)="Update(o._id,'Cancelled')">
                 <input type="submit" class="btn btn-outline-danger"
                     style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Reject"/></form></div></td>

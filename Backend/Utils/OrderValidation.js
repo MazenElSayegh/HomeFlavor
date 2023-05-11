@@ -15,7 +15,7 @@ const orderSchema = {
           quantity: { type: "number" },
           product_details: { type: "string" },
         },
-        required: ["product_name", "price", "quantity"],
+       
       },
     },
     status: {
@@ -23,7 +23,6 @@ const orderSchema = {
       enum: ["Pending", "Accepted", "Cancelled"],
     },
   },
-  required: ["status"],
   additionalProperties: false,
 };
 

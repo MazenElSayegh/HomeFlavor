@@ -20,7 +20,8 @@ export class OrdersService {
   GetOrderByID(id:any){
     return this.myClient.get(this.Base_URL+"/"+id);
   }
-  // AddNewStudent(newUser:any){
-  //   return this.myClient.post(this.Base_URL, newUser);
-  // }
+  AddNewOrder(newOrder:any){
+    console.log(newOrder)
+    return this.myClient.post(this.Base_URL+"/create", newOrder);
+  }
 }
