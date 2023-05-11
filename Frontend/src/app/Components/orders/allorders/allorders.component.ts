@@ -37,7 +37,7 @@ export class AllordersComponent {
     let updatedStudent = {status,user_id,store_id,products};
     this.ordersService.UpdateOrderByID(id,updatedStudent).subscribe();
     alert("updated successfully");
-    this.router.navigateByUrl('/orders');
+    location.href='/orders'
   }
 
 }
