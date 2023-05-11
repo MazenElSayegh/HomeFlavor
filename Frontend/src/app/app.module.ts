@@ -11,6 +11,9 @@ import { ErrorComponent } from './Components/error/error.component';
 import { AllordersComponent } from './Components/orders/allorders/allorders.component';
 import { CreateorderComponent } from './Components/orders/createorder/createorder.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './Components/header/header.component';
+import { HomeComponent } from './Components/home/home.component';
+import { FooterComponent } from './Components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +23,17 @@ import { HttpClientModule } from '@angular/common/http';
     ErrorComponent,
     AllordersComponent,
     CreateorderComponent,
+    HeaderComponent,
+    HomeComponent,
+    FooterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
