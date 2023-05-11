@@ -22,8 +22,11 @@ const orderSchema = {
       type: "string",
       enum: ["Pending", "Accepted", "Cancelled"],
     },
+    user_id: { type: "string" },
+    store_id: { type: "string" },
   },
   additionalProperties: false,
+  required: ["user_id", "store_id", "products"],
 };
 
 module.exports = ajv.compile(orderSchema);

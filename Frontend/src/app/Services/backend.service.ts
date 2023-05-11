@@ -15,7 +15,10 @@ export class BackendService {
 
   userLogin(user: any) {
     console.log(user);
-
     return this.serverClient.post(this.Base_URL + 'login', user);
+  }
+
+  getUserbyID(id:any) {
+    return this.serverClient.get(this.Base_URL+ 'users'+"/"+id);
   }
 }

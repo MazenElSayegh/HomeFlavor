@@ -1,28 +1,69 @@
-<p class="alert alert-dark">allorders works!</p>
-<table class="table table-bordered text-center table-dark table-striped m-5">
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>Taste Of Hebab</p>
+          <h1>All orders</h1>
+           <h1>{{GetStoreName("645d1c6bbad75751c0bc22a8")}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+<table class="table table-bordered text-center table-dark table-striped mt-5 container">
   <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Date</th>
       <th scope="col">Status</th>
       <th scope="col">Total Price</th>
+      <!-- <th scope="col">User</th> -->
+      <!-- <th scope="col">Store</th> -->
       <th scope="col">Action</th>
       <th scope="col">More</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let o of orders">
-      <td>{{o._id}}</td>
-      <td>{{o.date}}</td>
-      <td>{{o.status}}</td>
-      <td>{{o.total_price}}</td>
-      <td><div class="d-flex flex-row justify-content-around"><form (ngSubmit)="Update(o._id,'Accepted')">
-          <input type="submit" class="btn btn-outline-primary"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Accept"  routerLink="/orders"></form>
-              <form (ngSubmit)="Update(o._id,'Cancelled')">
-                <input type="submit" class="btn btn-outline-danger"
-                    style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Reject"/></form></div></td>
-      <td><input type="submit" routerLink="/orders/{{o.id}}" value="view" class="btn btn-outline-warning" style="padding-left: 2.5rem; padding-right: 2.5rem; color:white"/></td>
+      <td>{{ o._id }}</td>
+      <td>{{ o.date }}</td>
+      <td>{{ o.status }}</td>
+      <td>{{ o.total_price }}</td>
+      <!-- <td>{{GetUserName(o.user_id)}}</td> -->
+      <!-- <td>{{o.store_id}}</td> -->
+      <td>
+        <div class="d-flex flex-row justify-content-around">
+          <form (ngSubmit)="Update(o._id, 'Accepted')">
+            <input
+              type="submit"
+              class="btn btn-outline-primary"
+              style="padding-left: 2.5rem; padding-right: 2.5rem"
+              value="Accept"
+              routerLink="/orders"
+            />
+          </form>
+          <form (ngSubmit)="Update(o._id, 'Cancelled')">
+            <input
+              type="submit"
+              class="btn btn-outline-danger"
+              style="padding-left: 2.5rem; padding-right: 2.5rem"
+              value="Reject"
+            />
+          </form>
+        </div>
+      </td>
+      <td>
+        <input
+          type="submit"
+          routerLink="/orders/{{ o.id }}"
+          value="view"
+          class="btn btn-outline-warning"
+          style="padding-left: 2.5rem; padding-right: 2.5rem; color: white"
+        />
+      </td>
     </tr>
   </tbody>
 </table>
