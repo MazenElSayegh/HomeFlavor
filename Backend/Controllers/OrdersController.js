@@ -73,9 +73,10 @@ var UpdateOrderByID = async (req, res) => {
     if(validateOrder(updatedOrder)){
         try{
             updatedStudent=await OrderModel.findOneAndUpdate({_id:ID},
-            { status:updatedOrder.status });
+            { status:updatedOrder.status});
             
         }catch(err){
+          res.status(301).json("errorrrrr")
         }
         if(updatedStudent){
             res.status(201).json(updatedStudent);

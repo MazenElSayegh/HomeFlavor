@@ -33,8 +33,8 @@ export class AllordersComponent {
 
   }
 
-  Update(id:any,status:any){
-    let updatedStudent = {status};
+  Update(id:any,status:any,user_id:any,store_id:any,products:any){
+    let updatedStudent = {status,user_id,store_id,products};
     this.ordersService.UpdateOrderByID(id,updatedStudent).subscribe();
     alert("updated successfully");
     this.router.navigateByUrl('/orders');
