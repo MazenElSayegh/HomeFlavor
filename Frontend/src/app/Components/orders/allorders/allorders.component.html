@@ -37,7 +37,7 @@
       <td>{{o.store_id.name}}</td>
       <td>
         <div class="d-flex flex-row justify-content-around">
-          <form (ngSubmit)="Update(o._id, 'Accepted')">
+          <form (ngSubmit)="Update(o._id, 'Accepted',o.user_id._id,o.store_id._id,o.products)">
             <input
               type="submit"
               class="btn btn-outline-primary"
@@ -46,7 +46,7 @@
               routerLink="/orders"
             />
           </form>
-          <form (ngSubmit)="Update(o._id, 'Cancelled')">
+          <form (ngSubmit)="Update(o._id, 'Cancelled',o.user_id,o.store_id,o.products)">
             <input
               type="submit"
               class="btn btn-outline-danger"
