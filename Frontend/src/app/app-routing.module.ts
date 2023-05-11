@@ -25,6 +25,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'orders', component: AllordersComponent },
+  { path: 'orders/create', component: CreateorderComponent},
+  { path: 'orders/:id', component: OrderdetailsComponent},
   { path: 'stores', component: AllStoresComponent },
   { path: 'stores/create', component: CreateStoreComponent },
   { path: 'stores/update/:id', component: UpdateStoreComponent },

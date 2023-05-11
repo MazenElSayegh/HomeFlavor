@@ -4,7 +4,7 @@ let OrderModel = require("../Models/OrdersModel");
 
 // Get all orders (ADMIN only)
 let GetAllOrders = async (req, res) => {
-  console.log("get all Orders");
+  // console.log("get all Orders");
   let orders = await OrderModel.find({});
   res.status(201).json(orders);
 };
@@ -38,7 +38,7 @@ let CreateOrder = async (req, res) => {
     console.log("3");
     res.status(201).json(order);
   } else {
-    res.status(301).send("check ur data");
+    res.status(301).send("Check your data");
   }
 };
 

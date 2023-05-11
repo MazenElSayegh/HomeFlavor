@@ -6,22 +6,23 @@
         <div class="breadcrumb-text">
           <p>Taste Of Hebab</p>
           <h1>All orders</h1>
-           <h1>{{GetStoreName("645d1c6bbad75751c0bc22a8")}}</h1>
         </div>
       </div>
     </div>
   </div>
 </div>
 <!-- end breadcrumb section -->
-<table class="table table-bordered text-center table-dark table-striped mt-5 container">
+<table
+  class="table table-bordered text-center table-dark table-striped mt-5 container"
+>
   <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Date</th>
       <th scope="col">Status</th>
       <th scope="col">Total Price</th>
-      <!-- <th scope="col">User</th> -->
-      <!-- <th scope="col">Store</th> -->
+      <th scope="col">User</th>
+      <th scope="col">Store</th>
       <th scope="col">Action</th>
       <th scope="col">More</th>
     </tr>
@@ -32,8 +33,8 @@
       <td>{{ o.date }}</td>
       <td>{{ o.status }}</td>
       <td>{{ o.total_price }}</td>
-      <!-- <td>{{GetUserName(o.user_id)}}</td> -->
-      <!-- <td>{{o.store_id}}</td> -->
+      <td>{{ o.user_id }}</td>
+      <td>{{ o.store_id }}</td>
       <td>
         <div class="d-flex flex-row justify-content-around">
           <form (ngSubmit)="Update(o._id, 'Accepted')">

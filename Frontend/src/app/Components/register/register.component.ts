@@ -58,7 +58,7 @@ export class RegisterComponent {
       this.myService.addNewUser(newUser).subscribe();
 
       alert('added successfully');
-      this.myRouter.navigateByUrl('/');
+      location.href='/';
     } else {
       alert('please validate');
     }
