@@ -30,16 +30,7 @@ let GetOrderByID = async (req, res) => {
     res.status(201).json(order);
   } else {
     res.status(401).json("not found");
-  }
-  // let b=function(error, order) {
-  //   if (error) {
-  //     return handleError(error);
-  //   }
-  //   order.user_id = user_id;
-  //   console.log(order.user_id.user_name); // prints "Ian Fleming"
-  // }
-  // OrderModel.findOne({ _id: id },b );
-  
+  }  
 console.log(order.user_id)
 };
 
@@ -61,11 +52,6 @@ let CreateOrder = async (req, res) => {
 
 // Update Order  -> when status:"pending" only  (ADMIN)  //products or status
 var UpdateOrderByID = async (req, res) => {
-  // var ID = req.params.id;
-  // var updatedOrder = req.body;
-  // let Order=await OrderModel.findOneAndUpdate({ _id: ID }, { status:updatedOrder.status });
-  // console.log(Order.total_price)
-  //  res.json(Order || "Not Found");
     console.log("update students")
     var ID = req.params.id;
     var updatedOrder = req.body;
