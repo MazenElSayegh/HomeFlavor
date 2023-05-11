@@ -20,6 +20,10 @@ import { StoreDetailsComponent } from './Components/stores/store-details/store-d
 import { CreateStoreComponent } from './Components/stores/create-store/create-store.component';
 import { UpdateStoreComponent } from './Components/stores/update-store/update-store.component';
 import { DeleteStoreComponent } from './Components/stores/delete-store/delete-store.component';
+import { ProfileComponent } from './Components/profile/profile.component';
+import { AllFeedbacksComponent } from './Components/feedbacks/all-feedbacks/all-feedbacks.component';
+import { CreateFeedbackComponent } from './Components/feedbacks/create-feedback/create-feedback.component';
+import { DeleteFeedbackComponent } from './Components/feedbacks/delete-feedback/delete-feedback.component';
 import { AllMenuComponent } from './Components/menus/all-menu/all-menu.component';
 import { CreateMenuItemComponent } from './Components/menus/create-menu-item/create-menu-item.component';
 import { DeleteMenuItemComponent } from './Components/menus/delete-menu-item/delete-menu-item.component';
@@ -42,6 +46,10 @@ import { UpdateMenuItemComponent } from './Components/menus/update-menu-item/upd
     HeaderComponent,
     HomeComponent,
     FooterComponent,
+    ProfileComponent,
+    AllFeedbacksComponent,
+    CreateFeedbackComponent,
+    DeleteFeedbackComponent,
     AllMenuComponent,
     CreateMenuItemComponent,
     DeleteMenuItemComponent,

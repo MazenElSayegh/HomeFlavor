@@ -21,7 +21,6 @@ export class OrdersService {
     return this.myClient.get(this.Base_URL+"/"+id);
   }
   AddNewOrder(newOrder:any){
-    console.log(newOrder)
     return this.myClient.post(this.Base_URL+"/create", newOrder);
   }
 }

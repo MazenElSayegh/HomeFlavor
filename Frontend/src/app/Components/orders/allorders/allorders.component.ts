@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { BackendService } from 'src/app/Services/backend.service';
 import { OrdersService } from 'src/app/Services/orders.service';
+import { StoresService } from 'src/app/Services/stores.service';
 
 @Component({
   selector: 'app-allorders',
@@ -8,11 +11,10 @@ import { OrdersService } from 'src/app/Services/orders.service';
 })
 export class AllordersComponent {
   orders:any;
-  constructor(private myService:OrdersService){
-    myService.GetAllOrders().subscribe(
+  constructor(private ordersService:OrdersService,private usersService:BackendService,private storesService:StoresService, private router:Router){
+    ordersService.GetAllOrders().subscribe(
       {
         next: (data)=>{
-          console.log(data);
           this.orders=data;
         },
         error: (err)=>{console.log(err);
@@ -21,7 +23,7 @@ export class AllordersComponent {
 
   }
   ngOnInit(): void {
-    this.myService.GetAllOrders().subscribe(
+    this.ordersService.GetAllOrders().subscribe(
       {
         next:(data:any)=>{
           this.orders = data;
@@ -33,11 +35,17 @@ export class AllordersComponent {
 
   Update(id:any,status:any){
     let updatedStudent = {status};
-    console.log(updatedStudent);
-    console.log(this.orders);
-    this.myService.UpdateOrderByID(id,updatedStudent).subscribe(data=>console.log(data));
+    this.ordersService.UpdateOrderByID(id,updatedStudent).subscribe();
     alert("updated successfully");
+    this.router.navigateByUrl('/orders');
+  }
 
+  GetUserName(id:any){
+    this.usersService.getUserbyID(id).subscribe(data=>console.log(data));
+  }
+
+  GetStoreName(id:any){
+    this.storesService.getStoreByID(id).subscribe(data=>console.log(data));
   }
 
 }

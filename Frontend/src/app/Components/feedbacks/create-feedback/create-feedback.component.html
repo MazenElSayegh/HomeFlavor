@@ -1,4 +1,4 @@
-<section class="vh-100 mt-5">
+<section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-9 col-lg-6 col-xl-5">
@@ -12,9 +12,20 @@
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
         <form
           (ngSubmit)="
-            AddStore(userID.value, name.value, image.value, city.value)
+            addFeedback(storeID.value, userID.value, comment.value, stars.value)
           "
         >
+          <!-- storeID input -->
+          <div class="form-outline">
+            <input
+              #storeID
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Enter storeID"
+            />
+            <label class="form-label" for="form3Example3">storeID</label>
+          </div>
+
           <!-- UserID input -->
           <div class="form-outline">
             <input
@@ -29,37 +40,28 @@
             Name must be at least 3 characters long.
           </div> -->
 
-          <!-- Name input -->
+          <!-- comment input -->
           <div class="form-outline">
             <input
-              #name
+              #comment
               type="text"
               class="form-control form-control-lg"
-              placeholder="Enter Name"
+              placeholder="Enter comment"
             />
-            <label class="form-label" for="form3Example3">Name</label>
-          </div>
-
-          <!-- Image input -->
-          <div class="form-outline">
-            <input
-              #image
-              type="file"
-              class="form-control form-control-lg"
-              placeholder="Enter Image"
-            />
-            <label class="form-label" for="form3Example3">Image</label>
+            <label class="form-label" for="form3Example3">comment</label>
           </div>
 
           <!-- city input -->
           <div class="form-outline">
             <input
-              #city
-              type="text"
+              #stars
+              type="number"
+              min="1"
+              max="5"
               class="form-control form-control-lg"
-              placeholder="Enter city"
+              placeholder="Enter stars"
             />
-            <label class="form-label" for="form3Example3">city</label>
+            <label class="form-label" for="form3Example3">stars</label>
           </div>
 
           <input

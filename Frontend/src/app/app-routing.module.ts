@@ -13,6 +13,10 @@ import { DeleteStoreComponent } from './Components/stores/delete-store/delete-st
 import { CreateorderComponent } from './Components/orders/createorder/createorder.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { HomeComponent } from './Components/home/home.component';
+import { ProfileComponent } from './Components/profile/profile.component';
+import { AllFeedbacksComponent } from './Components/feedbacks/all-feedbacks/all-feedbacks.component';
+import { CreateFeedbackComponent } from './Components/feedbacks/create-feedback/create-feedback.component';
+import { DeleteFeedbackComponent } from './Components/feedbacks/delete-feedback/delete-feedback.component';
 import { AllMenuComponent } from './Components/menus/all-menu/all-menu.component';
 import { CreateMenuItemComponent } from './Components/menus/create-menu-item/create-menu-item.component';
 import { DeleteMenuItemComponent } from './Components/menus/delete-menu-item/delete-menu-item.component';
@@ -22,7 +26,17 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'orders',component: AllordersComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'orders', component: AllordersComponent },
+  { path: 'stores', component: AllStoresComponent },
+  { path: 'stores/create', component: CreateStoreComponent },
+  { path: 'stores/update/:id', component: UpdateStoreComponent },
+  { path: 'stores/delete/:id', component: DeleteStoreComponent },
+  { path: 'stores/:id', component: StoreDetailsComponent },
+  { path: 'feedbacks/create', component: CreateFeedbackComponent },
+  { path: 'feedbacks/delete/:id', component: DeleteFeedbackComponent },
+  { path: 'feedbacks/:id', component: AllFeedbacksComponent },
 
   { path: 'menu/create', component: CreateMenuItemComponent },
   { path: 'menu/delete/:id', component: DeleteMenuItemComponent },

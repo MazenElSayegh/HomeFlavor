@@ -9,25 +9,25 @@ mongoose.connect(DB_URL, { useNewUrlParser: true });
 
 //Stores schema
 let FeedBackSchema = new mongoose.Schema({
-    store_id: {
-        type: Schema.Types.ObjectId,
-        ref: "stores",
-        required: true,
-      },
-      user_id: {
-        type: Schema.Types.ObjectId,
-        ref: "users",
-        required: true,
-        // type: String,
-      },
-          comment: { type: String, required: true },
-          date: { type: Date, required: true, default: Date.now },
-          stars: {
-            type: Number,
-            min: 1,
-            max: 5,
-            required: true,
-          },
+  store_id: {
+    type: Schema.Types.ObjectId,
+    ref: "stores",
+    required: true,
+  },
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
+    required: true,
+    // type: String,
+  },
+  comment: { type: String, required: true },
+  date: { type: Date, required: true, default: Date.now },
+  stars: {
+    type: Number,
+    min: 1,
+    max: 5,
+    required: true,
+  },
 });
 
 //Export to controller
