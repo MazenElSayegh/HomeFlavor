@@ -13,8 +13,7 @@
 </div>
 <!-- end breadcrumb section -->
 
-<div class="fw-bold text-center text-info my-2"><p>Registration</p></div>
-<div id="formContainer" class="w-50 m-auto">
+<div id="formContainer">
   <form
     class="form"
     (ngSubmit)="
@@ -100,7 +99,9 @@
       </div>
     </div>
 
+    <label for="role" class="form-label"> Image </label>
     <div class="input-group mb-3">
+
       <input
         #user_image
         type="file"

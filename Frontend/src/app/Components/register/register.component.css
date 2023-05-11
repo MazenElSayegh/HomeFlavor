@@ -1,10 +1,10 @@
-
-
 #formContainer {
-  padding: 20px;
-  margin: auto;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  padding: 50px;
+  margin: 50px auto;
   width: 50%;
-  height: 30%;
-  background-color: lightblue;
+  box-shadow: #051922;
+  background-color: #012738;
+}
+#formContainer label {
+  color: #f28123;
 }
