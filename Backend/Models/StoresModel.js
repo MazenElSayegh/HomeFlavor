@@ -15,33 +15,7 @@ let StoresSchema = new mongoose.Schema({
     required: true,
     // type: String,
   },
-  menu: [
-    {
-      product_image: { type: String, required: true },
-      product_title: { type: String, required: true },
-      price: { type: Number, required: true },
-      product_details: { type: String, required: true },
-    },
-  ],
 
-  feedback: [
-    {
-      user_id: {
-        type: Schema.Types.ObjectId,
-        ref: "users",
-        required: true,
-        // type: String,
-      },
-      comment: { type: String, required: true },
-      date: { type: Date, required: true, default: Date.now },
-      stars: {
-        type: Number,
-        min: 1,
-        max: 5,
-        required: true,
-      },
-    },
-  ],
   name: { type: String, required: true, minlength: 3, maxlength: 50 },
   image: { type: String, required: true },
   city: { type: String, required: true },
