@@ -1,6 +1,21 @@
-<div class="fw-bold text-center text-info my-2"><p>Registration</p></div>
-<div id="formContainer" class="w-50 m-auto">
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>sagel w eksab</p>
+          <h1>Registration</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+
+<div id="formContainer">
   <form
+    [formGroup]="validationForm"
     class="form"
     (ngSubmit)="
       add(
@@ -24,7 +39,7 @@
         placeholder="user_name"
         #user_name
       />
-      <div class="mt-1">
+      <div class="mt-1" *ngIf="!user_nameValid">
         <p>enter a name greater than three characters.</p>
       </div>
     </div>
@@ -39,34 +54,33 @@
         placeholder="Email"
         #email
       />
-      <div class="mt-1">
+      <div class="mt-1" *ngIf="!emailValid">
         <p>Enter correct Email</p>
       </div>
     </div>
 
     <div class="mb-3">
-      <label for="phone" class="form-label">Enter Password</label>
+      <label for="password" class="form-label">Enter Password</label>
       <input
-        formControlName="Password"
+        formControlName="password"
         type="password"
         class="form-control"
-        id="phone"
+        id="password"
         placeholder="Password"
         #password
       />
-      <div class="mt-1">
-        <p>Enter correct 11 number</p>
+      <div class="mt-1" *ngIf="!passwordValid">
+        <p>not less than 8 characters</p>
       </div>
     </div>
 
     <div class="mb-3">
       <label for="gender" class="form-label">Enter Your Gender</label>
-      <<select #gender class="form-select" id="gender">
-        <option selected>Choose...</option>
+      <select #gender class="form-select" formControlName="gender" id="gender">
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
-      <div class="mt-1">
+      <div class="mt-1" *ngIf="!genderValid">
         <p>please select your gender.</p>
       </div>
     </div>
@@ -75,18 +89,23 @@
       <label for="role" class="form-label">
         would you like to Buy or Sell ?
       </label>
-      <<select #role class="form-select" id="role">
-        <option selected>Choose...</option>
+      <select #role class="form-select" formControlName="role" id="role">
         <option value="buyer">Buyer</option>
         <option value="seller">Seller</option>
       </select>
-      <div class="mt-1">
+      <div class="mt-1" *ngIf="!roleValid">
         <p>please select your Role.</p>
       </div>
     </div>
 
+    <label for="image" class="form-label"> Image </label>
     <div class="input-group mb-3">
-      <input #user_image type="file" class="form-control" id="inputGroupFile02" />
+      <input
+        #user_image
+        type="file"
+        class="form-control"
+        id="inputGroupFile02"
+      />
       <label class="input-group-text" for="inputGroupFile02">Upload</label>
     </div>
 

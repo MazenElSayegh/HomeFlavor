@@ -1,58 +1,59 @@
 // Requires
 const validate = require("../Utils/MenuValidation");
-let StoreModel = require("../Models/StoresModel");
+let MenusModel = require("../Models/MenusModel");
 
 // Get all menu
 let getAllMenu = async (req, res) => {
-  let id = req.params.id;
+  let id = req.params.id_store;
   //let menus = await StoreModel.find({menu: {$elemMatch: {product_title:"gambryyy"}}}).where('_id').equals(id).exec();
   // let menus = await StoreModel.find({menu: {$elemMatch: {product_title:"gambryyy"}}}).where('_id').equals(id).select('menu').exec();
-  let menus = await StoreModel.where("_id").equals(id).select("menu").exec();
+  // let menus = await MenusModel.find("_id").equals(id).select("menu").exec();
+  let menus = await MenusModel.find({store_id:id});
 
   res.status(201).json(menus);
 };
 
 //creatr menu item
 let CreateMenuItem = async (req, res) => {
-    let id = req.params.id;
-    let newItem = req.body;
-    console.log(newItem);
-    if (validate(newItem)) {
+  let newItem = req.body;
+  if (validate(newItem)) {
     try {
-        const result = await StoreModel.updateOne(
-          { _id: id },
-          // { $push: { menu: { $each: newItem.menu }  } }
-             { $push: { menu: newItem  } }
-        );
-        console.log(result);
-        res.status(200).send(result);
-      } catch (err) {
-        console.error(err);
-        res.status(500).send(err);
-      }
+      let item = new MenusModel(newItem);
+      await item.save();
+      res.status(201).json(newItem);
+    } catch (err) {
+      res.status(301).send(err.message);
     }
-    else {
+  } else {
     res.status(301).send(validate.errors);
   }
     
   };
 
+//updateitem
+
+var updateItemByID = async (req, res) => {
+  var ID = req.params.id;
+  var updatedItem = req.body;
+
+  if (validate(updatedItem)) {
+    try {
+      await MenusModel.updateOne({ _id: ID }, updatedItem);
+      res.json(updatedItem);
+    } catch (err) {
+      res.status(301).send(err.message);
+    }
+  } else {
+    res.status(301).send(validate.errors);
+  }
+};
 
 //delete item from menu
 var deleteMenuItemByID = async (req, res) => {
-  var id = req.params.id;
-  var itemName = req.params.itemName;
-  try {
-    const result = await StoreModel.updateOne(
-      { _id: id },
-      { $pull: { menu: { product_title: itemName } } }
-    );
-    console.log(result);
-    res.status(200).send(result);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send(err);
-  }
+  var ID = req.params.id_item;
+  var itemToDelete = await MenusModel.find({ _id: ID });
+  await MenusModel.deleteOne({ _id: ID });
+  res.json(itemToDelete || "Not Found");
 };
 
 
@@ -62,4 +63,5 @@ module.exports = {
   getAllMenu,
   deleteMenuItemByID,
   CreateMenuItem,
+  updateItemByID
 };

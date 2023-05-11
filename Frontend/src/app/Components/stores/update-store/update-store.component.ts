@@ -17,50 +17,9 @@ export class UpdateStoreComponent {
     this.id = myRoute.snapshot.params['id'];
   }
 
-  AddStore(
-    userID: any,
-    name: any,
-    image: any,
-    city: any,
-    product_image: any,
-    product_title: any,
-    price: any,
-    product_details: any,
-    fbUserID: any,
-    comment: any,
-    date: any,
-    stars: any
-  ) {
+  updateStore(userID: any, name: any, image: any, city: any) {
     let newStore = {
       user_id: userID,
-      menu: [
-        {
-          product_image: product_image,
-          product_title: product_title,
-          price: +price,
-          product_details: product_details,
-        },
-        {
-          product_image: product_image,
-          product_title: product_title,
-          price: +price,
-          product_details: product_details,
-        },
-      ],
-      feedback: [
-        {
-          user_id: fbUserID,
-          comment: comment,
-          date: date,
-          stars: +stars,
-        },
-        {
-          user_id: fbUserID,
-          comment: comment,
-          date: date,
-          stars: +stars,
-        },
-      ],
       name: name,
       image: image,
       city: city,
