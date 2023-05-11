@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'orders',component: AllordersComponent},
-  { path: 'orders/createorder',component: CreateorderComponent},
+  { path: 'orders/create',component: CreateorderComponent},
   { path: 'orders/:id',component: OrderdetailsComponent},
   { path: '**', component: ErrorComponent },
 ];

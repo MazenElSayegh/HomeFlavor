@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { OrdersService } from 'src/app/Services/orders.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { OrdersService } from 'src/app/Services/orders.service';
 })
 export class AllordersComponent {
   orders:any;
-  constructor(private myService:OrdersService){
+  constructor(private myService:OrdersService, private router:Router){
     myService.GetAllOrders().subscribe(
       {
         next: (data)=>{
@@ -37,6 +38,7 @@ export class AllordersComponent {
     console.log(this.orders);
     this.myService.UpdateOrderByID(id,updatedStudent).subscribe(data=>console.log(data));
     alert("updated successfully");
+    this.router.navigateByUrl('/orders');
 
   }
 
