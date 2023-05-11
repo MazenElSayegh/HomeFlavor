@@ -20,6 +20,7 @@ import { StoreDetailsComponent } from './Components/stores/store-details/store-d
 import { CreateStoreComponent } from './Components/stores/create-store/create-store.component';
 import { UpdateStoreComponent } from './Components/stores/update-store/update-store.component';
 import { DeleteStoreComponent } from './Components/stores/delete-store/delete-store.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { DeleteStoreComponent } from './Components/stores/delete-store/delete-st
     HeaderComponent,
     HomeComponent,
     FooterComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

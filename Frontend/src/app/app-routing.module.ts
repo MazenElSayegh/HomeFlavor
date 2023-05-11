@@ -13,12 +13,14 @@ import { DeleteStoreComponent } from './Components/stores/delete-store/delete-st
 import { CreateorderComponent } from './Components/orders/createorder/createorder.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { HomeComponent } from './Components/home/home.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'orders', component: AllordersComponent },
   { path: '**', component: ErrorComponent },
 ];

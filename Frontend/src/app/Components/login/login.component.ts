@@ -35,7 +35,7 @@ export class LoginComponent {
       this.myService.userLogin(user).subscribe();
 
       alert('successfully');
-      this.myRouter.navigateByUrl('/');
+      this.myRouter.navigateByUrl('/profile');
     } else {
       alert('please validate');
     }
