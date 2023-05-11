@@ -13,6 +13,9 @@ import { DeleteStoreComponent } from './Components/stores/delete-store/delete-st
 import { CreateorderComponent } from './Components/orders/createorder/createorder.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { HomeComponent } from './Components/home/home.component';
+import { AllFeedbacksComponent } from './Components/feedbacks/all-feedbacks/all-feedbacks.component';
+import { CreateFeedbackComponent } from './Components/feedbacks/create-feedback/create-feedback.component';
+import { DeleteFeedbackComponent } from './Components/feedbacks/delete-feedback/delete-feedback.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,6 +28,9 @@ const routes: Routes = [
   { path: 'stores/update/:id', component: UpdateStoreComponent },
   { path: 'stores/delete/:id', component: DeleteStoreComponent },
   { path: 'stores/:id', component: StoreDetailsComponent },
+  { path: 'feedbacks/create', component: CreateFeedbackComponent },
+  { path: 'feedbacks/delete/:id', component: DeleteFeedbackComponent },
+  { path: 'feedbacks/:id', component: AllFeedbacksComponent },
   { path: '**', component: ErrorComponent },
 ];
 

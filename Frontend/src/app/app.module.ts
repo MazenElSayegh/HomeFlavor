@@ -20,6 +20,9 @@ import { StoreDetailsComponent } from './Components/stores/store-details/store-d
 import { CreateStoreComponent } from './Components/stores/create-store/create-store.component';
 import { UpdateStoreComponent } from './Components/stores/update-store/update-store.component';
 import { DeleteStoreComponent } from './Components/stores/delete-store/delete-store.component';
+import { AllFeedbacksComponent } from './Components/feedbacks/all-feedbacks/all-feedbacks.component';
+import { CreateFeedbackComponent } from './Components/feedbacks/create-feedback/create-feedback.component';
+import { DeleteFeedbackComponent } from './Components/feedbacks/delete-feedback/delete-feedback.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { DeleteStoreComponent } from './Components/stores/delete-store/delete-st
     HeaderComponent,
     HomeComponent,
     FooterComponent,
+    AllFeedbacksComponent,
+    CreateFeedbackComponent,
+    DeleteFeedbackComponent,
   ],
   imports: [
     BrowserModule,
