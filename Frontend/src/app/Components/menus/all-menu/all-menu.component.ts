@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuService } from 'src/app/Services/menu.service';
 
@@ -9,6 +9,7 @@ import { MenuService } from 'src/app/Services/menu.service';
 })
 export class AllMenuComponent {
   id: any;
+
   constructor(private myService: MenuService, myRoute: ActivatedRoute) {
     this.id = myRoute.snapshot.params['id'];
     myService.getAllMenu(this.id).subscribe({
