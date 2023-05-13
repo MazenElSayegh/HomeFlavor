@@ -526,7 +526,8 @@ a.cart-btn {
   position: relative;
   z-index: 1;
   background-attachment: fixed;
-  padding-top: 200px;
+  padding-top: 100px;
+  padding-bottom: 80px;
 }
 
 .breadcrumb-section:after {
@@ -1209,8 +1210,7 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: #051922;
-  color: #f28123;
-  border: #f28123 solid 2px !important;
+  color: #F28123;
 }
 
 div.owl-controls,

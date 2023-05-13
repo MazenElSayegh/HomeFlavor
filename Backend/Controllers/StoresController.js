@@ -4,7 +4,7 @@ let StoreModel = require("../Models/StoresModel");
 
 // Get all stores
 let getAllStores = async (req, res) => {
-  let stores = await StoreModel.find({});
+  let stores = await StoreModel.find({}).populate('user_id');
   res.status(201).json(stores);
 };
 
@@ -13,7 +13,7 @@ let getStoreByID = async (req, res) => {
   let id = req.params.id;
   let store = null;
   try {
-    store = await StoreModel.findById({ _id: id });
+    store = await StoreModel.findById({ _id: id }).populate('user_id');
   } catch (error) {
     console.log(error);
   }

@@ -23,23 +23,31 @@ import { DeleteMenuItemComponent } from './Components/menus/delete-menu-item/del
 import { UpdateMenuItemComponent } from './Components/menus/update-menu-item/update-menu-item.component';
 
 const routes: Routes = [
+
+  // -------------------- user routes ------------------------------------------------------
+
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:id', component: ProfileComponent },
+  // -------------------- order routes ------------------------------------------------------
+
   { path: 'orders', component: AllordersComponent },
   { path: 'orders/create', component: CreateorderComponent},
   { path: 'orders/:id', component: OrderdetailsComponent},
+  // -------------------- stores routes ------------------------------------------------------
+
   { path: 'stores', component: AllStoresComponent },
   { path: 'stores/create', component: CreateStoreComponent },
   { path: 'stores/update/:id', component: UpdateStoreComponent },
   { path: 'stores/delete/:id', component: DeleteStoreComponent },
   { path: 'stores/:id', component: StoreDetailsComponent },
+  // -------------------- feedback routes --------------------------------------------------
   { path: 'feedbacks/create', component: CreateFeedbackComponent },
   { path: 'feedbacks/delete/:id', component: DeleteFeedbackComponent },
   { path: 'feedbacks/:id', component: AllFeedbacksComponent },
-
+  // -------------------- menu routes ------------------------------------------------------
   { path: 'menu/create', component: CreateMenuItemComponent },
   { path: 'menu/delete/:id', component: DeleteMenuItemComponent },
   { path: 'menu/:id', component: AllMenuComponent },
