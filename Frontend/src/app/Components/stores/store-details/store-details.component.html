@@ -11,70 +11,101 @@
     </div>
   </div>
 </div>
-<div class="container mt-5">
-<table class="table table-bordered text-center table-dark table-striped">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">City</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{store._id}}</td>
-      <td>{{store.name}}</td>
-      <td>{{store.city}}</td>
-    </tr>
-  </tbody>
-</table>
+<div>
+  <!-- <table class="table table-bordered text-center table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">City</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ store._id }}</td>
+        <td>{{ store.name }}</td>
+        <td>{{ store.city }}</td>
+      </tr>
+    </tbody>
+  </table>
 
+  <table class="table table-bordered text-center table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Image</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of menu">
+        <td>{{ product._id }}</td>
+        <td>{{ product.product_title }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.product_image }}</td>
+        <td>{{ product.product_details }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-<table class="table table-bordered text-center table-dark table-striped">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Price</th>
-      <th scope="col">Image</th>
-      <th scope="col">Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of menu">
-      <td>{{product._id}}</td>
-      <td>{{product.product_title}}</td>
-      <td>{{product.price}}</td>
-      <td>{{product.product_image}}</td>
-      <td>{{product.product_details}}</td>
-    </tr>
-  </tbody>
-</table>
+  <table class="table table-bordered text-center table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">User Name</th>
+        <th scope="col">Comment</th>
+        <th scope="col">Stars</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feedback of feedbacks">
+        <td>{{ feedback.user_id.user_name }}</td>
+        <td>{{ feedback.comment }}</td>
+        <td>{{ feedback.stars }}</td>
+        <td>{{ feedback.date }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-<table class="table table-bordered text-center table-dark table-striped">
-  <thead>
-    <tr>
-      <th scope="col">User Name</th>
-      <th scope="col">Comment</th>
-      <th scope="col">Stars</th>
-      <th scope="col">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let feedback of feedbacks">
-      <td>{{feedback.user_id.user_name}}</td>
-      <td>{{feedback.comment}}</td>
-      <td>{{feedback.stars}}</td>
-      <td>{{feedback.date}}</td>
-    </tr>
-  </tbody>
-</table>
+  <input
+    type="submit"
+    class="btn btn-outline-primary mb-4"
+    style="padding-left: 2.5rem; padding-right: 2.5rem"
+    value="Back To All Orders"
+    routerLink="/stores"
+  /> -->
 
-<input
-              type="submit"
-              class="btn btn-outline-primary mb-4"
-              style="padding-left: 2.5rem; padding-right: 2.5rem"
-              value="Back To All Orders"
-              routerLink="/stores"
-            />
+  <div class="outerContainer">
+    <div class="storeDetailsContainer">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/800px-KFC_logo.svg.png"
+      />
+      <div class="storeDetails">
+        <h1>{{ store.name }}</h1>
+        <p>In: {{ store.city }}</p>
+        <p>Desserts, Ice Cream</p>
+      </div>
+    </div>
+
+    <div class="paymentContainer">
+      <div class="payments">
+        <img src="https://www.talabat.com/assets/images/visa_blue.png" />
+        <img src="https://www.talabat.com/assets/images/logo-mastercard.svg" />
+        <img src="https://www.talabat.com/assets/images/logo-cash.svg" />
+      </div>
+    </div>
+  </div>
+
+  <div class="tabsContainer">
+    <div class="menuTabContainer tabContainer active">
+      <i class="fa-solid fa-utensils"></i>
+      <p>Menu</p>
+    </div>
+    <div class="feedbackTabContainer tabContainer">
+      <i class="fa-solid fa-comments"></i>
+      <p>Feedbacks</p>
+    </div>
+  </div>
 </div>
