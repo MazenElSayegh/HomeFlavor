@@ -42,7 +42,7 @@ let GetAllUsers = async (req, res) => {
 
 let GetUserById = async (req, res) => {
   let Id = req.params.id;
-  let user = await UserModel.find({ _id: Id });
+  let user = await UserModel.findOne({ _id: Id });
   res.json(user);
 };
 let UpdateUser = async (req, res) => {
