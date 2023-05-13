@@ -98,10 +98,11 @@
     </div>
   </div>
 
-  <div class="tabsContainer">
+  <div class="tabsContainer mb-100">
     <div class="menuTabContainer tabContainer active">
       <i class="fa-solid fa-utensils"></i>
       <p>Menu</p>
+
     </div>
     <div class="feedbackTabContainer tabContainer">
       <i class="fa-solid fa-comments"></i>
@@ -109,3 +110,60 @@
     </div>
   </div>
 </div>
+
+<div class="product-section  mb-150" id="stores">
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let product of menu" class=" col-lg-4 col-md-6 text-center" >
+        <div class="single-product-item">
+          <div class="product-image">
+            <a href="single-product.html"
+              ><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/800px-KFC_logo.svg.png" alt=""
+            /></a>
+          </div>
+          <h3>{{ product.product_title }}</h3>
+          <h5>{{ product.price }}</h5>
+          <h5>{{ product.product_details }}</h5>
+          <p class="product-price">
+          </p>
+          <a href="cart.html" class="cart-btn"
+            ><i class="fas fa-shopping-cart"></i> add to cart</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end product section -->
+
+
+<!-- testimonail-section -->
+<div class="testimonail-section mt-150 mb-150">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 text-center">
+        <div class="testimonial-sliders">
+          <div *ngFor="let feedback of feedbacks">
+          <div class="single-testimonial-slider" >
+            <div class="client-avater">
+              <img src="assets/img/avaters/avatar1.png" alt="" />
+            </div>
+            <div class="client-meta">
+              <h3>{{ feedback.user_id.user_name }}</h3>
+              <p class="testimonial-body">
+                {{ feedback.comment }}
+              </p>
+              <div class="last-icon">
+                <i class="fas fa-quote-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end testimonail-section -->
+
+
