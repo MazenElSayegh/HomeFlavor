@@ -1,10 +1,11 @@
 // Requires
 const mongoose = require("mongoose");
-var DB_URL = "mongodb://127.0.0.1:27017/homeflavor";
+const dotenv = require("dotenv").config();
 
 // Connect to DB
 
-mongoose.connect(DB_URL,{useNewUrlParser:true});    
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true });
+ 
 
 const { Schema } = mongoose;
 //Orders schema

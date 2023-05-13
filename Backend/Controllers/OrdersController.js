@@ -22,7 +22,14 @@ let GetOrderByID = async (req, res) => {
   let id = req.params.id;
   let order = null;
   try {
-    order = await OrderModel.findById({ _id: id });
+    order = await OrderModel.findById({ _id: id }).populate({
+      path: 'user_id',
+      model: 'users'
+    })
+    .populate({
+      path: 'store_id',
+      model: 'stores'
+    });
   } catch (error) {
     console.log(error);
   }

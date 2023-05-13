@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BackendService } from 'src/app/Services/backend.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,14 @@ import { BackendService } from 'src/app/Services/backend.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(private myService: BackendService, public myRouter: Router) {}
+  constructor(private myService: BackendService, public myRouter: Router , private http:HttpClient) {}
+
+  selectedFile: any;
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
 
   validationForm = new FormGroup({
     user_name: new FormControl(null, [Validators.required]),
@@ -39,6 +47,8 @@ export class RegisterComponent {
   }
 
   add(
+
+
     user_name: any,
     email: any,
     password: any,
@@ -46,6 +56,12 @@ export class RegisterComponent {
     role: any,
     user_image: any
   ) {
+
+    const formData = new FormData();
+      console.log(formData);
+      formData.append('image', this.selectedFile);
+      console.log(formData);
+
     if (this.validationForm.valid) {
       let user_name = this.validationForm.controls['user_name'].value;
       let email = this.validationForm.controls['email'].value;
@@ -57,10 +73,16 @@ export class RegisterComponent {
 
       this.myService.addNewUser(newUser).subscribe();
 
+
+
       alert('added successfully');
       location.href='/';
     } else {
       alert('please validate');
     }
   }
+
+
+
+
 }

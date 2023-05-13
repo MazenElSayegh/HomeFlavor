@@ -1204,11 +1204,13 @@ input[type="submit"] {
   -o-transition: 0.3s;
   transition: 0.3s;
   border-radius: 50px !important;
+  border: transparent solid 2px !important;
+  margin: 5px;
 }
 
 input[type="submit"]:hover {
   background-color: #051922;
-  color: #f28123;
+  color: #F28123;
 }
 
 div.owl-controls,
@@ -1494,7 +1496,6 @@ input[type="submit"] {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 15px;
-  border: none !important;
   cursor: pointer;
   padding: 15px 25px;
   border-radius: 3px;
