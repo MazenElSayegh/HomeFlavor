@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 var valid = require("validator");
 // const autoIncrement = require("mongoose-auto-increment");
-var DB_URL = "mongodb://127.0.0.1:27017/homeflavor";
+const dotenv = require("dotenv").config();
 
-mongoose.connect(DB_URL, { useNewUrlParser: true });
+// Connect to DB
+
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true });
 
 var userSchema = new mongoose.Schema({
   user_name: { type: String, required: true, minlength: 3, maxlength: 50 },
