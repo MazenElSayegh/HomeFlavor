@@ -5,7 +5,7 @@ let FeedBackModel = require("../Models/FeedBacksModel");
 // Get all menu
 let getAllFeedBack = async (req, res) => {
   let id = req.params.id_store;
-  let feedbacks = await FeedBackModel.find({store_id:id});
+  let feedbacks = await FeedBackModel.find({store_id:id}).populate('user_id');
 
   res.status(201).json(feedbacks);
 };

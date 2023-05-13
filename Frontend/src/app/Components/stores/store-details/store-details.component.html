@@ -1,1 +1,80 @@
-<p>store-details works!</p>
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>Taste Of Hebab</p>
+          <h1>Store Details</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
+<table class="table table-bordered text-center table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{store._id}}</td>
+      <td>{{store.name}}</td>
+      <td>{{store.city}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class="table table-bordered text-center table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Image</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of menu">
+      <td>{{product._id}}</td>
+      <td>{{product.product_title}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.product_image}}</td>
+      <td>{{product.product_details}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered text-center table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">User Name</th>
+      <th scope="col">Comment</th>
+      <th scope="col">Stars</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let feedback of feedbacks">
+      <td>{{feedback.user_id.user_name}}</td>
+      <td>{{feedback.comment}}</td>
+      <td>{{feedback.stars}}</td>
+      <td>{{feedback.date}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<input
+              type="submit"
+              class="btn btn-outline-primary mb-4"
+              style="padding-left: 2.5rem; padding-right: 2.5rem"
+              value="Back To All Orders"
+              routerLink="/stores"
+            />
+</div>
