@@ -14,20 +14,7 @@
 <!-- end breadcrumb section -->
 
 <div id="formContainer">
-  <form
-    [formGroup]="validationForm"
-    class="form"
-    (ngSubmit)="
-      add(
-        user_name.value,
-        email.value,
-        password.value,
-        gender.value,
-        role.value,
-        user_image.value
-      )
-    "
-  >
+  <form [formGroup]="validationForm" class="form" (ngSubmit)="add()">
     <div class="mb-3">
       <label for="name" class="form-label">Enter User Name</label>
       <input
@@ -37,7 +24,7 @@
         id="user_name"
         aria-describedby="emailHelp"
         placeholder="user_name"
-        #user_name
+        [(ngModel)]="user_name"
       />
       <div class="mt-1" *ngIf="!user_nameValid">
         <p>enter a name greater than three characters.</p>
@@ -52,7 +39,7 @@
         class="form-control"
         id="email"
         placeholder="Email"
-        #email
+        [(ngModel)]="email"
       />
       <div class="mt-1" *ngIf="!emailValid">
         <p>Enter correct Email</p>
@@ -67,7 +54,7 @@
         class="form-control"
         id="password"
         placeholder="Password"
-        #password
+        [(ngModel)]="password"
       />
       <div class="mt-1" *ngIf="!passwordValid">
         <p>not less than 8 characters</p>
@@ -76,7 +63,12 @@
 
     <div class="mb-3">
       <label for="gender" class="form-label">Enter Your Gender</label>
-      <select #gender class="form-select" formControlName="gender" id="gender">
+      <select
+        class="form-select"
+        formControlName="gender"
+        id="gender"
+        [(ngModel)]="gender"
+      >
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
@@ -89,7 +81,12 @@
       <label for="role" class="form-label">
         would you like to Buy or Sell ?
       </label>
-      <select #role class="form-select" formControlName="role" id="role">
+      <select
+        class="form-select"
+        formControlName="role"
+        id="role"
+        [(ngModel)]="role"
+      >
         <option value="buyer">Buyer</option>
         <option value="seller">Seller</option>
       </select>
@@ -101,11 +98,10 @@
     <label for="image" class="form-label"> Image </label>
     <div class="input-group mb-3">
       <input
-        #user_image
         type="file"
         class="form-control"
         id="inputGroupFile02"
-        (change)="onFileSelected($event)"
+        (change)="upload($event)"
       />
       <label class="input-group-text" for="inputGroupFile02">Upload</label>
     </div>

@@ -10,17 +10,20 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(private myService: BackendService, public myRouter: Router , private http:HttpClient) {}
+  user_image: any;
+  user_name: any;
+  email: any;
+  password: any;
+  gender: any;
+  role: any;
 
-  selectedFile: any;
-
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-  }
-
+  constructor(private myService: BackendService, public myRouter: Router) {}
 
   validationForm = new FormGroup({
-    user_name: new FormControl(null, [Validators.required]),
+    user_name: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [
       Validators.required,
@@ -46,43 +49,51 @@ export class RegisterComponent {
     return this.validationForm.controls['role'].valid;
   }
 
-  add(
-
-
-    user_name: any,
-    email: any,
-    password: any,
-    gender: any,
-    role: any,
-    user_image: any
-  ) {
-
+  upload(event: any) {
+    this.user_image = event.target.files[0];
+    console.log(this.user_image);
+  }
+  add() {
+    // user_image: any
     const formData = new FormData();
-      console.log(formData);
-      formData.append('image', this.selectedFile);
-      console.log(formData);
 
+    console.log(this.user_image);
+    console.log(this.user_name);
     if (this.validationForm.valid) {
-      let user_name = this.validationForm.controls['user_name'].value;
-      let email = this.validationForm.controls['email'].value;
-      let password = this.validationForm.controls['password'].value;
-      let gender = this.validationForm.controls['gender'].value;
-      let role = this.validationForm.controls['role'].value;
+      formData.append('user_image', this.user_image);
+      formData.append('user_name', this.user_name);
+      formData.append('email', this.email);
+      formData.append('password', this.password);
+      formData.append('gender', this.gender);
+      formData.append('role', this.role);
+      // let user_name = this.validationForm.controls['user_name'].value;
 
-      let newUser = { user_name, email, password, gender, role, user_image };
+      //   let email = this.validationForm.controls['email'].value;
+      //   let password = this.validationForm.controls['password'].value;
+      //   let gender = this.validationForm.controls['gender'].value;
+      //   let role = this.validationForm.controls['role'].value;
 
-      this.myService.addNewUser(newUser).subscribe();
+      //   let newUser = { user_name, email, password, gender, role };
 
-
+      // formData.append('user_name', this.user_name);
+      // formData.append('email', this.email);
+      // formData.append('password', this.password);
+      // formData.append('gender', this.gender);
+      // formData.append('role', this.role);
+      // console.log(formData);
+      this.myService.addNewUser(formData).subscribe({
+        next: (data) => {
+          console.log(data);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
 
       alert('added successfully');
-      location.href='/';
+      location.href = '/';
     } else {
       alert('please validate');
     }
   }
-
-
-
-
 }

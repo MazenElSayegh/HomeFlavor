@@ -5,10 +5,10 @@ const path = require("path");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-const cors = require('cors');
+const cors = require("cors");
 
 app.use(cors());
-
+app.use("/uploads", express.static("uploads"));
 let UsersRoute = require("./Routes/UsersRouter");
 let LoginRoute = require("./Routes/LoginRoute");
 let OrdersRoute = require("./Routes/OrdersRoutes");
@@ -26,9 +26,6 @@ app.use("/api/stores", StoresRoute);
 app.use("/api/menu", MenuRoute);
 app.use("/api/feedback", FeedBackRoute);
 //#endregion
-
-
-
 
 // End region
 
