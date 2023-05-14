@@ -5,6 +5,14 @@ let jwt = require("jsonwebtoken");
 
 id = 0;
 let AddNewUser = async (req, res, next) => {
+  // console.log("hi");
+  const file = req.file;
+  if (file) {
+    console.log(file);
+    console.log(req.body.user_name);
+  } else {
+    res.send("err");
+  }
   var salt = await bcrypt.genSalt(10);
   var hashedPassword = await bcrypt.hash(req.body.password, salt);
 
@@ -16,7 +24,9 @@ let AddNewUser = async (req, res, next) => {
     user_name: req.body.user_name,
     email: req.body.email,
     password: hashedPassword,
-    user_image: req.body.user_image,
+    // user_image: req.body.user_image,
+    user_image: file.originalname,
+    // user_image: file.filename,
     gender: req.body.gender,
     role: req.body.role,
   });
