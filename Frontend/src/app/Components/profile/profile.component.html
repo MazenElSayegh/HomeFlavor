@@ -18,16 +18,13 @@
   rel="stylesheet"
 />
 
-<div *ngIf="user; else falseBlock" class="container bootstrap snippets bootdey" >
+<div *ngIf="user; else falseBlock" class="container bootstrap snippets bootdey">
   <div class="row">
     <div class="profile-nav col-md-3">
       <div class="panel">
         <div class="user-heading round">
           <a href="#">
-            <img
-              src="https://bootdey.com/img/Content/avatar/avatar3.png"
-              alt=""
-            />
+            <img [src]="image_path" alt="errrrrrrrrrrrrrror" />
           </a>
           <h1></h1>
           <p></p>
@@ -52,9 +49,7 @@
       </div>
     </div>
     <div class="profile-info col-md-9">
-
       <div class="panel">
-
         <div class="panel-body bio-graph-info">
           <h1>Bio Graph</h1>
           <div class="row">
@@ -81,21 +76,15 @@
           </div>
         </div>
       </div>
-      <div>
-
-      </div>
+      <div></div>
     </div>
   </div>
 </div>
 
-
-
-
-
 <ng-template #falseBlock>
   <div class="loader">
     <div class="loader-inner">
-        <div class="circle"></div>
+      <div class="circle"></div>
     </div>
-</div>
+  </div>
 </ng-template>

@@ -1,5 +1,7 @@
 let UserModel = require("../Models/UsersModel");
 const bcrypt = require("bcrypt");
+const fs = require("fs");
+
 const userValid = require("../Utils/UserValidation");
 let jwt = require("jsonwebtoken");
 
@@ -9,6 +11,8 @@ let AddNewUser = async (req, res, next) => {
   const file = req.file;
   if (file) {
     console.log(file);
+    // var file1 = fs.readFileSync(req.file.path);
+    // console.log(file1);
     console.log(req.body.user_name);
   } else {
     res.send("err");
@@ -25,7 +29,8 @@ let AddNewUser = async (req, res, next) => {
     email: req.body.email,
     password: hashedPassword,
     // user_image: req.body.user_image,
-    user_image: file.originalname,
+    // user_image: file.originalname,
+    user_image: "/uploads/" + req.file.filename,
     // user_image: file.filename,
     gender: req.body.gender,
     role: req.body.role,
