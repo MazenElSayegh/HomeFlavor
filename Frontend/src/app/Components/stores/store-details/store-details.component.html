@@ -126,8 +126,8 @@
           <h5>{{ product.product_details }}</h5>
           <p class="product-price">
           </p>
-          <a href="cart.html" class="cart-btn"
-            ><i class="fas fa-shopping-cart"></i> add to cart</a
+          <a class="cart-btn" (click)="addToCart(product)"
+            ><i class="fas fa-shopping-cart" ></i> add to cart</a
           >
         </div>
       </div>
