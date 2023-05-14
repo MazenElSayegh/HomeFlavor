@@ -20,8 +20,10 @@ userSchema = {
     gender: { type: "string", enum: ["male", "female"] },
     user_image: { type: "string" },
     role: { type: "string", enum: ["admin", "buyer", "seller"] },
+    mobile: { type: "number"},
+    address: { type: "string"},
   },
-  required: ["user_name", "email", "password", "gender", "role"],
+  required: ["user_name", "email", "password", "gender", "role","address","mobile"],
 };
 
 module.exports = ajv.compile(userSchema);

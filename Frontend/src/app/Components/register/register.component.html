@@ -60,6 +60,34 @@
         <p>not less than 8 characters</p>
       </div>
     </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Enter Address</label>
+      <input
+        formControlName="address"
+        type="text"
+        class="form-control"
+        id="address"
+        placeholder="Address"
+        [(ngModel)]="address"
+      />
+      <div class="mt-1" *ngIf="!addressValid">
+        <p>Address is required</p>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="mobile" class="form-label">Enter Mobile</label>
+      <input
+        formControlName="mobile"
+        type="text"
+        class="form-control"
+        id="mobile"
+        placeholder="Mobile"
+        [(ngModel)]="mobile"
+      />
+      <div class="mt-1" *ngIf="!mobileValid">
+        <p>not less than 11 numbers</p>
+      </div>
+    </div>
 
     <div class="mb-3">
       <label for="gender" class="form-label">Enter Your Gender</label>

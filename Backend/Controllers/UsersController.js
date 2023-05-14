@@ -9,14 +9,7 @@ id = 0;
 let AddNewUser = async (req, res, next) => {
   // console.log("hi");
   const file = req.file;
-  if (file) {
-    console.log(file);
-    // var file1 = fs.readFileSync(req.file.path);
-    // console.log(file1);
-    console.log(req.body.user_name);
-  } else {
-    res.send("err");
-  }
+  
   var salt = await bcrypt.genSalt(10);
   var hashedPassword = await bcrypt.hash(req.body.password, salt);
 
@@ -34,6 +27,8 @@ let AddNewUser = async (req, res, next) => {
     // user_image: file.filename,
     gender: req.body.gender,
     role: req.body.role,
+    address: req.body.address,
+    mobile: req.body.mobile,
   });
   // await newUserModel.save();
   // await res.json(newUserModel);
@@ -77,6 +72,8 @@ let UpdateUser = async (req, res) => {
         user_image: req.body.user_image,
         gender: req.body.gender,
         role: req.body.role,
+        address: req.body.address,
+        mobile: req.body.mobile,
       }
     );
     await res.send("updated successfully");
