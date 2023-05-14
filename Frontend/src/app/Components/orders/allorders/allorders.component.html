@@ -13,9 +13,9 @@
 </div>
 <!-- end breadcrumb section -->
 <table
-  class="table table-bordered text-center table-dark table-striped mt-5 container"
+  class="table table-bordered border-dark text-center table-striped mt-5 container col-sm-5" style="background-color: #f5f5f5;"
 >
-  <thead>
+  <thead class="table-bordered border-dark" style="background-color: #051922; color: #f28123;;">
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Date</th>
@@ -27,10 +27,10 @@
       <th scope="col">More</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="table-group-divider">
     <tr *ngFor="let o of orders">
       <td>{{ o._id }}</td>
-      <td>{{ o.date }}</td>
+      <td>{{ o.date | date: 'dd/MM/yyyy' }}</td>
       <td>{{ o.status }}</td>
       <td>{{ o.total_price }}</td>
       <td>{{o.user_id.user_name}}</td>
@@ -42,7 +42,7 @@
             <input
               type="submit"
               class="btn btn-outline-primary"
-              style="padding-left: 2.5rem; padding-right: 2.5rem"
+              style="padding-left: 1rem; padding-right: 1rem"
               value="Accept"
               routerLink="/orders"
             />
@@ -51,7 +51,7 @@
             <input
               type="submit"
               class="btn btn-outline-danger"
-              style="padding-left: 2.5rem; padding-right: 2.5rem"
+              style="padding-left: 1rem; padding-right: 1rem"
               value="Reject"
             />
           </form>
@@ -63,7 +63,7 @@
           routerLink="/orders/{{ o.id }}"
           value="view"
           class="btn btn-outline-warning"
-          style="padding-left: 2.5rem; padding-right: 2.5rem; color: white"
+          style="padding-left: 1rem; padding-right: 1rem;"
         />
       </td>
     </tr>

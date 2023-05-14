@@ -17,7 +17,7 @@ export class OrderdetailsComponent {
     this.myService.GetOrderByID(this.id).subscribe(
       {
         next:(data)=>{this.order=data;
-        console.log(this.order.products);},
+        console.log(this.order.user_id);},
         error:(err)=>{console.log(err);
         }
       }
