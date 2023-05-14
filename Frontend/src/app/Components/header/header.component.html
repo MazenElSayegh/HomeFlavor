@@ -49,23 +49,59 @@
               </li>
               <li>
                 <div class="header-icons">
-                  <a class="shopping-cart" href="cart.html"
-                    ><i class="fas fa-shopping-cart"></i
-                  ></a>
-                  <a class="mobile-hide search-bar-icon" href="#"
-                    ><i class="fas fa-search"></i
-                  ></a>
+                  <a class="shopping-cart"><i class="fas fa-shopping-cart" data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasRight"
+                  aria-controls="offcanvasRight"
+                  id="cartIcon"></i></a>
                 </div>
               </li>
             </ul>
           </nav>
-          <a class="mobile-show search-bar-icon" href="#"
-            ><i class="fas fa-search"></i
-          ></a>
           <div class="mobile-menu"></div>
           <!-- menu end -->
         </div>
       </div>
     </div>
   </div>
+  <div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="offcanvasRight"
+  aria-labelledby="offcanvasRightLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Cart Details</h5>
+    <!-- <img src="rescources/cart.png" style="width: 35px" /> -->
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <!-- <div id="addedProducts"></div> -->
+    <div id="noProducts" class="">
+      <img src="assets/img/emptycart.png" id="emptyCart" />
+      <div *ngFor="let product of addedProducts">{{product.product_title}}</div>
+      <button
+        id="contShopping"
+        class="btn position-relative bottom-0 start-50 translate-middle-x"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+        (click)="test()"
+      >
+        Continue Shopping
+      </button>
+    </div>
+    <div id="addedToCart" class="turnOff">
+      <div id="addedProducts"></div>
+
+      <button class="btn" id="proceedBtn">
+        <a href="checkout/checkout.html" id="proceedBtnWord">Proceed</a>
+      </button>
+    </div>
+  </div>
 </div>
+</div>
+
