@@ -23,7 +23,7 @@ router.get("/:id", UsersController.GetUserById);
 router.post("/", upload.single("user_image"), UsersController.AddNewUser);
 
 //Update user
-router.put("/:id", UsersController.UpdateUser);
+router.put("/:id",upload.single("user_image"), UsersController.UpdateUser);
 //Delete user
 router.delete("/:id", UsersController.DeleteUser);
 
