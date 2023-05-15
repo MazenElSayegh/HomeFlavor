@@ -82,7 +82,7 @@
       <img
         src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/800px-KFC_logo.svg.png"
       />
-      <div class="storeDetails">
+      <div class="storeDetails" *ngIf="store; else falseBlock">
         <h1>{{ store.name }}</h1>
         <p>In: {{ store.city }}</p>
         <p>Desserts, Ice Cream</p>
@@ -166,4 +166,6 @@
 </div>
 <!-- end testimonail-section -->
 
-
+<ng-template #falseBlock>
+  <h1 class="alert alert-danger">Loading...</h1>
+</ng-template>

@@ -1,4 +1,4 @@
-import { Component,Input, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StoresService } from 'src/app/Services/stores.service';
 import { MenuService } from 'src/app/Services/menu.service';
@@ -20,11 +20,11 @@ export class StoreDetailsComponent {
   constructor(myRoute: ActivatedRoute, public myService: StoresService, public menuService: MenuService, public feedbackService: FeedbacksService) {
     this.id = myRoute.snapshot.params['id'];
     this.myService.getStoreByID(this.id).subscribe({
-      next: (data) => {
+      next: (data:any) => {
         this.store = data;
         // console.log(this.store);
       },
-      error: (err) => {
+      error: (err:any) => {
         console.log(err);
       },
     });
@@ -52,7 +52,8 @@ export class StoreDetailsComponent {
 
   addToCart(prod:any){
     this.product=prod;
-    console.log(this.product);
+    // console.log(this.product);
     this.addedToCart.emit(this.product);
+    console.log("etba3t");
   }
 }
