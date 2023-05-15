@@ -55,6 +55,7 @@ img {
 .tabContainer {
   font-size: 50px;
   cursor: pointer;
+  padding-bottom: 10px !important;
 }
 
 .tabContainer i {
@@ -69,4 +70,46 @@ img {
   margin-right: 20px;
 }
 
+.testimonail-section,
+.product-section {
+  display: none;
+}
 
+.testimonail-section.show,
+.product-section.show {
+  display: block;
+}
+
+.fa-star::before,
+.fa-star {
+  font-size: 30px !important;
+  cursor: pointer;
+}
+
+.star-container .fa-star {
+  color: #ccc;
+}
+.star-container .filled {
+  color: #ffd700;
+}
+
+.feedbackTitle {
+  font-size: 35px !important;
+}
+
+.feedbackSubtitle {
+  font-size: 20px !important;
+}
+
+.feedbackSubmitBtn {
+  margin-top: 29px !important;
+  font-size: 20px !important;
+  width: 200px !important;
+}
+
+.dbStar-container .fa-star {
+  color: #ccc;
+}
+.dbStar-container .filled {
+  color: #ffd700;
+}

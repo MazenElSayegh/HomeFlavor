@@ -4,7 +4,7 @@ let StoreModel = require("../Models/StoresModel");
 
 // Get all stores
 let getAllStores = async (req, res) => {
-  let stores = await StoreModel.find({}).populate('user_id');
+  let stores = await StoreModel.find({}).populate("user_id");
   res.status(201).json(stores);
 };
 
@@ -13,7 +13,7 @@ let getStoreByID = async (req, res) => {
   let id = req.params.id;
   let store = null;
   try {
-    store = await StoreModel.findById({ _id: id }).populate('user_id');
+    store = await StoreModel.findById({ _id: id }).populate("user_id");
   } catch (error) {
     console.log(error);
   }
@@ -26,18 +26,30 @@ let getStoreByID = async (req, res) => {
 
 // Make new Store
 let createStore = async (req, res) => {
-  let newStore = req.body;
-  if (validate(newStore)) {
-    try {
-      let store = new StoreModel(newStore);
-      await store.save();
-      res.status(201).json(newStore);
-    } catch (err) {
-      res.status(301).send(err.message);
-    }
-  } else {
-    res.status(301).send(validate.errors);
-  }
+  const file = req.file;
+  console.log(req.body.name);
+
+  var store = new StoreModel({
+    user_id: req.body.user_id,
+    name: req.body.name,
+    city: req.body.city,
+    image: "/uploads/" + req.file.filename,
+  });
+
+  await store.save();
+
+  // let newStore = req.body;
+  // if (validate(newStore)) {
+  //   try {
+  //     let store = new StoreModel(newStore);
+  //     await store.save();
+  //     res.status(201).json(newStore);
+  //   } catch (err) {
+  //     res.status(301).send(err.message);
+  //   }
+  // } else {
+  //   res.status(301).send(validate.errors);
+  // }
 };
 
 // Update Store

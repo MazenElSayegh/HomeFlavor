@@ -1,9 +1,8 @@
-import { Component,Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StoresService } from 'src/app/Services/stores.service';
 import { MenuService } from 'src/app/Services/menu.service';
 import { FeedbacksService } from 'src/app/Services/feedbacks.service';
-
 
 @Component({
   selector: 'app-store-details',
@@ -14,10 +13,18 @@ export class StoreDetailsComponent {
   id: any;
   store: any;
   product: any;
-  menu:any;
-  feedbacks:any;
+  menu: any;
+  feedbacks: any;
+  rating: number = 0;
+  image_path: any;
+  localhost = 'http://localhost:7005';
   @Output() addedToCart = new EventEmitter<any>();
-  constructor(myRoute: ActivatedRoute, public myService: StoresService, public menuService: MenuService, public feedbackService: FeedbacksService) {
+  constructor(
+    myRoute: ActivatedRoute,
+    public myService: StoresService,
+    public menuService: MenuService,
+    public feedbackService: FeedbacksService
+  ) {
     this.id = myRoute.snapshot.params['id'];
     this.myService.getStoreByID(this.id).subscribe({
       next: (data) => {
@@ -50,9 +57,36 @@ export class StoreDetailsComponent {
     });
   }
 
-  addToCart(prod:any){
-    this.product=prod;
+  addToCart(prod: any) {
+    this.product = prod;
     console.log(this.product);
     this.addedToCart.emit(this.product);
+  }
+
+  showFeedback() {
+    let productSection = document.querySelector('.product-section');
+    let feedbackSection = document.querySelector('.testimonail-section');
+    let menuTabContainer = document.querySelector('.menuTabContainer');
+    let feedbackTabContainer = document.querySelector('.feedbackTabContainer');
+    productSection?.classList.remove('show');
+    feedbackSection?.classList.add('show');
+    menuTabContainer?.classList.remove('active');
+    feedbackTabContainer?.classList.add('active');
+  }
+
+  showMenu() {
+    let productSection = document.querySelector('.product-section');
+    let feedbackSection = document.querySelector('.testimonail-section');
+    let menuTabContainer = document.querySelector('.menuTabContainer');
+    let feedbackTabContainer = document.querySelector('.feedbackTabContainer');
+    productSection?.classList.add('show');
+    feedbackSection?.classList.remove('show');
+    menuTabContainer?.classList.add('active');
+    feedbackTabContainer?.classList.remove('active');
+  }
+
+  rate(star: number) {
+    this.rating = star;
+    console.log(this.rating);
   }
 }

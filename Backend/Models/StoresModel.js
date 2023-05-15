@@ -7,7 +7,6 @@ const dotenv = require("dotenv").config();
 
 mongoose.connect(process.env.DATABASE, { useNewUrlParser: true });
 
-
 //Stores schema
 let StoresSchema = new mongoose.Schema({
   user_id: {

@@ -18,9 +18,7 @@ let FeedBackRoute = require("./Routes/FeedBackRoute");
 
 //#region Routes
 app.use("/api/users", UsersRoute);
-
 app.use("/api/login", LoginRoute);
-
 app.use("/api/orders", OrdersRoute);
 app.use("/api/stores", StoresRoute);
 app.use("/api/menu", MenuRoute);
