@@ -79,13 +79,16 @@
   /> -->
 
   <div class="outerContainer">
-    <div class="storeDetailsContainer">
+    <div class="storeDetailsContainer"  *ngIf="store; else falseBlock" class="alert alert-info">
       <img [src]="localhost + store.image" />
         <h1>{{ store.name }}</h1>
         <p>In: {{ store.city }}</p>
         <p>Desserts, Ice Cream</p>
       </div>
     </div>
+    <ng-template #falseBlock>
+      <h1 class="alert alert-danger">Loading...</h1>
+    </ng-template>
 
     <div class="paymentContainer">
       <div class="payments">
