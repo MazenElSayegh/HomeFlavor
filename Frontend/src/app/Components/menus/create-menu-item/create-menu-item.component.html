@@ -12,7 +12,7 @@
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
         <form
           (ngSubmit)="
-          addMenuItem(storeID.value, productImage.value, productTitle.value,price.value,productDetails.value)
+          addMenuItem(storeID.value, productImage.value, productTitle.value,price.value,productDetails.value,category.value)
           "
         >
           <!-- storeID input -->
@@ -68,11 +68,27 @@
               placeholder="Enter details"
             />
           </div>
+          <!-- <div class="dropdown">
+           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Dropdown button
+           </button>
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+             <a class="dropdown-item" href="#">Action</a>
+             <a class="dropdown-item" href="#">Another action</a>
+             <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+         </div> -->
+         <select class="form-select" aria-label="Default select example" #category >
+          <option selected>Open this select menu</option>
+          <option value="'Appetizer">Appetizer</option>
+          <option value="Drink">Drink</option>
+          <option value="Main">Main</option>
+         </select>
 
           <input
             type="submit"
-            class="btn btn-outline-primary btn-lg"
-            style="padding-left: 2.5rem; padding-right: 2.5rem"
+            class="btn btn-outline-primary btn-lg "
+            style="padding-left: 2.5rem; padding-right: 2.5rem "
             value="Register"
           />
         </form>

@@ -43,7 +43,7 @@
             >
           </li>
           <li>
-            <a href="#"> <i class="fa fa-edit"></i> Edit profile</a>
+            <a routerLinkActive="active" routerLink="/profile/update/{{ user._id }}"> <i class="fa fa-edit"></i> Edit profile</a>
           </li>
         </ul>
       </div>
@@ -58,17 +58,15 @@
             </div>
 
             <div class="bio-row">
-              <p><span>Country:</span> Australia</p>
+              <p><span>Address:</span> {{user.address}}</p>
             </div>
-            <div class="bio-row">
-              <p><span>Birthday:</span> 13 July 1983</p>
-            </div>
+
 
             <div class="bio-row">
               <p><span>Email:</span> {{ user.email }}</p>
             </div>
             <div class="bio-row">
-              <p><span>Mobile: </span> (12) 03 4567890</p>
+              <p><span>Mobile: </span>{{user.mobile}}</p>
             </div>
             <div class="bio-row">
               <p><span>gender:</span>: {{ user.gender }}</p>

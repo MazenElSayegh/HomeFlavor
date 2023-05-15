@@ -8,6 +8,10 @@ const menuSchema = {
     product_image: { type: "string" },
     price: { type: "number" },
     product_details: { type: "string" },
+    category: {
+      type: "string",
+      enum: ['Appetizer', 'Drink', 'Main'],
+    },
   },
   required: [
     "product_title",

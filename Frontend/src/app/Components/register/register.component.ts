@@ -16,6 +16,8 @@ export class RegisterComponent {
   password: any;
   gender: any;
   role: any;
+  mobile: any;
+  address: any;
 
   constructor(private myService: BackendService, public myRouter: Router) {}
 
@@ -31,6 +33,8 @@ export class RegisterComponent {
     ]),
     gender: new FormControl(null, [Validators.required]),
     role: new FormControl(null, [Validators.required]),
+    mobile: new FormControl(null, [Validators.required,Validators.min(11), Validators.pattern('^[0-9]*$')]),
+    address: new FormControl(null, [Validators.required]),
   });
 
   get user_nameValid() {
@@ -47,6 +51,12 @@ export class RegisterComponent {
   }
   get roleValid() {
     return this.validationForm.controls['role'].valid;
+  }
+  get addressValid() {
+    return this.validationForm.controls['address'].valid;
+  }
+  get mobileValid() {
+    return this.validationForm.controls['mobile'].valid;
   }
 
   upload(event: any) {
@@ -66,6 +76,8 @@ export class RegisterComponent {
       formData.append('password', this.password);
       formData.append('gender', this.gender);
       formData.append('role', this.role);
+      formData.append('address', this.address);
+      formData.append('mobile', this.mobile);
       // let user_name = this.validationForm.controls['user_name'].value;
 
       //   let email = this.validationForm.controls['email'].value;

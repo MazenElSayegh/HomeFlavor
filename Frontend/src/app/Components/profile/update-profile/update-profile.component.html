@@ -13,18 +13,18 @@
 </div>
 <!-- end breadcrumb section -->
 
-<div id="formContainer">
-  <form [formGroup]="validationForm" class="form" (ngSubmit)="add()">
+<div *ngIf="user; else falseBlock"  id="formContainer">
+  <form [formGroup]="validationForm" class="form" (ngSubmit)="update(user_name.value,email.value,password.value,gender.value,role.value,address.value,mobile.value)">
     <div class="mb-3">
       <label for="name" class="form-label">Enter User Name</label>
       <input
         formControlName="user_name"
         type="text"
+        value="{{ user.user_name }}"
         class="form-control"
         id="user_name"
         aria-describedby="emailHelp"
-        placeholder="user_name"
-        [(ngModel)]="user_name"
+        #user_name
       />
       <div class="mt-1" *ngIf="!user_nameValid">
         <p>enter a name greater than three characters.</p>
@@ -38,8 +38,11 @@
         type="email"
         class="form-control"
         id="email"
+        value="{{ user.email }}"
+
         placeholder="Email"
-        [(ngModel)]="email"
+        #email
+
       />
       <div class="mt-1" *ngIf="!emailValid">
         <p>Enter correct Email</p>
@@ -54,7 +57,7 @@
         class="form-control"
         id="password"
         placeholder="Password"
-        [(ngModel)]="password"
+        #password
       />
       <div class="mt-1" *ngIf="!passwordValid">
         <p>not less than 8 characters</p>
@@ -64,11 +67,13 @@
       <label for="address" class="form-label">Enter Address</label>
       <input
         formControlName="address"
+        value="{{ user.address }}"
+
         type="text"
         class="form-control"
         id="address"
         placeholder="Address"
-        [(ngModel)]="address"
+        #address
       />
       <div class="mt-1" *ngIf="!addressValid">
         <p>Address is required</p>
@@ -77,12 +82,14 @@
     <div class="mb-3">
       <label for="mobile" class="form-label">Enter Mobile</label>
       <input
+      value="{{ user.mobile }}"
+
         formControlName="mobile"
         type="text"
         class="form-control"
         id="mobile"
         placeholder="Mobile"
-        [(ngModel)]="mobile"
+        #mobile
       />
       <div class="mt-1" *ngIf="!mobileValid">
         <p>not less than 11 numbers</p>
@@ -95,7 +102,8 @@
         class="form-select"
         formControlName="gender"
         id="gender"
-        [(ngModel)]="gender"
+        #gender
+
       >
         <option value="male">Male</option>
         <option value="female">Female</option>
@@ -113,7 +121,7 @@
         class="form-select"
         formControlName="role"
         id="role"
-        [(ngModel)]="role"
+        #role
       >
         <option value="buyer">Buyer</option>
         <option value="seller">Seller</option>
@@ -130,6 +138,7 @@
         class="form-control"
         id="inputGroupFile02"
         (change)="upload($event)"
+
       />
       <label class="input-group-text" for="inputGroupFile02">Upload</label>
     </div>
@@ -137,3 +146,12 @@
     <input type="submit" class="btn btn-primary" value="Add" />
   </form>
 </div>
+
+
+<ng-template #falseBlock>
+  <div class="loader">
+    <div class="loader-inner">
+      <div class="circle"></div>
+    </div>
+  </div>
+</ng-template>

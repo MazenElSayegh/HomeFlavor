@@ -7,16 +7,8 @@ let jwt = require("jsonwebtoken");
 
 id = 0;
 let AddNewUser = async (req, res, next) => {
-  // console.log("hi");
   const file = req.file;
-  if (file) {
-    console.log(file);
-    // var file1 = fs.readFileSync(req.file.path);
-    // console.log(file1);
-    console.log(req.body.user_name);
-  } else {
-    res.send("err");
-  }
+  
   var salt = await bcrypt.genSalt(10);
   var hashedPassword = await bcrypt.hash(req.body.password, salt);
 
@@ -28,15 +20,15 @@ let AddNewUser = async (req, res, next) => {
     user_name: req.body.user_name,
     email: req.body.email,
     password: hashedPassword,
-    // user_image: req.body.user_image,
-    // user_image: file.originalname,
+    
     user_image: "/uploads/" + req.file.filename,
-    // user_image: file.filename,
+    
     gender: req.body.gender,
     role: req.body.role,
+    address: req.body.address,
+    mobile: req.body.mobile,
   });
-  // await newUserModel.save();
-  // await res.json(newUserModel);
+  
 
   var valid = userValid(newUserModel);
 
@@ -74,9 +66,11 @@ let UpdateUser = async (req, res) => {
         user_name: req.body.user_name,
         email: req.body.email, //can not update email logic
         password: hashedPassword,
-        user_image: req.body.user_image,
+        user_image: "/uploads/" + req.file.filename,
         gender: req.body.gender,
         role: req.body.role,
+        address: req.body.address,
+        mobile: req.body.mobile,
       }
     );
     await res.send("updated successfully");
