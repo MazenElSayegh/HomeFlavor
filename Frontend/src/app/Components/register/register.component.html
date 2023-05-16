@@ -14,7 +14,11 @@
 <!-- end breadcrumb section -->
 
 <div id="formContainer">
-  <form [formGroup]="validationForm" class="form" (ngSubmit)="add()">
+  <form
+    [formGroup]="validationForm"
+    class="form"
+    (ngSubmit)="add(user_name.value)"
+  >
     <div class="mb-3">
       <label for="name" class="form-label">Enter User Name</label>
       <input
@@ -24,7 +28,7 @@
         id="user_name"
         aria-describedby="emailHelp"
         placeholder="user_name"
-        [(ngModel)]="user_name"
+        #user_name
       />
       <div class="mt-1" *ngIf="!user_nameValid">
         <p>enter a name greater than three characters.</p>
