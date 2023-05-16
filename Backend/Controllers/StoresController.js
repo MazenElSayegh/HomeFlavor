@@ -26,36 +26,36 @@ let getStoreByID = async (req, res) => {
 
 // Make new Store
 let createStore = async (req, res) => {
-  const file = req.file;
-  console.log(req.body.name);
-
-  var store = new StoreModel({
+  let newStore = {
     user_id: req.body.user_id,
     name: req.body.name,
     city: req.body.city,
     image: "/uploads/" + req.file.filename,
-  });
-
-  await store.save();
-
-  // let newStore = req.body;
-  // if (validate(newStore)) {
-  //   try {
-  //     let store = new StoreModel(newStore);
-  //     await store.save();
-  //     res.status(201).json(newStore);
-  //   } catch (err) {
-  //     res.status(301).send(err.message);
-  //   }
-  // } else {
-  //   res.status(301).send(validate.errors);
-  // }
+    about: req.body.about,
+  };
+  if (validate(newStore)) {
+    try {
+      let store = new StoreModel(newStore);
+      await store.save();
+      res.status(201).json(newStore);
+    } catch (err) {
+      res.status(301).send(err.message);
+    }
+  } else {
+    res.status(301).send(validate.errors);
+  }
 };
 
 // Update Store
 var updateStoreByID = async (req, res) => {
   var ID = req.params.id;
-  var updatedStore = req.body;
+  var updatedStore = {
+    user_id: req.body.user_id,
+    name: req.body.name,
+    city: req.body.city,
+    image: "/uploads/" + req.file.filename,
+    about: req.body.about,
+  };
 
   if (validate(updatedStore)) {
     try {

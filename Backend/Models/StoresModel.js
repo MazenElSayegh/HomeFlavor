@@ -19,6 +19,7 @@ let StoresSchema = new mongoose.Schema({
   name: { type: String, required: true, minlength: 3, maxlength: 50 },
   image: { type: String, required: true },
   city: { type: String, required: true },
+  about: { type: String, required: true },
 });
 
 //Export to controller

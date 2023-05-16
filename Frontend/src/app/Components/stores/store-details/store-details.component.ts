@@ -27,11 +27,11 @@ export class StoreDetailsComponent {
   ) {
     this.id = myRoute.snapshot.params['id'];
     this.myService.getStoreByID(this.id).subscribe({
-      next: (data:any) => {
+      next: (data: any) => {
         this.store = data;
         // console.log(this.store);
       },
-      error: (err:any) => {
+      error: (err: any) => {
         console.log(err);
       },
     });
@@ -57,11 +57,11 @@ export class StoreDetailsComponent {
     });
   }
 
-  addToCart(prod:any){
-    this.product=prod;
+  addToCart(prod: any) {
+    this.product = prod;
     console.log(this.product);
     this.addedToCart.emit(this.product);
-    console.log("etba3t");
+    console.log('etba3t');
   }
 
   showFeedback() {
@@ -89,5 +89,29 @@ export class StoreDetailsComponent {
   rate(star: number) {
     this.rating = star;
     console.log(this.rating);
+  }
+
+  filterProducts(category: any) {
+    let products = document.querySelectorAll('.singleProductContainer');
+    if (category == 'all') {
+      products.forEach((product: any) => {
+        let p = product as HTMLElement;
+
+        p.style.display = 'block';
+      });
+      return;
+    }
+
+    products.forEach((product: any) => {
+      let p = product as HTMLElement;
+      p.style.display = 'none';
+    });
+
+    products.forEach((product: any) => {
+      let p = product as HTMLElement;
+      if (p.classList.contains(category)) {
+        p.style.display = 'block';
+      }
+    });
   }
 }

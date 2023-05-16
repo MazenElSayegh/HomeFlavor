@@ -83,7 +83,7 @@
       <div>
         <h1>{{ store.name }}</h1>
         <p>In: {{ store.city }}</p>
-        <p>Desserts, Ice Cream</p>
+        <p>{{ store.about }}</p>
       </div>
     </div>
 
@@ -117,10 +117,16 @@
       <div class="col-md-12">
         <div class="product-filters">
           <ul>
-            <li class="active" data-filter="*">All</li>
-            <li data-filter=".appetizer">Appetizers</li>
-            <li data-filter=".main">Main</li>
-            <li data-filter=".drink">Drinks</li>
+            <li class="active" data-filter="*" (click)="filterProducts('all')">
+              All
+            </li>
+            <li data-filter=".appetizer" (click)="filterProducts('Appetizers')">
+              Appetizers
+            </li>
+            <li data-filter=".main" (click)="filterProducts('Main')">Main</li>
+            <li data-filter=".drink" (click)="filterProducts('Drinks')">
+              Drinks
+            </li>
           </ul>
         </div>
       </div>
@@ -128,7 +134,11 @@
 
     <div class="row">
       <div *ngFor="let product of menu" class="col-lg-4 col-md-6 text-center">
-        <div class="single-product-item">
+        <div
+          class="single-product-item singleProductContainer {{
+            product.category
+          }}"
+        >
           <div class="product-image">
             <a href="single-product.html"
               ><img

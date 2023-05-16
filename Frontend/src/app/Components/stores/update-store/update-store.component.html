@@ -1,4 +1,17 @@
-<section class="vh-100">
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <h1>Create your own Store</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+<section class="vh-100 mt-5">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-9 col-lg-6 col-xl-5">
@@ -12,7 +25,13 @@
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
         <form
           (ngSubmit)="
-            updateStore(userID.value, name.value, image.value, city.value)
+            updateStore(
+              userID.value,
+              name.value,
+              image.value,
+              city.value,
+              about.value
+            )
           "
         >
           <!-- UserID input -->
@@ -40,6 +59,17 @@
             <label class="form-label" for="form3Example3">Name</label>
           </div>
 
+          <!-- Name input -->
+          <div class="form-outline">
+            <input
+              #about
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Enter store details"
+            />
+            <label class="form-label" for="form3Example3">About</label>
+          </div>
+
           <!-- Image input -->
           <div class="form-outline">
             <input
@@ -47,6 +77,7 @@
               type="file"
               class="form-control form-control-lg"
               placeholder="Enter Image"
+              (change)="storeImgUpload($event)"
             />
             <label class="form-label" for="form3Example3">Image</label>
           </div>
