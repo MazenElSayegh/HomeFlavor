@@ -1,6 +1,6 @@
 <div class="homepage-slider">
   <!-- single home slider -->
-  <div class="single-homepage-slider homepage-bg-1">
+  <div class="single-homepage-slider homepage-bg-2">
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
@@ -19,7 +19,7 @@
     </div>
   </div>
   <!-- single home slider -->
-  <div class="single-homepage-slider homepage-bg-2">
+  <div class="single-homepage-slider homepage-bg-1">
     <div class="container">
       <div class="row">
         <div class="col-lg-10 offset-lg-1 text-center">
@@ -142,7 +142,7 @@
 <!-- end product section -->
 
 <!-- cart banner section -->
-<section class="cart-banner pt-100 pb-100">
+<section class="cart-banner pt-100 pb-100" id="dealSec">
   <div class="container">
     <div class="row clearfix">
       <!--Image Column-->
@@ -193,73 +193,33 @@
   </div>
 </section>
 <!-- end cart banner section -->
-
-<!-- testimonail-section -->
-<div class="testimonail-section mt-150 mb-150">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 offset-lg-1 text-center">
-        <div class="testimonial-sliders">
-          <div class="single-testimonial-slider">
-            <div class="client-avater">
-              <img src="assets/img/avaters/avatar1.png" alt="" />
-            </div>
-            <div class="client-meta">
-              <h3>Saira Hakim <span>Local shop owner</span></h3>
-              <p class="testimonial-body">
-                " Sed ut perspiciatis unde omnis iste natus error veritatis et
-                quasi architecto beatae vitae dict eaque ipsa quae ab illo
-                inventore Sed ut perspiciatis unde omnis iste natus error sit
-                voluptatem accusantium "
-              </p>
-              <div class="last-icon">
-                <i class="fas fa-quote-right"></i>
-              </div>
-            </div>
-          </div>
-          <div class="single-testimonial-slider">
-            <div class="client-avater">
-              <img src="assets/img/avaters/avatar3.png" alt="" />
-            </div>
-            <div class="client-meta">
-              <h3>David Niph <span>Local shop owner</span></h3>
-              <p class="testimonial-body">
-                " Sed ut perspiciatis unde omnis iste natus error veritatis et
-                quasi architecto beatae vitae dict eaque ipsa quae ab illo
-                inventore Sed ut perspiciatis unde omnis iste natus error sit
-                voluptatem accusantium "
-              </p>
-              <div class="last-icon">
-                <i class="fas fa-quote-right"></i>
-              </div>
-            </div>
-          </div>
-          <div class="single-testimonial-slider">
-            <div class="client-avater">
-              <img src="assets/img/avaters/avatar2.png" alt="" />
-            </div>
-            <div class="client-meta">
-              <h3>Jacob Sikim <span>Local shop owner</span></h3>
-              <p class="testimonial-body">
-                " Sed ut perspiciatis unde omnis iste natus error veritatis et
-                quasi architecto beatae vitae dict eaque ipsa quae ab illo
-                inventore Sed ut perspiciatis unde omnis iste natus error sit
-                voluptatem accusantium "
-              </p>
-              <div class="last-icon">
-                <i class="fas fa-quote-right"></i>
-              </div>
-            </div>
-          </div>
-        </div>
+<!-- Slider trial -->
+<div id="carouselExampleSlidesOnly" class="carousel slide m-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active ">
+      <img src="assets/img/avaters/avatar3.png" class="d-block justify-content-center w-25" alt="...">
+      <h1>{{stores[0].name}}</h1>
+      <p class="city">{{stores[0].city}}</p>
+      <p>"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem impedit dicta odit."</p>
+      <div class="last-icon">
+        <i class="fa fa-quote-right"></i>
+      </div>
+    </div>
+    <div class="carousel-item " *ngFor="let store of stores.slice(1)">
+      <img src="assets/img/avaters/avatar2.png" class="d-block justify-content-center w-25" alt="...">
+      <h1>{{store.name}}</h1>
+      <p class="city">{{store.city}}</p>
+      <p>"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem impedit dicta odit."</p>
+      <div class="last-icon">
+        <i class="fa fa-quote-right"></i>
       </div>
     </div>
   </div>
 </div>
-<!-- end testimonail-section -->
+<!-- End Slider trial -->
 
 <!-- advertisement section -->
-<div class="abt-section mb-150">
+<div class="abt-section mb-150 mt-5" id="videoSec">
   <div class="container">
     <div class="row">
       <div class="col-lg-6 col-md-12">
@@ -336,7 +296,7 @@
           <div class="news-text-box">
             <h3>
               <a href="single-news.html"
-                >You will vainly look for fruit on it in autumn.</a
+                >You have to try {{stores[0].name}}'s new sandwich!</a
               >
             </h3>
             <p class="blog-meta">
@@ -363,7 +323,7 @@
           <div class="news-text-box">
             <h3>
               <a href="single-news.html"
-                >A man's worth has its season, like tomato.</a
+                >Don't miss out on {{stores[1].name}}'s offers!</a
               >
             </h3>
             <p class="blog-meta">
@@ -390,7 +350,7 @@
           <div class="news-text-box">
             <h3>
               <a href="single-news.html"
-                >Good thoughts bear good fresh juicy fruit.</a
+                >{{stores[2].name}} is the most 5 star reviewed this month!</a
               >
             </h3>
             <p class="blog-meta">

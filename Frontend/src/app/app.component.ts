@@ -10,10 +10,10 @@ export class AppComponent {
   addedProducts:any;
   // studentsData: {name: string , age: string}[] = []
 
-  getData(data:any){
-    console.log("gowa function el get Data");
-    console.log(data);
-    this.addedProducts.push(data);
-    console.log(this.addedProducts);
-  }
+getData(data:any){
+  console.log("gowa function el get Data");
+  console.log(data);
+  this.addedProducts.push(data);
+  console.log(this.addedProducts);
+}
 }

@@ -49,10 +49,15 @@
               </li>
               <li>
                 <div class="header-icons">
-                  <a class="shopping-cart"><i class="fas fa-shopping-cart" data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasRight"
-                  aria-controls="offcanvasRight"
-                  id="cartIcon"></i></a>
+                  <a class="shopping-cart"
+                    ><i
+                      class="fas fa-shopping-cart"
+                      data-bs-toggle="offcanvas"
+                      data-bs-target="#offcanvasScrolling"
+                      aria-controls="offcanvasScrolling"
+                      id="cartIcon"
+                    ></i
+                  ></a>
                 </div>
               </li>
             </ul>
@@ -64,44 +69,26 @@
     </div>
   </div>
   <div
-  class="offcanvas offcanvas-end"
-  tabindex="-1"
-  id="offcanvasRight"
-  aria-labelledby="offcanvasRightLabel"
->
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasRightLabel">Cart Details</h5>
-    <!-- <img src="rescources/cart.png" style="width: 35px" /> -->
-    <button
-      type="button"
-      class="btn-close"
-      data-bs-dismiss="offcanvas"
-      aria-label="Close"
-    ></button>
-  </div>
-  <div class="offcanvas-body">
-    <!-- <div id="addedProducts"></div> -->
-    <div id="noProducts" class="">
-      <img src="assets/img/emptycart.png" id="emptyCart" />
-      <div *ngFor="let product of addedProducts">{{product.product_title}}</div>
+    class="offcanvas offcanvas-end w-25 "
+    data-bs-scroll="true"
+    data-bs-backdrop="false"
+    tabindex="-1"
+    id="offcanvasScrolling"
+    aria-labelledby="offcanvasScrollingLabel"
+  >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">
+        Cart Details
+      </h5>
       <button
-        id="contShopping"
-        class="btn position-relative bottom-0 start-50 translate-middle-x"
+        type="button"
+        class="btn-close"
         data-bs-dismiss="offcanvas"
         aria-label="Close"
-        (click)="test()"
-      >
-        Continue Shopping
-      </button>
+      ></button>
     </div>
-    <div id="addedToCart" class="turnOff">
-      <div id="addedProducts"></div>
-
-      <button class="btn" id="proceedBtn">
-        <a href="checkout/checkout.html" id="proceedBtnWord">Proceed</a>
-      </button>
+    <div class="offcanvas-body">
+      <p>Try scrolling the rest of the page to see this option in action.</p>
     </div>
   </div>
 </div>
-</div>
-

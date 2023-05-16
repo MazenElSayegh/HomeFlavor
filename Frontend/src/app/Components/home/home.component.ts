@@ -8,6 +8,7 @@ import { StoresService } from 'src/app/Services/stores.service';
 })
 export class HomeComponent {
   stores:any;
+  localhost="http://localhost:7005";
   constructor(private myService: StoresService) {
     myService.getAllStores().subscribe({
       next: (data) => {
