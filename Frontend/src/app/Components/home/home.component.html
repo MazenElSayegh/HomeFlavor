@@ -28,7 +28,7 @@
               <p class="subtitle">Freshly Cooked Everyday</p>
               <h1>100% Homemade Food</h1>
               <div class="hero-btns">
-                <a href="shop.html" class="boxed-btn">Visit Stores</a>
+                <a href="#stores" class="boxed-btn">Visit Stores</a>
                 <a href="contact.html" class="bordered-btn">Contact Us</a>
               </div>
             </div>
@@ -47,7 +47,7 @@
               <p class="subtitle">Mega Sale Going On!</p>
               <h1>Get December Discount</h1>
               <div class="hero-btns">
-                <a href="shop.html" class="boxed-btn">Visit Shop</a>
+                <a href="#stores" class="boxed-btn">Visit Shop</a>
                 <a href="contact.html" class="bordered-btn">Contact Us</a>
               </div>
             </div>
@@ -126,12 +126,13 @@
           </div>
           <h3>{{ store.name }}</h3>
           <h5>{{ store.image }}</h5>
+          <h5>{{ store._id }}</h5>
           <p class="product-price">
             <span class="mx-5">
               ipsum dolor sit amet consectetur adipisicing elit.</span
             >
           </p>
-          <a href="cart.html" class="cart-btn"
+          <a [routerLink]="['/stores', store._id]" class="cart-btn"
             ><i class="fas fa-shopping-cart"></i> Go to store</a
           >
         </div>
@@ -267,13 +268,13 @@
         Upto</span
       >50% <span>off</span>
     </div>
-    <a href="shop.html" class="cart-btn btn-lg">Shop Now</a>
+    <a href="#stores" class="cart-btn btn-lg">Shop Now</a>
   </div>
 </section>
 <!-- end shop banner -->
 
 <!-- latest news -->
-<div class="latest-news pt-150 pb-150">
+<div class="latest-news pt-150 pb-150" id="newsSec">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 offset-lg-2 text-center">
@@ -309,9 +310,6 @@
               Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus
               nisi. Praesent vitae mattis nunc, egestas viverra eros.
             </p>
-            <a href="single-news.html" class="read-more-btn"
-              >read more <i class="fas fa-angle-right"></i
-            ></a>
           </div>
         </div>
       </div>
@@ -336,9 +334,6 @@
               Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus
               nisi. Praesent vitae mattis nunc, egestas viverra eros.
             </p>
-            <a href="single-news.html" class="read-more-btn"
-              >read more <i class="fas fa-angle-right"></i
-            ></a>
           </div>
         </div>
       </div>
@@ -363,9 +358,6 @@
               Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus
               nisi. Praesent vitae mattis nunc, egestas viverra eros.
             </p>
-            <a href="single-news.html" class="read-more-btn"
-              >read more <i class="fas fa-angle-right"></i
-            ></a>
           </div>
         </div>
       </div>
