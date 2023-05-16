@@ -12,7 +12,6 @@
   </div>
 </div>
 <div>
-
   <!-- <table class="table table-bordered text-center table-dark table-striped">
     <thead>
       <tr>
@@ -79,16 +78,14 @@
   /> -->
 
   <div class="outerContainer">
-    <div class="storeDetailsContainer"  *ngIf="store; else falseBlock" class="alert alert-info">
+    <div *ngIf="store; else falseBlock" class="storeDetailsContainer">
       <img [src]="localhost + store.image" />
+      <div>
         <h1>{{ store.name }}</h1>
         <p>In: {{ store.city }}</p>
         <p>Desserts, Ice Cream</p>
       </div>
     </div>
-    <ng-template #falseBlock>
-      <h1 class="alert alert-danger">Loading...</h1>
-    </ng-template>
 
     <div class="paymentContainer">
       <div class="payments">
@@ -98,18 +95,21 @@
       </div>
     </div>
   </div>
+  <ng-template #falseBlock>
+    <h1 class="alert alert-danger">Loading...</h1>
+  </ng-template>
+</div>
 
-  <div class="tabsContainer mb-100">
-    <div class="menuTabContainer tabContainer active" (click)="showMenu()">
-      <i class="fa-solid fa-utensils"></i>
-      <p>Menu</p>
-    </div>
-    <div class="feedbackTabContainer tabContainer" (click)="showFeedback()">
-      <i class="fa-solid fa-comments"></i>
-      <p>Feedbacks</p>
-    </div>
+<div class="tabsContainer mb-100">
+  <div class="menuTabContainer tabContainer active" (click)="showMenu()">
+    <i class="fa-solid fa-utensils"></i>
+    <p>Menu</p>
   </div>
-
+  <div class="feedbackTabContainer tabContainer" (click)="showFeedback()">
+    <i class="fa-solid fa-comments"></i>
+    <p>Feedbacks</p>
+  </div>
+</div>
 
 <div class="product-section mb-150 show" id="stores">
   <div class="container">
@@ -262,5 +262,3 @@
   </div>
 </div>
 <!-- end testimonail-section -->
-
-
