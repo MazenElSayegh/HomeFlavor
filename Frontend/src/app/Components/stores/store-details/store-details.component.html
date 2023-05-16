@@ -78,14 +78,12 @@
   /> -->
 
   <div class="outerContainer">
-    <div class="storeDetailsContainer">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/800px-KFC_logo.svg.png"
-      />
-      <div class="storeDetails">
+    <div *ngIf="store; else falseBlock" class="storeDetailsContainer">
+      <img [src]="localhost + store.image" />
+      <div>
         <h1>{{ store.name }}</h1>
         <p>In: {{ store.city }}</p>
-        <p>Desserts, Ice Cream</p>
+        <p>{{ store.about }}</p>
       </div>
     </div>
 
@@ -97,37 +95,63 @@
       </div>
     </div>
   </div>
+  <ng-template #falseBlock>
+    <h1 class="alert alert-danger">Loading...</h1>
+  </ng-template>
+</div>
 
-  <div class="tabsContainer mb-100">
-    <div class="menuTabContainer tabContainer active">
-      <i class="fa-solid fa-utensils"></i>
-      <p>Menu</p>
-
-    </div>
-    <div class="feedbackTabContainer tabContainer">
-      <i class="fa-solid fa-comments"></i>
-      <p>Feedbacks</p>
-    </div>
+<div class="tabsContainer mb-100">
+  <div class="menuTabContainer tabContainer active" (click)="showMenu()">
+    <i class="fa-solid fa-utensils"></i>
+    <p>Menu</p>
+  </div>
+  <div class="feedbackTabContainer tabContainer" (click)="showFeedback()">
+    <i class="fa-solid fa-comments"></i>
+    <p>Feedbacks</p>
   </div>
 </div>
 
-<div class="product-section  mb-150" id="stores">
+<div class="product-section mb-150 show" id="stores">
   <div class="container">
     <div class="row">
-      <div *ngFor="let product of menu" class=" col-lg-4 col-md-6 text-center" >
-        <div class="single-product-item">
+      <div class="col-md-12">
+        <div class="product-filters">
+          <ul>
+            <li class="active" data-filter="*" (click)="filterProducts('all')">
+              All
+            </li>
+            <li data-filter=".appetizer" (click)="filterProducts('Appetizers')">
+              Appetizers
+            </li>
+            <li data-filter=".main" (click)="filterProducts('Main')">Main</li>
+            <li data-filter=".drink" (click)="filterProducts('Drinks')">
+              Drinks
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div *ngFor="let product of menu" class="col-lg-4 col-md-6 text-center">
+        <div
+          class="single-product-item singleProductContainer {{
+            product.category
+          }}"
+        >
           <div class="product-image">
             <a href="single-product.html"
-              ><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/800px-KFC_logo.svg.png" alt=""
+              ><img
+                src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/800px-KFC_logo.svg.png"
+                alt=""
             /></a>
           </div>
           <h3>{{ product.product_title }}</h3>
-          <h5>{{ product.price }}</h5>
+          <h5>E&#163; {{ product.price }}</h5>
           <h5>{{ product.product_details }}</h5>
-          <p class="product-price">
-          </p>
+          <p class="product-price"></p>
           <a class="cart-btn" (click)="addToCart(product)"
-            ><i class="fas fa-shopping-cart" ></i> add to cart</a
+            ><i class="fas fa-shopping-cart"></i> add to cart</a
           >
         </div>
       </div>
@@ -136,7 +160,6 @@
 </div>
 <!-- end product section -->
 
-
 <!-- testimonail-section -->
 <div class="testimonail-section mt-150 mb-150">
   <div class="container">
@@ -144,26 +167,108 @@
       <div class="col-lg-10 offset-lg-1 text-center">
         <div class="testimonial-sliders">
           <div *ngFor="let feedback of feedbacks">
-          <div class="single-testimonial-slider" >
-            <div class="client-avater">
-              <img src="assets/img/avaters/avatar1.png" alt="" />
-            </div>
-            <div class="client-meta">
-              <h3>{{ feedback.user_id.user_name }}</h3>
-              <p class="testimonial-body">
-                {{ feedback.comment }}
-              </p>
-              <div class="last-icon">
-                <i class="fas fa-quote-right"></i>
+            <div class="single-testimonial-slider">
+              <div class="client-avater">
+                <img src="assets/img/avaters/avatar1.png" alt="" />
+              </div>
+              <div class="client-meta">
+                <h3>{{ feedback.user_id.user_name }}</h3>
+                <div class="feedbackRating">
+                  <div class="dbStar-container">
+                    <i
+                      class="fa fa-star"
+                      *ngFor="let i of [1, 2, 3, 4, 5]"
+                      [ngClass]="{ filled: i <= feedback.stars }"
+                    ></i>
+                  </div>
+                </div>
+                <p class="testimonial-body">
+                  {{ feedback.comment }}
+                </p>
+                <p class="feedbackDate">
+                  {{ feedback.date | date : "longDate" }}
+                </p>
+                <div class="last-icon">
+                  <i class="fas fa-quote-right"></i>
+                </div>
               </div>
             </div>
+            <hr />
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feedback Form -->
+  <div class="contact-from-section mt-150 mb-150">
+    <div class="container">
+      <div class="row">
+        <div class="">
+          <div class="form-title">
+            <h2 class="feedbackTitle">Would you like to give us a feedback?</h2>
+            <p class="feedbackSubtitle">Your Opinion Matters</p>
+          </div>
+          <div id="form_status"></div>
+          <div class="contact-form">
+            <form
+              type="POST"
+              id="fruitkha-contact"
+              onSubmit="return valid_datas( this );"
+            >
+              <div>
+                <!-- UserID -->
+                <input
+                  type="text"
+                  placeholder="Name"
+                  name="userID"
+                  id="name"
+                  hidden
+                />
+                <!-- StoreID -->
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="storeID"
+                  id="email"
+                  hidden
+                />
+
+                <!-- <p>
+                <input type="tel" placeholder="Phone" name="phone" id="phone" />
+                <input
+                  type="text"
+                  placeholder="Subject"
+                  name="subject"
+                  id="subject"
+                />
+              </p> -->
+                <p>
+                  <textarea
+                    name="feedback_detail"
+                    id="feedback_detail"
+                    cols="30"
+                    rows="10"
+                    placeholder="Feedback"
+                  ></textarea>
+                </p>
+                <div class="star-container">
+                  <i
+                    class="fa fa-star"
+                    *ngFor="let i of [1, 2, 3, 4, 5]"
+                    (click)="rate(i)"
+                    [ngClass]="{ filled: i <= rating }"
+                  ></i>
+                </div>
+              </div>
+              <p>
+                <input type="submit" value="Submit" class="feedbackSubmitBtn" />
+              </p>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <!-- end testimonail-section -->
-
-

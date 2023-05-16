@@ -13,7 +13,6 @@ import { DeleteStoreComponent } from './Components/stores/delete-store/delete-st
 import { CreateorderComponent } from './Components/orders/createorder/createorder.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { HomeComponent } from './Components/home/home.component';
-import { ProfileComponent } from './Components/profile/profile.component';
 import { AllFeedbacksComponent } from './Components/feedbacks/all-feedbacks/all-feedbacks.component';
 import { CreateFeedbackComponent } from './Components/feedbacks/create-feedback/create-feedback.component';
 import { DeleteFeedbackComponent } from './Components/feedbacks/delete-feedback/delete-feedback.component';
@@ -21,6 +20,8 @@ import { AllMenuComponent } from './Components/menus/all-menu/all-menu.component
 import { CreateMenuItemComponent } from './Components/menus/create-menu-item/create-menu-item.component';
 import { DeleteMenuItemComponent } from './Components/menus/delete-menu-item/delete-menu-item.component';
 import { UpdateMenuItemComponent } from './Components/menus/update-menu-item/update-menu-item.component';
+import { ProfileComponent } from './Components/profile/profile/profile.component';
+import { UpdateProfileComponent } from './Components/profile/update-profile/update-profile.component';
 
 const routes: Routes = [
 
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile/:id', component: ProfileComponent },
+  { path: 'profile/update/:id', component: UpdateProfileComponent },
   // -------------------- order routes ------------------------------------------------------
 
   { path: 'orders', component: AllordersComponent },

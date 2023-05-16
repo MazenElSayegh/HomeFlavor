@@ -114,7 +114,7 @@ export class RegisterComponent {
       alert('added successfully');
       // location.href = '/';
     } else {
-      // alert('please validate');
+      alert('please validate');
     }
   }
 }

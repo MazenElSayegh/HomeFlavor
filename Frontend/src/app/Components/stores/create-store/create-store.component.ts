@@ -8,24 +8,36 @@ import { StoresService } from 'src/app/Services/stores.service';
   styleUrls: ['./create-store.component.css'],
 })
 export class CreateStoreComponent {
+  storeImg: any;
   constructor(private myService: StoresService, private router: Router) {}
 
-  AddStore(userID: any, name: any, image: any, city: any) {
-    let newStore = {
-      user_id: userID,
-      name: name,
-      image: image,
-      city: city,
-    };
+  AddStore(userID: any, name: any, image: any, city: any, about: any) {
+    const formData = new FormData();
+    formData.append('user_id', userID);
+    formData.append('name', name);
+    formData.append('image', this.storeImg);
+    formData.append('city', city);
+    formData.append('about', about);
+    // let newStore = {
+    //   user_id: userID,
+    //   name: name,
+    //   image: image,
+    //   city: city,
+    // };
 
-    this.myService.createStore(newStore).subscribe({
+    this.myService.createStore(formData).subscribe({
       next: (data) => {
-        console.log(newStore);
+        console.log(formData);
         this.router.navigateByUrl('/stores');
       },
       error: (err) => {
         console.log(err);
       },
     });
+  }
+
+  storeImgUpload(event: any) {
+    this.storeImg = event.target.files[0];
+    console.log(this.storeImg);
   }
 }

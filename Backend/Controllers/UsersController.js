@@ -7,7 +7,6 @@ let jwt = require("jsonwebtoken");
 
 id = 0;
 let AddNewUser = async (req, res, next) => {
-  // console.log("hi");
   const file = req.file;
   console.log(file);
 
@@ -22,25 +21,22 @@ let AddNewUser = async (req, res, next) => {
     user_name: req.body.user_name,
     email: req.body.email,
     password: hashedPassword,
-    // user_image: req.body.user_image,
-    // user_image: file.originalname,
+
     user_image: "/uploads/" + req.file.filename,
-    // user_image: file.filename,
+
     gender: req.body.gender,
     role: req.body.role,
     address: req.body.address,
     mobile: req.body.mobile,
   });
-  // await newUserModel.save();
-  // await res.json(newUserModel);
 
   var valid = userValid(newUserModel);
 
   if (valid) {
     await newUserModel.save();
     let Token = jwt.sign({ role: req.body.role }, "token");
-    res.header("x-auth-token", `Bearer ${Token}`);
-    res.status(201).send("User Added Successfully");
+    res.header("x-auth-token", Token);
+    res.status(201).json(newUserModel);
   } else {
     res.status(400).send("Not Compatible, check validation..");
   }
@@ -58,26 +54,39 @@ let GetUserById = async (req, res) => {
 };
 let UpdateUser = async (req, res) => {
   let Id = req.params.id;
-  let data = req.body;
+  let data = {
+    user_name: req.body.user_name,
+    email: req.body.email,
+    password: req.body.password,
+
+    user_image: "/uploads/" + req.file.filename,
+
+    gender: req.body.gender,
+    role: req.body.role,
+    address: req.body.address,
+    mobile: +req.body.mobile,
+  };
+  console.log(data);
   const valid = userValid(data);
-  if (!valid) res.send("Not Compatible..");
-  else {
+  if (!valid) {
+    res.send("Not Compatible..");
+  } else {
     var salt = await bcrypt.genSalt(10);
     var hashedPassword = await bcrypt.hash(data.password, salt);
-    await UserModel.updateOne(
+    var updatedUserModel = await UserModel.updateOne(
       { _id: Id },
       {
         user_name: req.body.user_name,
         email: req.body.email, //can not update email logic
         password: hashedPassword,
-        user_image: req.body.user_image,
+        user_image: "/uploads/" + req.file.filename,
         gender: req.body.gender,
         role: req.body.role,
         address: req.body.address,
         mobile: req.body.mobile,
       }
     );
-    await res.send("updated successfully");
+    await res.json(updatedUserModel);
   }
 };
 

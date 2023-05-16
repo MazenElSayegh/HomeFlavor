@@ -19,6 +19,7 @@ let MenusSchema = new mongoose.Schema({
       product_title: { type: String, required: true },
       price: { type: Number, required: true },
       product_details: { type: String, required: true },
+      category:{type:String, enum:['Appetizer', 'Drink', 'Main'],required:true},
 });
 
 //Export to controller

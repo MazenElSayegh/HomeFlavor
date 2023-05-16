@@ -4,7 +4,7 @@ let StoreModel = require("../Models/StoresModel");
 
 // Get all stores
 let getAllStores = async (req, res) => {
-  let stores = await StoreModel.find({}).populate('user_id');
+  let stores = await StoreModel.find({}).populate("user_id");
   res.status(201).json(stores);
 };
 
@@ -13,7 +13,7 @@ let getStoreByID = async (req, res) => {
   let id = req.params.id;
   let store = null;
   try {
-    store = await StoreModel.findById({ _id: id }).populate('user_id');
+    store = await StoreModel.findById({ _id: id }).populate("user_id");
   } catch (error) {
     console.log(error);
   }
@@ -26,7 +26,13 @@ let getStoreByID = async (req, res) => {
 
 // Make new Store
 let createStore = async (req, res) => {
-  let newStore = req.body;
+  let newStore = {
+    user_id: req.body.user_id,
+    name: req.body.name,
+    city: req.body.city,
+    image: "/uploads/" + req.file.filename,
+    about: req.body.about,
+  };
   if (validate(newStore)) {
     try {
       let store = new StoreModel(newStore);
@@ -43,7 +49,13 @@ let createStore = async (req, res) => {
 // Update Store
 var updateStoreByID = async (req, res) => {
   var ID = req.params.id;
-  var updatedStore = req.body;
+  var updatedStore = {
+    user_id: req.body.user_id,
+    name: req.body.name,
+    city: req.body.city,
+    image: "/uploads/" + req.file.filename,
+    about: req.body.about,
+  };
 
   if (validate(updatedStore)) {
     try {
