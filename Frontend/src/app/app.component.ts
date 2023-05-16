@@ -8,35 +8,14 @@ import { StoreDetailsComponent } from './Components/stores/store-details/store-d
 })
 export class AppComponent {
   title = 'Home Flavor';
-  addedProducts:any;
-  // studentsData: {name: string , age: string}[] = []
+  addedProducts: any[] = [];
 
   getData(data:any){
     if(data instanceof StoreDetailsComponent){
     const child:StoreDetailsComponent=data;
     child.addedToCart.subscribe((data)=>{
-      console.log(data)
-      var newProduct=data;
-      // this.addedProducts.push(data)
-      // console.log(this.addedProducts)
+      this.addedProducts.push(data);
     })
-
-
-    // console.log("gowa function el get Data");
-    // console.log(data);
-    }
-    this.addedProducts.push(data);
-    console.log(this.addedProducts);
-  }
-
-
-  handleChildChange(event: any) {
-    // Handle changes from child
-  }
-
-  handleRouterActivation(component: any) {
-    if (component instanceof StoreDetailsComponent) {
-      console.log("gowa function el get Dataaaaaaaaaa");
     }
   }
 }

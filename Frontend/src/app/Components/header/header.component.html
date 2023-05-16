@@ -88,7 +88,10 @@
       ></button>
     </div>
     <div class="offcanvas-body">
-      <p>Try scrolling the rest of the page to see this option in action.</p>
+      <div *ngFor="let product of addedProducts">
+        <p>{{product.product_title}}</p>
+        <p>{{product.price}}</p>
+      </div>
     </div>
   </div>
 </div>

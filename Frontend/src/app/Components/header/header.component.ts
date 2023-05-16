@@ -8,11 +8,4 @@ import { Component,Input, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent {
   @Input() addedProducts:any;
-  constructor(){
-    console.log(this.addedProducts);
-
-  }
-  test(){
-    console.log(this.addedProducts);
-  }
 }
