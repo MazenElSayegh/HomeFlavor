@@ -94,7 +94,15 @@ export class UpdateProfileComponent implements OnInit{
       formData.append('address', address);
       formData.append('mobile', mobile);
 
-      this.myService.updateUserByID(this.ID, formData).subscribe();
+      this.myService.updateUserByID(this.ID, formData).subscribe({
+        next: (data) => {
+          console.log(data);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+
 
       alert('updated sucessfully');
       // this.router.navigateByUrl('/');
