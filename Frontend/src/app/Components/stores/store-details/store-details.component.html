@@ -12,6 +12,7 @@
   </div>
 </div>
 <div>
+
   <!-- <table class="table table-bordered text-center table-dark table-striped">
     <thead>
       <tr>
@@ -78,14 +79,16 @@
   /> -->
 
   <div class="outerContainer">
-    <div class="storeDetailsContainer">
+    <div class="storeDetailsContainer"  *ngIf="store; else falseBlock" class="alert alert-info">
       <img [src]="localhost + store.image" />
-      <div class="storeDetails">
         <h1>{{ store.name }}</h1>
         <p>In: {{ store.city }}</p>
         <p>Desserts, Ice Cream</p>
       </div>
     </div>
+    <ng-template #falseBlock>
+      <h1 class="alert alert-danger">Loading...</h1>
+    </ng-template>
 
     <div class="paymentContainer">
       <div class="payments">
@@ -106,7 +109,7 @@
       <p>Feedbacks</p>
     </div>
   </div>
-</div>
+
 
 <div class="product-section mb-150 show" id="stores">
   <div class="container">
@@ -260,4 +263,4 @@
 </div>
 <!-- end testimonail-section -->
 
-<!-- Feedback -->
+

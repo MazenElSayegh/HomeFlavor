@@ -1,0 +1,157 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>sagel w eksab</p>
+          <h1>Registration</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+
+<div *ngIf="user; else falseBlock"  id="formContainer">
+  <form [formGroup]="validationForm" class="form" (ngSubmit)="update(user_name.value,email.value,password.value,gender.value,role.value,address.value,mobile.value)">
+    <div class="mb-3">
+      <label for="name" class="form-label">Enter User Name</label>
+      <input
+        formControlName="user_name"
+        type="text"
+        value="{{ user.user_name }}"
+        class="form-control"
+        id="user_name"
+        aria-describedby="emailHelp"
+        #user_name
+      />
+      <div class="mt-1" *ngIf="!user_nameValid">
+        <p>enter a name greater than three characters.</p>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Enter Email</label>
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control"
+        id="email"
+        value="{{ user.email }}"
+
+        placeholder="Email"
+        #email
+
+      />
+      <div class="mt-1" *ngIf="!emailValid">
+        <p>Enter correct Email</p>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Enter Password</label>
+      <input
+        formControlName="password"
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+        #password
+      />
+      <div class="mt-1" *ngIf="!passwordValid">
+        <p>not less than 8 characters</p>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Enter Address</label>
+      <input
+        formControlName="address"
+        value="{{ user.address }}"
+
+        type="text"
+        class="form-control"
+        id="address"
+        placeholder="Address"
+        #address
+      />
+      <div class="mt-1" *ngIf="!addressValid">
+        <p>Address is required</p>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="mobile" class="form-label">Enter Mobile</label>
+      <input
+      value="{{ user.mobile }}"
+
+        formControlName="mobile"
+        type="text"
+        class="form-control"
+        id="mobile"
+        placeholder="Mobile"
+        #mobile
+      />
+      <div class="mt-1" *ngIf="!mobileValid">
+        <p>not less than 11 numbers</p>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="gender" class="form-label">Enter Your Gender</label>
+      <select
+        class="form-select"
+        formControlName="gender"
+        id="gender"
+        #gender
+
+      >
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <div class="mt-1" *ngIf="!genderValid">
+        <p>please select your gender.</p>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="role" class="form-label">
+        would you like to Buy or Sell ?
+      </label>
+      <select
+        class="form-select"
+        formControlName="role"
+        id="role"
+        #role
+      >
+        <option value="buyer">Buyer</option>
+        <option value="seller">Seller</option>
+      </select>
+      <div class="mt-1" *ngIf="!roleValid">
+        <p>please select your Role.</p>
+      </div>
+    </div>
+
+    <label for="image" class="form-label"> Image </label>
+    <div class="input-group mb-3">
+      <input
+        type="file"
+        class="form-control"
+        id="inputGroupFile02"
+        (change)="upload($event)"
+
+      />
+      <label class="input-group-text" for="inputGroupFile02">Upload</label>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Add" />
+  </form>
+</div>
+
+
+<ng-template #falseBlock>
+  <div class="loader">
+    <div class="loader-inner">
+      <div class="circle"></div>
+    </div>
+  </div>
+</ng-template>

@@ -103,9 +103,9 @@ export class RegisterComponent {
       });
 
       alert('added successfully');
-      // location.href = '/';
+      location.href = '/';
     } else {
-      // alert('please validate');
+      alert('please validate');
     }
   }
 }

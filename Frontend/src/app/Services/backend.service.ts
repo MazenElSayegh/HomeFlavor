@@ -21,4 +21,7 @@ export class BackendService {
   getUserByID(id: any) {
     return this.serverClient.get(this.Base_URL + 'users' + '/' + id);
   }
+  updateUserByID(id: any, user: any) {
+    return this.serverClient.put(this.Base_URL + 'users' + '/' + id, user);
+  }
 }
