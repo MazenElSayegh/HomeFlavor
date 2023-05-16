@@ -31,9 +31,10 @@
             <label class="form-label" for="form3Example3">Image</label>
             <input
               #productImage
-              type="text"
+              type="file"
               class="form-control form-control-lg"
               placeholder="Enter Image Name"
+              (change)="menuImageUpload($event)"
             />
           </div>
 

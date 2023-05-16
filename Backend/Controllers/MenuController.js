@@ -15,7 +15,14 @@ let getAllMenu = async (req, res) => {
 
 //creatr menu item
 let CreateMenuItem = async (req, res) => {
-  let newItem = req.body;
+  var newItem = {
+    store_id: req.body.store_id,
+    product_titel: req.body.product_titel,
+    price: req.body.price,
+    product_details :req.body.product_details ,
+    category:req.body.category,  
+    product_image: "/uploads/" + req.file.filename,
+  };
   if (validate(newItem)) {
     try {
       let item = new MenusModel(newItem);
@@ -34,7 +41,14 @@ let CreateMenuItem = async (req, res) => {
 
 var updateItemByID = async (req, res) => {
   var ID = req.params.id;
-  var updatedItem = req.body;
+  var updatedItem = {
+    store_id: req.body.store_id,
+    product_titel: req.body.product_titel,
+    price: req.body.price,
+    product_details :req.body.product_details ,
+    category:req.body.category,  
+    product_image: "/uploads/" + req.file.filename,
+  };
 
   if (validate(updatedItem)) {
     try {

@@ -6,7 +6,7 @@ const menuSchema = {
   properties: {
     product_title: { type: "string" },
     product_image: { type: "string" },
-    price: { type: "number" },
+    price: { type: "string" },
     product_details: { type: "string" },
     category: {
       type: "string",
@@ -14,7 +14,7 @@ const menuSchema = {
     },
   },
   required: [
-    "product_title",
+    // "product_title",
     "product_image",
     "price",
     "product_details",

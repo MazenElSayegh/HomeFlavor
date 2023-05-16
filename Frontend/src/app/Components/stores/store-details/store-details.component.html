@@ -140,11 +140,8 @@
           }}"
         >
           <div class="product-image">
-            <a href="single-product.html"
-              ><img
-                src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/800px-KFC_logo.svg.png"
-                alt=""
-            /></a>
+            <a href="single-product.html">
+            <img [src]="localhost + product.product_image" /></a>
           </div>
           <h3>{{ product.product_title }}</h3>
           <h5>E&#163; {{ product.price }}</h5>
