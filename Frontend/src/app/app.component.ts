@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { StoreDetailsComponent } from './Components/stores/store-details/store-details.component';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,14 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent {
   title = 'Home Flavor';
-  addedProducts:any;
-  // studentsData: {name: string , age: string}[] = []
+  addedProducts: any[] = [];
 
   getData(data:any){
-    console.log("gowa function el get Data");
-    console.log(data);
-    this.addedProducts.push(data);
-    console.log(this.addedProducts);
+    if(data instanceof StoreDetailsComponent){
+    const child:StoreDetailsComponent=data;
+    child.addedToCart.subscribe((data)=>{
+      this.addedProducts.push(data);
+    })
+    }
   }
 }

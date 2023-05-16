@@ -8,6 +8,7 @@ const storeSchema = {
     name: { type: "string" },
     image: { type: "string" },
     city: { type: "string" },
+    about: { type: "string" },
     menu: {
       type: "array",
       items: {
