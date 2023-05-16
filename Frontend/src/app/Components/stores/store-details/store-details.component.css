@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 2vw;
+  padding: 4vh 2vw;
   margin: 10px 0px;
 }
 
@@ -13,8 +13,9 @@
 }
 
 img {
-  width: 30%;
-  height: 100%;
+  width: 100px;
+  height: 120px;
+  margin-right: 25px;
 }
 
 .storeDetails {
