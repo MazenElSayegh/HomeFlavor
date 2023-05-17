@@ -10,14 +10,15 @@ const menuSchema = {
     product_details: { type: "string" },
     category: {
       type: "string",
-      enum: ['Appetizer', 'Drink', 'Main'],
+      enum: ["Appetizer", "Drink", "Main"],
     },
   },
   required: [
-    // "product_title",
+    "product_title",
     "product_image",
     "price",
     "product_details",
+    "category",
   ],
 };
 

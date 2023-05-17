@@ -12,7 +12,14 @@
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
         <form
           (ngSubmit)="
-          updateMenuItem(storeID.value, productImage.value, productTitle.value,price.value,productDetails.value,category.value)
+            updateMenuItem(
+              storeID.value,
+              productImage.value,
+              productTitle.value,
+              price.value,
+              productDetails.value,
+              category.value
+            )
           "
         >
           <!-- storeID input -->
@@ -48,12 +55,16 @@
               placeholder="Enter titel"
             />
           </div>
-          <select class="form-select" aria-label="Default select example" #category >
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            #category
+          >
             <option selected>Open this select menu</option>
-            <option value="'Appetizer">Appetizer</option>
+            <option value="Appetizer">Appetizer</option>
             <option value="Drink">Drink</option>
             <option value="Main">Main</option>
-           </select>
+          </select>
 
           <!-- price input -->
           <div class="form-outline">
