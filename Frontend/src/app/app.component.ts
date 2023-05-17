@@ -16,7 +16,8 @@ export class AppComponent {
       product_image:string,
       product_title:string,
       store_id:string,
-      _id:string
+      _id:string,
+      quantity:number
     }
 
     const myDataString = localStorage.getItem('cart');
@@ -36,6 +37,7 @@ export class AppComponent {
     if(data instanceof StoreDetailsComponent){
     const child:StoreDetailsComponent=data;
     child.addedToCart.subscribe((data)=>{
+      data.quantity=1
 
       console.log(data);
       interface MyData {
@@ -44,7 +46,8 @@ export class AppComponent {
         product_image:string,
         product_title:string,
         store_id:string,
-        _id:string
+        _id:string,
+        quantity:number
       }
 
       const myDataString = localStorage.getItem('cart');
@@ -63,6 +66,7 @@ export class AppComponent {
         localStorage.setItem("cart",JSON.stringify(myData))
       }
       console.log(localStorage.getItem('cart'))
+      console.log(this.addedProducts)
 
     })
     }

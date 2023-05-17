@@ -168,8 +168,8 @@
               <div class="client-avater">
                 <img src="assets/img/avaters/avatar1.png" alt="" />
               </div>
-              <div class="client-meta">
-                <h3>{{ feedback.user_id.user_name }}</h3>
+              <div class="client-meta" >
+                <h3 *ngIf="feedback.user_id">{{ feedback.user_id.user_name }}</h3>
                 <div class="feedbackRating">
                   <div class="dbStar-container">
                     <i
