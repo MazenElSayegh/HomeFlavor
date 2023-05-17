@@ -43,16 +43,16 @@ export class HeaderComponent {
 
 
 
- ngOnInit(): void {
-  console.log(this.addedProducts)
-  if (this.addedProducts === undefined) {
-  let data=localStorage.getItem("cart")
-    if(data){
+//  ngOnInit(): void {
+//   console.log(this.addedProducts)
+//   if (this.addedProducts === undefined) {
+//   let data=localStorage.getItem("cart")
+//     if(data){
 
-      this.addedProducts = JSON.parse(data);
-    }
-  console.log(localStorage.getItem("cart"))
-  }
-}
+//       this.addedProducts = JSON.parse(data);
+//     }
+//   console.log(localStorage.getItem("cart"))
+//   }
+// }
 }
 
