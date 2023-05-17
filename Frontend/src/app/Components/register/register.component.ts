@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BackendService } from 'src/app/Services/backend.service';
 import { HttpClient } from '@angular/common/http';
-
+import { HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegisterComponent {
   user_image: any;
-  user_name: any;
+  // user_name: any;
   email: any;
   password: any;
   gender: any;
@@ -25,6 +25,7 @@ export class RegisterComponent {
     user_name: new FormControl(null, [
       Validators.required,
       Validators.minLength(3),
+      //Adding pattern
     ]),
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [
@@ -33,8 +34,12 @@ export class RegisterComponent {
     ]),
     gender: new FormControl(null, [Validators.required]),
     role: new FormControl(null, [Validators.required]),
-    mobile: new FormControl(null, [Validators.required,Validators.min(11), Validators.pattern('^[0-9]*$')]),
-    address: new FormControl(null, [Validators.required]),
+    mobile: new FormControl(null, [
+      Validators.required,
+      Validators.min(11),
+      Validators.pattern('^[0-9]*$'),
+    ]),
+    address: new FormControl(null, [Validators.required]), // Adding pattern
   });
 
   get user_nameValid() {
@@ -61,17 +66,17 @@ export class RegisterComponent {
 
   upload(event: any) {
     this.user_image = event.target.files[0];
-    console.log(this.user_image);
+    console.log(event);
   }
-  add() {
+  add(user_name: any) {
     // user_image: any
     const formData = new FormData();
 
     console.log(this.user_image);
-    console.log(this.user_name);
+    // console.log(this.user_name);
     if (this.validationForm.valid) {
       formData.append('user_image', this.user_image);
-      formData.append('user_name', this.user_name);
+      formData.append('user_name', user_name);
       formData.append('email', this.email);
       formData.append('password', this.password);
       formData.append('gender', this.gender);
@@ -99,6 +104,10 @@ export class RegisterComponent {
         },
         error: (err) => {
           console.log(err);
+          const headers = new HttpHeaders();
+          if (headers.has('your-key')) {
+            alert();
+          }
         },
       });
 

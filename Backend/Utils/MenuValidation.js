@@ -6,11 +6,11 @@ const menuSchema = {
   properties: {
     product_title: { type: "string" },
     product_image: { type: "string" },
-    price: { type: "number" },
+    price: { type: "string" },
     product_details: { type: "string" },
     category: {
       type: "string",
-      enum: ['Appetizer', 'Drink', 'Main'],
+      enum: ["Appetizer", "Drink", "Main"],
     },
   },
   required: [
@@ -18,6 +18,7 @@ const menuSchema = {
     "product_image",
     "price",
     "product_details",
+    "category",
   ],
 };
 

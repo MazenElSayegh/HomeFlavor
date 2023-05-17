@@ -8,7 +8,8 @@ let jwt = require("jsonwebtoken");
 id = 0;
 let AddNewUser = async (req, res, next) => {
   const file = req.file;
-  
+  console.log(file);
+
   var salt = await bcrypt.genSalt(10);
   var hashedPassword = await bcrypt.hash(req.body.password, salt);
 
@@ -20,15 +21,14 @@ let AddNewUser = async (req, res, next) => {
     user_name: req.body.user_name,
     email: req.body.email,
     password: hashedPassword,
-    
+
     user_image: "/uploads/" + req.file.filename,
-    
+
     gender: req.body.gender,
     role: req.body.role,
     address: req.body.address,
     mobile: req.body.mobile,
   });
-  
 
   var valid = userValid(newUserModel);
 
@@ -58,24 +58,22 @@ let UpdateUser = async (req, res) => {
     user_name: req.body.user_name,
     email: req.body.email,
     password: req.body.password,
-    
+
     user_image: "/uploads/" + req.file.filename,
-    
+
     gender: req.body.gender,
     role: req.body.role,
     address: req.body.address,
     mobile: +req.body.mobile,
-  }
+  };
   console.log(data);
   const valid = userValid(data);
   if (!valid) {
     res.send("Not Compatible..");
-
-
-}else {
+  } else {
     var salt = await bcrypt.genSalt(10);
     var hashedPassword = await bcrypt.hash(data.password, salt);
-   var updatedUserModel= await UserModel.updateOne(
+    var updatedUserModel = await UserModel.updateOne(
       { _id: Id },
       {
         user_name: req.body.user_name,

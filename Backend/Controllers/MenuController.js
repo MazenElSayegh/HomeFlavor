@@ -8,14 +8,21 @@ let getAllMenu = async (req, res) => {
   //let menus = await StoreModel.find({menu: {$elemMatch: {product_title:"gambryyy"}}}).where('_id').equals(id).exec();
   // let menus = await StoreModel.find({menu: {$elemMatch: {product_title:"gambryyy"}}}).where('_id').equals(id).select('menu').exec();
   // let menus = await MenusModel.find("_id").equals(id).select("menu").exec();
-  let menus = await MenusModel.find({store_id:id});
+  let menus = await MenusModel.find({ store_id: id });
 
   res.status(201).json(menus);
 };
 
 //creatr menu item
 let CreateMenuItem = async (req, res) => {
-  let newItem = req.body;
+  var newItem = {
+    store_id: req.body.store_id,
+    product_title: req.body.product_title,
+    price: req.body.price,
+    product_details: req.body.product_details,
+    category: req.body.category,
+    product_image: "/uploads/" + req.file.filename,
+  };
   if (validate(newItem)) {
     try {
       let item = new MenusModel(newItem);
@@ -27,14 +34,21 @@ let CreateMenuItem = async (req, res) => {
   } else {
     res.status(301).send(validate.errors);
   }
-    
-  };
+};
 
 //updateitem
 
 var updateItemByID = async (req, res) => {
+  console.log(req.body);
   var ID = req.params.id;
-  var updatedItem = req.body;
+  var updatedItem = {
+    store_id: req.body.store_id,
+    product_title: req.body.product_title,
+    price: req.body.price,
+    product_details: req.body.product_details,
+    category: req.body.category,
+    product_image: "/uploads/" + req.file.filename,
+  };
 
   if (validate(updatedItem)) {
     try {
@@ -56,12 +70,10 @@ var deleteMenuItemByID = async (req, res) => {
   res.json(itemToDelete || "Not Found");
 };
 
-
-
 //Export to route
 module.exports = {
   getAllMenu,
   deleteMenuItemByID,
   CreateMenuItem,
-  updateItemByID
+  updateItemByID,
 };

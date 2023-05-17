@@ -24,7 +24,7 @@
       <div class="panel">
         <div class="user-heading round">
           <a href="#">
-            <img [src]="image_path" alt="errrrrrrrrrrrrrror" />
+            <img [src]="localhost + user.user_image" alt="" />
           </a>
           <h1></h1>
           <p></p>
@@ -58,15 +58,14 @@
             </div>
 
             <div class="bio-row">
-              <p><span>Address:</span> {{user.address}}</p>
+              <p><span>Address:</span> {{ user.address }}</p>
             </div>
-
 
             <div class="bio-row">
               <p><span>Email:</span> {{ user.email }}</p>
             </div>
             <div class="bio-row">
-              <p><span>Mobile: </span>{{user.mobile}}</p>
+              <p><span>Mobile: </span>{{ user.mobile }}</p>
             </div>
             <div class="bio-row">
               <p><span>gender:</span>: {{ user.gender }}</p>

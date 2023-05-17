@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
   ID: any;
   user: any;
   image_path: any;
+  localhost = 'http://localhost:7005';
 
   constructor(
     public myRoute: ActivatedRoute,
