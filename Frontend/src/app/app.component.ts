@@ -15,6 +15,30 @@ export class AppComponent {
     const child:StoreDetailsComponent=data;
     child.addedToCart.subscribe((data)=>{
       this.addedProducts.push(data);
+      console.log(data);
+      interface MyData {
+        price:number,
+        product_details:string,
+        product_image:string,
+        product_title:string,
+        store_id:string,
+        _id:string
+      }
+
+      const myDataString = localStorage.getItem('cart');
+      let myData: MyData[]
+
+      if (myDataString) {
+        myData = JSON.parse(myDataString);
+        myData.push(data)
+        localStorage.setItem("cart",JSON.stringify(myData))
+      }else{
+        myData=[]
+        myData.push(data)
+        localStorage.setItem("cart",JSON.stringify(myData))
+      }
+      console.log(localStorage.getItem('cart'))
+
     })
     }
   }
