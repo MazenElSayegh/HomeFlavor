@@ -132,7 +132,7 @@
               ipsum dolor sit amet consectetur adipisicing elit.</span
             >
           </p>
-          <a [routerLink]="['/stores', store._id]" class="cart-btn"
+          <a [href]="'/stores/' + store._id" class="cart-btn"
             ><i class="fas fa-shopping-cart"></i> Go to store</a
           >
         </div>
@@ -195,22 +195,40 @@
 </section>
 <!-- end cart banner section -->
 <!-- Slider trial -->
-<div id="carouselExampleSlidesOnly" class="carousel slide m-5" data-bs-ride="carousel">
+<div
+  id="carouselExampleSlidesOnly"
+  class="carousel slide m-5"
+  data-bs-ride="carousel"
+>
   <div class="carousel-inner">
-    <div class="carousel-item active ">
-      <img src="assets/img/avaters/avatar3.png" class="d-block justify-content-center w-25" alt="...">
-      <h1>{{stores[0].name}}</h1>
-      <p class="city">{{stores[0].city}}</p>
-      <p>"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem impedit dicta odit."</p>
+    <div class="carousel-item active">
+      <img
+        src="assets/img/avaters/avatar3.png"
+        class="d-block justify-content-center w-25"
+        alt="..."
+      />
+      <h1>{{ stores[0].name }}</h1>
+      <p class="city">{{ stores[0].city }}</p>
+      <p>
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem
+        impedit dicta odit."
+      </p>
       <div class="last-icon">
         <i class="fa fa-quote-right"></i>
       </div>
     </div>
-    <div class="carousel-item " *ngFor="let store of stores.slice(1)">
-      <img src="assets/img/avaters/avatar2.png" class="d-block justify-content-center w-25" alt="...">
-      <h1>{{store.name}}</h1>
-      <p class="city">{{store.city}}</p>
-      <p>"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem impedit dicta odit."</p>
+    <div class="carousel-item" *ngFor="let store of stores.slice(1)">
+      <img
+        src="assets/img/avaters/avatar2.png"
+        class="d-block justify-content-center w-25"
+        alt="..."
+      />
+      <h1>{{ store.name }}</h1>
+      <p class="city">{{ store.city }}</p>
+      <p>
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem
+        impedit dicta odit."
+      </p>
       <div class="last-icon">
         <i class="fa fa-quote-right"></i>
       </div>
@@ -297,7 +315,7 @@
           <div class="news-text-box">
             <h3>
               <a href="single-news.html"
-                >You have to try {{stores[0].name}}'s new sandwich!</a
+                >You have to try {{ stores[0].name }}'s new sandwich!</a
               >
             </h3>
             <p class="blog-meta">
@@ -321,7 +339,7 @@
           <div class="news-text-box">
             <h3>
               <a href="single-news.html"
-                >Don't miss out on {{stores[1].name}}'s offers!</a
+                >Don't miss out on {{ stores[1].name }}'s offers!</a
               >
             </h3>
             <p class="blog-meta">
@@ -345,7 +363,7 @@
           <div class="news-text-box">
             <h3>
               <a href="single-news.html"
-                >{{stores[2].name}} is the most 5 star reviewed this month!</a
+                >{{ stores[2].name }} is the most 5 star reviewed this month!</a
               >
             </h3>
             <p class="blog-meta">
