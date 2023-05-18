@@ -114,3 +114,24 @@ img {
 .dbStar-container .filled {
   color: #ffd700;
 }
+
+.addItemBtn {
+  background-color: #051922;
+  color: white;
+  display: block;
+  width: 40%;
+  margin: 0px auto 20px;
+
+  font-weight: 700;
+  font-size: 18px;
+
+  border: 2px solid #051922;
+
+  cursor: pointer;
+  padding: 8px 20px;
+  border-radius: 25px;
+}
+
+.addItemBtn a {
+  color: white;
+}
