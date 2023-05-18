@@ -25,6 +25,20 @@ img {
   justify-content: space-around;
 }
 
+.paymentContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.paymentContainer a {
+  color: white;
+  text-decoration: none;
+}
+
+.updateStoreBtn {
+  margin: 15px 0px;
+}
+
 .paymentContainer .status {
   color: green;
   text-align: center;
