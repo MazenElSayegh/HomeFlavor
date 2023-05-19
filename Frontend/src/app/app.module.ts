@@ -29,6 +29,7 @@ import { DeleteMenuItemComponent } from './Components/menus/delete-menu-item/del
 import { UpdateMenuItemComponent } from './Components/menus/update-menu-item/update-menu-item.component';
 import { ProfileComponent } from './Components/profile/profile/profile.component';
 import { UpdateProfileComponent } from './Components/profile/update-profile/update-profile.component';
+import { CheckoutComponent } from './Components/orders/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { UpdateProfileComponent } from './Components/profile/update-profile/upda
     DeleteMenuItemComponent,
     UpdateMenuItemComponent,
     UpdateProfileComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
