@@ -29,7 +29,7 @@ export class StoreDetailsComponent {
     this.myService.getStoreByID(this.id).subscribe({
       next: (data: any) => {
         this.store = data;
-        // console.log(this.store);
+        console.log(this.store);
       },
       error: (err: any) => {
         console.log(err);
@@ -112,6 +112,24 @@ export class StoreDetailsComponent {
       if (p.classList.contains(category)) {
         p.style.display = 'block';
       }
+    });
+  }
+
+  addFeedback(storeID: any, userID: any, comment: any) {
+    let newFeedback = {
+      store_id: storeID,
+      user_id: userID,
+      comment: comment,
+      stars: this.rating,
+    };
+
+    this.feedbackService.createFeedback(newFeedback).subscribe({
+      next: (data) => {
+        console.log(newFeedback);
+      },
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
 }
