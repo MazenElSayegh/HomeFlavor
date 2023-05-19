@@ -8,25 +8,31 @@ import { MenuService } from 'src/app/Services/menu.service';
   styleUrls: ['./update-menu-item.component.css']
 })
 export class UpdateMenuItemComponent {
+  menuImage:any;
   id: any;
   constructor(private myService: MenuService,private router: Router,myRoute: ActivatedRoute) {
     this.id = myRoute.snapshot.params['id'];
   }
-  updateMenuItem(storeID: any, productImage: any, productTitle: any, price: any,productDetails: any){
-    let newMenuItem = {
-      store_id: storeID,
-      product_image: productImage,
-      product_title: productTitle,
-      price: +price,
-      product_details:productDetails
-    };
-    this.myService.updateItemByID(this.id,newMenuItem).subscribe({
+  updateMenuItem(storeID: any, productImage: any, productTitle: any, price: any,productDetails: any,category:any){
+    const formData = new FormData();
+    formData.append('store_id', storeID);
+    formData.append('product_image',this.menuImage);
+    formData.append('product_title', productTitle);
+    formData.append('price', price);
+    formData.append('product_details',productDetails);
+    formData.append('category',category);
+    
+    this.myService.updateItemByID(this.id,formData).subscribe({
       next: (data) => {
-        console.log(newMenuItem);
+        console.log(formData);
       },
       error: (err) => {
         console.log(err);
       },
     });
+  }
+  menuImageUpload(event: any) {
+    this.menuImage = event.target.files[0];
+    console.log(this.menuImage);
   }
 }

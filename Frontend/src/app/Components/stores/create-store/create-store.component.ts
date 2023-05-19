@@ -28,7 +28,7 @@ export class CreateStoreComponent {
     this.myService.createStore(formData).subscribe({
       next: (data) => {
         console.log(formData);
-        this.router.navigateByUrl('/stores');
+        this.router.navigateByUrl('/home');
       },
       error: (err) => {
         console.log(err);

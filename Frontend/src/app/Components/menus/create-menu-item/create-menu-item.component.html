@@ -1,4 +1,17 @@
-<section class="vh-100">
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <h1>Create Menu Item</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+<section class="vh-100 mt-5">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-9 col-lg-6 col-xl-5">
@@ -12,17 +25,26 @@
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
         <form
           (ngSubmit)="
-          addMenuItem(storeID.value, productImage.value, productTitle.value,price.value,productDetails.value,category.value)
+            addMenuItem(
+              storeID.value,
+              productImage.value,
+              productTitle.value,
+              price.value,
+              productDetails.value,
+              category.value
+            )
           "
         >
           <!-- storeID input -->
           <div class="form-outline">
-            <label class="form-label" for="form3Example3">storeID</label>
+            <label class="form-label" for="form3Example3" hidden>storeID</label>
             <input
               #storeID
               type="text"
               class="form-control form-control-lg"
               placeholder="Enter storeID"
+              value="{{ storeIDReceived }}"
+              hidden
             />
           </div>
 
@@ -31,9 +53,10 @@
             <label class="form-label" for="form3Example3">Image</label>
             <input
               #productImage
-              type="text"
+              type="file"
               class="form-control form-control-lg"
               placeholder="Enter Image Name"
+              (change)="menuImageUpload($event)"
             />
           </div>
 
@@ -78,17 +101,21 @@
              <a class="dropdown-item" href="#">Something else here</a>
           </div>
          </div> -->
-         <select class="form-select" aria-label="Default select example" #category >
-          <option selected>Open this select menu</option>
-          <option value="'Appetizer">Appetizer</option>
-          <option value="Drink">Drink</option>
-          <option value="Main">Main</option>
-         </select>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            #category
+          >
+            <option selected>Open this select menu</option>
+            <option value="Appetizer">Appetizer</option>
+            <option value="Drink">Drink</option>
+            <option value="Main">Main</option>
+          </select>
 
           <input
             type="submit"
-            class="btn btn-outline-primary btn-lg "
-            style="padding-left: 2.5rem; padding-right: 2.5rem "
+            class="btn btn-outline-primary btn-lg"
+            style="padding-left: 2.5rem; padding-right: 2.5rem"
             value="Register"
           />
         </form>

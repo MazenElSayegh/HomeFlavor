@@ -25,6 +25,20 @@ img {
   justify-content: space-around;
 }
 
+.paymentContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.paymentContainer a {
+  color: white;
+  text-decoration: none;
+}
+
+.updateStoreBtn {
+  margin: 15px 0px;
+}
+
 .paymentContainer .status {
   color: green;
   text-align: center;
@@ -113,4 +127,36 @@ img {
 }
 .dbStar-container .filled {
   color: #ffd700;
+}
+
+.addItemBtn {
+  background-color: #051922;
+  color: white;
+  display: block;
+  width: 40%;
+  margin: 0px auto 20px;
+
+  font-weight: 700;
+  font-size: 18px;
+
+  border: 2px solid #051922;
+
+  cursor: pointer;
+  padding: 8px 20px;
+  border-radius: 25px;
+}
+
+.addItemBtn a {
+  color: white;
+}
+
+.updateMenuBtn a,
+.deleteMenuBtn a,
+.deleteFeedbackBtn a {
+  color: white;
+  text-decoration: none;
+}
+
+.updateMenuBtn {
+  margin-right: 10px;
 }

@@ -10,12 +10,23 @@ import { StoresService } from 'src/app/Services/stores.service';
 export class UpdateStoreComponent {
   id: any;
   storeImg: any;
+  store: any;
   constructor(
     private myService: StoresService,
     private router: Router,
     myRoute: ActivatedRoute
   ) {
     this.id = myRoute.snapshot.params['id'];
+
+    this.myService.getStoreByID(this.id).subscribe({
+      next: (data: any) => {
+        this.store = data;
+        console.log(this.store);
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
   }
 
   updateStore(userID: any, name: any, image: any, city: any, about: any) {
