@@ -19,6 +19,7 @@ export class RegisterComponent {
   mobile: any;
   address: any;
   is_valid_user_image: any;
+  validatedForm= true;
 
   constructor(private myService: BackendService, public myRouter: Router) {}
 
@@ -65,6 +66,8 @@ export class RegisterComponent {
     return this.validationForm.controls['mobile'].valid;
   }
 
+
+
   upload(event: any) {
     this.user_image = event.target.files[0];
     console.log(event);
@@ -92,43 +95,27 @@ export class RegisterComponent {
       formData.append('role', this.role);
       formData.append('address', this.address);
       formData.append('mobile', this.mobile);
-      // let user_name = this.validationForm.controls['user_name'].value;
 
-      //   let email = this.validationForm.controls['email'].value;
-      //   let password = this.validationForm.controls['password'].value;
-      //   let gender = this.validationForm.controls['gender'].value;
-      //   let role = this.validationForm.controls['role'].value;
-
-      //   let newUser = { user_name, email, password, gender, role };
-
-      // formData.append('user_name', this.user_name);
-      // formData.append('email', this.email);
-      // formData.append('password', this.password);
-      // formData.append('gender', this.gender);
-      // formData.append('role', this.role);
-      // console.log(formData);
       this.myService.addNewUser(formData).subscribe(
-        (res) => {
-          console.log(res);
+
+          {
+          next: (data) => {
+                  location.href = '/login';
+
+          },
+          error: (err) => {
+            console.log(err);
+            const headers = new HttpHeaders();
+            if (headers.has('your-key')) {
+              alert();
+            }
+          },
         }
-        //   {
-        //   next: (data) => {
-        //     console.log(data);
-        //   },
-        //   error: (err) => {
-        //     console.log(err);
-        //     const headers = new HttpHeaders();
-        //     if (headers.has('your-key')) {
-        //       alert();
-        //     }
-        //   },
-        // }
       );
 
-      alert('added successfully');
-      // location.href = '/';
+
     } else {
-      alert('please validate');
+      this.validatedForm=false;
     }
   }
 }
