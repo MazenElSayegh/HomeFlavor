@@ -98,18 +98,23 @@ export class RegisterComponent {
       // formData.append('gender', this.gender);
       // formData.append('role', this.role);
       // console.log(formData);
-      this.myService.addNewUser(formData).subscribe({
-        next: (data) => {
-          console.log(data);
-        },
-        error: (err) => {
-          console.log(err);
-          const headers = new HttpHeaders();
-          if (headers.has('your-key')) {
-            alert();
-          }
-        },
-      });
+      this.myService.addNewUser(formData).subscribe(
+        (res) => {
+          console.log(res);
+        }
+        //   {
+        //   next: (data) => {
+        //     console.log(data);
+        //   },
+        //   error: (err) => {
+        //     console.log(err);
+        //     const headers = new HttpHeaders();
+        //     if (headers.has('your-key')) {
+        //       alert();
+        //     }
+        //   },
+        // }
+      );
 
       alert('added successfully');
       // location.href = '/';

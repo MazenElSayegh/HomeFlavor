@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './Components/error/error.component';
 import { AllordersComponent } from './Components/orders/allorders/allorders.component';
 import { CreateorderComponent } from './Components/orders/createorder/createorder.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderComponent } from './Components/header/header.component';
 import { HomeComponent } from './Components/home/home.component';
 import { FooterComponent } from './Components/footer/footer.component';
@@ -29,6 +29,7 @@ import { DeleteMenuItemComponent } from './Components/menus/delete-menu-item/del
 import { UpdateMenuItemComponent } from './Components/menus/update-menu-item/update-menu-item.component';
 import { ProfileComponent } from './Components/profile/profile/profile.component';
 import { UpdateProfileComponent } from './Components/profile/update-profile/update-profile.component';
+import { AuthInterceptor } from './Interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,13 @@ import { UpdateProfileComponent } from './Components/profile/update-profile/upda
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
