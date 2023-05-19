@@ -12,8 +12,13 @@ var loginUser = async (req, res) => {
     if (!checkUser) return res.send("invalid email or password");
     let checkPass = await bcrypt.compare(data.password, checkUser.password);
     if (!checkPass) return res.send("invalid email or password");
-    let Token = jwt.sign({ role: checkUser.role }, "token");
-    res.header("x-auth-token", Token);
+    let Token = jwt.sign(
+      { role: req.body.role, user_name: req.body.user_name },
+      "token"
+    );
+    res.header("X-Auth-Token", `Bearer ${Token}`);
+    res.header("Access-Control-Expose-Headers", "*");
+    // res.header("x-auth-token", Token);
     await res.send("Login Successfully");
   }
 

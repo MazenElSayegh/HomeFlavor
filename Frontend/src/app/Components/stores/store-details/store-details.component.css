@@ -149,3 +149,14 @@ img {
 .addItemBtn a {
   color: white;
 }
+
+.updateMenuBtn a,
+.deleteMenuBtn a,
+.deleteFeedbackBtn a {
+  color: white;
+  text-decoration: none;
+}
+
+.updateMenuBtn {
+  margin-right: 10px;
+}

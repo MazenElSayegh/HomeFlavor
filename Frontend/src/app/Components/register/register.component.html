@@ -12,7 +12,9 @@
   </div>
 </div>
 <!-- end breadcrumb section -->
-
+<div class="alert alert-danger w-50 m-auto mt-5" *ngIf="!validatedForm" role="alert">
+  Please Enter Correct Data
+</div>
 <div id="formContainer">
   <form
     [formGroup]="validationForm"
@@ -137,7 +139,12 @@
       />
       <label class="input-group-text" for="inputGroupFile02">Upload</label>
     </div>
+    <div class="mt-1" *ngIf="!is_valid_user_image">
+      <p>Invalid file type. Only JPEG, Jpg and PNG images are allowed.</p>
+    </div>
 
     <input type="submit" class="btn btn-primary" value="Add" />
   </form>
 </div>
+
+

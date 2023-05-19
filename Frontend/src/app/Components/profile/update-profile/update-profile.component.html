@@ -13,8 +13,22 @@
 </div>
 <!-- end breadcrumb section -->
 
-<div *ngIf="user; else falseBlock"  id="formContainer">
-  <form [formGroup]="validationForm" class="form" (ngSubmit)="update(user_name.value,email.value,password.value,gender.value,role.value,address.value,mobile.value)">
+<div *ngIf="user; else falseBlock" id="formContainer">
+  <form
+    [formGroup]="validationForm"
+    class="form"
+    (ngSubmit)="
+      update(
+        user_name.value,
+        email.value,
+        password.value,
+        gender.value,
+        role.value,
+        address.value,
+        mobile.value
+      )
+    "
+  >
     <div class="mb-3">
       <label for="name" class="form-label">Enter User Name</label>
       <input
@@ -39,10 +53,8 @@
         class="form-control"
         id="email"
         value="{{ user.email }}"
-
         placeholder="Email"
         #email
-
       />
       <div class="mt-1" *ngIf="!emailValid">
         <p>Enter correct Email</p>
@@ -68,7 +80,6 @@
       <input
         formControlName="address"
         value="{{ user.address }}"
-
         type="text"
         class="form-control"
         id="address"
@@ -82,8 +93,7 @@
     <div class="mb-3">
       <label for="mobile" class="form-label">Enter Mobile</label>
       <input
-      value="{{ user.mobile }}"
-
+        value="{{ user.mobile }}"
         formControlName="mobile"
         type="text"
         class="form-control"
@@ -98,13 +108,7 @@
 
     <div class="mb-3">
       <label for="gender" class="form-label">Enter Your Gender</label>
-      <select
-        class="form-select"
-        formControlName="gender"
-        id="gender"
-        #gender
-
-      >
+      <select class="form-select" formControlName="gender" id="gender" #gender>
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
@@ -117,12 +121,7 @@
       <label for="role" class="form-label">
         would you like to Buy or Sell ?
       </label>
-      <select
-        class="form-select"
-        formControlName="role"
-        id="role"
-        #role
-      >
+      <select class="form-select" formControlName="role" id="role" #role>
         <option value="buyer">Buyer</option>
         <option value="seller">Seller</option>
       </select>
@@ -138,15 +137,16 @@
         class="form-control"
         id="inputGroupFile02"
         (change)="upload($event)"
-
       />
       <label class="input-group-text" for="inputGroupFile02">Upload</label>
+    </div>
+    <div class="mt-1" *ngIf="!is_valid_user_image">
+      <p>Invalid file type. Only JPEG, Jpg and PNG images are allowed.</p>
     </div>
 
     <input type="submit" class="btn btn-primary" value="Add" />
   </form>
 </div>
-
 
 <ng-template #falseBlock>
   <div class="loader">

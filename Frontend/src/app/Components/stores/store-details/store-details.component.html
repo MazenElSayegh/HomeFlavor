@@ -12,71 +12,6 @@
   </div>
 </div>
 <div>
-  <!-- <table class="table table-bordered text-center table-dark table-striped">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">City</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{ store._id }}</td>
-        <td>{{ store.name }}</td>
-        <td>{{ store.city }}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <table class="table table-bordered text-center table-dark table-striped">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Price</th>
-        <th scope="col">Image</th>
-        <th scope="col">Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of menu">
-        <td>{{ product._id }}</td>
-        <td>{{ product.product_title }}</td>
-        <td>{{ product.price }}</td>
-        <td>{{ product.product_image }}</td>
-        <td>{{ product.product_details }}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <table class="table table-bordered text-center table-dark table-striped">
-    <thead>
-      <tr>
-        <th scope="col">User Name</th>
-        <th scope="col">Comment</th>
-        <th scope="col">Stars</th>
-        <th scope="col">Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let feedback of feedbacks">
-        <td>{{ feedback.user_id.user_name }}</td>
-        <td>{{ feedback.comment }}</td>
-        <td>{{ feedback.stars }}</td>
-        <td>{{ feedback.date }}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <input
-    type="submit"
-    class="btn btn-outline-primary mb-4"
-    style="padding-left: 2.5rem; padding-right: 2.5rem"
-    value="Back To All Orders"
-    routerLink="/stores"
-  /> -->
-
   <div class="outerContainer">
     <div *ngIf="store; else falseBlock" class="storeDetailsContainer">
       <img [src]="localhost + store.image" />
@@ -94,10 +29,10 @@
         <img src="https://www.talabat.com/assets/images/logo-cash.svg" />
       </div>
       <button class="updateStoreBtn btn btn-dark">
-        <a href="#"> Edit Store </a>
+        <a [routerLink]="['/stores/update', store._id]"> Edit Store </a>
       </button>
       <button class="deleteStoreBtn btn btn-danger">
-        <a href="#"> Delete Store </a>
+        <a [routerLink]="['/stores/delete', store._id]"> Delete Store </a>
       </button>
     </div>
   </div>
@@ -124,16 +59,16 @@
         <div class="product-filters">
           <ul>
             <button class="addItemBtn">
-              <a href="#"> Add Menu Item </a>
+              <a [routerLink]="['/menu/create']"> Add Menu Item </a>
             </button>
             <li class="active" data-filter="*" (click)="filterProducts('all')">
               All
             </li>
-            <li data-filter=".appetizer" (click)="filterProducts('Appetizers')">
+            <li data-filter=".appetizer" (click)="filterProducts('Appetizer')">
               Appetizers
             </li>
             <li data-filter=".main" (click)="filterProducts('Main')">Main</li>
-            <li data-filter=".drink" (click)="filterProducts('Drinks')">
+            <li data-filter=".drink" (click)="filterProducts('Drink')">
               Drinks
             </li>
           </ul>
@@ -142,12 +77,13 @@
     </div>
 
     <div class="row">
-      <div *ngFor="let product of menu" class="col-lg-4 col-md-6 text-center">
-        <div
-          class="single-product-item singleProductContainer {{
-            product.category
-          }}"
-        >
+      <div
+        *ngFor="let product of menu"
+        class="col-lg-4 col-md-6 text-center singleProductOuterContainer {{
+          product.category
+        }}"
+      >
+        <div class="single-product-item singleProductContainer">
           <div class="product-image">
             <a href="single-product.html">
               <img [src]="localhost + product.product_image"
@@ -156,10 +92,25 @@
           <h3>{{ product.product_title }}</h3>
           <h5>E&#163; {{ product.price }}</h5>
           <h5>{{ product.product_details }}</h5>
-          <p class="product-price"></p>
-          <a class="cart-btn" (click)="addToCart(product)"
-            ><i class="fas fa-shopping-cart"></i> add to cart</a
-          >
+          <div class="btnsContainer">
+            <div class="addToCartBtnContainer">
+              <p class="product-price"></p>
+              <a class="cart-btn" (click)="addToCart(product)"
+                ><i class="fas fa-shopping-cart"></i> add to cart</a
+              >
+            </div>
+
+            <div class="updateDeleteMenuContainer">
+              <button class="updateMenuBtn btn btn-dark">
+                <a [routerLink]="['/menu/update', product._id]"> Edit Item </a>
+              </button>
+              <button class="deleteMenuBtn btn btn-danger">
+                <a [routerLink]="['/menu/delete', product._id]">
+                  Delete Item
+                </a>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -176,7 +127,8 @@
           <div *ngFor="let feedback of feedbacks">
             <div *ngIf="feedback.user_id" class="single-testimonial-slider">
               <div class="client-avater">
-                <img src="assets/img/avaters/avatar1.png" alt="" />
+                <!-- <img src="{{ store.user_id.user_image }}" alt="" /> -->
+                <img [src]="localhost + store.user_id.user_image" />
               </div>
               <div class="client-meta">
                 <h3>{{ feedback.user_id.user_name }}</h3>
@@ -195,6 +147,11 @@
                 <p class="feedbackDate">
                   {{ feedback.date | date : "longDate" }}
                 </p>
+                <button class="deleteFeedbackBtn btn btn-danger">
+                  <a [routerLink]="['/feedbacks/delete', feedback._id]">
+                    Delete Feedback
+                  </a>
+                </button>
                 <div class="last-icon">
                   <i class="fas fa-quote-right"></i>
                 </div>
@@ -221,24 +178,28 @@
             <form
               type="POST"
               id="fruitkha-contact"
-              onSubmit="return valid_datas( this );"
+              (ngSubmit)="
+                addFeedback(storeID.value, userID.value, comment.value)
+              "
             >
               <div>
                 <!-- UserID -->
                 <input
                   type="text"
-                  placeholder="Name"
+                  placeholder="userID"
                   name="userID"
-                  id="name"
-                  hidden
+                  id="userID"
+                  #userID
                 />
                 <!-- StoreID -->
                 <input
-                  type="email"
-                  placeholder="Email"
+                  type="text"
+                  placeholder="storeID"
                   name="storeID"
-                  id="email"
+                  id="storeID"
+                  value="{{ store._id }}"
                   hidden
+                  #storeID
                 />
 
                 <!-- <p>
@@ -257,6 +218,7 @@
                     cols="30"
                     rows="10"
                     placeholder="Feedback"
+                    #comment
                   ></textarea>
                 </p>
                 <div class="star-container">

@@ -18,6 +18,8 @@ export class ProfileComponent implements OnInit {
     public myService: BackendService
   ) {
     this.ID = myRoute.snapshot.params['id'];
+    const myData = localStorage.getItem('jwt_token');
+    console.log(myData);
   }
   ngOnInit(): void {
     this.myService.getUserByID(this.ID).subscribe({
@@ -26,6 +28,12 @@ export class ProfileComponent implements OnInit {
         this.image_path = `http://localhost:7005${this.user.user_image}`;
         console.log(data);
         console.log(this.image_path);
+        // localStorage.setItem('omar', 'hi');
+
+        // const myData = localStorage.getItem('omar');
+        // const myData2 = localStorage.getItem('jwt_token');
+        // console.log(myData);
+        // console.log(myData2);
       },
       error: (err) => {
         console.log(err);
