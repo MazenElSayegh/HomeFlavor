@@ -36,10 +36,8 @@ export class CheckoutComponent {
       delete product.product_title;
       delete product.store_id;
       delete product.category;
-      console.log("elproduct",product);
       this.order.products.push(product);
     });
-    console.log("elorder",this.order);
 
     this.OrdersService.AddNewOrder(this.order).subscribe();
     alert("Order confirmed");
