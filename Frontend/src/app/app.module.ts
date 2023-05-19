@@ -29,6 +29,7 @@ import { DeleteMenuItemComponent } from './Components/menus/delete-menu-item/del
 import { UpdateMenuItemComponent } from './Components/menus/update-menu-item/update-menu-item.component';
 import { ProfileComponent } from './Components/profile/profile/profile.component';
 import { UpdateProfileComponent } from './Components/profile/update-profile/update-profile.component';
+import { CheckoutComponent } from './Components/orders/checkout/checkout.component';
 import { AuthInterceptor } from './Interceptors/auth.interceptor';
 
 @NgModule({
@@ -57,6 +58,7 @@ import { AuthInterceptor } from './Interceptors/auth.interceptor';
     DeleteMenuItemComponent,
     UpdateMenuItemComponent,
     UpdateProfileComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

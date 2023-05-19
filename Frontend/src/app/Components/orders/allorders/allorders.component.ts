@@ -17,10 +17,6 @@ export class AllordersComponent {
       {
         next: (data)=>{
           this.orders=data;
-          // localStorage.setItem('data',JSON.stringify(this.orders));
-          // let temp:any=localStorage.getItem('data');
-          // this.test=JSON.parse(temp);
-          // console.log(this.test);
         },
         error: (err)=>{console.log(err);
         }

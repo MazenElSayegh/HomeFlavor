@@ -1,0 +1,7 @@
+<div *ngFor="let product of allProducts">
+    <h1>{{product.product_title}}</h1>
+    <h1>{{product.product_details}}</h1>
+    <h1>{{product.price}}</h1>
+    <h1>{{product.quantity}}</h1>
+</div>
+<button (click)="AddOrder()">Confirm order</button>
