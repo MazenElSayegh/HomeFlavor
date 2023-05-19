@@ -8,6 +8,9 @@ import { BackendService } from 'src/app/Services/backend.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+
+  validatedForm= true;
+
   constructor(private myService: BackendService, public myRouter: Router) {}
 
   validationForm = new FormGroup({
@@ -34,10 +37,10 @@ export class LoginComponent {
 
       this.myService.userLogin(user).subscribe();
 
-      alert('successfully');
       this.myRouter.navigateByUrl('/profile');
     } else {
-      alert('please validate');
+      this.validatedForm=false;
+
     }
   }
 }

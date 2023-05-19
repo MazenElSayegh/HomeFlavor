@@ -14,6 +14,7 @@ export class UpdateProfileComponent implements OnInit {
   validationForm: any;
   user_image: any;
   is_valid_user_image: any;
+  validatedForm=true;
   constructor(
     public myService: BackendService,
     public myRoute: ActivatedRoute,
@@ -121,11 +122,11 @@ export class UpdateProfileComponent implements OnInit {
         },
       });
 
-      alert('updated sucessfully');
+
       // this.router.navigateByUrl('/');
-      // location.href = '/';
+      location.href = '/profile';
     } else {
-      alert('please validate');
+      this.validatedForm=false;
     }
   }
 }

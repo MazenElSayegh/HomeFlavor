@@ -12,7 +12,9 @@
   </div>
 </div>
 <!-- end breadcrumb section -->
-
+<div class="alert alert-danger w-50 m-auto mt-5" *ngIf="!validatedForm" role="alert">
+  Wrong Credentials
+</div>
 <div id="formContainer">
   <form
     [formGroup]="validationForm"
