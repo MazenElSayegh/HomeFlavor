@@ -92,7 +92,7 @@ export class StoreDetailsComponent {
   }
 
   filterProducts(category: any) {
-    let products = document.querySelectorAll('.singleProductContainer');
+    let products = document.querySelectorAll('.singleProductOuterContainer');
     if (category == 'all') {
       products.forEach((product: any) => {
         let p = product as HTMLElement;

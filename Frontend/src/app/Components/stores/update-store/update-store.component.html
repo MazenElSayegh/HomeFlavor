@@ -41,8 +41,10 @@
               type="text"
               class="form-control form-control-lg"
               placeholder="Enter userID"
+              value="{{ store.user_id._id }}"
+              hidden
             />
-            <label class="form-label" for="form3Example3">UserID</label>
+            <label class="form-label" for="form3Example3" hidden>UserID</label>
           </div>
           <!-- <div *ngIf="!NameValid" class="alert alert-danger mb-4">
             Name must be at least 3 characters long.
@@ -55,6 +57,7 @@
               type="text"
               class="form-control form-control-lg"
               placeholder="Enter Name"
+              value="{{ store.name }}"
             />
             <label class="form-label" for="form3Example3">Name</label>
           </div>
@@ -66,6 +69,7 @@
               type="text"
               class="form-control form-control-lg"
               placeholder="Enter store details"
+              value="{{ store.about }}"
             />
             <label class="form-label" for="form3Example3">About</label>
           </div>
@@ -89,6 +93,7 @@
               type="text"
               class="form-control form-control-lg"
               placeholder="Enter city"
+              value="{{ store.city }}"
             />
             <label class="form-label" for="form3Example3">city</label>
           </div>
