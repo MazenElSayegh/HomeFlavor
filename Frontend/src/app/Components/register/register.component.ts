@@ -18,6 +18,7 @@ export class RegisterComponent {
   role: any;
   mobile: any;
   address: any;
+  is_valid_user_image: any;
 
   constructor(private myService: BackendService, public myRouter: Router) {}
 
@@ -67,6 +68,14 @@ export class RegisterComponent {
   upload(event: any) {
     this.user_image = event.target.files[0];
     console.log(event);
+    if (
+      !['image/jpeg', 'image/png', 'image/jpg'].includes(this.user_image.type)
+    ) {
+      this.is_valid_user_image = false;
+      //      'Invalid file type. Only JPEG and PNG images are allowed.'
+    } else {
+      this.is_valid_user_image = true;
+    }
   }
   add(user_name: any) {
     // user_image: any
@@ -74,7 +83,7 @@ export class RegisterComponent {
 
     console.log(this.user_image);
     // console.log(this.user_name);
-    if (this.validationForm.valid) {
+    if (this.validationForm.valid && this.is_valid_user_image) {
       formData.append('user_image', this.user_image);
       formData.append('user_name', user_name);
       formData.append('email', this.email);

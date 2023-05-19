@@ -6,15 +6,14 @@ import { BackendService } from 'src/app/Services/backend.service';
 @Component({
   selector: 'app-update-profile',
   templateUrl: './update-profile.component.html',
-  styleUrls: ['./update-profile.component.css']
+  styleUrls: ['./update-profile.component.css'],
 })
-export class UpdateProfileComponent implements OnInit{
-
-
+export class UpdateProfileComponent implements OnInit {
   ID: any;
   user: any;
   validationForm: any;
-  user_image:any;
+  user_image: any;
+  is_valid_user_image: any;
   constructor(
     public myService: BackendService,
     public myRoute: ActivatedRoute,
@@ -48,6 +47,14 @@ export class UpdateProfileComponent implements OnInit{
   upload(event: any) {
     this.user_image = event.target.files[0];
     console.log(this.user_image);
+    if (
+      !['image/jpeg', 'image/png', 'image/jpg'].includes(this.user_image.type)
+    ) {
+      this.is_valid_user_image = false;
+      //      'Invalid file type. Only JPEG and PNG images are allowed.'
+    } else {
+      this.is_valid_user_image = true;
+    }
   }
   ngOnInit(): void {
     this.myService.getUserByID(this.ID).subscribe({
@@ -67,11 +74,14 @@ export class UpdateProfileComponent implements OnInit{
           ]),
           gender: new FormControl(null, [Validators.required]),
           role: new FormControl(null, [Validators.required]),
-          mobile: new FormControl(null, [Validators.required,Validators.minLength(11), Validators.pattern('^[0-9]*$')]),
+          mobile: new FormControl(null, [
+            Validators.required,
+            Validators.minLength(11),
+            Validators.pattern('^[0-9]*$'),
+          ]),
           address: new FormControl(null, [Validators.required]),
         });
-        this.validationForm.patchValue(this.user)
-
+        this.validationForm.patchValue(this.user);
       },
       error: (err) => {
         console.log(err);
@@ -79,12 +89,20 @@ export class UpdateProfileComponent implements OnInit{
     });
   }
 
-  update(user_name:any,email:any,password:any,gender:any,role:any,address:any,mobile:any) {
+  update(
+    user_name: any,
+    email: any,
+    password: any,
+    gender: any,
+    role: any,
+    address: any,
+    mobile: any
+  ) {
     const formData = new FormData();
 
     // console.log(this.user_image);
     // console.log(user_name);
-    if (this.validationForm.valid) {
+    if (this.validationForm.valid && this.is_valid_user_image) {
       formData.append('user_image', this.user_image);
       formData.append('user_name', user_name);
       formData.append('email', email);
@@ -103,14 +121,11 @@ export class UpdateProfileComponent implements OnInit{
         },
       });
 
-
       alert('updated sucessfully');
       // this.router.navigateByUrl('/');
-    // location.href = '/';
-  } else {
-    alert('please validate');
-  }
-
-
+      // location.href = '/';
+    } else {
+      alert('please validate');
+    }
   }
 }
