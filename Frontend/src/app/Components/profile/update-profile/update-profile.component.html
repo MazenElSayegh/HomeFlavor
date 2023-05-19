@@ -12,7 +12,9 @@
   </div>
 </div>
 <!-- end breadcrumb section -->
-
+<div class="alert alert-danger w-50 m-auto mt-5" *ngIf="!validatedForm" role="alert">
+  Please Enter Correct Data
+</div>
 <div *ngIf="user; else falseBlock" id="formContainer">
   <form
     [formGroup]="validationForm"

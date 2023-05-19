@@ -36,6 +36,7 @@ export class RegisterComponent {
     this.is_user_address_valid = true;
     this.is_user_mobile_valid = true;
   }
+  validatedForm = true;
 
   validationForm = new FormGroup({
     user_name: new FormControl(null, [
@@ -108,35 +109,19 @@ export class RegisterComponent {
       formData.append('role', this.role);
       formData.append('address', this.address);
       formData.append('mobile', this.mobile);
-      // let user_name = this.validationForm.controls['user_name'].value;
 
-      //   let email = this.validationForm.controls['email'].value;
-      //   let password = this.validationForm.controls['password'].value;
-      //   let gender = this.validationForm.controls['gender'].value;
-      //   let role = this.validationForm.controls['role'].value;
-
-      //   let newUser = { user_name, email, password, gender, role };
-
-      // formData.append('user_name', this.user_name);
-      // formData.append('email', this.email);
-      // formData.append('password', this.password);
-      // formData.append('gender', this.gender);
-      // formData.append('role', this.role);
-      // console.log(formData);
       this.myService.addNewUser(formData).subscribe({
         next: (data) => {
-          console.log(data);
-          // const headers = new HttpHeaders();
-          // if (headers.has('your-key')) {
-          // console.log(headers);
+          location.href = '/login';
         },
         error: (err) => {
           console.log(err);
+          const headers = new HttpHeaders();
+          if (headers.has('your-key')) {
+            alert();
+          }
         },
       });
-
-      alert('added successfully');
-      // location.href = '/';
     } else {
       this.is_user_name_valid = this.validationForm.controls['user_name'].valid;
       this.is_user_email_valid = this.validationForm.controls['email'].valid;
@@ -147,7 +132,8 @@ export class RegisterComponent {
       this.is_user_address_valid =
         this.validationForm.controls['address'].valid;
       this.is_user_mobile_valid = this.validationForm.controls['mobile'].valid;
-      alert('please validate');
+
+      this.validatedForm = false;
     }
   }
 }

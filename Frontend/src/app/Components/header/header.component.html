@@ -17,6 +17,15 @@
               <li class="current-list-item">
                 <a routerLinkActive="active" href="/home">Home</a>
               </li>
+              <li>
+                <a href="/stores">Stores</a>
+                <ul class="sub-menu">
+                  <li><a href="shop.html">Shop</a></li>
+                  <li><a href="checkout.html">Check Out</a></li>
+                  <li><a href="single-product.html">Single Product</a></li>
+                  <li><a href="cart.html">Cart</a></li>
+                </ul>
+              </li>
               <li><a href="#videoSec">About</a></li>
               <li>
                 <a href="#">Pages</a>
@@ -30,21 +39,13 @@
                   <li><a href="#stores">Shop</a></li>
                 </ul>
               </li>
-              <li>
-                <a href="#newsSec">News</a>
-                <ul class="sub-menu">
-                  <li><a href="news.html">News</a></li>
-                  <li><a href="single-news.html">Single News</a></li>
-                </ul>
-              </li>
+
               <li><a href="contact.html">Contact</a></li>
               <li>
-                <a href="shop.html">Shop</a>
+                <a href="#newsSec">Account</a>
                 <ul class="sub-menu">
-                  <li><a href="shop.html">Shop</a></li>
-                  <li><a href="checkout.html">Check Out</a></li>
-                  <li><a href="single-product.html">Single Product</a></li>
-                  <li><a href="cart.html">Cart</a></li>
+                  <li><a href="/login">Login</a></li>
+                  <li><a href="/register">Sign-up</a></li>
                 </ul>
               </li>
               <li>
@@ -110,15 +111,15 @@
               </div>
               <div class="d-flex">
                 <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()" (click)="decrementQuantity(product)">
+                  (click)="decrementQuantity(product)">
                   <i class="fas fa-minus"></i>
                 </button>
 
-                <input id="form1" min="0" name="quantity" value={{product.quantity}} type="number"
+                <input id="form1" min="0" name="quantity" value={{product.quantity}}
                   class="form-control form-control-sm" />
 
                 <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()" (click)="incrementQuantity(product)">
+                   (click)="incrementQuantity(product)">
                   <i class="fas fa-plus"></i>
                 </button>
               </div>
@@ -132,7 +133,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-dark"><a>Proceed to Checkout</a></button>
+      <a routerLink="checkout"><button class="btn btn-dark" >Proceed to Checkout</button></a>
     </div>
   </div>
 </div>
