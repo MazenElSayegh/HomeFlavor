@@ -18,25 +18,17 @@ export class RegisterComponent {
   role: any;
   mobile: any;
   address: any;
-  is_valid_user_image: any;
-  is_user_name_valid: any;
-  is_user_email_valid: any;
-  is_user_password_valid: any;
-  is_user_gender_valid: any;
-  is_user_role_valid: any;
-  is_user_address_valid: any;
-  is_user_mobile_valid: any;
-  constructor(private myService: BackendService, public myRouter: Router) {
-    this.is_valid_user_image = true;
-    this.is_user_name_valid = true;
-    this.is_user_email_valid = true;
-    this.is_user_password_valid = true;
-    this.is_user_gender_valid = true;
-    this.is_user_role_valid = true;
-    this.is_user_address_valid = true;
-    this.is_user_mobile_valid = true;
-  }
+
+  is_valid_user_image = true;
+  is_user_name_valid = true;
+  is_user_email_valid = true;
+  is_user_password_valid = true;
+  is_user_gender_valid = true;
+  is_user_role_valid = true;
+  is_user_address_valid = true;
+  is_user_mobile_valid = true;
   validatedForm = true;
+  constructor(private myService: BackendService, public myRouter: Router) {}
 
   validationForm = new FormGroup({
     user_name: new FormControl(null, [
@@ -53,7 +45,8 @@ export class RegisterComponent {
     role: new FormControl(null, [Validators.required]),
     mobile: new FormControl(null, [
       Validators.required,
-      Validators.min(11),
+      Validators.minLength(11),
+      Validators.maxLength(11),
       Validators.pattern('^[0-9]*$'),
     ]),
     address: new FormControl(null, [Validators.required]), // Adding pattern

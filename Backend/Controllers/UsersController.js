@@ -63,6 +63,9 @@ let GetUserById = async (req, res) => {
   res.json(user);
 };
 let UpdateUser = async (req, res) => {
+  const file = req.file;
+  console.log(file);
+  let image_path;
   if (file) {
     image_path = req.file.filename;
   } else {
@@ -94,7 +97,7 @@ let UpdateUser = async (req, res) => {
         user_name: req.body.user_name,
         email: req.body.email, //can not update email logic
         password: hashedPassword,
-        user_image: "/uploads/" + req.file.filename,
+        user_image: "/uploads/" + image_path,
         gender: req.body.gender,
         role: req.body.role,
         address: req.body.address,
