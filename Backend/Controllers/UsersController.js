@@ -9,6 +9,12 @@ id = 0;
 let AddNewUser = async (req, res, next) => {
   const file = req.file;
   console.log(file);
+  let image_path;
+  if (file) {
+    image_path = req.file.filename;
+  } else {
+    image_path = "defaultImage.jpg";
+  }
 
   var salt = await bcrypt.genSalt(10);
   var hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -22,7 +28,7 @@ let AddNewUser = async (req, res, next) => {
     email: req.body.email,
     password: hashedPassword,
 
-    user_image: "/uploads/" + req.file.filename,
+    user_image: "/uploads/" + image_path,
 
     gender: req.body.gender,
     role: req.body.role,
@@ -57,13 +63,18 @@ let GetUserById = async (req, res) => {
   res.json(user);
 };
 let UpdateUser = async (req, res) => {
+  if (file) {
+    image_path = req.file.filename;
+  } else {
+    image_path = "defaultImage.jpg";
+  }
   let Id = req.params.id;
   let data = {
     user_name: req.body.user_name,
     email: req.body.email,
     password: req.body.password,
 
-    user_image: "/uploads/" + req.file.filename,
+    user_image: "/uploads/" + image_path,
 
     gender: req.body.gender,
     role: req.body.role,

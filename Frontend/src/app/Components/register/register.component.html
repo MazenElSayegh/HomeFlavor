@@ -30,7 +30,7 @@
         placeholder="user_name"
         #user_name
       />
-      <div class="mt-1" *ngIf="!user_nameValid">
+      <div class="mt-1" *ngIf="!is_user_name_valid">
         <p>enter a name greater than three characters.</p>
       </div>
     </div>
@@ -45,7 +45,7 @@
         placeholder="Email"
         [(ngModel)]="email"
       />
-      <div class="mt-1" *ngIf="!emailValid">
+      <div class="mt-1" *ngIf="!is_user_email_valid">
         <p>Enter correct Email</p>
       </div>
     </div>
@@ -60,7 +60,7 @@
         placeholder="Password"
         [(ngModel)]="password"
       />
-      <div class="mt-1" *ngIf="!passwordValid">
+      <div class="mt-1" *ngIf="!is_user_password_valid">
         <p>not less than 8 characters</p>
       </div>
     </div>
@@ -74,7 +74,7 @@
         placeholder="Address"
         [(ngModel)]="address"
       />
-      <div class="mt-1" *ngIf="!addressValid">
+      <div class="mt-1" *ngIf="!is_user_address_valid">
         <p>Address is required</p>
       </div>
     </div>
@@ -88,7 +88,7 @@
         placeholder="Mobile"
         [(ngModel)]="mobile"
       />
-      <div class="mt-1" *ngIf="!mobileValid">
+      <div class="mt-1" *ngIf="!is_user_mobile_valid">
         <p>not less than 11 numbers</p>
       </div>
     </div>
@@ -104,7 +104,7 @@
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
-      <div class="mt-1" *ngIf="!genderValid">
+      <div class="mt-1" *ngIf="!is_user_gender_valid">
         <p>please select your gender.</p>
       </div>
     </div>
@@ -122,12 +122,12 @@
         <option value="buyer">Buyer</option>
         <option value="seller">Seller</option>
       </select>
-      <div class="mt-1" *ngIf="!roleValid">
+      <div class="mt-1" *ngIf="!is_user_role_valid">
         <p>please select your Role.</p>
       </div>
     </div>
 
-    <label for="image" class="form-label"> Image </label>
+    <label for="image" class="form-label"> Image ( Optional ) </label>
     <div class="input-group mb-3">
       <input
         type="file"

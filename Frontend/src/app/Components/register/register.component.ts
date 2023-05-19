@@ -19,8 +19,23 @@ export class RegisterComponent {
   mobile: any;
   address: any;
   is_valid_user_image: any;
-
-  constructor(private myService: BackendService, public myRouter: Router) {}
+  is_user_name_valid: any;
+  is_user_email_valid: any;
+  is_user_password_valid: any;
+  is_user_gender_valid: any;
+  is_user_role_valid: any;
+  is_user_address_valid: any;
+  is_user_mobile_valid: any;
+  constructor(private myService: BackendService, public myRouter: Router) {
+    this.is_valid_user_image = true;
+    this.is_user_name_valid = true;
+    this.is_user_email_valid = true;
+    this.is_user_password_valid = true;
+    this.is_user_gender_valid = true;
+    this.is_user_role_valid = true;
+    this.is_user_address_valid = true;
+    this.is_user_mobile_valid = true;
+  }
 
   validationForm = new FormGroup({
     user_name: new FormControl(null, [
@@ -43,27 +58,28 @@ export class RegisterComponent {
     address: new FormControl(null, [Validators.required]), // Adding pattern
   });
 
-  get user_nameValid() {
-    return this.validationForm.controls['user_name'].valid;
-  }
-  get emailValid() {
-    return this.validationForm.controls['email'].valid;
-  }
-  get passwordValid() {
-    return this.validationForm.controls['password'].valid;
-  }
-  get genderValid() {
-    return this.validationForm.controls['gender'].valid;
-  }
-  get roleValid() {
-    return this.validationForm.controls['role'].valid;
-  }
-  get addressValid() {
-    return this.validationForm.controls['address'].valid;
-  }
-  get mobileValid() {
-    return this.validationForm.controls['mobile'].valid;
-  }
+  // get user_nameValid() {
+  //   return this.validationForm.controls['user_name'].valid;
+  // }
+
+  // get emailValid() {
+  //   return this.validationForm.controls['email'].valid;
+  // }
+  // get passwordValid() {
+  //   return this.validationForm.controls['password'].valid;
+  // }
+  // get genderValid() {
+  //   return this.validationForm.controls['gender'].valid;
+  // }
+  // get roleValid() {
+  //   return this.validationForm.controls['role'].valid;
+  // }
+  // get addressValid() {
+  //   return this.validationForm.controls['address'].valid;
+  // }
+  // get mobileValid() {
+  //   return this.validationForm.controls['mobile'].valid;
+  // }
 
   upload(event: any) {
     this.user_image = event.target.files[0];
@@ -107,27 +123,30 @@ export class RegisterComponent {
       // formData.append('gender', this.gender);
       // formData.append('role', this.role);
       // console.log(formData);
-      this.myService.addNewUser(formData).subscribe(
-        (res) => {
-          console.log(res);
-        }
-        //   {
-        //   next: (data) => {
-        //     console.log(data);
-        //   },
-        //   error: (err) => {
-        //     console.log(err);
-        //     const headers = new HttpHeaders();
-        //     if (headers.has('your-key')) {
-        //       alert();
-        //     }
-        //   },
-        // }
-      );
+      this.myService.addNewUser(formData).subscribe({
+        next: (data) => {
+          console.log(data);
+          // const headers = new HttpHeaders();
+          // if (headers.has('your-key')) {
+          // console.log(headers);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
 
       alert('added successfully');
       // location.href = '/';
     } else {
+      this.is_user_name_valid = this.validationForm.controls['user_name'].valid;
+      this.is_user_email_valid = this.validationForm.controls['email'].valid;
+      this.is_user_password_valid =
+        this.validationForm.controls['password'].valid;
+      this.is_user_gender_valid = this.validationForm.controls['gender'].valid;
+      this.is_user_role_valid = this.validationForm.controls['role'].valid;
+      this.is_user_address_valid =
+        this.validationForm.controls['address'].valid;
+      this.is_user_mobile_valid = this.validationForm.controls['mobile'].valid;
       alert('please validate');
     }
   }
