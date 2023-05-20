@@ -87,6 +87,7 @@ export class UpdateProfileComponent implements OnInit {
           mobile: new FormControl(null, [
             Validators.required,
             Validators.minLength(11),
+            Validators.maxLength(11),
             Validators.pattern('^[0-9]*$'),
           ]),
           address: new FormControl(null, [Validators.required]),

@@ -37,12 +37,14 @@
         >
           <!-- storeID input -->
           <div class="form-outline">
-            <label class="form-label" for="form3Example3">storeID</label>
+            <label class="form-label" for="form3Example3" hidden>storeID</label>
             <input
               #storeID
               type="text"
               class="form-control form-control-lg"
               placeholder="Enter storeID"
+              value="{{ itemDetails[0].store_id }}"
+              hidden
             />
           </div>
 
@@ -65,13 +67,15 @@
               #productTitle
               type="text"
               class="form-control form-control-lg"
-              placeholder="Enter titel"
+              placeholder="Enter title"
+              value="{{ itemDetails[0].product_title }}"
             />
           </div>
           <select
             class="form-select"
             aria-label="Default select example"
             #category
+            value="{{ itemDetails[0].category }}"
           >
             <option selected>Open this select menu</option>
             <option value="Appetizer">Appetizer</option>
@@ -87,6 +91,7 @@
               type="number"
               class="form-control form-control-lg"
               placeholder="Enter price"
+              value="{{ itemDetails[0].price }}"
             />
           </div>
           <!-- details input -->
@@ -97,6 +102,7 @@
               type="text"
               class="form-control form-control-lg"
               placeholder="Enter details"
+              value="{{ itemDetails[0].product_details }}"
             />
           </div>
 

@@ -23,6 +23,13 @@
 
 <section class="bg-yellow" style="background-color: #051922">
   <div class="container py-5" *ngIf="user; else falseBlock">
+    <div
+    class="alert alert-danger w-50 m-auto "
+    *ngIf="!validatedForm"
+    role="alert"
+  >
+    Please Enter Correct Data
+  </div>
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
         <div class="card card-registration my-4">

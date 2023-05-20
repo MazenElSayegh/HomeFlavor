@@ -13,6 +13,22 @@ let getAllMenu = async (req, res) => {
   res.status(201).json(menus);
 };
 
+// Get Menu By ID
+let getMenuByID = async (req, res) => {
+  let menuId = req.params.id_item;
+
+  try {
+    menuItem = await MenusModel.find({ _id: menuId });
+  } catch (error) {
+    console.log(error);
+  }
+  if (menuItem) {
+    res.status(201).json(menuItem);
+  } else {
+    res.status(401).json("not found");
+  }
+};
+
 //creatr menu item
 let CreateMenuItem = async (req, res) => {
   var newItem = {
@@ -73,6 +89,7 @@ var deleteMenuItemByID = async (req, res) => {
 //Export to route
 module.exports = {
   getAllMenu,
+  getMenuByID,
   deleteMenuItemByID,
   CreateMenuItem,
   updateItemByID,
