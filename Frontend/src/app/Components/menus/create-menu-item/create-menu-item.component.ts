@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { MenuService } from 'src/app/Services/menu.service';
 import { StoresService } from 'src/app/Services/stores.service';
+import { FormControl, FormGroup, Validators,AbstractControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-create-menu-item',
@@ -20,6 +22,33 @@ export class CreateMenuItemComponent {
 
     this.storeIDReceived = storeID;
   }
+  validationForm = new FormGroup({
+    productTitle: new FormControl("", [Validators.required, Validators.minLength(5)]),
+    productImage: new FormControl("", [Validators.required]),
+    price : new FormControl("", [Validators.required]),
+    productDetails : new FormControl("", [Validators.required, Validators.minLength(20)]),
+    category : new FormControl("", [Validators.required])
+  })
+
+  get isProductTitleValid() {
+    return this.validationForm.controls["productTitle"].valid;
+  }
+
+  get isProductImageValid() {
+    return this.validationForm.controls["productImage"].valid;
+  }
+
+  get isPriceValid() {
+    return this.validationForm.controls["price"].valid;
+  }
+
+  get isProductDetailsValid() {
+    return this.validationForm.controls["productDetails"].valid;
+  }
+
+  get isCategoryValid() {
+    return this.validationForm.controls["category"].valid;
+  }
 
   addMenuItem(
     storeID: any,
@@ -29,6 +58,7 @@ export class CreateMenuItemComponent {
     productDetails: any,
     category: any
   ) {
+    if (this.validationForm.valid){
     const formData = new FormData();
     formData.append('store_id', storeID);
     formData.append('product_image', this.menuImage);
@@ -46,6 +76,7 @@ export class CreateMenuItemComponent {
       },
     });
   }
+}
   menuImageUpload(event: any) {
     this.menuImage = event.target.files[0];
     console.log(this.menuImage);
