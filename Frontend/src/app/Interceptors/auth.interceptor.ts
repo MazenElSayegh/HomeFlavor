@@ -38,8 +38,8 @@ export class AuthInterceptor implements HttpInterceptor {
           ) {
             console.log('hoooope');
             this.token = event.headers.get('X-Auth-Token')?.split(' ')[1];
-            const payload = jwt_decode(this.token);
-            console.log('JWT payload:', payload);
+            // const payload = jwt_decode(this.token);
+            // console.log('JWT payload:', payload);
             localStorage.setItem('jwt_token', this.token);
             window.sessionStorage.setItem('jwt_token', this.token);
           }
