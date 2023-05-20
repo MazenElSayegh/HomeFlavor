@@ -12,7 +12,8 @@
   </div>
 </div>
 <!-- end breadcrumb section -->
-<table
+<!-- ********Beginning of admin's and store owner's orders page******** -->
+<!-- <table
   class="table table-bordered border-dark text-center table-striped mt-5 container col-sm-5" style="background-color: #f5f5f5;"
 >
   <thead class="table-bordered border-dark" style="background-color: #051922; color: #f28123;;">
@@ -77,4 +78,63 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
+<!-- ********End of admin's and store owner's orders page******** -->
+
+<!-- ********Beginning of buyer's orders page******** -->
+<link rel="stylesheet" href="https://allyoucan.cloud/cdn/icofont/1.0.1/icofont.css" integrity="sha384-jbCTJB16Q17718YM9U22iJkhuGbS0Gd2LjaWb4YJEZToOPmnKDjySVa323U+W7Fv" crossorigin="anonymous">
+
+<div class="container d-flex justify-content-around align-items-center">
+        <div class="col-md-10">
+            <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane  fade  active show " id="orders" role="tabpanel" aria-labelledby="orders-tab">
+
+
+                        <div class="bg-white mb-5 card p-1 order-list shadow-sm" *ngFor="let o of orders">
+                            <div class="gold-members py-4">
+                                <div class="media d-flex justify-content-around align-items-center gap-5">
+                                  <div class="imgContainer mr-2">
+                                    <a href="#">
+                                        <img class="img-fluid custom-img" [src]="localhost + o.store_id.image" alt="Generic placeholder image">
+                                    </a>
+                                  </div>
+                                    <div class="media-body d-flex flex-column justify-content-around ml-2">
+                                        <div class="mb-3">
+                                            <span class="float-right text-info">Ordered on {{o.date | date: 'dd/MM/yyyy'}} <i class="icofont-check-circled text-success"></i></span>
+                                        </div>
+                                        <div>
+                                        <h6 class="mb-2">
+                                            <a href="#" class="text-black">{{o.store_id.name}}</a>
+                                        </h6>
+                                      </div>
+                                        <div class="text-gray mb-1"><i class="icofont-location-arrow"></i>Order ID: {{o._id}}
+                                        </div>
+                                        <div class="text-gray mb-1"><i class="icofont-list"></i>{{o.status}}
+                                        </div>
+                                        <hr>
+
+                                        <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold"> Total Paid:</span> {{o.total_price | number:'1.2-2'}}
+                                        </p>
+                                    </div>
+                                    <div class="float-right d-flex ">
+                                      <input
+                                          type="submit"
+                                          routerLink="/orders/{{ o.id }}"
+                                          value="view"
+                                          class="btn btn-outline-warning"
+                                          style="padding-left: 1rem; padding-right: 1rem;"
+                                      />
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+

@@ -11,6 +11,7 @@ import { StoresService } from 'src/app/Services/stores.service';
 })
 export class AllordersComponent {
   orders:any;
+  localhost = 'http://localhost:7005';
   test:any;
   constructor(private ordersService:OrdersService,private usersService:BackendService,private storesService:StoresService, private router:Router){
     ordersService.GetAllOrders().subscribe(
