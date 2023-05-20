@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { StoresService } from 'src/app/Services/stores.service';
 import { MenuService } from 'src/app/Services/menu.service';
 import { FeedbacksService } from 'src/app/Services/feedbacks.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-store-details',
@@ -116,6 +117,11 @@ export class StoreDetailsComponent {
   }
 
   addFeedback(storeID: any, userID: any, comment: any) {
+    if (!this.validationForm.valid) {
+      alert('Please Fix errors to be able to give feedback');
+      return;
+    }
+
     let newFeedback = {
       store_id: storeID,
       user_id: userID,
@@ -131,5 +137,17 @@ export class StoreDetailsComponent {
         console.log(err);
       },
     });
+  }
+
+  validationForm = new FormGroup({
+    comment: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(300),
+    ]),
+  });
+
+  get validComment() {
+    return this.validationForm.controls['comment'].valid;
   }
 }

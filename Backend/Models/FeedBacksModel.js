@@ -23,9 +23,8 @@ let FeedBackSchema = new mongoose.Schema({
   date: { type: Date, required: true, default: Date.now },
   stars: {
     type: Number,
-    min: 1,
+    min: 0,
     max: 5,
-    required: true,
   },
 });
 

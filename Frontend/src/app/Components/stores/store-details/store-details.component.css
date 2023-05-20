@@ -167,3 +167,11 @@ img {
   background-color: #f28123;
   border-color: #f28123;
 }
+
+.client-avater img {
+  margin: 0px;
+}
+
+.cmntErrBlock {
+  display: block;
+}
