@@ -121,22 +121,21 @@
         <div class="single-product-item">
           <div class="product-image">
             <a href="single-product.html"
-              ><img src="assets/img/products/product-img-1.jpg" alt=""
+              ><img [src]="localhost+store.image" alt=""
             /></a>
           </div>
           <h3>{{ store.name }}</h3>
-          <h5>{{ store.image }}</h5>
-          <h5>{{ store._id }}</h5>
+          <h3>{{localhost+store.image}}</h3>
           <p class="product-price">
             <span class="mx-5">
-              ipsum dolor sit amet consectetur adipisicing elit.</span
+              {{store.about}}</span
             >
           </p>
           <a [href]="'/stores/' + store._id"  class="cart-btn"
             ><i class="fas fa-shopping-cart"></i> Go to store by HREF</a
           >
-          <a id="outCont" routerLink="/stores/{{store._id}}" class="cart-btn" type="submit" (click)="onLinkClick($event)"
-            ><i class="fas fa-shopping-cart"></i>Go to store by ROUTER</a>
+          <!-- <a routerLink="/stores/{{store._id}}" class="cart-btn" type="submit" (click)="onLinkClick($event)"
+            ><i class="fas fa-shopping-cart"></i>Go to store by ROUTER</a> -->
         </div>
       </div>
     </div>
