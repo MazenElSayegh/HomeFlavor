@@ -32,12 +32,12 @@
       <td>{{ o._id }}</td>
       <td>{{ o.date | date: 'dd/MM/yyyy' }}</td>
       <td>{{ o.status }}</td>
-      <td>{{ o.total_price }}</td>
+      <td>{{ o.total_price | number:'1.2-2' }}</td>
       <td>{{o.user_id.user_name}}</td>
       <td>{{o.store_id.name}}</td>
       <td>
         <div class="d-flex flex-row
-        justify-content-around">
+        justify-content-around actionsContainer">
           <form (ngSubmit)="Update(o._id, 'Accepted',o.user_id._id,o.store_id._id,o.products)">
             <input
               type="submit"
