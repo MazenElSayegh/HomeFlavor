@@ -159,4 +159,19 @@ img {
 
 .updateMenuBtn {
   margin-right: 10px;
+  background-color: #f28123;
+  border-color: #f28123;
+}
+
+.updateStoreBtn {
+  background-color: #f28123;
+  border-color: #f28123;
+}
+
+.client-avater img {
+  margin: 0px;
+}
+
+.cmntErrBlock {
+  display: block;
 }

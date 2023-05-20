@@ -1,7 +1,59 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>Taste Of Hebab</p>
+          <h1>Checkout</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+<div class="container" id="all-container">
+  <div class="container mt-5" id="container">
+    <div id="order-details">
+      <header>Order Details <span>~ &nbsp;{{order.status}}</span></header>
+      <div>
+        <p><b>Order ID</b> : {{order._id}}</p>
+        <p><b>Date</b> : {{order.date | date: 'dd/MM/yyyy'}}</p>
+        <p><b>Ordered by</b>: {{order.user_id.email}}</p>
+        <p><b>From</b>: {{order.store_id.name}}</p>
+      </div>
+    </div>
+    <div id="receipt">
+      <div id="details" *ngFor="let op of order.products">
+        <div id="products">
+          {{ op.product_name }} <span>x {{ op.quantity }}</span>
+          <p>{{ op.product_details }}</p>
+        </div>
+        <div id="price">${{ op.price*op.quantity | number: '1.1-1'}}</div>
+      </div>
+      <hr>
+      <div id="subtotal">
+        <div id="sub">Subtotal<p>${{ order.total_price/1.1 | number: '1.1-1'}}</p></div>
+        <div id="tax">Tax <p>${{ order.total_price* 0.1/1.1 | number: '1.1-1'}}</p></div>
+      </div>
+      <hr>
+      <div id="total">
+        <p>Total</p>
+        <p>${{ order.total_price | number: '1.1-1'}}</p>
+      </div>
+    </div>
+  </div>
+  <input
+      type="submit"
+      style="padding-left: 1rem; padding-right: 1rem"
+      value="Back To All Orders"
+      routerLink="/orders"
+    />
+</div>
 <div *ngFor="let product of allProducts">
     <h1>{{product.product_title}}</h1>
     <h1>{{product.product_details}}</h1>
     <h1>{{product.price}}</h1>
     <h1>{{product.quantity}}</h1>
 </div>
-<button (click)="AddOrder()">Confirm order</button>
+<input type="submit" (click)="AddOrder()" value="Confirm Order" />

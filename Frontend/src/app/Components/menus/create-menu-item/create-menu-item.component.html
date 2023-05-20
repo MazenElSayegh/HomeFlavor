@@ -24,6 +24,7 @@
 
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
         <form
+        [formGroup]="validationForm"
           (ngSubmit)="
             addMenuItem(
               storeID.value,
@@ -55,9 +56,14 @@
               #productImage
               type="file"
               class="form-control form-control-lg"
+              formControlName="productImage"
               placeholder="Enter Image Name"
+              accept=".png,.jpg,.jpeg"
               (change)="menuImageUpload($event)"
             />
+          </div>
+          <div class="" *ngIf="!isProductImageValid">
+            <p class="alert alert-danger p-2">Image Must be uploaded</p>
           </div>
 
           <!-- titel input -->
@@ -66,9 +72,13 @@
             <input
               #productTitle
               type="text"
+              formControlName="productTitle"
               class="form-control form-control-lg"
               placeholder="Enter titel"
             />
+          </div>
+          <div class="" *ngIf="!isProductTitleValid">
+            <p class="alert alert-danger p-2">titel Must be at least 5 characters</p>
           </div>
 
           <!-- price input -->
@@ -77,9 +87,13 @@
             <input
               #price
               type="number"
+              formControlName="price"
               class="form-control form-control-lg"
               placeholder="Enter price"
             />
+          </div>
+          <div class="" *ngIf="!isPriceValid">
+            <p class="alert alert-danger p-2">price must be required</p>
           </div>
           <!-- details input -->
           <div class="form-outline">
@@ -87,9 +101,13 @@
             <input
               #productDetails
               type="text"
+              formControlName="productDetails"
               class="form-control form-control-lg"
               placeholder="Enter details"
             />
+          </div>
+          <div class="" *ngIf="!isProductDetailsValid">
+            <p class="alert alert-danger p-2">details Must be at least 20 characters</p>
           </div>
           <!-- <div class="dropdown">
            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -103,6 +121,7 @@
          </div> -->
           <select
             class="form-select"
+            formControlName="category"
             aria-label="Default select example"
             #category
           >
@@ -111,12 +130,15 @@
             <option value="Drink">Drink</option>
             <option value="Main">Main</option>
           </select>
+          <div class="" *ngIf="!isCategoryValid">
+            <p class="alert alert-danger p-2">category Must be required</p>
+          </div>
 
           <input
             type="submit"
             class="btn btn-outline-primary btn-lg"
             style="padding-left: 2.5rem; padding-right: 2.5rem"
-            value="Register"
+            value="ADD"
           />
         </form>
       </div>

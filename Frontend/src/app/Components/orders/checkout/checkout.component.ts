@@ -19,14 +19,9 @@ export class CheckoutComponent {
     let data:any =localStorage.getItem('cart');
     this.allProducts = JSON.parse(data);
     this.order.store_id=this.allProducts[0].store_id;
-    this.order.user_id="64601573d43cf29ceb17f570";
+    this.order.user_id="6468ab3be2cb9a2bee3a1696";
 
   }
-
-
-  // getData(){
-  //   this.allProducts = localStorage.getItem('cart');
-  // }
 
   AddOrder(){
     this.allProducts.forEach(product => {

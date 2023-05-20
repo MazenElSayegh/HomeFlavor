@@ -22,17 +22,22 @@
       </div>
     </div>
 
-    <div class="paymentContainer">
+    <div class="paymentContainer" *ngIf="store">
       <div class="payments">
         <img src="https://www.talabat.com/assets/images/visa_blue.png" />
         <img src="https://www.talabat.com/assets/images/logo-mastercard.svg" />
         <img src="https://www.talabat.com/assets/images/logo-cash.svg" />
       </div>
       <button class="updateStoreBtn btn btn-dark">
-        <a [routerLink]="['/stores/update', store._id]"> Edit Store </a>
+        <a [routerLink]="['/stores/update', store._id]">
+          <i class="fa-solid fa-pen-to-square" style="color: #ffffff"></i> Edit
+          Store
+        </a>
       </button>
       <button class="deleteStoreBtn btn btn-danger">
-        <a [routerLink]="['/stores/delete', store._id]"> Delete Store </a>
+        <a [routerLink]="['/stores/delete', store._id]">
+          <i class="fa-solid fa-trash" style="color: #ffffff"></i> Delete Store
+        </a>
       </button>
     </div>
   </div>
@@ -101,11 +106,18 @@
             </div>
 
             <div class="updateDeleteMenuContainer">
-              <button class="updateMenuBtn btn btn-dark">
-                <a [routerLink]="['/menu/update', product._id]"> Edit Item </a>
+              <button class="updateMenuBtn btn btn-info">
+                <a [routerLink]="['/menu/update', product._id]">
+                  <i
+                    class="fa-solid fa-pen-to-square"
+                    style="color: #ffffff"
+                  ></i>
+                  Edit Item
+                </a>
               </button>
               <button class="deleteMenuBtn btn btn-danger">
                 <a [routerLink]="['/menu/delete', product._id]">
+                  <i class="fa-solid fa-trash" style="color: #ffffff"></i>
                   Delete Item
                 </a>
               </button>
@@ -147,9 +159,12 @@
                 <p class="feedbackDate">
                   {{ feedback.date | date : "longDate" }}
                 </p>
-                <button class="deleteFeedbackBtn btn btn-danger">
+                <button class="deleteFeedbackBtn btn">
                   <a [routerLink]="['/feedbacks/delete', feedback._id]">
-                    Delete Feedback
+                    <i
+                      class="fa-solid fa-trash fa-2xl"
+                      style="color: #ff0000"
+                    ></i>
                   </a>
                 </button>
                 <div class="last-icon">
@@ -174,13 +189,14 @@
             <p class="feedbackSubtitle">Your Opinion Matters</p>
           </div>
           <div id="form_status"></div>
-          <div class="contact-form">
+          <div class="contact-form" *ngIf="store">
             <form
               type="POST"
               id="fruitkha-contact"
               (ngSubmit)="
                 addFeedback(storeID.value, userID.value, comment.value)
               "
+              [formGroup]="validationForm"
             >
               <div>
                 <!-- UserID -->
@@ -219,7 +235,14 @@
                     rows="10"
                     placeholder="Feedback"
                     #comment
+                    formControlName="comment"
                   ></textarea>
+                  <small
+                    *ngIf="!validComment"
+                    class="alert alert-danger mb-4 cmntErrBlock"
+                  >
+                    Comment must be between 10 & 300 characters
+                  </small>
                 </p>
                 <div class="star-container">
                   <i

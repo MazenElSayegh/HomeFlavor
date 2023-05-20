@@ -10,6 +10,7 @@ export class HeaderComponent {
   user_data: any;
   user_image: any;
   constructor(private localStorageService: LocalStorageService) {}
+  localhost = 'http://localhost:7005';
 
   removeProduct(product: any) {
     let arrayOfProducts = localStorage.getItem('cart');

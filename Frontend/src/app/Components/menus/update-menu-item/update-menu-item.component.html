@@ -24,6 +24,7 @@
 
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
         <form
+        [formGroup]="validationForm"
           (ngSubmit)="
             updateMenuItem(
               storeID.value,
@@ -37,12 +38,14 @@
         >
           <!-- storeID input -->
           <div class="form-outline">
-            <label class="form-label" for="form3Example3">storeID</label>
+            <label class="form-label" for="form3Example3" hidden>storeID</label>
             <input
               #storeID
               type="text"
               class="form-control form-control-lg"
               placeholder="Enter storeID"
+              value="{{ itemDetails[0].store_id }}"
+              hidden
             />
           </div>
 
@@ -53,9 +56,14 @@
               #productImage
               type="file"
               class="form-control form-control-lg"
+              formControlName="product_image"
               placeholder="Enter Image Name"
+              accept=".png,.jpg,.jpeg"
               (change)="menuImageUpload($event)"
             />
+          </div>
+          <div class="" *ngIf="!isProductImageValid">
+            <p class="alert alert-danger p-2">Image Must be uploaded</p>
           </div>
 
           <!-- titel input -->
@@ -65,19 +73,30 @@
               #productTitle
               type="text"
               class="form-control form-control-lg"
-              placeholder="Enter titel"
+              formControlName="product_title"
+              placeholder="Enter title"
+              value="{{ itemDetails[0].product_title }}"
             />
           </div>
+          <div class="" *ngIf="!isProductTitleValid">
+            <p class="alert alert-danger p-2">titel Must be at least 5 characters</p>
+          </div>
+          <label class="form-label" for="form3Example3">category</label>
           <select
             class="form-select"
             aria-label="Default select example"
+            formControlName="category"
             #category
+            value="{{ itemDetails[0].category }}"
           >
             <option selected>Open this select menu</option>
             <option value="Appetizer">Appetizer</option>
             <option value="Drink">Drink</option>
             <option value="Main">Main</option>
           </select>
+          <div class="" *ngIf="!isCategoryValid">
+            <p class="alert alert-danger p-2">category Must be required</p>
+          </div>
 
           <!-- price input -->
           <div class="form-outline">
@@ -85,9 +104,14 @@
             <input
               #price
               type="number"
+              formControlName="price"
               class="form-control form-control-lg"
               placeholder="Enter price"
+              value="{{ itemDetails[0].price }}"
             />
+          </div>
+          <div class="" *ngIf="!isPriceValid">
+            <p class="alert alert-danger p-2">price must be required</p>
           </div>
           <!-- details input -->
           <div class="form-outline">
@@ -96,15 +120,20 @@
               #productDetails
               type="text"
               class="form-control form-control-lg"
+              formControlName="product_details"
               placeholder="Enter details"
+              value="{{ itemDetails[0].product_details }}"
             />
+          </div>
+          <div class="" *ngIf="!isProductDetailsValid">
+            <p class="alert alert-danger p-2">details Must be at least 20 characters</p>
           </div>
 
           <input
             type="submit"
             class="btn btn-outline-primary btn-lg"
             style="padding-left: 2.5rem; padding-right: 2.5rem"
-            value="Register"
+            value="Update"
           />
         </form>
       </div>
