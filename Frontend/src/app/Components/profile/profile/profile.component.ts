@@ -43,8 +43,8 @@ export class ProfileComponent implements OnInit {
       },
     });
 
-    this.localStorageService.getData('jwt_token').subscribe((data) => {
-      console.log(data);
-    });
+    // this.localStorageService.getData('jwt_token').subscribe((data) => {
+    //   console.log(data);
+    // });
   }
 }

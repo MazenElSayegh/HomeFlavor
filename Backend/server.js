@@ -6,9 +6,17 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const cors = require("cors");
-
+const session = require("express-session");
 app.use(cors());
 app.use("/uploads", express.static("uploads"));
+app.use(
+  session({
+    secret: "token",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
 let UsersRoute = require("./Routes/UsersRouter");
 let LoginRoute = require("./Routes/LoginRoute");
 let OrdersRoute = require("./Routes/OrdersRoutes");

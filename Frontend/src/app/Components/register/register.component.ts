@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BackendService } from 'src/app/Services/backend.service';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import { LocalStorageService } from 'src/app/Services/local-storage.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -28,7 +29,11 @@ export class RegisterComponent {
   is_user_address_valid = true;
   is_user_mobile_valid = true;
   validatedForm = true;
-  constructor(private myService: BackendService, public myRouter: Router) {}
+  constructor(
+    private myService: BackendService,
+    public myRouter: Router,
+    private localStorageService: LocalStorageService
+  ) {}
 
   validationForm = new FormGroup({
     user_name: new FormControl(null, [
@@ -87,6 +92,14 @@ export class RegisterComponent {
       this.is_valid_user_image = true;
     }
   }
+
+  logout() {
+    // Send logout request to backend
+
+    console.log('hi');
+    this.localStorageService.removeData('jwt_token');
+  }
+
   add(user_name: any) {
     // user_image: any
     const formData = new FormData();
@@ -118,10 +131,12 @@ export class RegisterComponent {
     } else {
       this.is_user_name_valid = this.validationForm.controls['user_name'].valid;
       this.is_user_email_valid = this.validationForm.controls['email'].valid;
-      this.is_user_password_valid =this.validationForm.controls['password'].valid;
+      this.is_user_password_valid =
+        this.validationForm.controls['password'].valid;
       this.is_user_gender_valid = this.validationForm.controls['gender'].valid;
       this.is_user_role_valid = this.validationForm.controls['role'].valid;
-      this.is_user_address_valid =this.validationForm.controls['address'].valid;
+      this.is_user_address_valid =
+        this.validationForm.controls['address'].valid;
       this.is_user_mobile_valid = this.validationForm.controls['mobile'].valid;
 
       this.validatedForm = false;
