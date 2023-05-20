@@ -18,7 +18,7 @@
   rel="stylesheet"
 />
 
-<div *ngIf="user; else falseBlock" class="container bootstrap snippets bootdey">
+<!-- <div *ngIf="user; else falseBlock" class="container bootstrap snippets bootdey">
   <div class="row">
     <div class="profile-nav col-md-3">
       <div class="panel">
@@ -76,7 +76,7 @@
       <div></div>
     </div>
   </div>
-</div>
+</div> -->
 
 <ng-template #falseBlock>
   <div class="loader">
@@ -85,3 +85,166 @@
     </div>
   </div>
 </ng-template>
+
+
+<div class="container mt-5" *ngIf="user; else falseBlock">
+  <div class="main-body">
+
+
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img
+              [src]="localhost + user.user_image"
+                alt="Admin"
+                class="rounded-circle"
+                width="150"
+              />
+              <div class="mt-3">
+                <h4>{{user.user_name}}</h4>
+                <p class="text-secondary mb-1">User Role</p>
+                <p class="text-muted font-size-sm">
+                 {{user.role}}
+                </p>
+                <button class="btn btn-primary">Follow</button>
+                <button class="btn btn-outline-primary">Message</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Full Name</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">{{user.user_name}}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <a
+                  href="/cdn-cgi/l/email-protection"
+                  class="__cf_email__"
+                  data-cfemail="62040b12220817090f170a4c030e"
+                  >{{user.email}}</a
+                >
+              </div>
+            </div>
+            <hr />
+
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Gender</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">{{user.gender}}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Mobile</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">{{user.mobile}}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Address</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{user.address}}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-12">
+                <a
+                  class="btn btn-info"
+
+                  routerLinkActive="active" routerLink="/profile/update/{{ user._id }}"
+                  >Edit</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row gutters-sm">
+          <div class="col-sm-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body">
+                <h6 class="d-flex align-items-center mb-5">
+                  <i class="material-icons text-info mr-2">Orders</i
+                  >Order Status
+                </h6>
+                <small>Web Design</small>
+                <div class="progress mb-3" style="height: 5px">
+                  <div
+                    class="progress-bar bg-primary"
+                    role="progressbar"
+                    style="width: 80%"
+                    aria-valuenow="80"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+                <small>Website Markup</small>
+                <div class="progress mb-3" style="height: 5px">
+                  <div
+                    class="progress-bar bg-primary"
+                    role="progressbar"
+                    style="width: 72%"
+                    aria-valuenow="72"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+                <small>One Page</small>
+                <div class="progress mb-3" style="height: 5px">
+                  <div
+                    class="progress-bar bg-primary"
+                    role="progressbar"
+                    style="width: 89%"
+                    aria-valuenow="89"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+                <small>Mobile Template</small>
+                <div class="progress mb-3" style="height: 5px">
+                  <div
+                    class="progress-bar bg-primary"
+                    role="progressbar"
+                    style="width: 55%"
+                    aria-valuenow="55"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+                <small>Backend API</small>
+                <div class="progress mb-3" style="height: 5px">
+                  <div
+                    class="progress-bar bg-primary"
+                    role="progressbar"
+                    style="width: 66%"
+                    aria-valuenow="66"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
