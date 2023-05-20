@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div class="paymentContainer">
+    <div class="paymentContainer" *ngIf="store">
       <div class="payments">
         <img src="https://www.talabat.com/assets/images/visa_blue.png" />
         <img src="https://www.talabat.com/assets/images/logo-mastercard.svg" />
@@ -174,7 +174,7 @@
             <p class="feedbackSubtitle">Your Opinion Matters</p>
           </div>
           <div id="form_status"></div>
-          <div class="contact-form">
+          <div class="contact-form" *ngIf="store">
             <form
               type="POST"
               id="fruitkha-contact"
