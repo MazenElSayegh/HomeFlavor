@@ -63,7 +63,7 @@ var UpdateOrderByID = async (req, res) => {
     var ID = req.params.id;
     var updatedOrder = req.body;
     let oldOrder;
-    if(validateOrder(updatedOrder)){
+    if(validateOrder(updatedOrder) && updatedOrder.status=='Pending'){
       console.log("gowa el validate");
         try{
             oldOrder=await OrderModel.findOneAndUpdate({_id:ID},
