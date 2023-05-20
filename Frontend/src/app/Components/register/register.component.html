@@ -57,7 +57,7 @@
                         placeholder="user_name"
                         #user_name
                       />
-                      <div class="mt-1" *ngIf="!user_nameValid">
+                      <div class="mt-1" *ngIf="!is_user_name_valid">
                         <p>enter a name greater than three characters.</p>
                       </div>
                       <label class="form-label" for="form3Example1m"
@@ -75,7 +75,7 @@
                         placeholder="Email"
                         [(ngModel)]="email"
                       />
-                      <div class="mt-1" *ngIf="!emailValid">
+                      <div class="mt-1" *ngIf="!is_user_email_valid">
                         <p>Enter correct Email</p>
                       </div>
                       <label class="form-label" for="form3Example1n"
@@ -94,7 +94,7 @@
                     placeholder="Address"
                     [(ngModel)]="address"
                   />
-                  <div class="mt-1" *ngIf="!addressValid">
+                  <div class="mt-1" *ngIf="!is_user_address_valid">
                     <p>Address is required</p>
                   </div>
                   <label class="form-label" for="form3Example8">Address</label>
@@ -108,7 +108,7 @@
                     placeholder="Mobile"
                     [(ngModel)]="mobile"
                   />
-                  <div class="mt-1" *ngIf="!mobileValid">
+                  <div class="mt-1" *ngIf="!is_user_mobile_valid">
                     <p>not less than 11 numbers</p>
                   </div>
                   <label class="form-label" for="form3Example9"
@@ -185,7 +185,7 @@
                     placeholder="Password"
                     [(ngModel)]="password"
                   />
-                  <div class="mt-1" *ngIf="!passwordValid">
+                  <div class="mt-1" *ngIf="!is_user_password_valid">
                     <p>not less than 8 characters</p>
                   </div>
                   <label class="form-label" for="password">Password</label>

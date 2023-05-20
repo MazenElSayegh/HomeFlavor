@@ -118,12 +118,10 @@ export class RegisterComponent {
     } else {
       this.is_user_name_valid = this.validationForm.controls['user_name'].valid;
       this.is_user_email_valid = this.validationForm.controls['email'].valid;
-      this.is_user_password_valid =
-        this.validationForm.controls['password'].valid;
+      this.is_user_password_valid =this.validationForm.controls['password'].valid;
       this.is_user_gender_valid = this.validationForm.controls['gender'].valid;
       this.is_user_role_valid = this.validationForm.controls['role'].valid;
-      this.is_user_address_valid =
-        this.validationForm.controls['address'].valid;
+      this.is_user_address_valid =this.validationForm.controls['address'].valid;
       this.is_user_mobile_valid = this.validationForm.controls['mobile'].valid;
 
       this.validatedForm = false;
