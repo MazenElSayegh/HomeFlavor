@@ -20,4 +20,7 @@ export class HomeComponent {
       },
     });
   }
+  onLinkClick(e:any){
+    e.preventDefault()
+  }
 }

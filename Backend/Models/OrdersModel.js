@@ -25,7 +25,7 @@ OrdersSchema.virtual('total_price').get(function() {
     this.products.forEach(p => {
        total_price+=p.price*p.quantity;
     });
-    return total_price;
+    return total_price*1.1;
   });
 
 //Export to controller

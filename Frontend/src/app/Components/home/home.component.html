@@ -132,9 +132,11 @@
               ipsum dolor sit amet consectetur adipisicing elit.</span
             >
           </p>
-          <a [href]="'/stores/' + store._id" class="cart-btn"
-            ><i class="fas fa-shopping-cart"></i> Go to store</a
+          <a [href]="'/stores/' + store._id"  class="cart-btn"
+            ><i class="fas fa-shopping-cart"></i> Go to store by HREF</a
           >
+          <a id="outCont" routerLink="/stores/{{store._id}}" class="cart-btn" type="submit" (click)="onLinkClick($event)"
+            ><i class="fas fa-shopping-cart"></i>Go to store by ROUTER</a>
         </div>
       </div>
     </div>
