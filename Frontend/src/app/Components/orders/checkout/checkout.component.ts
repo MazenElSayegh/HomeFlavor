@@ -23,11 +23,6 @@ export class CheckoutComponent {
 
   }
 
-
-  // getData(){
-  //   this.allProducts = localStorage.getItem('cart');
-  // }
-
   AddOrder(){
     this.allProducts.forEach(product => {
       let newPrice= parseFloat(product.price);

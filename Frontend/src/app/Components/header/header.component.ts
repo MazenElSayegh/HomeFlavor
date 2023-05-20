@@ -7,6 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent {
   @Input() addedProducts: any;
+  localhost="http://localhost:7005";
 
   removeProduct(product: any) {
     let arrayOfProducts = localStorage.getItem('cart');

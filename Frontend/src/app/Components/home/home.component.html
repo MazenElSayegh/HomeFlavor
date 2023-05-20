@@ -120,19 +120,19 @@
       <div *ngFor="let store of stores" class="col-lg-4 col-md-6 text-center">
         <div class="single-product-item">
           <div class="product-image">
-            <a href="single-product.html"
-              ><img [src]="localhost+store.image" alt=""
+            <a [href]="'/stores/' + store._id"
+              ><img [src]="localhost + store.image" alt="" id="storesImages"
             /></a>
           </div>
           <h3>{{ store.name }}</h3>
-          <h3>{{localhost+store.image}}</h3>
           <p class="product-price">
-            <span class="mx-5">
-              {{store.about}}</span
-            >
+            <span class="mx-5"> {{ store.about }}</span>
           </p>
-          <a [href]="'/stores/' + store._id"  class="cart-btn"
-            ><i class="fas fa-shopping-cart"></i> Go to store by HREF</a
+          <a
+            [href]="'/stores/' + store._id"
+            class="cart-btn"
+            style="text-decoration: none"
+            ><i class="fas fa-shopping-cart"></i>Order now</a
           >
           <!-- <a routerLink="/stores/{{store._id}}" class="cart-btn" type="submit" (click)="onLinkClick($event)"
             ><i class="fas fa-shopping-cart"></i>Go to store by ROUTER</a> -->
@@ -211,8 +211,7 @@
       <h1>{{ stores[0].name }}</h1>
       <p class="city">{{ stores[0].city }}</p>
       <p>
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem
-        impedit dicta odit."
+        {{ stores[0].about }}
       </p>
       <div class="last-icon">
         <i class="fa fa-quote-right"></i>
@@ -227,8 +226,7 @@
       <h1>{{ store.name }}</h1>
       <p class="city">{{ store.city }}</p>
       <p>
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem
-        impedit dicta odit."
+        {{ store.about }}
       </p>
       <div class="last-icon">
         <i class="fa fa-quote-right"></i>
