@@ -33,13 +33,13 @@
       </div>
       <hr>
       <div id="subtotal">
-        <div id="sub">Subtotal<p>${{ order.total_price | number: '1.1-1'}}</p></div>
-        <div id="tax">Tax <p>${{ order.total_price* 0.1 | number: '1.1-1'}}</p></div>
+        <div id="sub">Subtotal<p>${{ order.total_price/1.1 | number: '1.1-1'}}</p></div>
+        <div id="tax">Tax <p>${{ order.total_price* 0.1/1.1 | number: '1.1-1'}}</p></div>
       </div>
       <hr>
       <div id="total">
         <p>Total</p>
-        <p>${{ order.total_price* 1.1 | number: '1.1-1'}}</p>
+        <p>${{ order.total_price | number: '1.1-1'}}</p>
       </div>
     </div>
   </div>
