@@ -37,7 +37,7 @@
       <td>{{o.store_id.name}}</td>
       <td>
         <div class="d-flex flex-row
-        justify-content-around actionsContainer">
+        justify-content-around align-items-center" *ngIf="o.status=='Pending'; else ifBlock">
           <form (ngSubmit)="Update(o._id, 'Accepted',o.user_id._id,o.store_id._id,o.products)">
             <input
               type="submit"
@@ -56,6 +56,15 @@
             />
           </form>
         </div>
+        <ng-template #ifBlock>
+            <div *ngIf="o.status=='Accepted'; else elseBlock" ><i class="fa-solid fa-check" style="color: #3f7e0c;"></i></div>
+
+          <ng-template #elseBlock>
+            <div><i class="fas fa-times" style="color: #af0404;"></i></div>
+          </ng-template>
+        </ng-template>
+
+
       </td>
       <td>
         <input

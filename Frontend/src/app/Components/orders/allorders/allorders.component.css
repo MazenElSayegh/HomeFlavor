@@ -1,6 +1,6 @@
-/* .actionsContainer{
-  display: block;
+i{
+  font-size: 30px;
 }
-.actionsContainer.hide {
-  display: none;
-} */
+td{
+  vertical-align: middle;
+}

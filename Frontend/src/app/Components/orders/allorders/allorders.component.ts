@@ -38,19 +38,21 @@ export class AllordersComponent {
     let updatedStudent = {status,user_id,store_id,products};
     this.ordersService.UpdateOrderByID(id,updatedStudent).subscribe();
     alert("updated successfully");
-    this.ShowOrderStatusIcon();
     location.href='/orders'
   }
 
-  ShowOrderStatusIcon() {
-    let actionsContainer = document.querySelector('.actionsContainer');
-    // let feedbackSection = document.querySelector('.testimonail-section');
-    // let menuTabContainer = document.querySelector('.menuTabContainer');
-    // let feedbackTabContainer = document.querySelector('.feedbackTabContainer');
-    actionsContainer?.classList.add('hide');
-    // feedbackSection?.classList.add('show');
-    // menuTabContainer?.classList.remove('active');
-    // feedbackTabContainer?.classList.add('active');
-  }
+  // ShowOrderStatusIcon() {
+  //   let actionsContainer = document.querySelector('.actionsContainer');
+  //   let accepted = document.querySelector('.accepted');
+  //   accepted?.classList.add('show')
+  //   // let feedbackSection = document.querySelector('.testimonail-section');
+  //   // let menuTabContainer = document.querySelector('.menuTabContainer');
+  //   // let feedbackTabContainer = document.querySelector('.feedbackTabContainer');
+  //   actionsContainer?.classList.remove('show');
+  //   actionsContainer?.classList.add('hide');
+  //   // feedbackSection?.classList.add('show');
+  //   // menuTabContainer?.classList.remove('active');
+  //   // feedbackTabContainer?.classList.add('active');
+  // }
 
 }
