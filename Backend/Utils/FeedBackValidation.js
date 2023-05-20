@@ -7,10 +7,9 @@ const feedbackSchema = {
     user_id: { type: "string" },
     comment: { type: "string" },
     date: { type: "string" },
-    stars: { type: "number", minimum: 1, maximum: 5 },
+    stars: { type: "number", minimum: 0, maximum: 5 },
   },
-  required: ["user_id", "comment", "stars"],
-    
+  required: ["user_id", "comment"],
 };
 
 module.exports = ajv.compile(feedbackSchema);
