@@ -12,7 +12,7 @@ export class AppComponent {
 
   constructor() {
     interface MyData {
-      
+
       price: number;
       product_details: string;
       product_image: string;
@@ -58,7 +58,17 @@ export class AppComponent {
         } else {
           myData = [];
         }
-        myData.push(data);
+        console.log(data)
+        let flag=0;
+        myData.forEach(product => {
+          if(product._id==data._id){
+            flag=1;
+            ++product.quantity
+          }
+        });
+        if(flag==0){
+          myData.push(data);
+        }
         this.addedProducts = myData;
         localStorage.setItem('cart', JSON.stringify(myData));
       });
