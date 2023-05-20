@@ -12,16 +12,18 @@
   </div>
 </div>
 <!-- end breadcrumb section -->
-<div
-  class="alert alert-danger w-50 m-auto mt-5"
-  *ngIf="!validatedForm"
-  role="alert"
->
-  Please Enter Correct Data
-</div>
+
 
 <section class="bg-yellow" style="background-color: #051922">
+
   <div class="container py-5" >
+    <div
+    class="alert alert-danger w-50 m-auto "
+    *ngIf="!validatedForm"
+    role="alert"
+  >
+    Please Enter Correct Data
+  </div>
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
         <div class="card card-registration my-4">
@@ -37,6 +39,7 @@
                 "
               />
             </div>
+
             <div class="col-xl-6" >
               <form
                 class="card-body p-md-5 text-black"
