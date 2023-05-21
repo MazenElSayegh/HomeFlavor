@@ -53,7 +53,8 @@ let CreateOrder = async (req, res) => {
     console.log("3");
     res.status(201).json(order);
   } else {
-    res.status(301).send("Check your data");
+    console.log(validateOrder.errors)
+    // res.status(301).send("Check your data");
   }
 };
 
@@ -63,14 +64,14 @@ var UpdateOrderByID = async (req, res) => {
     var ID = req.params.id;
     var updatedOrder = req.body;
     let oldOrder;
-    if(validateOrder(updatedOrder) && updatedOrder.status=='Pending'){
-      console.log("gowa el validate");
+    if(validateOrder(updatedOrder)){
         try{
             oldOrder=await OrderModel.findOneAndUpdate({_id:ID},
             { status:updatedOrder.status});
             console.log("hello");
             
         }catch(err){
+         
           res.status(301).json(err)
         }
         if(oldOrder){
@@ -80,7 +81,7 @@ var UpdateOrderByID = async (req, res) => {
         }
         
     }else{
-        res.status(401).send("check ur data")
+      res.status(401).send("check ur data")
     }
 };
 

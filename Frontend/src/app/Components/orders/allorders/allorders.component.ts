@@ -21,7 +21,7 @@ export class AllordersComponent {
       next:(data:any)=>{
         const myData = Object.keys(data).map(key =>data[key]);
         myData.forEach(store=>{
-        if(this.user_data._id==store.user_id._id){
+        if(this.user_data.user_id==store.user_id._id){
             this.storeID=store._id
           }
       })
@@ -58,8 +58,8 @@ export class AllordersComponent {
   }
 
   Update(id:any,status:any,user_id:any,store_id:any,products:any){
-    let updatedStudent = {status,user_id,store_id,products};
-    this.ordersService.UpdateOrderByID(id,updatedStudent).subscribe();
+    let updatedOrder = {status,user_id,store_id,products};
+    this.ordersService.UpdateOrderByID(id,updatedOrder).subscribe();
     alert("updated successfully");
     location.href='/orders'
   }

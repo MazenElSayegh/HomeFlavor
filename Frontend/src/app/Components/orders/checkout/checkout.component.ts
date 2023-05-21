@@ -53,7 +53,7 @@ export class CheckoutComponent {
     console.log(this.user_data);
     this.allProducts = JSON.parse(data);
     this.order.store_id = this.allProducts[0].store_id;
-    this.order.user_id = this.user_data._id;
+    this.order.user_id = this.user_data.user_id;
     this.allProducts.forEach((product) => {
       this.totalCost += product.price * product.quantity;
     });
