@@ -41,13 +41,38 @@
               </li>
 
               <li><a href="contact.html">Contact</a></li>
-              <li>
-                <a href="#newsSec">Account</a>
+              <ng-template #falseBlock>
+                <li>
+                  <a href="#newsSec">Account</a>
+                  <ul class="sub-menu">
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Sign-up</a></li>
+                  </ul>
+                </li>
+              </ng-template>
+
+              <li *ngIf="user_data; else falseBlock">
+                <a href="#newsSec">{{ user_data.user_name }}</a>
                 <ul class="sub-menu">
-                  <li><a href="/login">Login</a></li>
-                  <li><a href="/register">Sign-up</a></li>
+                  <li>
+                    <a href="/profile/{{ user_data.user_id }}">Profile</a>
+                  </li>
+                  <li><a (click)="logout()">Logout</a></li>
                 </ul>
               </li>
+              <!-- //user image -->
+              <li *ngIf="user_data">
+                <img
+                  [src]="user_image"
+                  style="
+                    width: 25px;
+                    height: 25px;
+                    border: 0px solid;
+                    border-radius: 20px;
+                  "
+                />
+              </li>
+
               <li>
                 <div class="header-icons">
                   <a class="shopping-cart"
@@ -70,7 +95,7 @@
     </div>
   </div>
   <div
-    class="offcanvas offcanvas-end w-25 "
+    class="offcanvas offcanvas-end w-25"
     data-bs-scroll="true"
     data-bs-backdrop="false"
     tabindex="-1"
@@ -78,9 +103,7 @@
     aria-labelledby="offcanvasScrollingLabel"
   >
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">
-        Cart Details
-      </h5>
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Cart Details</h5>
       <button
         type="button"
         class="btn-close"
@@ -89,56 +112,81 @@
       ></button>
     </div>
     <div class="offcanvas-body">
-      <section class="h-100" style="background-color: #ffffff;">
+      <section class="h-100" style="background-color: #ffffff">
         <div class="container h-100 py-5">
-          <div class="row d-flex justify-content-center align-items-center h-100">
+          <div
+            class="row d-flex justify-content-center align-items-center h-100"
+          >
             <div class="col-10">
-              <div class="d-flex justify-content-between align-items-center mb-4">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
                 <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
               </div>
-      <div *ngFor="let product of addedProducts">
-        <div class="card rounded-3 mb-4">
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="">
-                <img
-                  [src]="localhost + product.product_image"
-                  class="img-fluid rounded-3" alt="Cotton T-shirt">
-              </div>
-              <div class="">
-                <p class="lead fw-normal mb-2">{{product.product_title}}</p>
-                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-              </div>
-              <div class="d-flex">
-                <button class="btn btn-link px-2"
-                  (click)="decrementQuantity(product)">
-                  <i class="fas fa-minus"></i>
-                </button>
+              <div *ngFor="let product of addedProducts">
+                <div class="card rounded-3 mb-4">
+                  <div class="card-body p-4">
+                    <div
+                      class="row d-flex justify-content-between align-items-center"
+                    >
+                      <div class="">
+                        <img
+                          [src]="localhost + product.product_image"
+                          class="img-fluid rounded-3"
+                          alt="Cotton T-shirt"
+                        />
+                      </div>
+                      <div class="">
+                        <p class="lead fw-normal mb-2">
+                          {{ product.product_title }}
+                        </p>
+                        <p>
+                          <span class="text-muted">Size: </span>M
+                          <span class="text-muted">Color: </span>Grey
+                        </p>
+                      </div>
+                      <div class="d-flex">
+                        <button
+                          class="btn btn-link px-2"
+                          (click)="decrementQuantity(product)"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </button>
 
-                <input id="form1" min="0" name="quantity" value={{product.quantity}}
-                  class="form-control form-control-sm" />
+                        <input
+                          id="form1"
+                          min="0"
+                          name="quantity"
+                          value="{{ product.quantity }}"
+                          class="form-control form-control-sm"
+                        />
 
-                <button class="btn btn-link px-2"
-                   (click)="incrementQuantity(product)">
-                  <i class="fas fa-plus"></i>
-                </button>
+                        <button
+                          class="btn btn-link px-2"
+                          (click)="incrementQuantity(product)"
+                        >
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                      <div class="offset-lg-1">
+                        <h5 class="mb-0">${{ product.price }}</h5>
+                      </div>
+                      <div class="text-end">
+                        <a class="text-danger" (click)="removeProduct(product)"
+                          ><i class="fas fa-trash fa-lg"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class=" offset-lg-1">
-                <h5 class="mb-0">${{product.price}}</h5>
-              </div>
-              <div class="text-end">
-                <a class="text-danger" (click)="removeProduct(product)"><i class="fas fa-trash fa-lg"></i></a>
-              </div>
+              <a routerLink="checkout"
+                ><button class="btn btn-dark">Proceed to Checkout</button></a
+              >
             </div>
           </div>
         </div>
-      </div>
-      <a href="checkout"><button class="btn btn-dark" >Proceed to Checkout</button></a>
-    </div>
-  </div>
-</div>
-</section>
-
+      </section>
     </div>
   </div>
 </div>

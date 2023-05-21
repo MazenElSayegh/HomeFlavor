@@ -25,7 +25,6 @@ import { UpdateProfileComponent } from './Components/profile/update-profile/upda
 import { CheckoutComponent } from './Components/orders/checkout/checkout.component';
 
 const routes: Routes = [
-
   // -------------------- user routes ------------------------------------------------------
 
   { path: '', component: HomeComponent },
@@ -37,9 +36,9 @@ const routes: Routes = [
   // -------------------- order routes ------------------------------------------------------
 
   { path: 'orders', component: AllordersComponent },
-  { path: 'orders/create', component: CreateorderComponent},
-  { path: 'orders/:id', component: OrderdetailsComponent},
-  { path: 'checkout', component: CheckoutComponent},
+  { path: 'orders/create', component: CreateorderComponent },
+  { path: 'orders/:id', component: OrderdetailsComponent },
+  { path: 'checkout', component: CheckoutComponent },
   // -------------------- stores routes ------------------------------------------------------
 
   { path: 'stores', component: AllStoresComponent },

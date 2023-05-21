@@ -5,21 +5,31 @@ let jwt = require("jsonwebtoken");
 
 var loginUser = async (req, res) => {
   var data = req.body;
+  console.log(req.body);
   const valid = validate(data);
-  if (!valid) res.send("Not Compatible..");
+  if (!valid) console.log(validate.errors);
   else {
     let checkUser = await userModel.findOne({ email: data.email });
     if (!checkUser) return res.send("invalid email or password");
     let checkPass = await bcrypt.compare(data.password, checkUser.password);
     if (!checkPass) return res.send("invalid email or password");
     let Token = jwt.sign(
-      { role: req.body.role, user_name: req.body.user_name },
+      {
+        role: checkUser.role,
+        user_name: checkUser.user_name,
+        user_id: checkUser._id,
+        user_image: checkUser.user_image,
+      },
       "token"
     );
+
+    req.session.token = Token;
+    console.log(req.session.token);
+
     res.header("X-Auth-Token", `Bearer ${Token}`);
     res.header("Access-Control-Expose-Headers", "*");
     // res.header("x-auth-token", Token);
-    await res.send("Login Successfully");
+    await res.json({ message: "login successfully", checkUser });
   }
 
   //   let checkUser = await userModel.findOne({ email: req.body.email });
