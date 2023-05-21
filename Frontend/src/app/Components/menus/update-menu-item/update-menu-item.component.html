@@ -24,7 +24,7 @@
 
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
         <form
-        [formGroup]="validationForm"
+          [formGroup]="validationForm"
           (ngSubmit)="
             updateMenuItem(
               storeID.value,
@@ -66,7 +66,7 @@
             <p class="alert alert-danger p-2">Image Must be uploaded</p>
           </div>
 
-          <!-- titel input -->
+          <!-- title input -->
           <div class="form-outline">
             <label class="form-label" for="form3Example3">title</label>
             <input
@@ -79,7 +79,9 @@
             />
           </div>
           <div class="" *ngIf="!isProductTitleValid">
-            <p class="alert alert-danger p-2">titel Must be at least 5 characters</p>
+            <p class="alert alert-danger p-2">
+              title Must be at least 5 characters
+            </p>
           </div>
           <label class="form-label" for="form3Example3">category</label>
           <select
@@ -95,7 +97,7 @@
             <option value="Main">Main</option>
           </select>
           <div class="" *ngIf="!isCategoryValid">
-            <p class="alert alert-danger p-2">category Must be required</p>
+            <p class="alert alert-danger p-2">category is required</p>
           </div>
 
           <!-- price input -->
@@ -126,7 +128,9 @@
             />
           </div>
           <div class="" *ngIf="!isProductDetailsValid">
-            <p class="alert alert-danger p-2">details Must be at least 20 characters</p>
+            <p class="alert alert-danger p-2">
+              details Must be at least 20 characters
+            </p>
           </div>
 
           <input

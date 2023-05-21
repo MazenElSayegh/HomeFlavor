@@ -18,8 +18,9 @@ export class DeleteStoreComponent {
     myService.deleteStoreByID(this.id).subscribe({
       next: (data) => {
         console.log(data);
-
-        this.router.navigateByUrl('/home');
+        setTimeout(() => {
+          location.href = '/';
+        }, 3000);
       },
       error: (err) => {
         console.log(err);

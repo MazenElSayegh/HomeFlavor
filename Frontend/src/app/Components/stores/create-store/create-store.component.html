@@ -24,7 +24,7 @@
 
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
         <form
-        [formGroup]="validationForm"
+          [formGroup]="validationForm"
           (ngSubmit)="
             AddStore(
               userID.value,
@@ -44,7 +44,6 @@
               class="form-control form-control-lg"
               placeholder="Enter userID"
             />
-
           </div>
           <!-- <div *ngIf="!NameValid" class="alert alert-danger mb-4">
             Name must be at least 3 characters long.
@@ -52,7 +51,9 @@
 
           <!-- Name input -->
           <div class="form-outline">
-            <label class="form-label" for="form3Example3">Name Of Your Store</label>
+            <label class="form-label" for="form3Example3"
+              >Name Of Your Store</label
+            >
             <input
               #name
               type="text"
@@ -60,15 +61,18 @@
               class="form-control form-control-lg"
               placeholder="Enter Name"
             />
-
           </div>
           <div class="" *ngIf="!isNameValid">
-            <p class="alert alert-danger p-2">Name Must be at least 5 characters</p>
+            <p class="alert alert-danger p-2">
+              Name Must be at least 5 characters
+            </p>
           </div>
 
           <!-- About input -->
           <div class="form-outline">
-            <label class="form-label" for="form3Example3">About Of Your Store</label>
+            <label class="form-label" for="form3Example3"
+              >About Of Your Store</label
+            >
             <input
               #about
               type="text"
@@ -76,10 +80,11 @@
               formControlName="about"
               placeholder="Enter store details"
             />
-
           </div>
           <div class="" *ngIf="!isAboutValid">
-            <p class="alert alert-danger p-2">About Must be at least 20 characters</p>
+            <p class="alert alert-danger p-2">
+              About Must be at least 20 characters
+            </p>
           </div>
 
           <!-- Image input -->
@@ -94,9 +99,10 @@
               placeholder="Enter Image"
               (change)="storeImgUpload($event)"
             />
-
           </div>
-          <div  class="alert alert-danger" *ngIf="!isImageValid">Invalid file extension. Please select a PNG, JPG, or JPEG file.</div>
+          <div class="alert alert-danger" *ngIf="!isImageValid">
+            Invalid file extension. Please select a PNG, JPG, or JPEG file.
+          </div>
 
           <!-- city input -->
           <div class="form-outline">
@@ -108,7 +114,6 @@
               class="form-control form-control-lg"
               placeholder="Enter city"
             />
-
           </div>
           <div class="" *ngIf="!isCityValid">
             <p class="alert alert-danger p-2">City is required</p>
