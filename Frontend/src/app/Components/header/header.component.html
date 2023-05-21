@@ -52,7 +52,7 @@
               </ng-template>
 
               <li *ngIf="user_data; else falseBlock">
-                <a href="#newsSec">{{ user_data.user_name }}</a>
+                <a href="/profile/{{ user_data.user_id }}">{{ user_data.user_name }}</a>
                 <ul class="sub-menu">
                   <li>
                     <a href="/profile/{{ user_data.user_id }}">Profile</a>
