@@ -20,7 +20,7 @@
       *ngIf="!validatedForm"
       role="alert"
     >
-      Wrong Credentials
+      Please enter a valid email and password.
     </div>
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-10">
@@ -54,6 +54,7 @@
                   </h5>
 
                   <div class="form-outline mb-4">
+                    <label class="form-label" for="email">Email address</label>
                     <input
                       formControlName="email"
                       type="text"
@@ -62,13 +63,15 @@
                       placeholder="Email"
                       #email
                     />
-                    <div class="mt-1" *ngIf="!emailValid">
-                      <p>Enter correct Email</p>
+                    <div class="mt-1" *ngIf="!is_user_email_valid">
+                      <p style="color: red; font-size: 10px">
+                        Enter correct Email
+                      </p>
                     </div>
-                    <label class="form-label" for="email">Email address</label>
                   </div>
 
                   <div class="form-outline mb-4">
+                    <label class="form-label" for="password">Password</label>
                     <input
                       formControlName="password"
                       type="password"
@@ -77,10 +80,11 @@
                       placeholder="Password"
                       #password
                     />
-                    <div class="mt-1" *ngIf="!passwordValid">
-                      <p>not less than 8 characters</p>
+                    <div class="mt-1" *ngIf="!is_user_password_valid">
+                      <p style="color: red; font-size: 10px">
+                        not less than 8 characters
+                      </p>
                     </div>
-                    <label class="form-label" for="password">Password</label>
                   </div>
 
                   <div class="pt-1 mb-4">

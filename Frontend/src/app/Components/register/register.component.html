@@ -61,6 +61,9 @@
                 <div class="row">
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
+                      <label class="form-label" for="form3Example1m"
+                        >First name</label
+                      >
                       <input
                         formControlName="user_name"
                         type="text"
@@ -71,15 +74,17 @@
                         #user_name
                       />
                       <div class="mt-1" *ngIf="!is_user_name_valid">
-                        <p>enter a name greater than three characters.</p>
+                        <p style="color: red; font-size: 10px">
+                          enter a name greater than three characters.
+                        </p>
                       </div>
-                      <label class="form-label" for="form3Example1m"
-                        >First name</label
-                      >
                     </div>
                   </div>
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
+                      <label class="form-label" for="form3Example1n"
+                        >Email</label
+                      >
                       <input
                         formControlName="email"
                         type="email"
@@ -89,16 +94,16 @@
                         [(ngModel)]="email"
                       />
                       <div class="mt-1" *ngIf="!is_user_email_valid">
-                        <p>Enter correct Email</p>
+                        <p style="color: red; font-size: 10px">
+                          Enter correct Email
+                        </p>
                       </div>
-                      <label class="form-label" for="form3Example1n"
-                        >Email</label
-                      >
                     </div>
                   </div>
                 </div>
 
                 <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example8">Address</label>
                   <input
                     formControlName="address"
                     type="text"
@@ -108,11 +113,15 @@
                     [(ngModel)]="address"
                   />
                   <div class="mt-1" *ngIf="!is_user_address_valid">
-                    <p>Address is required</p>
+                    <p style="color: red; font-size: 10px">
+                      Address is required
+                    </p>
                   </div>
-                  <label class="form-label" for="form3Example8">Address</label>
                 </div>
                 <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example9"
+                    >Mobile Number</label
+                  >
                   <input
                     formControlName="mobile"
                     type="text"
@@ -122,11 +131,10 @@
                     [(ngModel)]="mobile"
                   />
                   <div class="mt-1" *ngIf="!is_user_mobile_valid">
-                    <p>not less than 11 numbers</p>
+                    <p style="color: red; font-size: 10px">
+                      Phone number must be 11 numbers
+                    </p>
                   </div>
-                  <label class="form-label" for="form3Example9"
-                    >Mobile Number</label
-                  >
                 </div>
 
                 <div
@@ -157,6 +165,12 @@
                     />
                     <label class="form-check-label" for="gender">Male</label>
                   </div>
+                  <p
+                    *ngIf="!is_user_gender_valid"
+                    style="color: red; font-size: 10px"
+                  >
+                    Gender is required.
+                  </p>
                 </div>
 
                 <div
@@ -187,9 +201,16 @@
                     />
                     <label class="form-check-label" for="role">Seller</label>
                   </div>
+                  <p
+                    *ngIf="!is_user_role_valid"
+                    style="color: red; font-size: 10px"
+                  >
+                    Role is required.
+                  </p>
                 </div>
 
                 <div class="form-outline mb-4">
+                  <label class="form-label" for="password">Password</label>
                   <input
                     formControlName="password"
                     type="password"
@@ -199,9 +220,10 @@
                     [(ngModel)]="password"
                   />
                   <div class="mt-1" *ngIf="!is_user_password_valid">
-                    <p>not less than 8 characters</p>
+                    <p style="color: red; font-size: 10px">
+                      not less than 8 characters
+                    </p>
                   </div>
-                  <label class="form-label" for="password">Password</label>
                 </div>
                 <div class="input-group mb-3">
                   <input
@@ -215,7 +237,7 @@
                   >
                 </div>
                 <div class="mt-1" *ngIf="!is_valid_user_image">
-                  <p>
+                  <p style="color: red; font-size: 10px">
                     Invalid file type. Only JPEG, Jpg and PNG images are
                     allowed.
                   </p>

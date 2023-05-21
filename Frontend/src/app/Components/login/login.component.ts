@@ -10,7 +10,8 @@ import { LocalStorageService } from 'src/app/Services/local-storage.service';
 })
 export class LoginComponent {
   validatedForm = true;
-
+  is_user_email_valid = true;
+  is_user_password_valid = true;
   constructor(
     private myService: BackendService,
     public myRouter: Router,
@@ -25,12 +26,12 @@ export class LoginComponent {
     ]),
   });
 
-  get emailValid() {
-    return this.validationForm.controls['email'].valid;
-  }
-  get passwordValid() {
-    return this.validationForm.controls['password'].valid;
-  }
+  // get emailValid() {
+  //   return this.validationForm.controls['email'].valid;
+  // }
+  // get passwordValid() {
+  //   return this.validationForm.controls['password'].valid;
+  // }
 
   async add(email: any, password: any) {
     if (this.validationForm.valid) {
@@ -39,15 +40,23 @@ export class LoginComponent {
 
       let user = { email, password };
 
-      this.myService.userLogin(user).subscribe((res) => {
-        console.log(res);
-        this.localStorageService.getData('jwt_token').subscribe((data) => {
+      this.myService.userLogin(user).subscribe(
+        (data) => {
           console.log(data);
-          // this.myRouter.navigateByUrl('/profile/' + data.user_id);
-          location.href = '/profile/' + data.user_id;
-        });
-      });
+          this.localStorageService.getData('jwt_token').subscribe((data) => {
+            console.log(data);
+            // this.myRouter.navigateByUrl('/profile/' + data.user_id);
+            location.href = '/profile/' + data.user_id;
+          });
+        },
+        (error) => {
+          this.validatedForm = false;
+        }
+      );
     } else {
+      this.is_user_email_valid = this.validationForm.controls['email'].valid;
+      this.is_user_password_valid =
+        this.validationForm.controls['password'].valid;
       this.validatedForm = false;
     }
   }

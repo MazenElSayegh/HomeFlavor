@@ -10,9 +10,9 @@ var loginUser = async (req, res) => {
   if (!valid) console.log(validate.errors);
   else {
     let checkUser = await userModel.findOne({ email: data.email });
-    if (!checkUser) return res.send("invalid email or password");
+    if (!checkUser) return res.send("invalid email ");
     let checkPass = await bcrypt.compare(data.password, checkUser.password);
-    if (!checkPass) return res.send("invalid email or password");
+    if (!checkPass) return res.send("invalid password");
     let Token = jwt.sign(
       {
         role: checkUser.role,
