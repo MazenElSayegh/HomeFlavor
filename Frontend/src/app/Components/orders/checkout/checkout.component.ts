@@ -46,8 +46,8 @@ export class CheckoutComponent {
 
   constructor(private OrdersService: OrdersService, private router: Router,private LocalStorageService:LocalStorageService) {
     let data: any = localStorage.getItem('cart');
+    console.log(data)
     this.LocalStorageService.getData('jwt_token').subscribe((data) => {
-      console.log(data.role,"user's Rooooole");
       this.user_data = data;
     });
     console.log(this.user_data);
