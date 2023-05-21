@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BackendService } from 'src/app/Services/backend.service';
 import { OrdersService } from 'src/app/Services/orders.service';
 import { StoresService } from 'src/app/Services/stores.service';
+import { LocalStorageService } from 'src/app/Services/local-storage.service';
 
 @Component({
   selector: 'app-allorders',
@@ -13,7 +14,8 @@ export class AllordersComponent {
   orders:any;
   localhost = 'http://localhost:7005';
   test:any;
-  constructor(private ordersService:OrdersService,private usersService:BackendService,private storesService:StoresService, private router:Router){
+  user_data:any;
+  constructor(private ordersService:OrdersService,private usersService:BackendService,private storesService:StoresService, private router:Router, private localStorageService:LocalStorageService){
     ordersService.GetAllOrders().subscribe(
       {
         next: (data)=>{
@@ -32,6 +34,12 @@ export class AllordersComponent {
         },
         error:(err:any)=>{console.log(err)}
       });
+
+      this.localStorageService.getData('jwt_token').subscribe((data) => {
+        console.log(data.role,"user's Rooooole");
+        this.user_data = data;
+      });
+      console.log(this.user_data);
 
   }
 

@@ -11,7 +11,7 @@ ajv.addFormat("email", {
 userSchema = {
   type: "object",
   properties: {
-    user_name: { type: "string", pattern: "^[a-zA-Z]+$" },
+    user_name: { type: "string", pattern: "^[a-zA-Z0-9]+$" },
     email: {
       type: "string",
       format: "email",
