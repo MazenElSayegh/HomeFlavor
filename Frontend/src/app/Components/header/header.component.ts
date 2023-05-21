@@ -76,6 +76,7 @@ export class HeaderComponent {
 
     console.log('hi');
     this.localStorageService.removeData('jwt_token');
+    this.localStorageService.removeData('cart');
     location.href = '/';
   }
 }

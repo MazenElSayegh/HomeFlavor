@@ -11,30 +11,44 @@ import { LocalStorageService } from 'src/app/Services/local-storage.service';
   styleUrls: ['./allorders.component.css']
 })
 export class AllordersComponent {
-  orders:any;
+  orders: any[] = [];
   localhost = 'http://localhost:7005';
   test:any;
   user_data:any;
+  storeID:any;
   constructor(private ordersService:OrdersService,private usersService:BackendService,private storesService:StoresService, private router:Router, private localStorageService:LocalStorageService){
+    storesService.getAllStores().subscribe({
+      next:(data:any)=>{
+        const myData = Object.keys(data).map(key =>data[key]);
+        myData.forEach(store=>{
+        if(this.user_data._id==store.user_id._id){
+            this.storeID=store._id
+          }
+      })
+    }, error: (err)=>{
+      console.log(err);
+      }
+    })
     ordersService.GetAllOrders().subscribe(
       {
-        next: (data)=>{
-          this.orders=data;
+        next: (data:any)=>{
+          const myData = Object.keys(data).map(key =>data[key]);
+          myData.forEach(order=>{
+          if(this.user_data.role=='buyer' && order.user_id._id==this.user_data.user_id){
+              this.orders.push(order)
+            }else if(this.user_data.role=='seller' && order.store_id._id==this.storeID){
+              this.orders.push(order)
+            }else if(this.user_data.role=='admin'){
+              this.orders.push(order)
+            }
+          })
         },
         error: (err)=>{console.log(err);
         }
-      });
+      })
 
   }
   ngOnInit(): void {
-    this.ordersService.GetAllOrders().subscribe(
-      {
-        next:(data:any)=>{
-          this.orders = data;
-        },
-        error:(err:any)=>{console.log(err)}
-      });
-
       this.localStorageService.getData('jwt_token').subscribe((data) => {
         console.log(data.role,"user's Rooooole");
         this.user_data = data;

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrdersService } from 'src/app/Services/orders.service';
+import { LocalStorageService } from 'src/app/Services/local-storage.service';
 import {
   trigger,
   state,
@@ -35,6 +36,7 @@ import {
 export class CheckoutComponent {
   // allProducts:any;
   allProducts: any[] = [];
+  user_data:any;
   totalCost = 0;
   order: any = {
     products: [],
@@ -42,11 +44,16 @@ export class CheckoutComponent {
     user_id: String,
   };
 
-  constructor(private OrdersService: OrdersService, private router: Router) {
+  constructor(private OrdersService: OrdersService, private router: Router,private LocalStorageService:LocalStorageService) {
     let data: any = localStorage.getItem('cart');
+    this.LocalStorageService.getData('jwt_token').subscribe((data) => {
+      console.log(data.role,"user's Rooooole");
+      this.user_data = data;
+    });
+    console.log(this.user_data);
     this.allProducts = JSON.parse(data);
     this.order.store_id = this.allProducts[0].store_id;
-    this.order.user_id = '6468ab3be2cb9a2bee3a1696';
+    this.order.user_id = this.user_data._id;
     this.allProducts.forEach((product) => {
       this.totalCost += product.price * product.quantity;
     });
@@ -65,8 +72,10 @@ export class CheckoutComponent {
 
     this.OrdersService.AddNewOrder(this.order).subscribe();
     alert('Order confirmed');
+    this.LocalStorageService.removeData('cart');
     this.router.navigateByUrl('/orders');
   }
+
 
 
 }
