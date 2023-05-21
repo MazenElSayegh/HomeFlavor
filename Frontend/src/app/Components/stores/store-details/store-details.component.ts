@@ -132,6 +132,7 @@ export class StoreDetailsComponent {
     this.feedbackService.createFeedback(newFeedback).subscribe({
       next: (data) => {
         console.log(newFeedback);
+        location.reload();
       },
       error: (err) => {
         console.log(err);

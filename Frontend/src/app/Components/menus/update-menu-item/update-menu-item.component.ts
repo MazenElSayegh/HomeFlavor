@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuService } from 'src/app/Services/menu.service';
-import { FormControl, FormGroup, Validators,AbstractControl } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-update-menu-item',
@@ -9,7 +14,7 @@ import { FormControl, FormGroup, Validators,AbstractControl } from '@angular/for
   styleUrls: ['./update-menu-item.component.css'],
 })
 export class UpdateMenuItemComponent {
-  validationForm:any;
+  validationForm: any;
   menuImage: any;
   id: any;
   itemDetails: any;
@@ -18,20 +23,25 @@ export class UpdateMenuItemComponent {
     private router: Router,
     myRoute: ActivatedRoute
   ) {
-    
     this.id = myRoute.snapshot.params['id'];
 
     this.myService.getItemByID(this.id).subscribe({
-      next: (data:any) => {
+      next: (data: any) => {
         console.log(data);
         this.itemDetails = data;
         this.validationForm = new FormGroup({
-          product_title: new FormControl("", [Validators.required, Validators.minLength(5)]),
-          product_image: new FormControl("", [Validators.required]),
-          price : new FormControl("", [Validators.required]),
-          product_details : new FormControl("", [Validators.required, Validators.minLength(20)]),
-          category : new FormControl("", [Validators.required])
-        })
+          product_title: new FormControl('', [
+            Validators.required,
+            Validators.minLength(5),
+          ]),
+          product_image: new FormControl('', [Validators.required]),
+          price: new FormControl('', [Validators.required]),
+          product_details: new FormControl('', [
+            Validators.required,
+            Validators.minLength(20),
+          ]),
+          category: new FormControl('', [Validators.required]),
+        });
         this.validationForm.patchValue(data[0]);
         console.log(data[0]);
       },
@@ -49,23 +59,23 @@ export class UpdateMenuItemComponent {
   // })
 
   get isProductTitleValid() {
-    return this.validationForm.controls["product_title"].valid;
+    return this.validationForm.controls['product_title'].valid;
   }
 
   get isProductImageValid() {
-    return this.validationForm.controls["product_image"].valid;
+    return this.validationForm.controls['product_image'].valid;
   }
 
   get isPriceValid() {
-    return this.validationForm.controls["price"].valid;
+    return this.validationForm.controls['price'].valid;
   }
 
   get isProductDetailsValid() {
-    return this.validationForm.controls["product_details"].valid;
+    return this.validationForm.controls['product_details'].valid;
   }
 
   get isCategoryValid() {
-    return this.validationForm.controls["category"].valid;
+    return this.validationForm.controls['category'].valid;
   }
 
   updateMenuItem(
@@ -87,6 +97,7 @@ export class UpdateMenuItemComponent {
     this.myService.updateItemByID(this.id, formData).subscribe({
       next: (data) => {
         console.log(formData);
+        location.href = `/stores/${storeID}`;
       },
       error: (err) => {
         console.log(err);

@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-lg-8 offset-lg-2 text-center">
         <div class="breadcrumb-text">
-          <h1>Create your own Store</h1>
+          <h1>Update your own Store</h1>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
 
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
         <form
-        [formGroup]="validationForm"
+          [formGroup]="validationForm"
           (ngSubmit)="
             updateStore(
               userID.value,
@@ -64,7 +64,9 @@
             />
           </div>
           <div class="" *ngIf="!isNameValid">
-            <p class="alert alert-danger p-2">Name Must be at least 5 characters</p>
+            <p class="alert alert-danger p-2">
+              Name Must be at least 5 characters
+            </p>
           </div>
 
           <!-- about input -->
@@ -80,7 +82,9 @@
             />
           </div>
           <div class="" *ngIf="!isAboutValid">
-            <p class="alert alert-danger p-2">About Must be at least 20 characters</p>
+            <p class="alert alert-danger p-2">
+              About Must be at least 20 characters
+            </p>
           </div>
 
           <!-- Image input -->
@@ -96,7 +100,9 @@
               (change)="storeImgUpload($event)"
             />
           </div>
-          <div  class="alert alert-danger" *ngIf="!isImageValid">Invalid file extension. Please select a PNG, JPG, or JPEG file.</div>
+          <div class="alert alert-danger" *ngIf="!isImageValid">
+            Invalid file extension. Please select a PNG, JPG, or JPEG file.
+          </div>
 
           <!-- city input -->
           <div class="form-outline">
@@ -110,7 +116,6 @@
               placeholder="Enter city"
               value="{{ store.city }}"
             />
-            
           </div>
           <div class="" *ngIf="!isCityValid">
             <p class="alert alert-danger p-2">City is required</p>

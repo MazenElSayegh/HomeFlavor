@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FeedbacksService } from 'src/app/Services/feedbacks.service';
 
 @Component({
@@ -9,11 +9,28 @@ import { FeedbacksService } from 'src/app/Services/feedbacks.service';
 })
 export class DeleteFeedbackComponent {
   id: any;
-  constructor(private myService: FeedbacksService, myRoute: ActivatedRoute) {
+  storeIDReceived: any;
+  constructor(
+    private myService: FeedbacksService,
+    myRoute: ActivatedRoute,
+    private router: Router
+  ) {
     this.id = myRoute.snapshot.params['id'];
+
+    const previousNavigation =
+      this.router.getCurrentNavigation()?.previousNavigation;
+
+    const storeID =
+      previousNavigation?.finalUrl?.root.children['primary'].segments[1].path;
+
+    this.storeIDReceived = storeID;
+
     myService.deleteFeedbackByID(this.id).subscribe({
       next: (data) => {
         console.log(data);
+        setTimeout(() => {
+          location.href = `/stores/${this.storeIDReceived}`;
+        }, 3000);
       },
       error: (err) => {
         console.log(err);

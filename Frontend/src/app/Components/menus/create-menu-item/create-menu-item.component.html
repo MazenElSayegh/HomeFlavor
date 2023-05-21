@@ -24,7 +24,7 @@
 
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
         <form
-        [formGroup]="validationForm"
+          [formGroup]="validationForm"
           (ngSubmit)="
             addMenuItem(
               storeID.value,
@@ -66,7 +66,7 @@
             <p class="alert alert-danger p-2">Image Must be uploaded</p>
           </div>
 
-          <!-- titel input -->
+          <!-- title input -->
           <div class="form-outline">
             <label class="form-label" for="form3Example3">title</label>
             <input
@@ -74,11 +74,13 @@
               type="text"
               formControlName="productTitle"
               class="form-control form-control-lg"
-              placeholder="Enter titel"
+              placeholder="Enter title"
             />
           </div>
           <div class="" *ngIf="!isProductTitleValid">
-            <p class="alert alert-danger p-2">titel Must be at least 5 characters</p>
+            <p class="alert alert-danger p-2">
+              title Must be at least 5 characters
+            </p>
           </div>
 
           <!-- price input -->
@@ -107,7 +109,9 @@
             />
           </div>
           <div class="" *ngIf="!isProductDetailsValid">
-            <p class="alert alert-danger p-2">details Must be at least 20 characters</p>
+            <p class="alert alert-danger p-2">
+              details Must be at least 20 characters
+            </p>
           </div>
           <!-- <div class="dropdown">
            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -119,6 +123,7 @@
              <a class="dropdown-item" href="#">Something else here</a>
           </div>
          </div> -->
+          <label class="form-label" for="form3Example3">Category</label>
           <select
             class="form-select"
             formControlName="category"
@@ -131,7 +136,7 @@
             <option value="Main">Main</option>
           </select>
           <div class="" *ngIf="!isCategoryValid">
-            <p class="alert alert-danger p-2">category Must be required</p>
+            <p class="alert alert-danger p-2">category is required</p>
           </div>
 
           <input
