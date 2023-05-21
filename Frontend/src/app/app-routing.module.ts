@@ -10,7 +10,6 @@ import { StoreDetailsComponent } from './Components/stores/store-details/store-d
 import { CreateStoreComponent } from './Components/stores/create-store/create-store.component';
 import { UpdateStoreComponent } from './Components/stores/update-store/update-store.component';
 import { DeleteStoreComponent } from './Components/stores/delete-store/delete-store.component';
-import { CreateorderComponent } from './Components/orders/createorder/createorder.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { HomeComponent } from './Components/home/home.component';
 import { AllFeedbacksComponent } from './Components/feedbacks/all-feedbacks/all-feedbacks.component';
@@ -36,7 +35,6 @@ const routes: Routes = [
   // -------------------- order routes ------------------------------------------------------
 
   { path: 'orders', component: AllordersComponent },
-  { path: 'orders/create', component: CreateorderComponent },
   { path: 'orders/:id', component: OrderdetailsComponent },
   { path: 'checkout', component: CheckoutComponent },
   // -------------------- stores routes ------------------------------------------------------

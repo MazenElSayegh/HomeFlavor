@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ErrorComponent } from './Components/error/error.component';
 import { AllordersComponent } from './Components/orders/allorders/allorders.component';
-import { CreateorderComponent } from './Components/orders/createorder/createorder.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderComponent } from './Components/header/header.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -39,7 +38,6 @@ import { AuthInterceptor } from './Interceptors/auth.interceptor';
     LoginComponent,
     ErrorComponent,
     AllordersComponent,
-    CreateorderComponent,
     OrderdetailsComponent,
     AllStoresComponent,
     StoreDetailsComponent,
