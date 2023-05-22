@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
 import { BackendService } from 'src/app/Services/backend.service';
+import { OrdersService } from 'src/app/Services/orders.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,10 +12,30 @@ export class HeaderComponent {
   user_data: any;
   user_image: any;
   count: any;
+  orders:any[]=[];
   constructor(
     private localStorageService: LocalStorageService,
-    private myService: BackendService
-  ) {}
+    private myService: BackendService,
+    private ordersService:OrdersService
+  ) {
+    this.count=0;
+    ordersService.GetAllOrders().subscribe(
+      {
+        next: (data:any)=>{
+         console.log(data)
+         this.orders=data
+         this.orders.forEach(order => {
+          console.log(order)
+          if(order.status=='Pending'){
+            console.log("gowa el if")
+            this.count=this.count+1;
+          }
+         });
+        },
+        error: (err)=>{console.log(err);
+        }
+      })
+  }
 
   localhost = 'http://localhost:7005';
   removeProduct(product: any) {
