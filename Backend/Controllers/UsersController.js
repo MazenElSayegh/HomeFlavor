@@ -41,7 +41,12 @@ let AddNewUser = async (req, res, next) => {
   if (valid) {
     await newUserModel.save();
     let Token = jwt.sign(
-      { role: req.body.role, user_name: req.body.user_name },
+      {
+        role: req.body.role,
+        user_name: req.body.user_name,
+        user_id: newUserModel._id,
+        user_image: newUserModel.user_image,
+      },
       "token"
     );
     res.header("X-Auth-Token", `Bearer ${Token}`);

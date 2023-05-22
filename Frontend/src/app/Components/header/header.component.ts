@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
+import { BackendService } from 'src/app/Services/backend.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,8 +10,12 @@ export class HeaderComponent {
   @Input() addedProducts: any;
   user_data: any;
   user_image: any;
-  count:any
-  constructor(private localStorageService: LocalStorageService) {}
+  count: any;
+  constructor(
+    private localStorageService: LocalStorageService,
+    private myService: BackendService
+  ) {}
+
   localhost = 'http://localhost:7005';
   removeProduct(product: any) {
     let arrayOfProducts = localStorage.getItem('cart');
@@ -73,7 +78,7 @@ export class HeaderComponent {
 
   logout() {
     // Send logout request to backend
-
+    this.myService.userLogout({}).subscribe();
     console.log('hi');
     this.localStorageService.removeData('jwt_token');
     this.localStorageService.removeData('cart');
