@@ -58,12 +58,15 @@ export class AppComponent {
         } else {
           myData = [];
         }
-        console.log(data)
         let flag=0;
         myData.forEach(product => {
           if(product._id==data._id){
             flag=1;
             ++product.quantity
+          }
+          if(product.store_id!=data.store_id){
+            alert("Sorry,You cant add two products from different stores")
+            flag=1;
           }
         });
         if(flag==0){

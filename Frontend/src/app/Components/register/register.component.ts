@@ -118,7 +118,13 @@ export class RegisterComponent {
 
       this.myService.addNewUser(formData).subscribe({
         next: (data) => {
-          location.href = '/login';
+          // location.href = '/login';
+          this.localStorageService.getData('jwt_token').subscribe((data) => {
+            console.log(data);
+            // this.myRouter.navigateByUrl('/profile/' + data.user_id);
+            if (data.role == 'seller') location.href = '/stores/create';
+            else location.href = '/';
+          });
         },
         error: (err) => {
           console.log(err);

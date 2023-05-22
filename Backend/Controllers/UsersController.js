@@ -40,12 +40,12 @@ let AddNewUser = async (req, res, next) => {
 
   if (valid) {
     await newUserModel.save();
-    // let Token = jwt.sign(
-    //   { role: req.body.role, user_name: req.body.user_name },
-    //   "token"
-    // );
-    // res.header("X-Auth-Token", `Bearer ${Token}`);
-    // res.header("Access-Control-Expose-Headers", "*");
+    let Token = jwt.sign(
+      { role: req.body.role, user_name: req.body.user_name },
+      "token"
+    );
+    res.header("X-Auth-Token", `Bearer ${Token}`);
+    res.header("Access-Control-Expose-Headers", "*");
     res.status(201).json(newUserModel);
   } else {
     res.status(400).send("Not Compatible, check validation..");
