@@ -10,12 +10,13 @@ export class HeaderComponent {
   @Input() addedProducts: any;
   user_data: any;
   user_image: any;
+  count: any;
   constructor(
     private localStorageService: LocalStorageService,
     private myService: BackendService
   ) {}
-  localhost = 'http://localhost:7005';
 
+  localhost = 'http://localhost:7005';
   removeProduct(product: any) {
     let arrayOfProducts = localStorage.getItem('cart');
     if (arrayOfProducts) {

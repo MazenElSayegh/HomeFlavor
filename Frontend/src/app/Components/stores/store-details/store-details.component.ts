@@ -4,6 +4,7 @@ import { StoresService } from 'src/app/Services/stores.service';
 import { MenuService } from 'src/app/Services/menu.service';
 import { FeedbacksService } from 'src/app/Services/feedbacks.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LocalStorageService } from 'src/app/Services/local-storage.service';
 
 @Component({
   selector: 'app-store-details',
@@ -18,14 +19,19 @@ export class StoreDetailsComponent {
   feedbacks: any;
   rating: number = 0;
   image_path: any;
+  user_data:any;
   localhost = 'http://localhost:7005';
   @Output() addedToCart = new EventEmitter<any>();
   constructor(
     myRoute: ActivatedRoute,
     public myService: StoresService,
     public menuService: MenuService,
-    public feedbackService: FeedbacksService
+    public feedbackService: FeedbacksService,
+    private LocalStorageService:LocalStorageService
   ) {
+    this.LocalStorageService.getData('jwt_token').subscribe((data) => {
+      this.user_data = data;
+    });
     this.id = myRoute.snapshot.params['id'];
     this.myService.getStoreByID(this.id).subscribe({
       next: (data: any) => {
@@ -116,7 +122,7 @@ export class StoreDetailsComponent {
     });
   }
 
-  addFeedback(storeID: any, userID: any, comment: any) {
+  addFeedback(storeID: any, comment: any) {
     if (!this.validationForm.valid) {
       alert('Please Fix errors to be able to give feedback');
       return;
@@ -124,7 +130,7 @@ export class StoreDetailsComponent {
 
     let newFeedback = {
       store_id: storeID,
-      user_id: userID,
+      user_id: this.user_data.user_id,
       comment: comment,
       stars: this.rating,
     };

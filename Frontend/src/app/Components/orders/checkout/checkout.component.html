@@ -14,15 +14,51 @@
 <!-- end breadcrumb section -->
 <div class="container" id="all-container">
   <div class="container mt-5" id="container">
-    <div id="order-details">
-      <header>
-        Order Details <span>~ &nbsp;</span>
-      </header>
-      <div>
-        <p><b>Order ID</b> : </p>
-        <p><b>Date</b> : </p>
-        <p><b>Ordered by</b>: </p>
-        <p><b>From</b>: </p>
+    <div id="payment-method">
+      <header>Payment Method</header>
+      <div class="head">
+        <label>
+          <input
+            type="radio"
+            name="payment"
+            value="cash"
+            (click)="hideInfo()"
+          />
+          Cash on Delivery
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="payment"
+            value="card"
+            (click)="showInfo()"
+          />
+          Credit Card
+        </label>
+      </div>
+      <div class="cardContainer hideCardInfo">
+        <section>
+          <label>Name on Card</label>
+          <input placeholder="John Doe" />
+        </section>
+        <section>
+          <label>Credit card number</label>
+          <input placeholder="1111-2222-3333-4444" />
+        </section>
+        <section>
+          <label>Exp Month</label>
+          <input placeholder="September" />
+        </section>
+        <section style="display: flex;">
+          <section style="display: flex; flex-direction: column; margin-top:0px ;">
+          <label>Exp Year</label>
+          <input class="half" placeholder="2023" />
+          </section>
+          <section style="display: flex; flex-direction: column; margin-top:0px ;">
+          <label>CCV</label>
+          <input class="half" placeholder="352" />
+          </section>
+        </section>
       </div>
     </div>
     <div id="receipt">
@@ -51,140 +87,7 @@
         <p>Total</p>
         <p>${{ totalCost * 1.1 | number : "1.1-1" }}</p>
       </div>
+      <input type="submit" (click)="AddOrder()" value="Confirm Order" />
     </div>
-  </div>
-  <input type="submit" (click)="AddOrder()" value="Confirm Order" />
-</div>
-
-<div class="cardContainer">
-  <div class="card">
-    <div class="card__front card__part">
-      <img
-        class="card__front-square card__square"
-        src="https://image.ibb.co/cZeFjx/little_square.png"
-      />
-      <img
-        class="card__front-logo card__logo"
-        src="https://www.fireeye.com/partners/strategic-technology-partners/visa-fireeye-cyber-watch-program/_jcr_content/content-par/grid_20_80_full/grid-20-left/image.img.png/1505254557388.png"
-      />
-      <p class="card_number">**** **** **** 6258</p>
-      <div class="card__space-75">
-        <span class="card__label">Card holder</span>
-        <p class="card__info">John Doe</p>
-      </div>
-      <div class="card__space-25">
-        <span class="card__label">Expires</span>
-        <p class="card__info">10/25</p>
-      </div>
-    </div>
-
-    <div class="card__back card__part">
-      <div class="card__black-line"></div>
-      <div class="card__back-content">
-        <div class="card__secret">
-          <p class="card__secret--last">420</p>
-        </div>
-        <img
-          class="card__back-square card__square"
-          src="https://image.ibb.co/cZeFjx/little_square.png"
-        />
-        <img
-          class="card__back-logo card__logo"
-          src="https://www.fireeye.com/partners/strategic-technology-partners/visa-fireeye-cyber-watch-program/_jcr_content/content-par/grid_20_80_full/grid-20-left/image.img.png/1505254557388.png"
-        />
-      </div>
-    </div>
-  </div>
-  <div id="formCont">
-    <form class="form" autocomplete="off" novalidate>
-      <fieldset>
-        <label for="card-number">Card Number</label>
-        <input
-          type="num"
-          id="card-number"
-          class="input-cart-number"
-          maxlength="4"
-        />
-        <input
-          type="num"
-          id="card-number-1"
-          class="input-cart-number"
-          maxlength="4"
-        />
-        <input
-          type="num"
-          id="card-number-2"
-          class="input-cart-number"
-          maxlength="4"
-        />
-        <input
-          type="num"
-          id="card-number-3"
-          class="input-cart-number"
-          maxlength="4"
-        />
-      </fieldset>
-      <fieldset>
-        <label for="card-holder">Card holder</label>
-        <input type="text" id="card-holder" />
-      </fieldset>
-      <fieldset class="fieldset-expiration">
-        <label for="card-expiration-month">Expiration date</label>
-        <div class="select">
-          <select id="card-expiration-month">
-            <option></option>
-            <option>01</option>
-            <option>02</option>
-            <option>03</option>
-            <option>04</option>
-            <option>05</option>
-            <option>06</option>
-            <option>07</option>
-            <option>08</option>
-            <option>09</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
-          </select>
-        </div>
-        <div class="select">
-          <select id="card-expiration-year">
-            <option></option>
-            <option>2023</option>
-            <option>2024</option>
-            <option>2025</option>
-            <option>2026</option>
-            <option>2027</option>
-            <option>2029</option>
-            <option>2030</option>
-            <option>2031</option>
-            <option>2032</option>
-            <option>2033</option>
-          </select>
-        </div>
-      </fieldset>
-      <fieldset class="fieldset-ccv">
-        <label for="card-ccv">CCV</label>
-        <input type="text" id="card-ccv" maxlength="3" />
-      </fieldset>
-      <button class="btn"><i class="fa fa-lock"></i> submit</button>
-    </form>
   </div>
 </div>
-<label>
-
-
-<script>
-  const paymentMethodRadios = document.querySelectorAll('input[name="payment-method"]');
-  const creditCardFields = document.getElementById('credit-card-fields');
-
-  for (const radio of paymentMethodRadios) {
-    radio.addEventListener('change', function () {
-      if (radio.value === 'credit-card') {
-        creditCardFields.style.display = 'block';
-      } else {
-        creditCardFields.style.display = 'none';
-      }
-    });
-  }
-</script>

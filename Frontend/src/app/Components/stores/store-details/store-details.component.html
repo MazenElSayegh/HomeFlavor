@@ -194,19 +194,11 @@
               type="POST"
               id="fruitkha-contact"
               (ngSubmit)="
-                addFeedback(storeID.value, userID.value, comment.value)
+                addFeedback(storeID.value, comment.value)
               "
               [formGroup]="validationForm"
             >
               <div>
-                <!-- UserID -->
-                <input
-                  type="text"
-                  placeholder="userID"
-                  name="userID"
-                  id="userID"
-                  #userID
-                />
                 <!-- StoreID -->
                 <input
                   type="text"

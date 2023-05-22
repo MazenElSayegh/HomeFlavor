@@ -76,6 +76,15 @@ export class CheckoutComponent {
     this.router.navigateByUrl('/orders');
   }
 
-
+  showInfo(){
+    let cardContainer=document.querySelector(".cardContainer");
+    cardContainer?.classList.remove('hideCardInfo');
+    cardContainer?.classList.add('showCardInfo');
+  }
+  hideInfo(){
+    let cardContainer=document.querySelector(".cardContainer");
+    cardContainer?.classList.remove('showCardInfo');
+    cardContainer?.classList.add('hideCardInfo');
+  }
 
 }

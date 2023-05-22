@@ -19,12 +19,7 @@ export class AllordersComponent {
   constructor(private ordersService:OrdersService,private usersService:BackendService,private storesService:StoresService, private router:Router, private localStorageService:LocalStorageService){
     storesService.getAllStores().subscribe({
       next:(data:any)=>{
-        const myData = Object.keys(data).map(key =>data[key]);
-        myData.forEach(store=>{
-        if(this.user_data.user_id==store.user_id._id){
-            this.storeID=store._id
-          }
-      })
+      console.log(data)
     }, error: (err)=>{
       console.log(err);
       }
@@ -32,16 +27,8 @@ export class AllordersComponent {
     ordersService.GetAllOrders().subscribe(
       {
         next: (data:any)=>{
-          const myData = Object.keys(data).map(key =>data[key]);
-          myData.forEach(order=>{
-          if(this.user_data.role=='buyer' && order.user_id._id==this.user_data.user_id){
-              this.orders.push(order)
-            }else if(this.user_data.role=='seller' && order.store_id._id==this.storeID){
-              this.orders.push(order)
-            }else if(this.user_data.role=='admin'){
-              this.orders.push(order)
-            }
-          })
+         console.log(data)
+         this.orders=data
         },
         error: (err)=>{console.log(err);
         }
@@ -50,7 +37,7 @@ export class AllordersComponent {
   }
   ngOnInit(): void {
       this.localStorageService.getData('jwt_token').subscribe((data) => {
-        console.log(data.role,"user's Rooooole");
+        console.log(data.role,"user's Role");
         this.user_data = data;
       });
       console.log(this.user_data);

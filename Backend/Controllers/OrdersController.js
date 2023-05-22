@@ -1,18 +1,49 @@
 // Requires
 const validateOrder = require("../Utils/OrderValidation");
 let OrderModel = require("../Models/OrdersModel");
+let StoreModel = require("../Models/StoresModel");
+let jwt = require("jsonwebtoken");
 
 // Get all orders (ADMIN only)
 let GetAllOrders = async (req, res) => {
   // console.log("get all Orders");
-  let orders = await OrderModel.find({}).populate({
-    path: 'user_id',
-    model: 'users'
-  })
-  .populate({
-    path: 'store_id',
-    model: 'stores'
-  });
+  var token = req.headers.authorization?.split(" ")[1];
+
+  console.log(token);
+
+  var loggedInUser = jwt.verify(token, "token");
+ if(loggedInUser.role=='admin'){
+    var orders = await OrderModel.find({}).populate({
+      path: 'user_id',
+      model: 'users'
+    })
+    .populate({
+      path: 'store_id',
+      model: 'stores'
+    });
+  }else if(loggedInUser.role=='seller'){
+    console.log("seller")
+    var store = await StoreModel.find({user_id: loggedInUser.user_id }).populate("user_id");
+    console.log(store)
+    var orders = await OrderModel.find({store_id:store[0]._id}).populate({
+      path: 'user_id',
+      model: 'users'
+    })
+    .populate({
+      path: 'store_id',
+      model: 'stores'
+    });
+  }else{
+    var orders = await OrderModel.find({user_id:loggedInUser.user_id}).populate({
+      path: 'user_id',
+      model: 'users'
+    })
+    .populate({
+      path: 'store_id',
+      model: 'stores'
+    });
+  }
+  console.log("hnaaaaa",orders)
   res.status(201).json(orders);
 };
 
