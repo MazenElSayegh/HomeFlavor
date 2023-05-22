@@ -41,7 +41,7 @@ export class AuthInterceptor implements HttpInterceptor {
             // const payload = jwt_decode(this.token);
             // console.log('JWT payload:', payload);
             localStorage.setItem('jwt_token', this.token);
-            window.sessionStorage.setItem('jwt_token', this.token);
+            // window.sessionStorage.setItem('jwt_token', this.token);
           }
         })
       );

@@ -24,6 +24,8 @@ var loginUser = async (req, res) => {
     );
 
     req.session.token = Token;
+    await req.session.save();
+    console.log(req.session);
     console.log(req.session.token);
 
     res.header("X-Auth-Token", `Bearer ${Token}`);
