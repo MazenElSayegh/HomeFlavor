@@ -88,7 +88,7 @@
                 <div *ngIf="(user_data.role=='seller' || user_data.role=='admin') && count>0;">
                   <a href="/orders" class="notifications-bell"><i id="cartIcon" class="fa-solid fa-bell fa-shake">{{count}}</i>‏</a>
                 </div>
-                <div *ngIf="count==0;">
+                <div *ngIf="(user_data.role=='seller' || user_data.role=='admin') && count==0;">
                   <a href="/orders" class="notifications-bell"><i id="cartIcon" class="fa-solid fa-bell"></i>‏</a>
                 </div>
               </li>
