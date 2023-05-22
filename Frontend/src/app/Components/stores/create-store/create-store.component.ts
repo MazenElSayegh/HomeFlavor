@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { StoresService } from 'src/app/Services/stores.service';
+import { LocalStorageService } from 'src/app/Services/local-storage.service';
 import {
   FormControl,
   FormGroup,
@@ -15,7 +16,12 @@ import {
 })
 export class CreateStoreComponent {
   storeImg: any;
-  constructor(private myService: StoresService, private router: Router) {}
+  user_data:any;
+  constructor(private myService: StoresService, private router: Router,private LocalStorageService:LocalStorageService) {
+    this.LocalStorageService.getData('jwt_token').subscribe((data) => {
+      this.user_data = data;
+    });
+  }
   validationForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(5)]),
     image: new FormControl('', [Validators.required]),
@@ -39,10 +45,10 @@ export class CreateStoreComponent {
     return this.validationForm.controls['about'].valid;
   }
 
-  AddStore(userID: any, name: any, image: any, city: any, about: any) {
+  AddStore(name: any, image: any, city: any, about: any) {
     if (this.validationForm.valid) {
       const formData = new FormData();
-      formData.append('user_id', userID);
+      formData.append('user_id', this.user_data.user_id);
       formData.append('name', name);
       formData.append('image', this.storeImg);
       formData.append('city', city);

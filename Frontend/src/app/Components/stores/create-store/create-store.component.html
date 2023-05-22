@@ -27,7 +27,6 @@
           [formGroup]="validationForm"
           (ngSubmit)="
             AddStore(
-              userID.value,
               name.value,
               image.value,
               city.value,
@@ -35,16 +34,6 @@
             )
           "
         >
-          <!-- UserID input -->
-          <div class="form-outline">
-            <label class="form-label" for="form3Example3">UserID</label>
-            <input
-              #userID
-              type="text"
-              class="form-control form-control-lg"
-              placeholder="Enter userID"
-            />
-          </div>
           <!-- <div *ngIf="!NameValid" class="alert alert-danger mb-4">
             Name must be at least 3 characters long.
           </div> -->
