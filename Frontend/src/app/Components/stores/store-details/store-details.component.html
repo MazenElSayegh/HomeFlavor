@@ -28,13 +28,13 @@
         <img src="https://www.talabat.com/assets/images/logo-mastercard.svg" />
         <img src="https://www.talabat.com/assets/images/logo-cash.svg" />
       </div>
-      <button class="updateStoreBtn btn btn-dark">
+      <button class="updateStoreBtn btn btn-dark" *ngIf="checkAdminOrOwner">
         <a [routerLink]="['/stores/update', store._id]">
           <i class="fa-solid fa-pen-to-square" style="color: #ffffff"></i> Edit
           Store
         </a>
       </button>
-      <button class="deleteStoreBtn btn btn-danger">
+      <button class="deleteStoreBtn btn btn-danger" *ngIf="checkAdminOrOwner">
         <a [routerLink]="['/stores/delete', store._id]">
           <i class="fa-solid fa-trash" style="color: #ffffff"></i> Delete Store
         </a>
@@ -63,7 +63,7 @@
       <div class="col-md-12">
         <div class="product-filters">
           <ul>
-            <button class="addItemBtn">
+            <button class="addItemBtn" *ngIf="checkAdminOrOwner">
               <a [routerLink]="['/menu/create']"> Add Menu Item </a>
             </button>
             <li class="active" data-filter="*" (click)="filterProducts('all')">
@@ -98,14 +98,17 @@
           <h5>E&#163; {{ product.price }}</h5>
           <h5>{{ product.product_details }}</h5>
           <div class="btnsContainer">
-            <div class="addToCartBtnContainer">
+            <ng-template class="addToCartBtnContainer" #addToCartDiv>
               <p class="product-price"></p>
               <a class="cart-btn" (click)="addToCart(product)"
                 ><i class="fas fa-shopping-cart"></i> add to cart</a
               >
-            </div>
+            </ng-template>
 
-            <div class="updateDeleteMenuContainer">
+            <div
+              *ngIf="checkAdminOrOwner; else addToCartDiv"
+              class="updateDeleteMenuContainer"
+            >
               <button class="updateMenuBtn btn btn-info">
                 <a [routerLink]="['/menu/update', product._id]">
                   <i
@@ -159,7 +162,13 @@
                 <p class="feedbackDate">
                   {{ feedback.date | date : "longDate" }}
                 </p>
-                <button class="deleteFeedbackBtn btn">
+                <button
+                  class="deleteFeedbackBtn btn"
+                  *ngIf="
+                    user_data.role === 'admin' ||
+                    feedback.user_id._id == user_data.user_id
+                  "
+                >
                   <a [routerLink]="['/feedbacks/delete', feedback._id]">
                     <i
                       class="fa-solid fa-trash fa-2xl"
@@ -193,9 +202,7 @@
             <form
               type="POST"
               id="fruitkha-contact"
-              (ngSubmit)="
-                addFeedback(storeID.value, comment.value)
-              "
+              (ngSubmit)="addFeedback(storeID.value, comment.value)"
               [formGroup]="validationForm"
             >
               <div>
