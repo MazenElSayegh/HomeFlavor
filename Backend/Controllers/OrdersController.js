@@ -96,8 +96,6 @@ let CreateOrder = async (req, res) => {
 // Update Order  -> when status:"pending" only  (ADMIN)  //products or status
 var UpdateOrderByID = async (req, res) => {
   console.log("update order");
-  var token = req.headers.authorization?.split(" ")[1];
-  var loggedInUser = jwt.verify(token, "token");
   if (true) {
     var ID = req.params.id;
     var updatedOrder = req.body;

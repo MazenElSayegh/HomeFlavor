@@ -9,14 +9,9 @@ module.exports = (req, res, next) => {
     return res.status(400).send("Not Logged in");
   }
 
-  var decodePayload = jwt.verify(token, "token");
-  if (
-    decodePayload.role === "seller" ||
-    decodePayload.role === "buyer" ||
-    decodePayload.role === "admin"
-  ) {
+  var loggedUser = jwt.verify(token, "token");
+  if (loggedUser.role === "admin") {
     console.log("msh denied");
-
     next();
   } else {
     console.log("denied");
