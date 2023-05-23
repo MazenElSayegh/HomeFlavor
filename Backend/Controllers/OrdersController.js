@@ -24,7 +24,7 @@ let GetAllOrders = async (req, res) => {
     var store = await StoreModel.findOne({
       user_id: loggedInUser.user_id,
     }).populate("user_id");
-    console.log(store);
+    if(store){
     var orders = await OrderModel.find({ store_id: store._id })
       .populate({
         path: "user_id",
@@ -34,7 +34,7 @@ let GetAllOrders = async (req, res) => {
         path: "store_id",
         model: "stores",
       });
-  } else {
+  }} else {
     var orders = await OrderModel.find({ user_id: loggedInUser.user_id })
       .populate({
         path: "user_id",
