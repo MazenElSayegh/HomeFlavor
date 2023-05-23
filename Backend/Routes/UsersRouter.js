@@ -6,6 +6,9 @@ const multer = require("multer");
 
 const UsersController = require("../Controllers/UsersController");
 const auth = require("../Middlewares/authMW");
+const adminauth = require("../Middlewares/adminMW");
+const sellerauth = require("../Middlewares/sellerMW");
+
 // Adding new User
 
 const storage = multer.diskStorage({
@@ -20,7 +23,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 router.get("/", auth, UsersController.GetAllUsers);
 //Get user By ID
-router.get("/:id", UsersController.GetUserById);
+router.get("/:id", [adminauth, sellerauth], UsersController.GetUserById);
 //Create New user
 router.post("/", upload.single("user_image"), UsersController.AddNewUser);
 
