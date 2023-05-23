@@ -130,7 +130,7 @@
           aria-labelledby="orders-tab"
         >
           <div
-            class="bg-white mb-5 card p-1 order-list shadow-sm"
+            class="bg-white mb-5 card p-1 px-5 order-list shadow-sm"
             *ngFor="let o of orders"
           >
             <div class="gold-members py-4">
@@ -175,7 +175,7 @@
                     {{ o.total_price | number : "1.2-2" }}
                   </p>
                 </div>
-                <div class="float-right d-flex">
+                <div class="float-right d-flex flex-column">
                   <input
                     type="submit"
                     routerLink="/orders/{{ o.id }}"
@@ -183,6 +183,29 @@
                     class="btn btn-outline-warning"
                     style="padding-left: 1rem; padding-right: 1rem"
                   />
+                  <div
+                  class="d-flex flex-row justify-content-around align-items-center"
+                  *ngIf="o.status == 'Pending'"
+                >
+                  <form
+                    (ngSubmit)="
+                      Update(
+                        o._id,
+                        'Cancelled',
+                        o.user_id._id,
+                        o.store_id._id,
+                        o.products
+                      )
+                    "
+                  >
+                    <input
+                      type="submit"
+                      class="btn btn-outline-danger"
+                      style="padding-left: 1rem; padding-right: 1rem"
+                      value="Cancel"
+                    />
+                  </form>
+                </div>
                 </div>
               </div>
             </div>
