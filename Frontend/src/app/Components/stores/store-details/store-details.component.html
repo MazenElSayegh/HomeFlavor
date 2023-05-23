@@ -98,17 +98,17 @@
           <h5>E&#163; {{ product.price }}</h5>
           <h5>{{ product.product_details }}</h5>
           <div class="btnsContainer">
-            <ng-template class="addToCartBtnContainer" #addToCartDiv>
+            <div
+              class="addToCartBtnContainer"
+              *ngIf="user_data.role == 'buyer'"
+            >
               <p class="product-price"></p>
               <a class="cart-btn" (click)="addToCart(product)"
                 ><i class="fas fa-shopping-cart"></i> add to cart</a
               >
-            </ng-template>
+            </div>
 
-            <div
-              *ngIf="checkAdminOrOwner; else addToCartDiv"
-              class="updateDeleteMenuContainer"
-            >
+            <div *ngIf="checkAdminOrOwner" class="updateDeleteMenuContainer">
               <button class="updateMenuBtn btn btn-info">
                 <a [routerLink]="['/menu/update', product._id]">
                   <i

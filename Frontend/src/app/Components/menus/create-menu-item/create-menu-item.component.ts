@@ -8,6 +8,7 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
+import { LocalStorageService } from 'src/app/Services/local-storage.service';
 
 @Component({
   selector: 'app-create-menu-item',
@@ -17,7 +18,14 @@ import {
 export class CreateMenuItemComponent {
   menuImage: any;
   storeIDReceived: any;
-  constructor(private myService: MenuService, private router: Router) {
+  store: any;
+  user_data: any;
+  constructor(
+    private myService: MenuService,
+    private router: Router,
+    private LocalStorageService: LocalStorageService,
+    private storeService: StoresService
+  ) {
     const previousNavigation =
       this.router.getCurrentNavigation()?.previousNavigation;
 
@@ -25,6 +33,21 @@ export class CreateMenuItemComponent {
       previousNavigation?.finalUrl?.root.children['primary'].segments[1].path;
 
     this.storeIDReceived = storeID;
+
+    this.storeService.getStoreByID(this.storeIDReceived).subscribe({
+      next: (data: any) => {
+        this.store = data;
+        console.log(this.store);
+        this.validationForm.patchValue(this.store);
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
+
+    this.LocalStorageService.getData('jwt_token').subscribe((data) => {
+      this.user_data = data;
+    });
   }
   validationForm = new FormGroup({
     productTitle: new FormControl('', [
@@ -91,5 +114,22 @@ export class CreateMenuItemComponent {
   menuImageUpload(event: any) {
     this.menuImage = event.target.files[0];
     console.log(this.menuImage);
+  }
+
+  get checkAdminOrOwner() {
+    let userData = this.user_data;
+    let storeOwner = this.store.user_id._id;
+
+    if (
+      userData.role === 'admin' ||
+      (userData.role == 'seller' && storeOwner == userData.user_id)
+    ) {
+      return true;
+    } else {
+      setTimeout(() => {
+        location.href = '/home';
+      }, 3000);
+      return false;
+    }
   }
 }

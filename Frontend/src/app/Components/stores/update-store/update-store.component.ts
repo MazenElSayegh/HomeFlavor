@@ -7,6 +7,7 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
+import { LocalStorageService } from 'src/app/Services/local-storage.service';
 
 @Component({
   selector: 'app-update-store',
@@ -17,12 +18,18 @@ export class UpdateStoreComponent {
   id: any;
   storeImg: any;
   store: any;
+  user_data: any;
   constructor(
     private myService: StoresService,
     private router: Router,
-    myRoute: ActivatedRoute
+    myRoute: ActivatedRoute,
+    private LocalStorageService: LocalStorageService
   ) {
     this.id = myRoute.snapshot.params['id'];
+
+    this.LocalStorageService.getData('jwt_token').subscribe((data) => {
+      this.user_data = data;
+    });
 
     this.myService.getStoreByID(this.id).subscribe({
       next: (data: any) => {
@@ -83,6 +90,23 @@ export class UpdateStoreComponent {
   storeImgUpload(event: any) {
     this.storeImg = event.target.files[0];
     console.log(this.storeImg);
+  }
+
+  get checkAdminOrOwner() {
+    let userData = this.user_data;
+    let storeOwner = this.store.user_id._id;
+
+    if (
+      userData.role === 'admin' ||
+      (userData.role == 'seller' && storeOwner == userData.user_id)
+    ) {
+      return true;
+    } else {
+      setTimeout(() => {
+        location.href = '/home';
+      }, 3000);
+      return false;
+    }
   }
 }
 

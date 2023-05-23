@@ -31,6 +31,7 @@ export class StoreDetailsComponent {
   ) {
     this.LocalStorageService.getData('jwt_token').subscribe((data) => {
       this.user_data = data;
+      console.log(this.user_data.role);
     });
     this.id = myRoute.snapshot.params['id'];
     this.myService.getStoreByID(this.id).subscribe({
