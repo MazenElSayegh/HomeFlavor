@@ -22,6 +22,7 @@ export class StoreDetailsComponent {
   user_data: any;
   flag:any;
   productInCartStoreID:any;
+  cart:any[]=[]
   localhost = 'http://localhost:7005';
   @Output() addedToCart = new EventEmitter<any>();
   constructor(
@@ -66,19 +67,18 @@ export class StoreDetailsComponent {
       },
     });
 
-    let cart:any[]=[]
       console.log("hiii")
       let storedCart=localStorage.getItem('cart');
       console.log(storedCart)
       if(storedCart){
-        cart=JSON.parse(storedCart)
-        if(cart.length>0)
+        this.cart=JSON.parse(storedCart)
+        if(this.cart.length>0)
         {    this.id = myRoute.snapshot.params['id'];
             console.log(this.id);
 
-            cart.forEach(product => {
+            this.cart.forEach(product => {
             if(product.store_id==this.id){
-              this.flag==true;
+              this.flag=true;
               return;
             }else{
             this.flag=false
@@ -94,6 +94,16 @@ export class StoreDetailsComponent {
   }
 
   addToCart(prod: any) {
+    let storedCart=localStorage.getItem('cart');
+      console.log(storedCart)
+      if(storedCart){
+        this.cart=JSON.parse(storedCart)
+      }
+      if(this.cart.length==0){
+        this.flag=true
+      }
+      console.log(this.flag);
+
     if(this.flag){
               this.product = prod;
               console.log("flaaaag:",this.flag);
