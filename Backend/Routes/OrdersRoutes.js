@@ -8,6 +8,6 @@ let buyerauth = require("../Middlewares/buyerMW");
 Router.get("/", buyerauth, ordersController.GetAllOrders);
 Router.get("/:id", buyerauth, ordersController.GetOrderByID);
 Router.post("/create", buyerauth, ordersController.CreateOrder);
-Router.put("/:id", adminauth, ordersController.UpdateOrderByID);
+Router.put("/:id", sellerauth, ordersController.UpdateOrderByID);
 
 module.exports = Router;
