@@ -17,46 +17,25 @@
     <div id="payment-method">
       <header>Payment Method</header>
       <div class="head">
-        <label>
+        <label class="pay-choice">
           <input
             type="radio"
             name="payment"
             value="cash"
-            (click)="hideInfo()"
+            (click)="showButton()"
           />
           Cash on Delivery
         </label>
-        <label>
+        <label class="pay-choice">
           <input
             type="radio"
             name="payment"
             value="card"
-            (click)="showInfo()"
+            (click)="hideButton()"
+            (click)="makePayment(totalCost * 1.1)"
           />
           Credit Card
         </label>
-      </div>
-      <div class="cardContainer hideCardInfo">
-        <section>
-          <label>Name on Card</label>
-          <input placeholder="John Doe" />
-        </section>
-        <section>
-          <label>Credit card number</label>
-          <input placeholder="1111-2222-3333-4444" type="text" />
-        </section>
-        <section>
-          <label>Expiration Date</label>
-          <input placeholder="September" type="month" />
-        </section>
-        <section style="display: flex">
-          <section
-            style="display: flex; flex-direction: column; margin-top: 0px"
-          >
-            <label>CCV</label>
-            <input class="half" type="text" placeholder="352" />
-          </section>
-        </section>
       </div>
     </div>
     <div id="receipt">
@@ -85,26 +64,52 @@
         <p>Total</p>
         <p>${{ totalCost * 1.1 | number : "1.1-1" }}</p>
       </div>
-      <input type="submit" (click)="AddOrder()" value="Confirm Order" data-bs-toggle="modal"
-      data-bs-target="#exampleModal" />
-      <div class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <input
+        class="confirmButton hideButton"
+        type="submit"
+        (click)="AddOrder()"
+        value="Confirm Order"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      />
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog modal-notify modal-danger" role="alert">
           <div class="modal-content">
             <div class="modal-header d-flex flex-column justify-content-center">
-              <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">Alert</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">
+                Alert
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
-            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+            <div
+              class="modal-body d-flex flex-column justify-content-center align-items-center"
+            >
               <i class="fa-solid fa-check fa-4x"></i>
-             <div>Order Confirmed</div>
+              <div>Order Confirmed</div>
             </div>
             <div class="modal-footer d-flex flex-column justify-content-center">
               <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-              <input type="submit" (click)="reload()" value="OK" class="btn okbtn waves-effect"/>
+              <input
+                type="submit"
+                (click)="reload()"
+                value="OK"
+                class="btn okbtn waves-effect"
+              />
             </div>
           </div>
         </div>
-
+      </div>
     </div>
   </div>
 </div>
