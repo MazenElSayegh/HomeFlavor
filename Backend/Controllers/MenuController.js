@@ -32,6 +32,9 @@ let getMenuByID = async (req, res) => {
 
 //creatr menu item
 let CreateMenuItem = async (req, res) => {
+  var token = req.headers.authorization?.split(" ")[1];
+  var loggedInUser = jwt.verify(token, "token");
+  if (loggedInUser.role == "admin" ||loggedInUser.role == "seller") {
   var newItem = {
     store_id: req.body.store_id,
     product_title: req.body.product_title,
@@ -45,17 +48,26 @@ let CreateMenuItem = async (req, res) => {
       let item = new MenusModel(newItem);
       await item.save();
       res.status(201).json(newItem);
+      console.log("you have permission")
     } catch (err) {
       res.status(301).send(err.message);
     }
   } else {
     res.status(301).send(validate.errors);
   }
+}
+else {
+  console.log("you not have permission")
+  res.status(301).send("you not have permission");
+}
 };
 
 //updateitem
 
 var updateItemByID = async (req, res) => {
+  var token = req.headers.authorization?.split(" ")[1];
+  var loggedInUser = jwt.verify(token, "token");
+  if (loggedInUser.role == "admin" ||loggedInUser.role == "seller") {
   console.log(req.body);
   var ID = req.params.id;
   var updatedItem = {
@@ -71,20 +83,34 @@ var updateItemByID = async (req, res) => {
     try {
       await MenusModel.updateOne({ _id: ID }, updatedItem);
       res.json(updatedItem);
+      console.log("you have permission")
     } catch (err) {
       res.status(301).send(err.message);
     }
   } else {
     res.status(301).send(validate.errors);
   }
+}
+else {
+  console.log("you not have permission")
+  res.status(301).send("you not have permission");
+}
 };
 
 //delete item from menu
 var deleteMenuItemByID = async (req, res) => {
+  var token = req.headers.authorization?.split(" ")[1];
+  var loggedInUser = jwt.verify(token, "token");
+  if (loggedInUser.role == "admin" ||loggedInUser.role == "seller") {
   var ID = req.params.id_item;
   var itemToDelete = await MenusModel.find({ _id: ID });
   await MenusModel.deleteOne({ _id: ID });
+  console.log("you have permission")
   res.json(itemToDelete || "Not Found");
+  }
+  else{
+    console.log("you not have permission")
+  }
 };
 
 //Export to route
