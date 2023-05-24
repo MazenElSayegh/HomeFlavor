@@ -64,10 +64,7 @@ export class AppComponent {
             flag=1;
             ++product.quantity
           }
-          if(product.store_id!=data.store_id){
-            alert("Sorry,You cant add two products from different stores")
-            flag=1;
-          }
+
         });
         if(flag==0){
           myData.push(data);
