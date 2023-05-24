@@ -107,6 +107,15 @@
     <div class="row">
       <div class="col-lg-8 offset-lg-2 text-center">
         <div class="section-title">
+          <div *ngIf="storeFlag == 0" style="margin-bottom: 100px; margin-top: 0px;">
+            <h3>
+              Don't have a store yet?
+              <span class="orange-text"
+                >Then go ahead and join our Family.</span
+              >
+            </h3>
+            <a href="stores/create"><input type="submit" value="From Here"/></a>
+          </div>
           <h3><span class="orange-text">Our</span> Stores</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid,
@@ -129,11 +138,20 @@
             <span class="mx-5"> {{ store.about }}</span>
           </p>
           <a
+            *ngIf="user_data.role !== 'buyer'; else buyerBlock"
             [href]="'/stores/' + store._id"
             class="cart-btn"
             style="text-decoration: none"
-            ><i class="fas fa-shopping-cart"></i>Order now</a
+            ><i class="fas fa-shopping-cart"></i>Check it out</a
           >
+          <ng-template #buyerBlock>
+            <a
+              [href]="'/stores/' + store._id"
+              class="cart-btn"
+              style="text-decoration: none"
+              ><i class="fas fa-shopping-cart"></i>Order now</a
+            >
+          </ng-template>
           <!-- <a routerLink="/stores/{{store._id}}" class="cart-btn" type="submit" (click)="onLinkClick($event)"
             ><i class="fas fa-shopping-cart"></i>Go to store by ROUTER</a> -->
         </div>
@@ -201,7 +219,7 @@
   class="carousel slide m-5"
   data-bs-ride="carousel"
 >
-  <div class="carousel-inner">
+  <div class="carousel-inner" *ngIf="stores">
     <div class="carousel-item active">
       <img
         src="assets/img/avaters/avatar3.png"
@@ -305,7 +323,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="stores">
       <div class="col-lg-4 col-md-6">
         <div class="single-latest-news">
           <a href="single-news.html"

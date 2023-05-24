@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 router.get("/", auth, UsersController.GetAllUsers);
 //Get user By ID
-router.get("/:id", [adminauth, sellerauth], UsersController.GetUserById);
+router.get("/:id",  UsersController.GetUserById);
 //Create New user
 router.post("/", upload.single("user_image"), UsersController.AddNewUser);
 

@@ -64,7 +64,6 @@ export class AppComponent {
             flag=1;
             ++product.quantity
           }
-
         });
         if(flag==0){
           myData.push(data);
