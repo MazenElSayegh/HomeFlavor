@@ -47,8 +47,11 @@ export class AllordersComponent {
   Update(id:any,status:any,user_id:any,store_id:any,products:any){
     let updatedOrder = {status,user_id,store_id,products};
     this.ordersService.UpdateOrderByID(id,updatedOrder).subscribe();
-    alert("updated successfully");
-    location.href='/orders'
+    // alert("updated successfully");
+    // location.href='/orders'
+  }
+  reload(){
+    window.location.reload();
   }
 
   // ShowOrderStatusIcon() {
