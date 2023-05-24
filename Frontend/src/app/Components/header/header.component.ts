@@ -13,6 +13,7 @@ export class HeaderComponent {
   user_image: any;
   count: any;
   orders: any[] = [];
+  storeID: any;
   constructor(
     private localStorageService: LocalStorageService,
     private myService: BackendService,
@@ -23,6 +24,8 @@ export class HeaderComponent {
       next: (data: any) => {
         this.orders = data;
         this.orders.forEach((order) => {
+          this.storeID = order.store_id._id;
+          console.log('storeiddd', this.storeID);
           if (order.status == 'Pending') {
             this.count = this.count + 1;
           }

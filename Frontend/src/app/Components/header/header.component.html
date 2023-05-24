@@ -13,43 +13,19 @@
 
           <!-- menu start -->
           <nav class="main-menu">
-            <ul>
-              <li class="current-list-item">
+            <ul class="headLinks">
+              <li>
                 <a routerLinkActive="active" href="/home">Home</a>
               </li>
-              <li>
-                <a href="/stores">Stores</a>
-                <ul class="sub-menu">
-                  <li><a href="shop.html">Shop</a></li>
-                  <li><a href="checkout.html">Check Out</a></li>
-                  <li><a href="single-product.html">Single Product</a></li>
-                  <li><a href="cart.html">Cart</a></li>
-                </ul>
+              <li *ngIf="user_data && user_data.role == 'seller' && storeID">
+                <a href="/stores/{{ storeID }}">My Store</a>
               </li>
               <li><a href="#videoSec">About</a></li>
               <li>
-                <a href="#">Pages</a>
-                <ul class="sub-menu">
-                  <li><a href="404.html">404 page</a></li>
-                  <li><a href="#videoSec">About</a></li>
-                  <li><a href="cart.html">Cart</a></li>
-                  <li><a href="checkout.html">Check Out</a></li>
-                  <li><a href="contact.html">Contact</a></li>
-                  <li><a href="#newsSec">News</a></li>
-                  <li><a href="#stores">Shop</a></li>
-                </ul>
+                <a href="/orders">Orders</a>
               </li>
 
-              <li><a href="contact.html">Contact</a></li>
-              <ng-template #falseBlock>
-                <li>
-                  <a href="#newsSec">Account</a>
-                  <ul class="sub-menu">
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Sign-up</a></li>
-                  </ul>
-                </li>
-              </ng-template>
+              <li><a href="#stores">Stores</a></li>
 
               <li *ngIf="user_data; else falseBlock">
                 <a href="/profile/{{ user_data._id }}">{{
@@ -74,6 +50,15 @@
                   "
                 />
               </li>
+              <ng-template #falseBlock>
+                <li>
+                  <a href="#newsSec">Account</a>
+                  <ul class="sub-menu">
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Sign-up</a></li>
+                  </ul>
+                </li>
+              </ng-template>
 
               <li>
                 <div
@@ -97,9 +82,12 @@
                   "
                 >
                   <a href="/orders" class="notifications-bell"
-                    ><i id="cartIcon" class="fa-solid fa-bell fa-shake">{{
-                      count
-                    }}</i
+                    ><i id="cartIcon" class="fa-solid fa-bell fa-shake"
+                      ><span
+                        id="ordersCount"
+                        class="position-absolute top-0 start-100 translate-middle"
+                        >{{ count }}</span
+                      ></i
                     >‏</a
                   >
                 </div>
