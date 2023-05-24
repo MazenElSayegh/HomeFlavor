@@ -17,8 +17,8 @@
               <li>
                 <a routerLinkActive="active" href="/home">Home</a>
               </li>
-              <li *ngIf="user_data && user_data.role=='seller' && storeID">
-                <a href="/stores/{{storeID}}">My Store</a>
+              <li *ngIf="user_data && user_data.role == 'seller' && storeID">
+                <a href="/stores/{{ storeID }}">My Store</a>
               </li>
               <li><a href="#videoSec">About</a></li>
               <li>
@@ -27,13 +27,13 @@
 
               <li><a href="#stores">Stores</a></li>
 
-              <li *ngIf="user_data; else falseBlock" id="userData">
-                <a href="/profile/{{ user_data.user_id }}">{{
+              <li *ngIf="user_data; else falseBlock">
+                <a href="/profile/{{ user_data._id }}">{{
                   user_data.user_name
                 }}</a>
                 <ul class="sub-menu">
                   <li>
-                    <a href="/profile/{{ user_data.user_id }}">Profile</a>
+                    <a href="/profile/{{ user_data._id }}">Profile</a>
                   </li>
                   <li><a (click)="logout()">Logout</a></li>
                 </ul>
@@ -83,7 +83,8 @@
                 >
                   <a href="/orders" class="notifications-bell"
                     ><i id="cartIcon" class="fa-solid fa-bell fa-shake"
-                      ><span id="ordersCount"
+                      ><span
+                        id="ordersCount"
                         class="position-absolute top-0 start-100 translate-middle"
                         >{{ count }}</span
                       ></i
