@@ -31,7 +31,6 @@ export class StoreDetailsComponent {
     public feedbackService: FeedbacksService,
     private LocalStorageService: LocalStorageService
   ) {
-    this.flag=true;
     this.LocalStorageService.getData('jwt_token').subscribe((data) => {
       this.user_data = data;
       console.log(this.user_data.role);
@@ -66,51 +65,41 @@ export class StoreDetailsComponent {
         console.log(err);
       },
     });
-  }
 
-  addToCart(prod: any) {
-      let cart:any[]=[]
+    let cart:any[]=[]
       console.log("hiii")
       let storedCart=localStorage.getItem('cart');
       console.log(storedCart)
       if(storedCart){
         cart=JSON.parse(storedCart)
         if(cart.length>0)
-        {
+        {    this.id = myRoute.snapshot.params['id'];
+            console.log(this.id);
+
             cart.forEach(product => {
-            if(product.store_id==prod.store_id){
-              this.product = prod;
-              console.log(this.product);
-              this.addedToCart.emit(this.product);
+            if(product.store_id==this.id){
+              this.flag==true;
               return;
             }else{
-            console.log("hii")
             this.flag=false
             return;
             }
           })
-        }else if(cart.length==0){
-              this.product = prod;
-              console.log(this.product);
-              this.addedToCart.emit(this.product);
-              return;
-
         }else{
-            console.log("hii")
-            this.flag=false
-            return;
+          this.flag=true;
         }
       }else{
-              this.product = prod;
-              console.log(this.product);
-              this.addedToCart.emit(this.product);
-              return;
+        this.flag=true;
       }
+  }
 
-
-
-
-      };
+  addToCart(prod: any) {
+    if(this.flag){
+              this.product = prod;
+              console.log("flaaaag:",this.flag);
+              this.addedToCart.emit(this.product);
+    }
+  };
 
   showFeedback() {
     let productSection = document.querySelector('.product-section');
