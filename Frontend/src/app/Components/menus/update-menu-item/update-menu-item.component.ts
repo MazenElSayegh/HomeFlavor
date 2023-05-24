@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuService } from 'src/app/Services/menu.service';
+import { StoresService } from 'src/app/Services/stores.service';
 import {
   FormControl,
   FormGroup,
   Validators,
   AbstractControl,
 } from '@angular/forms';
+import { LocalStorageService } from 'src/app/Services/local-storage.service';
 
 @Component({
   selector: 'app-update-menu-item',
@@ -18,12 +20,24 @@ export class UpdateMenuItemComponent {
   menuImage: any;
   id: any;
   itemDetails: any;
+  store: any;
+  user_data: any;
+  storeIDReceived: any;
   constructor(
     private myService: MenuService,
     private router: Router,
-    myRoute: ActivatedRoute
+    myRoute: ActivatedRoute,
+    private storeService: StoresService,
+    private LocalStorageService: LocalStorageService
   ) {
     this.id = myRoute.snapshot.params['id'];
+    const previousNavigation =
+      this.router.getCurrentNavigation()?.previousNavigation;
+
+    const storeID =
+      previousNavigation?.finalUrl?.root.children['primary'].segments[1].path;
+
+    this.storeIDReceived = storeID;
 
     this.myService.getItemByID(this.id).subscribe({
       next: (data: any) => {
@@ -48,6 +62,21 @@ export class UpdateMenuItemComponent {
       error: (err) => {
         console.log(err);
       },
+    });
+
+    this.storeService.getStoreByID(this.storeIDReceived).subscribe({
+      next: (data: any) => {
+        this.store = data;
+        console.log(this.store);
+        this.validationForm.patchValue(this.store);
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
+
+    this.LocalStorageService.getData('jwt_token').subscribe((data) => {
+      this.user_data = data;
     });
   }
   //  this.validationForm = new FormGroup({
@@ -107,5 +136,22 @@ export class UpdateMenuItemComponent {
   menuImageUpload(event: any) {
     this.menuImage = event.target.files[0];
     console.log(this.menuImage);
+  }
+
+  get checkAdminOrOwner() {
+    let userData = this.user_data;
+    let storeOwner = this.store.user_id._id;
+
+    if (
+      userData.role === 'admin' ||
+      (userData.role == 'seller' && storeOwner == userData.user_id)
+    ) {
+      return true;
+    } else {
+      setTimeout(() => {
+        location.href = '/home';
+      }, 3000);
+      return false;
+    }
   }
 }

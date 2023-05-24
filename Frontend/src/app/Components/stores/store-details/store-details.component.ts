@@ -19,7 +19,7 @@ export class StoreDetailsComponent {
   feedbacks: any;
   rating: number = 0;
   image_path: any;
-  user_data:any;
+  user_data: any;
   localhost = 'http://localhost:7005';
   @Output() addedToCart = new EventEmitter<any>();
   constructor(
@@ -27,10 +27,11 @@ export class StoreDetailsComponent {
     public myService: StoresService,
     public menuService: MenuService,
     public feedbackService: FeedbacksService,
-    private LocalStorageService:LocalStorageService
+    private LocalStorageService: LocalStorageService
   ) {
     this.LocalStorageService.getData('jwt_token').subscribe((data) => {
       this.user_data = data;
+      console.log(this.user_data.role);
     });
     this.id = myRoute.snapshot.params['id'];
     this.myService.getStoreByID(this.id).subscribe({
@@ -156,5 +157,19 @@ export class StoreDetailsComponent {
 
   get validComment() {
     return this.validationForm.controls['comment'].valid;
+  }
+
+  get checkAdminOrOwner() {
+    let userData = this.user_data;
+    let storeOwner = this.store.user_id._id;
+
+    if (
+      userData.role === 'admin' ||
+      (userData.role == 'seller' && storeOwner == userData.user_id)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
