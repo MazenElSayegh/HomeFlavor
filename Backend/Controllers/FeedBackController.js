@@ -1,8 +1,9 @@
 // Requires
 const validate = require("../Utils/FeedBackValidation");
 let FeedBackModel = require("../Models/FeedBacksModel");
+let jwt = require("jsonwebtoken");
 
-// Get all menu
+// Get all feedback
 let getAllFeedBack = async (req, res) => {
   let id = req.params.id_store;
   let feedbacks = await FeedBackModel.find({store_id:id}).populate('user_id');
@@ -10,7 +11,7 @@ let getAllFeedBack = async (req, res) => {
   res.status(201).json(feedbacks);
 };
 
-//creatr menu item
+//creatr feedback
 let CreateFeedBack = async (req, res) => {
   let newFeedback = req.body;
   if (validate(newFeedback)) {
@@ -29,7 +30,7 @@ let CreateFeedBack = async (req, res) => {
 
 
 
-//delete item from menu
+//delete feedback
     var deleteFeedBackByID = async (req, res) => {
     var ID = req.params.id_feedback;
     var feedbackToDelete = await FeedBackModel.find({ _id: ID });

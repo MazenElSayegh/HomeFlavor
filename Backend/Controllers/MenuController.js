@@ -1,6 +1,7 @@
 // Requires
 const validate = require("../Utils/MenuValidation");
 let MenusModel = require("../Models/MenusModel");
+let jwt = require("jsonwebtoken");
 
 // Get all menu
 let getAllMenu = async (req, res) => {
