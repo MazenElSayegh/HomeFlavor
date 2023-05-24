@@ -21,13 +21,6 @@
   padding: 3px !important;
   border-radius: 70%;
 }
-/* #cartIcon:hover{
-  color: #f28123;
-}
-#cartIcon:hover #ordersCount, #ordersCount:hover{
-  color:#f28123 !important;
-  background-color: white !important;
-} */
 .notifications-bell:hover{
   #ordersCount{
     color:white !important;
@@ -35,4 +28,15 @@
   #cartIcon{
     color: #f28123;
   }
+}
+.headLinks li a{
+  text-decoration: none;
+  font-size: 17px;
+  margin-inline: 1vw;
+  font-family: "Poppins", sans-serif;
+
+}
+.main-menu{
+position: relative;
+right: 4vw;
 }

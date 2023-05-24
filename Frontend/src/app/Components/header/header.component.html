@@ -13,8 +13,8 @@
 
           <!-- menu start -->
           <nav class="main-menu">
-            <ul>
-              <li class="">
+            <ul class="headLinks">
+              <li>
                 <a routerLinkActive="active" href="/home">Home</a>
               </li>
               <li *ngIf="user_data.role=='seller' && storeID">
@@ -26,15 +26,6 @@
               </li>
 
               <li><a href="#stores">Stores</a></li>
-              <ng-template #falseBlock>
-                <li>
-                  <a href="#newsSec">Account</a>
-                  <ul class="sub-menu">
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Sign-up</a></li>
-                  </ul>
-                </li>
-              </ng-template>
 
               <li *ngIf="user_data; else falseBlock">
                 <a href="/profile/{{ user_data.user_id }}">{{
@@ -59,6 +50,15 @@
                   "
                 />
               </li>
+              <ng-template #falseBlock>
+                <li>
+                  <a href="#newsSec">Account</a>
+                  <ul class="sub-menu">
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Sign-up</a></li>
+                  </ul>
+                </li>
+              </ng-template>
 
               <li>
                 <div
