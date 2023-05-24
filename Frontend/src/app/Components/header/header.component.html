@@ -27,7 +27,7 @@
 
               <li><a href="#stores">Stores</a></li>
 
-              <li *ngIf="user_data; else falseBlock">
+              <li *ngIf="user_data; else falseBlock" id="userData">
                 <a href="/profile/{{ user_data.user_id }}">{{
                   user_data.user_name
                 }}</a>
