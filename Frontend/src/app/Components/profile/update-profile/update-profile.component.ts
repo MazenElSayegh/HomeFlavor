@@ -16,10 +16,10 @@ export class UpdateProfileComponent implements OnInit {
 
   is_valid_user_image = true;
   is_user_name_valid = true;
-  is_user_email_valid = true;
+  // is_user_email_valid = true;
   is_user_password_valid = true;
-  is_user_gender_valid = true;
-  is_user_role_valid = true;
+  // is_user_gender_valid = true;
+  // is_user_role_valid = true;
   is_user_address_valid = true;
   is_user_mobile_valid = true;
 
@@ -77,13 +77,12 @@ export class UpdateProfileComponent implements OnInit {
             Validators.required,
             Validators.minLength(3),
           ]),
-          email: new FormControl(null, [Validators.required, Validators.email]),
+
           password: new FormControl(null, [
             Validators.required,
             Validators.minLength(8),
           ]),
-          gender: new FormControl(null, [Validators.required]),
-          role: new FormControl(null, [Validators.required]),
+
           mobile: new FormControl(null, [
             Validators.required,
             Validators.minLength(11),
@@ -102,10 +101,9 @@ export class UpdateProfileComponent implements OnInit {
 
   update(
     user_name: any,
-    email: any,
+
     password: any,
-    gender: any,
-    role: any,
+
     address: any,
     mobile: any
   ) {
@@ -116,10 +114,10 @@ export class UpdateProfileComponent implements OnInit {
     if (this.validationForm.valid && this.is_valid_user_image) {
       formData.append('user_image', this.user_image);
       formData.append('user_name', user_name);
-      formData.append('email', email);
+      formData.append('email', this.user.email);
       formData.append('password', password);
-      formData.append('gender', gender);
-      formData.append('role', role);
+      formData.append('gender', this.user.gender);
+      formData.append('role', this.user.role);
       formData.append('address', address);
       formData.append('mobile', mobile);
 
@@ -136,11 +134,10 @@ export class UpdateProfileComponent implements OnInit {
       location.href = '/';
     } else {
       this.is_user_name_valid = this.validationForm.controls['user_name'].valid;
-      this.is_user_email_valid = this.validationForm.controls['email'].valid;
+
       this.is_user_password_valid =
         this.validationForm.controls['password'].valid;
-      this.is_user_gender_valid = this.validationForm.controls['gender'].valid;
-      this.is_user_role_valid = this.validationForm.controls['role'].valid;
+
       this.is_user_address_valid =
         this.validationForm.controls['address'].valid;
       this.is_user_mobile_valid = this.validationForm.controls['mobile'].valid;

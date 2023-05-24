@@ -52,12 +52,12 @@
               </ng-template>
 
               <li *ngIf="user_data; else falseBlock">
-                <a href="/profile/{{ user_data.user_id }}">{{
+                <a href="/profile/{{ user_data._id }}">{{
                   user_data.user_name
                 }}</a>
                 <ul class="sub-menu">
                   <li>
-                    <a href="/profile/{{ user_data.user_id }}">Profile</a>
+                    <a href="/profile/{{ user_data._id }}">Profile</a>
                   </li>
                   <li><a (click)="logout()">Logout</a></li>
                 </ul>
@@ -159,7 +159,9 @@
                           alt="product-image"
                         />
                       </div>
-                      <div class="d-flex flex-column justify-content-center align-items-center">
+                      <div
+                        class="d-flex flex-column justify-content-center align-items-center"
+                      >
                         <p class="lead fw-normal mb-2">
                           {{ product.product_title }}
                         </p>
@@ -169,7 +171,9 @@
                           }}</span>
                         </p>
                       </div>
-                      <div class="d-flex justify-content-center align-items-center">
+                      <div
+                        class="d-flex justify-content-center align-items-center"
+                      >
                         <button
                           class="btn btn-link px-2"
                           (click)="decrementQuantity(product)"
@@ -183,7 +187,7 @@
                           name="quantity"
                           value="{{ product.quantity }}"
                           class="form-control form-control-sm"
-                          style="width: 30%; text-align: center;"
+                          style="width: 30%; text-align: center"
                         />
 
                         <button
@@ -194,7 +198,9 @@
                         </button>
                       </div>
                       <div class="offset-lg-1 mt-3">
-                        <h5 class="m-auto ms-5">Price = ${{ product.price * product.quantity}}</h5>
+                        <h5 class="m-auto ms-5">
+                          Price = ${{ product.price * product.quantity }}
+                        </h5>
                       </div>
                       <div class="text-end">
                         <a class="text-danger" (click)="removeProduct(product)"

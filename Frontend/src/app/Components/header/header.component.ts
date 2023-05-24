@@ -12,26 +12,26 @@ export class HeaderComponent {
   user_data: any;
   user_image: any;
   count: any;
-  orders:any[]=[];
+  orders: any[] = [];
   constructor(
     private localStorageService: LocalStorageService,
     private myService: BackendService,
-    private ordersService:OrdersService
+    private ordersService: OrdersService
   ) {
-    this.count=0;
-    ordersService.GetAllOrders().subscribe(
-      {
-        next: (data:any)=>{
-         this.orders=data
-         this.orders.forEach(order => {
-          if(order.status=='Pending'){
-            this.count=this.count+1;
+    this.count = 0;
+    ordersService.GetAllOrders().subscribe({
+      next: (data: any) => {
+        this.orders = data;
+        this.orders.forEach((order) => {
+          if (order.status == 'Pending') {
+            this.count = this.count + 1;
           }
-         });
-        },
-        error: (err)=>{console.log(err);
-        }
-      })
+        });
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   localhost = 'http://localhost:7005';
@@ -48,7 +48,6 @@ export class HeaderComponent {
       });
     }
     console.log(this.addedProducts);
-
   }
 
   incrementQuantity(product: any) {
@@ -91,7 +90,29 @@ export class HeaderComponent {
     this.localStorageService.getData('jwt_token').subscribe((data) => {
       console.log(data);
       this.user_data = data;
-      this.user_image = `http://localhost:7005${this.user_data.user_image}`;
+      // this.user_image = `http://localhost:7005${this.user_data.user_image}`;
+
+      if (this.user_data) {
+        this.myService.getUserByID(this.user_data.user_id).subscribe({
+          next: (data) => {
+            console.log(data);
+
+            this.user_data = data;
+            this.user_image = `http://localhost:7005${this.user_data.user_image}`;
+            console.log(data);
+            console.log(this.user_image);
+            // localStorage.setItem('omar', 'hi');
+
+            // const myData = localStorage.getItem('omar');
+            // const myData2 = localStorage.getItem('jwt_token');
+            // console.log(myData);
+            // console.log(myData2);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+      }
     });
     console.log(this.user_data);
   }

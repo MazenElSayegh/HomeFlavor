@@ -16,9 +16,8 @@ var loginUser = async (req, res) => {
     let Token = jwt.sign(
       {
         role: checkUser.role,
-        user_name: checkUser.user_name,
+
         user_id: checkUser._id,
-        user_image: checkUser.user_image,
       },
       "token"
     );
