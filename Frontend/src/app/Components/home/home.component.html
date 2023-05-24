@@ -137,7 +137,7 @@
             <span class="mx-5"> {{ store.about }}</span>
           </p>
           <a
-            *ngIf="user_data.role !== 'buyer'; else buyerBlock"
+            *ngIf="user_data && user_data.role !== 'buyer'; else buyerBlock"
             [href]="'/stores/' + store._id"
             class="cart-btn"
             style="text-decoration: none"
