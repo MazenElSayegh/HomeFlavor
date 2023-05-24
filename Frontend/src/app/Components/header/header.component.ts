@@ -22,12 +22,9 @@ export class HeaderComponent {
     ordersService.GetAllOrders().subscribe(
       {
         next: (data:any)=>{
-         console.log(data)
          this.orders=data
          this.orders.forEach(order => {
-          console.log(order)
           if(order.status=='Pending'){
-            console.log("gowa el if")
             this.count=this.count+1;
           }
          });
@@ -50,6 +47,8 @@ export class HeaderComponent {
         }
       });
     }
+    console.log(this.addedProducts);
+
   }
 
   incrementQuantity(product: any) {
