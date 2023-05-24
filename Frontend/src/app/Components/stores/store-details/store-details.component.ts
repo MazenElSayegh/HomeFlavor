@@ -98,18 +98,35 @@ export class StoreDetailsComponent {
       console.log(storedCart)
       if(storedCart){
         this.cart=JSON.parse(storedCart)
-      }
-      if(this.cart.length==0){
-        this.flag=true
-      }
-      console.log(this.flag);
+        if(this.cart.length>0)
+        {
+            console.log(this.id);
 
+            this.cart.forEach(product => {
+            if(product.store_id==this.id){
+              this.flag=true;
+              return;
+            }else{
+            this.flag=false
+            return;
+            }
+          })
+        }else{
+          this.flag=true;
+        }
+      }else{
+        this.flag=true;
+      }
     if(this.flag){
               this.product = prod;
               console.log("flaaaag:",this.flag);
               this.addedToCart.emit(this.product);
     }
+    console.log(this.flag)
   };
+  cancelModal(){
+    this.flag=true;
+  }
 
   showFeedback() {
     let productSection = document.querySelector('.product-section');

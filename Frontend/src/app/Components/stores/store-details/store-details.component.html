@@ -108,7 +108,7 @@
               >
 
 
-            <div *ngIf="flag==false"else #addedSuccessfully class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-notify modal-danger" role="alert">
                 <div class="modal-content">
                   <div class="modal-header d-flex flex-column justify-content-center">
@@ -116,8 +116,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body  d-flex flex-column justify-content-center">
-                    <i class="fas fa-times fa-4x animated rotateIn"></i>
-                   <div>Sorry,You cant add two products from different stores</div>
+                    <i *ngIf="flag==false" class="fas fa-times fa-4x animated rotateIn"></i>
+                    <i *ngIf="flag==true" class="fa-solid fa-check fa-4x animated"></i>
+                   <div *ngIf="flag==false">Sorry,You cant add two products from different stores</div>
+                   <div *ngIf="flag==true">Added Succesfully</div>
                   </div>
                   <div class="modal-footer d-flex flex-column justify-content-center">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
@@ -127,7 +129,7 @@
               </div>
           </div>
 
-          <div id="addedSuccessfully" class="modal fade"   tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div id="addedSuccessfully" class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-notify modal-danger" role="alert">
               <div class="modal-content">
                 <div class="modal-header d-flex flex-column justify-content-center">
