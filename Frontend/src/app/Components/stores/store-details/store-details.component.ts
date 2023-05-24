@@ -20,6 +20,8 @@ export class StoreDetailsComponent {
   rating: number = 0;
   image_path: any;
   user_data: any;
+  flag:any;
+  productInCartStoreID:any;
   localhost = 'http://localhost:7005';
   @Output() addedToCart = new EventEmitter<any>();
   constructor(
@@ -29,6 +31,7 @@ export class StoreDetailsComponent {
     public feedbackService: FeedbacksService,
     private LocalStorageService: LocalStorageService
   ) {
+    this.flag=true;
     this.LocalStorageService.getData('jwt_token').subscribe((data) => {
       this.user_data = data;
       console.log(this.user_data.role);
@@ -66,11 +69,48 @@ export class StoreDetailsComponent {
   }
 
   addToCart(prod: any) {
-    this.product = prod;
-    console.log(this.product);
-    this.addedToCart.emit(this.product);
-    console.log('etba3t');
-  }
+      let cart:any[]=[]
+      console.log("hiii")
+      let storedCart=localStorage.getItem('cart');
+      console.log(storedCart)
+      if(storedCart){
+        cart=JSON.parse(storedCart)
+        if(cart.length>0)
+        {
+            cart.forEach(product => {
+            if(product.store_id==prod.store_id){
+              this.product = prod;
+              console.log(this.product);
+              this.addedToCart.emit(this.product);
+              return;
+            }else{
+            console.log("hii")
+            this.flag=false
+            return;
+            }
+          })
+        }else if(cart.length==0){
+              this.product = prod;
+              console.log(this.product);
+              this.addedToCart.emit(this.product);
+              return;
+
+        }else{
+            console.log("hii")
+            this.flag=false
+            return;
+        }
+      }else{
+              this.product = prod;
+              console.log(this.product);
+              this.addedToCart.emit(this.product);
+              return;
+      }
+
+
+
+
+      };
 
   showFeedback() {
     let productSection = document.querySelector('.product-section');
