@@ -221,7 +221,7 @@
   <div class="carousel-inner" *ngIf="stores">
     <div class="carousel-item active">
       <img
-        src="assets/img/avaters/avatar3.png"
+      [src]="localhost + stores[0].image"
         class="d-block justify-content-center w-25"
         alt="..."
       />
