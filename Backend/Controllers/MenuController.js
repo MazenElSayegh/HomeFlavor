@@ -1,6 +1,7 @@
 // Requires
 const validate = require("../Utils/MenuValidation");
 let MenusModel = require("../Models/MenusModel");
+let StoreModel = require("../Models/StoresModel");
 let jwt = require("jsonwebtoken");
 
 // Get all menu
@@ -32,9 +33,11 @@ let getMenuByID = async (req, res) => {
 
 //creatr menu item
 let CreateMenuItem = async (req, res) => {
+  var store = await StoreModel.findById({ _id: req.body.store_id });
+  var store_owner = store.user_id;
   var token = req.headers.authorization?.split(" ")[1];
   var loggedInUser = jwt.verify(token, "token");
-  if (loggedInUser.role == "admin" ||loggedInUser.role == "seller") {
+  if (loggedInUser.role == "admin" ||(loggedInUser.role == "seller" &&loggedInUser.user_id==store_owner)) {
   var newItem = {
     store_id: req.body.store_id,
     product_title: req.body.product_title,
@@ -65,9 +68,12 @@ else {
 //updateitem
 
 var updateItemByID = async (req, res) => {
+  var store = await StoreModel.findById({ _id: req.body.store_id });
+  console.log( req.body.store_id);
+  var store_owner = store.user_id._id;
   var token = req.headers.authorization?.split(" ")[1];
   var loggedInUser = jwt.verify(token, "token");
-  if (loggedInUser.role == "admin" ||loggedInUser.role == "seller") {
+  if (loggedInUser.role == "admin" ||(loggedInUser.role == "seller" &&loggedInUser.user_id==store_owner)) {
   console.log(req.body);
   var ID = req.params.id;
   var updatedItem = {
@@ -99,11 +105,14 @@ else {
 
 //delete item from menu
 var deleteMenuItemByID = async (req, res) => {
-  var token = req.headers.authorization?.split(" ")[1];
-  var loggedInUser = jwt.verify(token, "token");
-  if (loggedInUser.role == "admin" ||loggedInUser.role == "seller") {
   var ID = req.params.id_item;
   var itemToDelete = await MenusModel.find({ _id: ID });
+  console.log(itemToDelete[0].store_id._id);
+  var store = await StoreModel.findById({ _id:itemToDelete[0].store_id._id});
+  var store_owner = store.user_id._id;
+  var token = req.headers.authorization?.split(" ")[1];
+  var loggedInUser = jwt.verify(token, "token");
+  if (loggedInUser.role == "admin" ||(loggedInUser.role == "seller" &&loggedInUser.user_id==store_owner)) {
   await MenusModel.deleteOne({ _id: ID });
   console.log("you have permission")
   res.json(itemToDelete || "Not Found");
