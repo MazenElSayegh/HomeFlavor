@@ -6,7 +6,6 @@ let jwt = require("jsonwebtoken");
 
 // Get all orders (ADMIN only)
 let GetAllOrders = async (req, res) => {
-  // console.log("get all Orders");
   var token = req.headers.authorization?.split(" ")[1];
   var loggedInUser = jwt.verify(token, "token");
   if (loggedInUser.role == "admin") {
@@ -20,7 +19,6 @@ let GetAllOrders = async (req, res) => {
         model: "stores",
       });
   } else if (loggedInUser.role == "seller") {
-    console.log("seller");
     var store = await StoreModel.findOne({
       user_id: loggedInUser.user_id,
     }).populate("user_id");
@@ -34,6 +32,11 @@ let GetAllOrders = async (req, res) => {
         path: "store_id",
         model: "stores",
       });
+  }else{
+    store= "none";
+    console.log(store);
+    res.status(201).json(store);
+
   }} else {
     var orders = await OrderModel.find({ user_id: loggedInUser.user_id })
       .populate({
@@ -45,7 +48,6 @@ let GetAllOrders = async (req, res) => {
         model: "stores",
       });
   }
-  console.log("hnaaaaa", orders);
   res.status(201).json(orders);
 };
 
@@ -81,15 +83,11 @@ let CreateOrder = async (req, res) => {
 
   let newOrder = req.body;
   if (validateOrder(newOrder)) {
-    console.log(newOrder);
     let order = new OrderModel(newOrder);
-    console.log("2");
     await order.save();
-    console.log("3");
     res.status(201).json(order);
   } else {
     console.log(validateOrder.errors);
-    // res.status(301).send("Check your data");
   }
 };
 
@@ -106,7 +104,6 @@ var UpdateOrderByID = async (req, res) => {
           { _id: ID },
           { status: updatedOrder.status }
         );
-        console.log("hello");
       } catch (err) {
         res.status(301).json(err);
       }
