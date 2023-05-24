@@ -10,7 +10,6 @@
               <h1>Delicious Homemade Food</h1>
               <div class="hero-btns">
                 <a href="#stores" class="boxed-btn">Go To Stores</a>
-                <a href="contact.html" class="bordered-btn">Contact Us</a>
               </div>
             </div>
           </div>
@@ -45,7 +44,7 @@
           <div class="hero-text">
             <div class="hero-text-tablecell">
               <p class="subtitle">Mega Sale Going On!</p>
-              <h1>Get December Discount</h1>
+              <h1>Get Summer Discount</h1>
               <div class="hero-btns">
                 <a href="#stores" class="boxed-btn">Visit Shop</a>
                 <a href="contact.html" class="bordered-btn">Contact Us</a>
@@ -205,9 +204,9 @@
             </div>
           </div>
         </div>
-        <a href="cart.html" class="cart-btn mt-3"
+        <!-- <a href="cart.html" class="cart-btn mt-3"
           ><i class="fas fa-shopping-cart"></i> Add to Cart</a
-        >
+        > -->
       </div>
     </div>
   </div>
@@ -222,7 +221,7 @@
   <div class="carousel-inner" *ngIf="stores">
     <div class="carousel-item active">
       <img
-        src="assets/img/avaters/avatar3.png"
+      [src]="localhost + stores[0].image"
         class="d-block justify-content-center w-25"
         alt="..."
       />
@@ -237,7 +236,7 @@
     </div>
     <div class="carousel-item" *ngFor="let store of stores.slice(1)">
       <img
-        src="assets/img/avaters/avatar2.png"
+        [src]="localhost + store.image"
         class="d-block justify-content-center w-25"
         alt="..."
       />

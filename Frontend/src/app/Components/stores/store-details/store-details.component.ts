@@ -5,6 +5,7 @@ import { MenuService } from 'src/app/Services/menu.service';
 import { FeedbacksService } from 'src/app/Services/feedbacks.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
+import { OrdersService } from 'src/app/Services/orders.service';
 
 @Component({
   selector: 'app-store-details',
@@ -20,9 +21,10 @@ export class StoreDetailsComponent {
   rating: number = 0;
   image_path: any;
   user_data: any;
-  flag:any;
-  productInCartStoreID:any;
-  cart:any[]=[]
+  flag: any;
+  productInCartStoreID: any;
+  cart: any[] = [];
+  allOrders: any;
   localhost = 'http://localhost:7005';
   @Output() addedToCart = new EventEmitter<any>();
   constructor(
@@ -30,7 +32,8 @@ export class StoreDetailsComponent {
     public myService: StoresService,
     public menuService: MenuService,
     public feedbackService: FeedbacksService,
-    private LocalStorageService: LocalStorageService
+    private LocalStorageService: LocalStorageService,
+    private orderService: OrdersService
   ) {
     this.LocalStorageService.getData('jwt_token').subscribe((data) => {
       this.user_data = data;
@@ -67,65 +70,73 @@ export class StoreDetailsComponent {
       },
     });
 
-      console.log("hiii")
-      let storedCart=localStorage.getItem('cart');
-      console.log(storedCart)
-      if(storedCart){
-        this.cart=JSON.parse(storedCart)
-        if(this.cart.length>0)
-        {    this.id = myRoute.snapshot.params['id'];
-            console.log(this.id);
+    this.orderService.GetAllOrders().subscribe({
+      next: (data) => {
+        this.allOrders = data;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
 
-            this.cart.forEach(product => {
-            if(product.store_id==this.id){
-              this.flag=true;
-              return;
-            }else{
-            this.flag=false
+    console.log('hiii');
+    let storedCart = localStorage.getItem('cart');
+    console.log(storedCart);
+    if (storedCart) {
+      this.cart = JSON.parse(storedCart);
+      if (this.cart.length > 0) {
+        this.id = myRoute.snapshot.params['id'];
+        console.log(this.id);
+
+        this.cart.forEach((product) => {
+          if (product.store_id == this.id) {
+            this.flag = true;
             return;
-            }
-          })
-        }else{
-          this.flag=true;
-        }
-      }else{
-        this.flag=true;
+          } else {
+            this.flag = false;
+            return;
+          }
+        });
+      } else {
+        this.flag = true;
       }
+    } else {
+      this.flag = true;
+    }
   }
 
   addToCart(prod: any) {
-    let storedCart=localStorage.getItem('cart');
-      console.log(storedCart)
-      if(storedCart){
-        this.cart=JSON.parse(storedCart)
-        if(this.cart.length>0)
-        {
-            console.log(this.id);
+    let storedCart = localStorage.getItem('cart');
+    console.log(storedCart);
+    if (storedCart) {
+      this.cart = JSON.parse(storedCart);
+      if (this.cart.length > 0) {
+        console.log(this.id);
 
-            this.cart.forEach(product => {
-            if(product.store_id==this.id){
-              this.flag=true;
-              return;
-            }else{
-            this.flag=false
+        this.cart.forEach((product) => {
+          if (product.store_id == this.id) {
+            this.flag = true;
             return;
-            }
-          })
-        }else{
-          this.flag=true;
-        }
-      }else{
-        this.flag=true;
+          } else {
+            this.flag = false;
+            return;
+          }
+        });
+      } else {
+        this.flag = true;
       }
-    if(this.flag){
-              this.product = prod;
-              console.log("flaaaag:",this.flag);
-              this.addedToCart.emit(this.product);
+    } else {
+      this.flag = true;
     }
-    console.log(this.flag)
-  };
-  cancelModal(){
-    this.flag=true;
+    if (this.flag) {
+      this.product = prod;
+      console.log('flaaaag:', this.flag);
+      this.addedToCart.emit(this.product);
+    }
+    console.log(this.flag);
+  }
+  cancelModal() {
+    this.flag = true;
   }
 
   showFeedback() {
@@ -195,7 +206,14 @@ export class StoreDetailsComponent {
     this.feedbackService.createFeedback(newFeedback).subscribe({
       next: (data) => {
         console.log(newFeedback);
-        this.feedbacks.push(newFeedback);
+        this.getAllFeedbacks();
+
+        let feedbackTextArea = document.querySelector(
+          '#feedback_detail'
+        ) as HTMLTextAreaElement;
+        feedbackTextArea.value = '';
+
+        this.rating = 0;
       },
       error: (err) => {
         console.log(err);
@@ -227,5 +245,30 @@ export class StoreDetailsComponent {
     } else {
       return false;
     }
+  }
+
+  get checkUserMadeOrder() {
+    for (let i = 0; i < this.allOrders.length; i++) {
+      if (
+        this.user_data.user_id === this.allOrders[i].user_id._id &&
+        this.id === this.allOrders[i].store_id._id
+      ) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  getAllFeedbacks() {
+    this.feedbackService.getAllFeedbacks(this.id).subscribe({
+      next: (data) => {
+        this.feedbacks = data;
+        // console.log(this.feedbacks);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

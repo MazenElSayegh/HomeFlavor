@@ -103,51 +103,117 @@
               *ngIf="user_data.role == 'buyer'"
             >
               <p class="product-price"></p>
-              <a class="cart-btn" (click)="addToCart(product)" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              <a
+                class="cart-btn"
+                (click)="addToCart(product)"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
                 ><i class="fas fa-shopping-cart"></i> add to cart</a
               >
-          </div>
+            </div>
 
-
-            <div class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
               <div class="modal-dialog modal-notify modal-danger" role="alert">
                 <div class="modal-content">
-                  <div class="modal-header d-flex flex-column justify-content-center">
-                    <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">Alert</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <div
+                    class="modal-header d-flex flex-column justify-content-center"
+                  >
+                    <h1
+                      class="modal-title modalheader fs-5"
+                      id="exampleModalLabel"
+                    >
+                      Alert
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
                   </div>
-                  <div class="modal-body  d-flex flex-column justify-content-center">
-                    <i *ngIf="flag==false" class="fas fa-times fa-4x animated rotateIn"></i>
-                    <i *ngIf="flag==true" class="fa-solid fa-check fa-4x animated"></i>
-                   <div *ngIf="flag==false">Sorry,You cant add two products from different stores</div>
-                   <div *ngIf="flag==true">Added Succesfully</div>
+                  <div
+                    class="modal-body d-flex flex-column justify-content-center"
+                  >
+                    <i
+                      *ngIf="flag == false"
+                      class="fas fa-times fa-4x animated rotateIn"
+                    ></i>
+                    <i
+                      *ngIf="flag == true"
+                      class="fa-solid fa-check fa-4x animated"
+                    ></i>
+                    <div *ngIf="flag == false">
+                      Sorry,You cant add two products from different stores
+                    </div>
+                    <div *ngIf="flag == true">Added Succesfully</div>
                   </div>
-                  <div class="modal-footer d-flex flex-column justify-content-center">
+                  <div
+                    class="modal-footer d-flex flex-column justify-content-center"
+                  >
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                    <a type="button" class="btn okbtn waves-effect" data-bs-dismiss="modal">OK</a>
+                    <a
+                      type="button"
+                      class="btn okbtn waves-effect"
+                      data-bs-dismiss="modal"
+                      >OK</a
+                    >
                   </div>
-                </div>
-              </div>
-          </div>
-
-          <div id="addedSuccessfully" class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-notify modal-danger" role="alert">
-              <div class="modal-content">
-                <div class="modal-header d-flex flex-column justify-content-center">
-                  <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">Alert</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body  d-flex flex-column justify-content-center">
-                  <i class="fas fa-times fa-4x animated rotateIn"></i>
-                 <div>Added Successfully</div>
-                </div>
-                <div class="modal-footer d-flex flex-column justify-content-center">
-                  <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                  <a type="button" class="btn okbtn waves-effect" data-bs-dismiss="modal">OK</a>
                 </div>
               </div>
             </div>
-        </div>
+
+            <div
+              id="addedSuccessfully"
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-notify modal-danger" role="alert">
+                <div class="modal-content">
+                  <div
+                    class="modal-header d-flex flex-column justify-content-center"
+                  >
+                    <h1
+                      class="modal-title modalheader fs-5"
+                      id="exampleModalLabel"
+                    >
+                      Alert
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div
+                    class="modal-body d-flex flex-column justify-content-center"
+                  >
+                    <i class="fas fa-times fa-4x animated rotateIn"></i>
+                    <div>Added Successfully</div>
+                  </div>
+                  <div
+                    class="modal-footer d-flex flex-column justify-content-center"
+                  >
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <a
+                      type="button"
+                      class="btn okbtn waves-effect"
+                      data-bs-dismiss="modal"
+                      >OK</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div *ngIf="checkAdminOrOwner" class="updateDeleteMenuContainer">
               <button class="updateMenuBtn btn btn-info">
@@ -230,7 +296,7 @@
   </div>
 
   <!-- Feedback Form -->
-  <div class="contact-from-section mt-150 mb-150">
+  <div class="contact-from-section mt-150 mb-150" *ngIf="checkUserMadeOrder">
     <div class="container">
       <div class="row">
         <div class="">

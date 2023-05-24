@@ -8,6 +8,7 @@
 .carousel-item img{
   border-radius: 50%;
   width: 10vw !important;
+  height: 20vh !important;
 }
 .carousel-item h1{
   width: 100%;
