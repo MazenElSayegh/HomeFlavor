@@ -19,9 +19,20 @@ let CreateFeedBack = async (req, res) => {
   var token = req.headers.authorization?.split(" ")[1];
   var loggedInUser = jwt.verify(token, "token");
   var orders = await OrderModel.find({ user_id:loggedInUser.user_id });
-  console.log(loggedInUser.user_id);
-  console.log(orders);
-  // if (loggedInUser.user_id==_id) {
+  // console.log(loggedInUser.user_id);
+  // console.log(orders);
+  var flag= false;
+  for(let i=0;i<=orders.length;i++){
+    // console.log(orders[i]?.user_id);
+  if (loggedInUser.user_id==orders[i]?.user_id._id&&req.body.store_id==orders[i]?.store_id._id) {
+    
+    flag=true;
+    break;
+  }
+
+};
+  if(flag==true){
+
   if (validate(newFeedback)) {
     try {
       let feedback = new FeedBackModel(newFeedback);
@@ -33,7 +44,10 @@ let CreateFeedBack = async (req, res) => {
   } else {
     res.status(301).send(validate.errors);
   }
-// }
+}else{
+  console.log("you don't have a permission")
+}
+
   };
 
 
