@@ -13,8 +13,8 @@
 
           <!-- menu start -->
           <nav class="main-menu">
-            <ul>
-              <li class="current-list-item">
+            <ul class="headLinks">
+              <li>
                 <a routerLinkActive="active" href="/home">Home</a>
               </li>
               <li *ngIf="user_data && user_data.role=='seller' && storeID">
@@ -26,15 +26,6 @@
               </li>
 
               <li><a href="#stores">Stores</a></li>
-              <ng-template #falseBlock>
-                <li>
-                  <a href="#newsSec">Account</a>
-                  <ul class="sub-menu">
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Sign-up</a></li>
-                  </ul>
-                </li>
-              </ng-template>
 
               <li *ngIf="user_data; else falseBlock">
                 <a href="/profile/{{ user_data.user_id }}">{{
@@ -59,6 +50,15 @@
                   "
                 />
               </li>
+              <ng-template #falseBlock>
+                <li>
+                  <a href="#newsSec">Account</a>
+                  <ul class="sub-menu">
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Sign-up</a></li>
+                  </ul>
+                </li>
+              </ng-template>
 
               <li>
                 <div
@@ -82,9 +82,11 @@
                   "
                 >
                   <a href="/orders" class="notifications-bell"
-                    ><i id="cartIcon" class="fa-solid fa-bell fa-shake">{{
-                      count
-                    }}</i
+                    ><i id="cartIcon" class="fa-solid fa-bell fa-shake"
+                      ><span id="ordersCount"
+                        class="position-absolute top-0 start-100 translate-middle"
+                        >{{ count }}</span
+                      ></i
                     >‏</a
                   >
                 </div>
@@ -144,7 +146,9 @@
                           alt="product-image"
                         />
                       </div>
-                      <div class="d-flex flex-column justify-content-center align-items-center">
+                      <div
+                        class="d-flex flex-column justify-content-center align-items-center"
+                      >
                         <p class="lead fw-normal mb-2">
                           {{ product.product_title }}
                         </p>
@@ -154,7 +158,9 @@
                           }}</span>
                         </p>
                       </div>
-                      <div class="d-flex justify-content-center align-items-center">
+                      <div
+                        class="d-flex justify-content-center align-items-center"
+                      >
                         <button
                           class="btn btn-link px-2"
                           (click)="decrementQuantity(product)"
@@ -168,7 +174,7 @@
                           name="quantity"
                           value="{{ product.quantity }}"
                           class="form-control form-control-sm"
-                          style="width: 30%; text-align: center;"
+                          style="width: 30%; text-align: center"
                         />
 
                         <button
@@ -179,7 +185,9 @@
                         </button>
                       </div>
                       <div class="offset-lg-1 mt-3">
-                        <h5 class="m-auto ms-5">Price = ${{ product.price * product.quantity}}</h5>
+                        <h5 class="m-auto ms-5">
+                          Price = ${{ product.price * product.quantity }}
+                        </h5>
                       </div>
                       <div class="text-end">
                         <a class="text-danger" (click)="removeProduct(product)"
