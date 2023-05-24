@@ -25,6 +25,7 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Date</th>
+      <th scope="col">Time</th>
       <th scope="col">Status</th>
       <th scope="col">Total Price</th>
       <th scope="col">User</th>
@@ -37,6 +38,7 @@
     <tr *ngFor="let o of orders">
       <td>{{ o._id }}</td>
       <td>{{ o.date | date : "dd/MM/yyyy" }}</td>
+      <td>{{ o.date | date : "h:mm a" }}</td>
       <td>{{ o.status }}</td>
       <td>{{ o.total_price | number : "1.2-2" }}</td>
       <td>{{ o.user_id.user_name }}</td>
@@ -175,7 +177,7 @@
                 >
                   <div class="mb-3">
                     <span class="float-right text-info"
-                      >Ordered on {{ o.date | date : "dd/MM/yyyy" }}
+                      >Ordered on {{ o.date | date : "dd/MM/yyyy" }} at {{ o.date | date : "h:mm a" }}
                       <i class="icofont-check-circled text-success"></i
                     ></span>
                   </div>
