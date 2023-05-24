@@ -17,7 +17,7 @@
               <li>
                 <a routerLinkActive="active" href="/home">Home</a>
               </li>
-              <li *ngIf="user_data.role=='seller' && storeID">
+              <li *ngIf="user_data && user_data.role=='seller' && storeID">
                 <a href="/stores/{{storeID}}">My Store</a>
               </li>
               <li><a href="#videoSec">About</a></li>
