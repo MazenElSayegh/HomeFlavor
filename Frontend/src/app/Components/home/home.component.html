@@ -219,7 +219,7 @@
   class="carousel slide m-5"
   data-bs-ride="carousel"
 >
-  <div class="carousel-inner">
+  <div class="carousel-inner" *ngIf="stores">
     <div class="carousel-item active">
       <img
         src="assets/img/avaters/avatar3.png"
@@ -323,7 +323,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="stores">
       <div class="col-lg-4 col-md-6">
         <div class="single-latest-news">
           <a href="single-news.html"
