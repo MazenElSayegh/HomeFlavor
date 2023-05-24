@@ -92,7 +92,7 @@ else {
 var updateStoreByID = async (req, res) => {
   var token = req.headers.authorization?.split(" ")[1];
   var loggedInUser = jwt.verify(token, "token");
-  if (loggedInUser.role == "admin" ||loggedInUser.role == "seller") {
+  if (loggedInUser.role == "admin" ||(loggedInUser.role == "seller" &&loggedInUser.user_id==req.body.user_id)) {
   var ID = req.params.id;
   var updatedStore = {
     user_id: req.body.user_id,
@@ -122,9 +122,12 @@ else {
 };
 
 var deleteStoreByID = async (req, res) => {
+  var store = await StoreModel.findById({ _id: req.params.id });
+  var store_owner=store.user_id;
+  console.log(store_owner);
   var token = req.headers.authorization?.split(" ")[1];
   var loggedInUser = jwt.verify(token, "token");
-  if (loggedInUser.role == "admin" ||loggedInUser.role == "seller") {
+  if (loggedInUser.role == "admin" ||(loggedInUser.role == "seller"&&loggedInUser.user_id==store_owner)) {
   var ID = req.params.id;
   var storeToDelete = await StoreModel.find({ _id: ID });
   await StoreModel.deleteOne({ _id: ID });
