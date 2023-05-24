@@ -127,3 +127,16 @@ header{
 .half{
   width: 80px !important;
 }
+.animated{
+  color: #051922;
+}
+.okbtn{
+  background-color: #051922;
+  color: bisque;
+  font-size: larger;
+  padding-inline: 40px;
+}
+
+.modal-header{
+  background-color:rgb(218, 109, 21);
+}

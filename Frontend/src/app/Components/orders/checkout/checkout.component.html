@@ -85,7 +85,26 @@
         <p>Total</p>
         <p>${{ totalCost * 1.1 | number : "1.1-1" }}</p>
       </div>
-      <input type="submit" (click)="AddOrder()" value="Confirm Order" />
+      <input type="submit" (click)="AddOrder()" value="Confirm Order" data-bs-toggle="modal"
+      data-bs-target="#exampleModal" />
+      <div class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-danger" role="alert">
+          <div class="modal-content">
+            <div class="modal-header d-flex flex-column justify-content-center">
+              <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">Alert</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+              <i class="fa-solid fa-check fa-4x"></i>
+             <div>Order Confirmed</div>
+            </div>
+            <div class="modal-footer d-flex flex-column justify-content-center">
+              <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+              <input type="submit" (click)="reload()" value="OK" class="btn okbtn waves-effect"/>
+            </div>
+          </div>
+        </div>
+
     </div>
   </div>
 </div>

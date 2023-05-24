@@ -71,10 +71,13 @@ export class CheckoutComponent {
     });
 
     this.OrdersService.AddNewOrder(this.order).subscribe();
-    alert('Order confirmed');
     this.LocalStorageService.removeData('cart');
-    this.router.navigateByUrl('/orders');
+    // this.router.navigateByUrl('/orders');
   }
+  reload(){
+    location.href='/orders'
+  }
+
 
   showInfo(){
     let cardContainer=document.querySelector(".cardContainer");
