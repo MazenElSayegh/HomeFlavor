@@ -70,15 +70,15 @@
                 >
                   <a class="shopping-cart"
                     ><i
-                      class="fas fa-shopping-cart"
+                      class="fas fa-shopping-cart notifications-bell"
                       data-bs-toggle="offcanvas"
                       data-bs-target="#offcanvasScrolling"
                       aria-controls="offcanvasScrolling"
                       id="cartIcon"
-                    ><span
+                    ><span *ngIf="addedProducts.length>0"
                     id="ordersCount"
                     class="position-absolute top-30 start-100 translate-middle"
-                    >{{ addedProducts.length}}</span
+                    >{{addedProducts.length}}</span
                   ></i
                   ></a>
                 </div>

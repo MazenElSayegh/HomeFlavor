@@ -34,11 +34,6 @@
   font-size: 16px;
   margin-inline: 1vw;
   font-family: "Poppins", sans-serif;
-  position: relative;
-}
-.headLinks{
-  position: relative;
-  right: 3vw !important;
 }
 #userData{
   margin-right: -1.5vw;
