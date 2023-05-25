@@ -20,7 +20,6 @@ export class HeaderComponent {
     private ordersService: OrdersService
   ) {
     this.count = 0;
-    if (this.user_data) {
       ordersService.GetAllOrders().subscribe({
         next: (data: any) => {
           this.orders = data;
@@ -35,7 +34,6 @@ export class HeaderComponent {
           console.log(err);
         },
       });
-    }
   }
 
   localhost = 'http://localhost:7005';
