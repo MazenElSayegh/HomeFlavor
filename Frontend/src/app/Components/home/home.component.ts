@@ -23,6 +23,7 @@ export class HomeComponent {
         console.log(err);
       },
     });
+    if(this.user_data){
     ordersService.GetAllOrders().subscribe({
       next: (data)=>{
         console.log(data);
@@ -34,11 +35,11 @@ export class HomeComponent {
         console.log(err);
       },
     });
-  }
+  }}
   ngOnInit(): void {
     this.localStorageService.getData('jwt_token').subscribe((data) => {
-      console.log(data.role,"user's Role");
-      this.user_data = data;
+     if(data){
+      this.user_data = data;}
     });
     console.log(this.user_data);
 
