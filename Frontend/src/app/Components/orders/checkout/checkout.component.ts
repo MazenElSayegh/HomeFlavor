@@ -50,11 +50,9 @@ export class CheckoutComponent {
     private LocalStorageService: LocalStorageService
   ) {
     let data: any = localStorage.getItem('cart');
-    console.log(data);
     this.LocalStorageService.getData('jwt_token').subscribe((data) => {
       this.user_data = data;
     });
-    console.log(this.user_data);
     this.allProducts = JSON.parse(data);
     this.order.store_id = this.allProducts[0].store_id;
     this.order.user_id = this.user_data.user_id;
@@ -101,7 +99,6 @@ export class CheckoutComponent {
       key: 'pk_test_51NBO2YI8Mgz307EgfWYcnNfk7ccSrtdKyhJpHtB477RX7Eh32wTZdpbjdJ0CQBasiflrNknBeeRGxMYevmyhbEB200vuQeWDLw',
       locale: 'auto',
       token: (stripeToken: any) => {
-        console.log(stripeToken);
         this.AddOrder();
         this.reload();
       },
@@ -123,7 +120,6 @@ export class CheckoutComponent {
           key: 'pk_test_51NBO2YI8Mgz307EgfWYcnNfk7ccSrtdKyhJpHtB477RX7Eh32wTZdpbjdJ0CQBasiflrNknBeeRGxMYevmyhbEB200vuQeWDLw',
           locale: 'auto',
           token: function (stripeToken: any) {
-            console.log(stripeToken);
             alert('Payment has been successfull!');
           },
         });

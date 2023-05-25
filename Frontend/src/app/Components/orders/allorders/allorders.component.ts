@@ -18,22 +18,11 @@ export class AllordersComponent {
   storeID: any;
   constructor(
     private ordersService: OrdersService,
-    private usersService: BackendService,
-    private storesService: StoresService,
     private router: Router,
     private localStorageService: LocalStorageService
   ) {
-    storesService.getAllStores().subscribe({
-      next: (data: any) => {
-        console.log(data);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
     ordersService.GetAllOrders().subscribe({
       next: (data: any) => {
-        console.log(data);
         // To show latest orders first
         const sortedOrders = data.slice().sort((a: any, b: any) => {
           const dateA = new Date(a.date);
@@ -52,10 +41,10 @@ export class AllordersComponent {
   }
   ngOnInit(): void {
     this.localStorageService.getData('jwt_token').subscribe((data) => {
-      console.log(data.role, "user's Role");
-      this.user_data = data;
+      if (this.user_data) {
+        this.user_data = data;
+      }
     });
-    console.log(this.user_data);
   }
 
   Update(id: any, status: any, user_id: any, store_id: any, products: any) {

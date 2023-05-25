@@ -92,11 +92,9 @@ header{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* background-color: #051922; */
   height: 60%;
 }
 #order-details p{
   color:#051922 ;
   font-size: 1.2vw;
-  /* font-weight: 600; */
 }

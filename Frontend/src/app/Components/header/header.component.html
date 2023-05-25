@@ -5,7 +5,7 @@
         <div class="main-menu-wrap">
           <!-- logo -->
           <div class="site-logo">
-            <a routerLink="index.html">
+            <a href="/">
               <img src="assets/img/logo.png" alt="" />
             </a>
           </div>
@@ -21,8 +21,8 @@
                 <a routerLink="/stores/{{ storeID }}">My Store</a>
               </li>
               <li><a href="#videoSec">About</a></li>
-              <li *ngIf="user_data;">
-                <a  routerLink="/orders">Orders</a>
+              <li *ngIf="user_data">
+                <a routerLink="/orders">Orders</a>
               </li>
 
               <li><a href="#stores">Stores</a></li>
@@ -63,7 +63,10 @@
               <li>
                 <div
                   class="header-icons"
-                  *ngIf="user_data.role == 'buyer' || user_data.role == 'admin'"
+                  *ngIf="
+                    user_data && (user_data.role == 'buyer' ||
+                    user_data.role == 'admin')
+                  "
                 >
                   <a class="shopping-cart"
                     ><i
@@ -77,6 +80,7 @@
                 </div>
                 <div
                   *ngIf="
+                    user_data &&
                     (user_data.role == 'seller' || user_data.role == 'admin') &&
                     count > 0
                   "
@@ -93,6 +97,7 @@
                 </div>
                 <div
                   *ngIf="
+                    user_data &&
                     (user_data.role == 'seller' || user_data.role == 'admin') &&
                     count == 0
                   "
