@@ -15,25 +15,25 @@
           <nav class="main-menu">
             <ul class="headLinks">
               <li>
-                <a routerLinkActive="active" href="/home">Home</a>
+                <a href="/">Home</a>
               </li>
               <li *ngIf="user_data && user_data.role == 'seller' && storeID">
-                <a href="/stores/{{ storeID }}">My Store</a>
+                <a routerLink="/stores/{{ storeID }}">My Store</a>
               </li>
               <li><a href="#videoSec">About</a></li>
               <li>
-                <a href="/orders">Orders</a>
+                <a  routerLink="/orders">Orders</a>
               </li>
 
               <li><a href="#stores">Stores</a></li>
 
               <li *ngIf="user_data; else falseBlock">
-                <a href="/profile/{{ user_data._id }}">{{
+                <a routerLink="/profile/{{ user_data._id }}">{{
                   user_data.user_name
                 }}</a>
                 <ul class="sub-menu">
                   <li>
-                    <a href="/profile/{{ user_data._id }}">Profile</a>
+                    <a routerLink="/profile/{{ user_data._id }}">Profile</a>
                   </li>
                   <li><a (click)="logout()">Logout</a></li>
                 </ul>
@@ -54,8 +54,8 @@
                 <li>
                   <a href="#newsSec">Account</a>
                   <ul class="sub-menu">
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Sign-up</a></li>
+                    <li><a routerLink="/login">Login</a></li>
+                    <li><a routerLink="/register">Sign-up</a></li>
                   </ul>
                 </li>
               </ng-template>
@@ -81,7 +81,7 @@
                     count > 0
                   "
                 >
-                  <a href="/orders" class="notifications-bell"
+                  <a routerLink="/orders" class="notifications-bell"
                     ><i id="cartIcon" class="fa-solid fa-bell fa-shake"
                       ><span
                         id="ordersCount"
@@ -97,7 +97,7 @@
                     count == 0
                   "
                 >
-                  <a href="/orders" class="notifications-bell"
+                  <a routerLink="/orders" class="notifications-bell"
                     ><i id="cartIcon" class="fa-solid fa-bell"></i>‏</a
                   >
                 </div>
@@ -199,7 +199,7 @@
                   </div>
                 </div>
               </div>
-              <a href="checkout"
+              <a routerLink="checkout"
                 ><input
                   type="submit"
                   value="Proceed to Checkout"

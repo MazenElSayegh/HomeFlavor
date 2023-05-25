@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OrdersService } from 'src/app/Services/orders.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-orderdetails',
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class OrderdetailsComponent {
   id:any;
   order:any;
-  constructor(myRoute:ActivatedRoute, public myService: OrdersService){
+  constructor(myRoute:ActivatedRoute, public myService: OrdersService, private router: Router){
     this.id= myRoute.snapshot.params["id"];
   }
   ngOnInit(): void {

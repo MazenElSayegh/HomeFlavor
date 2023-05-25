@@ -28,7 +28,6 @@
               <h1>100% Homemade Food</h1>
               <div class="hero-btns">
                 <a href="#stores" class="boxed-btn">Visit Stores</a>
-                <a href="contact.html" class="bordered-btn">Contact Us</a>
               </div>
             </div>
           </div>
@@ -47,7 +46,6 @@
               <h1>Get Summer Discount</h1>
               <div class="hero-btns">
                 <a href="#stores" class="boxed-btn">Visit Shop</a>
-                <a href="contact.html" class="bordered-btn">Contact Us</a>
               </div>
             </div>
           </div>
@@ -113,7 +111,7 @@
                 >Then go ahead and join our Family.</span
               >
             </h3>
-            <a href="stores/create"><input type="submit" value="From Here"/></a>
+            <a routerLink="stores/create"><input type="submit" value="From Here"/></a>
           </div>
           <h3><span class="orange-text">Our</span> Stores</h3>
           <p>
@@ -128,7 +126,7 @@
       <div *ngFor="let store of stores" class="col-lg-4 col-md-6 text-center">
         <div class="single-product-item">
           <div class="product-image">
-            <a [href]="'/stores/' + store._id"
+            <a [routerLink]="'/stores/' + store._id"
               ><img [src]="localhost + store.image" alt="" id="storesImages"
             /></a>
           </div>
@@ -138,14 +136,14 @@
           </p>
           <a
             *ngIf="user_data && user_data.role !== 'buyer'; else buyerBlock"
-            [href]="'/stores/' + store._id"
+            [routerLink]="'/stores/' + store._id"
             class="cart-btn"
             style="text-decoration: none"
             ><i class="fas fa-shopping-cart"></i>Check it out</a
           >
           <ng-template #buyerBlock>
             <a
-              [href]="'/stores/' + store._id"
+              [routerLink]="'/stores/' + store._id"
               class="cart-btn"
               style="text-decoration: none"
               ><i class="fas fa-shopping-cart"></i>Order now</a
@@ -276,7 +274,6 @@
           <p>
             It’s not that restaurant foods are made badly or in the wrong way, but very seldom is the proper care and hygiene maintained.
           </p>
-          <a href="about.html" class="boxed-btn mt-4">know more</a>
         </div>
       </div>
     </div>
