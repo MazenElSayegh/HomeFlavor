@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-lg-8 offset-lg-2 text-center">
         <div class="breadcrumb-text">
-          <p>Taste Of Hebab</p>
+          <p>Home Flavor</p>
           <h1>Store Details</h1>
         </div>
       </div>
@@ -34,30 +34,55 @@
           Store
         </a>
       </button>
-      <button class="deleteStoreBtn btn btn-danger" *ngIf="checkAdminOrOwner" data-bs-toggle="modal" data-bs-target="#deleteStoreModel">
+      <button
+        class="deleteStoreBtn btn btn-danger"
+        *ngIf="checkAdminOrOwner"
+        data-bs-toggle="modal"
+        data-bs-target="#deleteStoreModel"
+      >
         <a>
           <i class="fa-solid fa-trash" style="color: #ffffff"></i> Delete Store
-
         </a>
       </button>
-      <div class="modal fade" id="deleteStoreModel"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div
+        class="modal fade"
+        id="deleteStoreModel"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog modal-notify modal-danger" role="alert">
           <div class="modal-content">
             <div class="modal-header d-flex flex-column justify-content-center">
-              <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">Alert</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">
+                Alert
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
-            <div class="modal-body  d-flex flex-column justify-content-center align-items-center">
+            <div
+              class="modal-body d-flex flex-column justify-content-center align-items-center"
+            >
               <i class="fa-solid fa-check fa-4x"></i>
-             <div>are you sure to delete this store</div>
+              <div>are you sure to delete this store</div>
             </div>
-            
+
             <div class="modal-footer d-flex flex-column justify-content-center">
-              <input type="submit" [routerLink]="['/stores/delete', store._id]" value="OK" data-bs-dismiss="modal" class="btn okbtn waves-effect"/>
+              <input
+                type="submit"
+                [routerLink]="['/stores/delete', store._id]"
+                value="OK"
+                data-bs-dismiss="modal"
+                class="btn okbtn waves-effect"
+              />
             </div>
           </div>
         </div>
-    </div>
+      </div>
     </div>
   </div>
   <ng-template #falseBlock>
@@ -82,7 +107,7 @@
       <div class="col-md-12">
         <div class="product-filters">
           <ul>
-            <button class="addItemBtn" *ngIf="user_data&&checkAdminOrOwner">
+            <button class="addItemBtn" *ngIf="user_data && checkAdminOrOwner">
               <a [routerLink]="['/menu/create']"> Add Menu Item </a>
             </button>
             <li class="active" data-filter="*" (click)="filterProducts('all')">
@@ -119,7 +144,7 @@
           <div class="btnsContainer">
             <div
               class="addToCartBtnContainer"
-              *ngIf="user_data.role == 'buyer'"
+              *ngIf="user_data && user_data.role == 'buyer'"
             >
               <p class="product-price"></p>
               <a
@@ -168,18 +193,23 @@
                       class="fa-solid fa-check fa-4x animated"
                     ></i>
                     <div *ngIf="flag == false">
-                      <h3>Sorry,You cant add two products from different stores</h3>
+                      <h3>
+                        Sorry,You cant add two products from different stores
+                      </h3>
                     </div>
-                    <div *ngIf="flag == true"><h3>Added Succesfully</h3>
-                    </div>
+                    <div *ngIf="flag == true"><h3>Added Succesfully</h3></div>
                   </div>
                   <div
                     class="modal-footer d-flex flex-column justify-content-center"
                   >
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
 
-                    <input type="submit" class="btn okbtn waves-effect"
-                    data-bs-dismiss="modal" value="OK"/>
+                    <input
+                      type="submit"
+                      class="btn okbtn waves-effect"
+                      data-bs-dismiss="modal"
+                      value="OK"
+                    />
                   </div>
                 </div>
               </div>
@@ -232,7 +262,10 @@
               </div>
             </div>
 
-            <div *ngIf="user_data&&checkAdminOrOwner" class="updateDeleteMenuContainer">
+            <div
+              *ngIf="user_data && checkAdminOrOwner"
+              class="updateDeleteMenuContainer"
+            >
               <button class="updateMenuBtn btn btn-info">
                 <a [routerLink]="['/menu/update', product._id]">
                   <i
@@ -242,30 +275,65 @@
                   Edit Item
                 </a>
               </button>
-              <button class="deleteMenuBtn btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMenuModel">
-                <a >
+              <button
+                class="deleteMenuBtn btn btn-danger"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteMenuModel"
+              >
+                <a>
                   <i class="fa-solid fa-trash" style="color: #ffffff"></i>
                   Delete Item
                 </a>
               </button>
-              <div class="modal fade" id="deleteMenuModel"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-notify modal-danger" role="alert">
+              <div
+                class="modal fade"
+                id="deleteMenuModel"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div
+                  class="modal-dialog modal-notify modal-danger"
+                  role="alert"
+                >
                   <div class="modal-content">
-                    <div class="modal-header d-flex flex-column justify-content-center">
-                      <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">Alert</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div
+                      class="modal-header d-flex flex-column justify-content-center"
+                    >
+                      <h1
+                        class="modal-title modalheader fs-5"
+                        id="exampleModalLabel"
+                      >
+                        Alert
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
                     </div>
-                    <div class="modal-body  d-flex flex-column justify-content-center align-items-center">
+                    <div
+                      class="modal-body d-flex flex-column justify-content-center align-items-center"
+                    >
                       <i class="fa-solid fa-check fa-4x"></i>
-                     <div>are you sure to delete this menu item</div>
+                      <div>are you sure to delete this menu item</div>
                     </div>
-                    
-                    <div class="modal-footer d-flex flex-column justify-content-center">
-                      <input type="submit" [routerLink]="['/menu/delete', product._id]" value="OK" data-bs-dismiss="modal" class="btn okbtn waves-effect"/>
+
+                    <div
+                      class="modal-footer d-flex flex-column justify-content-center"
+                    >
+                      <input
+                        type="submit"
+                        [routerLink]="['/menu/delete', product._id]"
+                        value="OK"
+                        data-bs-dismiss="modal"
+                        class="btn okbtn waves-effect"
+                      />
                     </div>
                   </div>
                 </div>
-            </div>
+              </div>
             </div>
           </div>
         </div>
@@ -307,38 +375,36 @@
                 <button
                   class="deleteFeedbackBtn btn"
                   *ngIf="
-                    user_data.role === 'admin' ||
-                    feedback.user_id._id == user_data.user_id
+                    (user_data && user_data.role === 'admin') ||
+                    (user_data && feedback.user_id._id == user_data.user_id)
                   "
-                  
-                ><a [routerLink]="['/feedbacks/delete', feedback._id]">
-                  <i
+                >
+                  <a [routerLink]="['/feedbacks/delete', feedback._id]">
+                    <i
                       class="fa-solid fa-trash fa-2xl"
                       style="color: #ff0000"
                     ></i>
-                </a>
-                  
-                    
+                  </a>
                 </button>
-                
-                
+
                 <div class="last-icon">
                   <i class="fas fa-quote-right"></i>
                 </div>
-                
               </div>
             </div>
-            
+
             <hr />
           </div>
-          
         </div>
       </div>
     </div>
   </div>
 
   <!-- Feedback Form -->
-  <div class="contact-from-section mt-150 mb-150" *ngIf="user_data&&checkUserMadeOrder">
+  <div
+    class="contact-from-section mt-150 mb-150"
+    *ngIf="user_data && checkUserMadeOrder"
+  >
     <div class="container">
       <div class="row">
         <div class="">
