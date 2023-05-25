@@ -30,18 +30,14 @@ export class AuthInterceptor implements HttpInterceptor {
     else {
       return next.handle(request).pipe(
         tap((event) => {
-          console.log(request);
           if (event instanceof HttpResponse) console.log(event.headers);
           if (
-            event instanceof HttpResponse && // Check if the event is an instance of the HttpResponse type
+            event instanceof HttpResponse &&
             event.headers.has('X-Auth-Token')
           ) {
-            console.log('hoooope');
             this.token = event.headers.get('X-Auth-Token')?.split(' ')[1];
-            // const payload = jwt_decode(this.token);
-            // console.log('JWT payload:', payload);
+
             localStorage.setItem('jwt_token', this.token);
-            // window.sessionStorage.setItem('jwt_token', this.token);
           }
         })
       );
