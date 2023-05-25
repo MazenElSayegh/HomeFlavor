@@ -97,11 +97,7 @@ export class RegisterComponent {
           });
         },
         error: (err) => {
-          console.log(err);
-          const headers = new HttpHeaders();
-          if (headers.has('your-key')) {
-            alert();
-          }
+          this.validatedForm = false;
         },
       });
     } else {
