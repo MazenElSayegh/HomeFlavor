@@ -21,7 +21,7 @@
                 <a routerLink="/stores/{{ storeID }}">My Store</a>
               </li>
               <li><a href="#videoSec">About</a></li>
-              <li>
+              <li *ngIf="user_data;">
                 <a  routerLink="/orders">Orders</a>
               </li>
 
