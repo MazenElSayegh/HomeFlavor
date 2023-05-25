@@ -18,6 +18,7 @@ let OrdersRoute = require("./Routes/OrdersRoutes");
 let StoresRoute = require("./Routes/StoresRoutes");
 let MenuRoute = require("./Routes/MenuRoute");
 let FeedBackRoute = require("./Routes/FeedBackRoute");
+let ForgetPasswordRoute = require("./Routes/forgetPasswordRoute")
 
 //#region Routes
 app.use("/api/users", UsersRoute);
@@ -27,6 +28,7 @@ app.use("/api/orders", OrdersRoute);
 app.use("/api/stores", StoresRoute);
 app.use("/api/menu", MenuRoute);
 app.use("/api/feedback", FeedBackRoute);
+app.use("/api/forgetpassword", ForgetPasswordRoute);
 //#endregion
 
 // End region

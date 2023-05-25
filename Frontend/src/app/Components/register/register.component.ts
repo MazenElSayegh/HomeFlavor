@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , AfterViewInit, ViewChild, ElementRef  } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BackendService } from 'src/app/Services/backend.service';
@@ -29,11 +29,15 @@ export class RegisterComponent {
   is_user_address_valid = true;
   is_user_mobile_valid = true;
   validatedForm = true;
+
+
+
   constructor(
     private myService: BackendService,
     public myRouter: Router,
-    private localStorageService: LocalStorageService
-  ) {}
+    private localStorageService: LocalStorageService,
+
+    ) {}
 
   validationForm = new FormGroup({
     user_name: new FormControl(null, [
@@ -144,7 +148,6 @@ export class RegisterComponent {
       this.is_user_address_valid =
         this.validationForm.controls['address'].valid;
       this.is_user_mobile_valid = this.validationForm.controls['mobile'].valid;
-
       this.validatedForm = false;
     }
   }

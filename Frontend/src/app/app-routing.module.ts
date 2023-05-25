@@ -22,6 +22,9 @@ import { UpdateMenuItemComponent } from './Components/menus/update-menu-item/upd
 import { ProfileComponent } from './Components/profile/profile/profile.component';
 import { UpdateProfileComponent } from './Components/profile/update-profile/update-profile.component';
 import { CheckoutComponent } from './Components/orders/checkout/checkout.component';
+import { ForgetpasswordComponent } from './Components/passwordreset/forgetpassword/forgetpassword.component';
+import { PasswordresetComponent } from './Components/passwordreset/passwordreset/passwordreset.component';
+import { OtpComponent } from './Components/passwordreset/otp/otp.component';
 
 const routes: Routes = [
   // -------------------- user routes ------------------------------------------------------
@@ -32,6 +35,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'profile/update/:id', component: UpdateProfileComponent },
+  { path: 'forgetpassword', component: ForgetpasswordComponent },
+  { path: 'resetpassword', component: PasswordresetComponent },
+  { path: 'otp', component: OtpComponent },
   // -------------------- order routes ------------------------------------------------------
 
   { path: 'orders', component: AllordersComponent },
