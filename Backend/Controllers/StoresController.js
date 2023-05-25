@@ -10,35 +10,7 @@ let getAllStores = async (req, res) => {
   res.status(201).json(stores);
 };
 
-// let getAllStores = async (req, res) => {
-//   try {
-//     const token = req.headers.authorization?.split(" ")[1];
-//     const loggedInUser = jwt.verify(token, "token");
 
-//     if (loggedInUser.role === "seller") {
-//       const stores = await StoreModel.findOne({
-//         user_id: loggedInUser.user_id,
-//       }).populate("user_id");
-
-//       if (!stores) {
-//         return res.status(404).json({ message: "No stores found" });
-//       }
-
-//       res.status(200).json(stores);
-//     } else {
-//       const stores = await StoreModel.find({}).populate("user_id");
-
-//       if (!stores) {
-//         return res.status(404).json({ message: "No stores found" });
-//       }
-
-//       res.status(200).json(stores);
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Internal server error" });
-//   }
-// };
 
 // Get store by ID
 let getStoreByID = async (req, res) => {

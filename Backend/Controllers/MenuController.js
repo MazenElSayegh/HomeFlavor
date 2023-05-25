@@ -7,9 +7,7 @@ let jwt = require("jsonwebtoken");
 // Get all menu
 let getAllMenu = async (req, res) => {
   let id = req.params.id_store;
-  //let menus = await StoreModel.find({menu: {$elemMatch: {product_title:"gambryyy"}}}).where('_id').equals(id).exec();
-  // let menus = await StoreModel.find({menu: {$elemMatch: {product_title:"gambryyy"}}}).where('_id').equals(id).select('menu').exec();
-  // let menus = await MenusModel.find("_id").equals(id).select("menu").exec();
+  
   let menus = await MenusModel.find({ store_id: id });
 
   res.status(201).json(menus);
