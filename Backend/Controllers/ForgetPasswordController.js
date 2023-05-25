@@ -46,13 +46,13 @@ class ForgetPasswordController {
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "homeflavor.web@gmail.com",
-          pass: "fgavihrotjrxzalc"
+          user: process.env.EMAIL_USERNAME,
+          pass: process.env.EMAIL_PASSWORD
         },
       });
 
       const mailOptions = {
-        from: "homeflavor.web@gmail.com",
+        from: process.env.EMAIL_USERNAME,
         to: email,
         subject: "Your OTP for password reset",
         text: `Your one-time password is: ${otp}`,
