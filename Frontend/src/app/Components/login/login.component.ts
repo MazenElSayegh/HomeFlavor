@@ -26,13 +26,6 @@ export class LoginComponent {
     ]),
   });
 
-  // get emailValid() {
-  //   return this.validationForm.controls['email'].valid;
-  // }
-  // get passwordValid() {
-  //   return this.validationForm.controls['password'].valid;
-  // }
-
   async add(email: any, password: any) {
     if (this.validationForm.valid) {
       let email = this.validationForm.controls['email'].value;
@@ -45,8 +38,8 @@ export class LoginComponent {
           console.log(data);
           this.localStorageService.getData('jwt_token').subscribe((data) => {
             console.log(data);
-            // this.myRouter.navigateByUrl('/profile/' + data.user_id);
-            location.href = '/profile/' + data.user_id;
+
+            location.href = '/home';
           });
         },
         (error) => {

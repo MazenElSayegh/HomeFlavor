@@ -8,7 +8,6 @@ let jwt = require("jsonwebtoken");
 id = 0;
 let AddNewUser = async (req, res, next) => {
   const file = req.file;
-  console.log(file);
   let image_path;
   if (file) {
     image_path = req.file.filename;
@@ -68,7 +67,6 @@ let GetUserById = async (req, res) => {
 };
 let UpdateUser = async (req, res) => {
   const file = req.file;
-  console.log(file);
   let image_path;
   if (file) {
     image_path = req.file.filename;
@@ -88,7 +86,6 @@ let UpdateUser = async (req, res) => {
     address: req.body.address,
     mobile: +req.body.mobile,
   };
-  console.log(data);
   const valid = userValid(data);
   if (!valid) {
     res.send("Not Compatible..");
