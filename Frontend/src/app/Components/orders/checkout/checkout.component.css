@@ -1,6 +1,6 @@
 #container{
   width: 70vw;
-  height: 25vw;
+  min-height: 25vw;
   margin: auto;
   box-shadow:
     rgba(0, 0, 0, 0.024) 0px 0px 0px 1px,
@@ -25,7 +25,7 @@
 #receipt{
   /* margin-top: auto; */
   min-width: 50%;
-  max-height: 300px;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
   background-color: rgb(240, 248, 255,0.9);
