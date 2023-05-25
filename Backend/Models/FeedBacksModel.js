@@ -17,7 +17,6 @@ let FeedBackSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: "users",
     required: true,
-    // type: String,
   },
   comment: { type: String, required: true },
   date: { type: Date, required: true, default: Date.now },
