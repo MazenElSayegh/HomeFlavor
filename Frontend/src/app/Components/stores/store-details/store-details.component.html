@@ -375,8 +375,8 @@
                 <button
                   class="deleteFeedbackBtn btn"
                   *ngIf="
-                    (user_data && user_data.role === 'admin') ||
-                    (user_data && feedback.user_id._id == user_data.user_id)
+                    ( user_data.role === 'admin') ||
+                    (feedback.user_id._id == user_data.user_id)
                   "
                 >
                   <a [routerLink]="['/feedbacks/delete', feedback._id]">
