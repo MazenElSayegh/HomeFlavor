@@ -125,7 +125,7 @@
                     class="modal-header d-flex flex-column justify-content-center"
                   >
                     <h1
-                      class="modal-title modalheader fs-5"
+                      class="modal-title modalheader fs-4 fw-3"
                       id="exampleModalLabel"
                     >
                       Alert
@@ -149,20 +149,18 @@
                       class="fa-solid fa-check fa-4x animated"
                     ></i>
                     <div *ngIf="flag == false">
-                      Sorry,You cant add two products from different stores
+                      <h3>Sorry,You cant add two products from different stores</h3>
                     </div>
-                    <div *ngIf="flag == true">Added Succesfully</div>
+                    <div *ngIf="flag == true"><h3>Added Succesfully</h3>
+                    </div>
                   </div>
                   <div
                     class="modal-footer d-flex flex-column justify-content-center"
                   >
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                    <a
-                      type="button"
-                      class="btn okbtn waves-effect"
-                      data-bs-dismiss="modal"
-                      >OK</a
-                    >
+
+                    <input type="submit" class="btn okbtn waves-effect"
+                    data-bs-dismiss="modal" value="OK"/>
                   </div>
                 </div>
               </div>

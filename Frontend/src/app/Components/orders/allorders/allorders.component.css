@@ -120,6 +120,19 @@ img {
 }
 
 .modal-header{
-  background-color:rgb(218, 109, 21);
+  background-color:rgb(218, 109, 21,0.9);
+}
+.modal-content{
+  background-image: url('../../../../assets/img/modal.jpg');
+  width: 70%;
+  height: 80%;
+  border: #051922 2px solid;
+  border-radius: 20%;
+  overflow: hidden;
+
+}
+.modal-dialog{
+  display: flex;
+  justify-content: center;
 }
 
