@@ -36,10 +36,8 @@ export class StoreDetailsComponent {
     private orderService: OrdersService
   ) {
     this.LocalStorageService.getData('jwt_token').subscribe((data) => {
-      if (this.user_data) {
-        this.user_data = data;
-        console.log(this.user_data.role);
-      }
+      this.user_data = data;
+      console.log(this.user_data.role);
     });
     this.id = myRoute.snapshot.params['id'];
     this.myService.getStoreByID(this.id).subscribe({
@@ -236,40 +234,30 @@ export class StoreDetailsComponent {
   }
 
   get checkAdminOrOwner() {
-    if (this.user_data) {
-      // var userData = this.user_data;
+    let userData = this.user_data;
+    let storeOwner = this.store.user_id._id;
 
-      let storeOwner = this.store.user_id._id;
-
-      if (
-        this.user_data.role === 'admin' ||
-        (this.user_data.role == 'seller' &&
-          storeOwner == this.user_data.user_id)
-      ) {
-        return true;
-      } else {
-        return false;
-      }
+    if (
+      userData.role === 'admin' ||
+      (userData.role == 'seller' && storeOwner == userData.user_id)
+    ) {
+      return true;
     } else {
       return false;
     }
   }
 
   get checkUserMadeOrder() {
-    if (this.user_data) {
-      for (let i = 0; i < this.allOrders.length; i++) {
-        if (
-          this.user_data.user_id === this.allOrders[i].user_id._id &&
-          this.id === this.allOrders[i].store_id._id
-        ) {
-          return true;
-        }
+    for (let i = 0; i < this.allOrders.length; i++) {
+      if (
+        this.user_data.user_id === this.allOrders[i].user_id._id &&
+        this.id === this.allOrders[i].store_id._id
+      ) {
+        return true;
       }
-
-      return false;
-    } else {
-      return false;
     }
+
+    return false;
   }
 
   getAllFeedbacks() {
