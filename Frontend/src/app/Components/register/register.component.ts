@@ -1,4 +1,4 @@
-import { Component , AfterViewInit, ViewChild, ElementRef  } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BackendService } from 'src/app/Services/backend.service';
@@ -30,20 +30,16 @@ export class RegisterComponent {
   is_user_mobile_valid = true;
   validatedForm = true;
 
-
-
   constructor(
     private myService: BackendService,
     public myRouter: Router,
-    private localStorageService: LocalStorageService,
-
-    ) {}
+    private localStorageService: LocalStorageService
+  ) {}
 
   validationForm = new FormGroup({
     user_name: new FormControl(null, [
       Validators.required,
       Validators.minLength(3),
-      //Adding pattern
     ]),
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [
@@ -60,30 +56,6 @@ export class RegisterComponent {
     ]),
     address: new FormControl(null, [Validators.required]), // Adding pattern
   });
-
-  // get user_nameValid() {
-  //   return this.validationForm.controls['user_name'].valid;
-  // }
-
-  // get emailValid() {
-  //   return this.validationForm.controls['email'].valid;
-  // }
-  // get passwordValid() {
-  //   return this.validationForm.controls['password'].valid;
-  // }
-  // get genderValid() {
-  //   return this.validationForm.controls['gender'].valid;
-  // }
-  // get roleValid() {
-  //   return this.validationForm.controls['role'].valid;
-  // }
-  // get addressValid() {
-  //   return this.validationForm.controls['address'].valid;
-  // }
-  // get mobileValid() {
-  //   return this.validationForm.controls['mobile'].valid;
-  // }
-
   upload(event: any) {
     this.user_image = event.target.files[0];
     console.log(event);
@@ -91,25 +63,20 @@ export class RegisterComponent {
       !['image/jpeg', 'image/png', 'image/jpg'].includes(this.user_image.type)
     ) {
       this.is_valid_user_image = false;
-      //      'Invalid file type. Only JPEG and PNG images are allowed.'
     } else {
       this.is_valid_user_image = true;
     }
   }
 
   logout() {
-    // Send logout request to backend
-
-    console.log('hi');
     this.localStorageService.removeData('jwt_token');
   }
 
   add(user_name: any) {
-    // user_image: any
     const formData = new FormData();
 
     console.log(this.user_image);
-    // console.log(this.user_name);
+
     if (this.validationForm.valid && this.is_valid_user_image) {
       formData.append('user_image', this.user_image);
       formData.append('user_name', user_name);
@@ -122,10 +89,9 @@ export class RegisterComponent {
 
       this.myService.addNewUser(formData).subscribe({
         next: (data) => {
-          // location.href = '/login';
           this.localStorageService.getData('jwt_token').subscribe((data) => {
             console.log(data);
-            // this.myRouter.navigateByUrl('/profile/' + data.user_id);
+
             if (data.role == 'seller') location.href = '/stores/create';
             else location.href = '/';
           });
