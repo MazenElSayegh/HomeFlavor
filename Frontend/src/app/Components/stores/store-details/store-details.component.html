@@ -82,7 +82,7 @@
       <div class="col-md-12">
         <div class="product-filters">
           <ul>
-            <button class="addItemBtn" *ngIf="checkAdminOrOwner">
+            <button class="addItemBtn" *ngIf="user_data&&checkAdminOrOwner">
               <a [routerLink]="['/menu/create']"> Add Menu Item </a>
             </button>
             <li class="active" data-filter="*" (click)="filterProducts('all')">
@@ -232,7 +232,7 @@
               </div>
             </div>
 
-            <div *ngIf="checkAdminOrOwner" class="updateDeleteMenuContainer">
+            <div *ngIf="user_data&&checkAdminOrOwner" class="updateDeleteMenuContainer">
               <button class="updateMenuBtn btn btn-info">
                 <a [routerLink]="['/menu/update', product._id]">
                   <i
@@ -338,7 +338,7 @@
   </div>
 
   <!-- Feedback Form -->
-  <div class="contact-from-section mt-150 mb-150" *ngIf="checkUserMadeOrder">
+  <div class="contact-from-section mt-150 mb-150" *ngIf="user_data&&checkUserMadeOrder">
     <div class="container">
       <div class="row">
         <div class="">
