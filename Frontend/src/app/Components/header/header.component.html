@@ -5,7 +5,7 @@
         <div class="main-menu-wrap">
           <!-- logo -->
           <div class="site-logo">
-            <a href="index.html">
+            <a routerLink="index.html">
               <img src="assets/img/logo.png" alt="" />
             </a>
           </div>
@@ -15,47 +15,47 @@
           <nav class="main-menu">
             <ul>
               <li class="current-list-item">
-                <a routerLinkActive="active" href="/home">Home</a>
+                <a routerLinkActive="active" routerLink="/home">Home</a>
               </li>
               <li>
-                <a href="/stores">Stores</a>
+                <a routerLink="/stores">Stores</a>
                 <ul class="sub-menu">
-                  <li><a href="shop.html">Shop</a></li>
-                  <li><a href="checkout.html">Check Out</a></li>
-                  <li><a href="single-product.html">Single Product</a></li>
-                  <li><a href="cart.html">Cart</a></li>
+                  <li><a routerLink="shop.html">Shop</a></li>
+                  <li><a routerLink="checkout.html">Check Out</a></li>
+                  <li><a routerLink="single-product.html">Single Product</a></li>
+                  <li><a routerLink="cart.html">Cart</a></li>
                 </ul>
               </li>
-              <li><a href="#videoSec">About</a></li>
+              <li><a routerLink="#videoSec">About</a></li>
               <li>
-                <a href="#">Pages</a>
+                <a routerLink="#">Pages</a>
                 <ul class="sub-menu">
-                  <li><a href="404.html">404 page</a></li>
-                  <li><a href="#videoSec">About</a></li>
-                  <li><a href="cart.html">Cart</a></li>
-                  <li><a href="checkout.html">Check Out</a></li>
-                  <li><a href="contact.html">Contact</a></li>
-                  <li><a href="#newsSec">News</a></li>
-                  <li><a href="#stores">Shop</a></li>
+                  <li><a routerLink="404.html">404 page</a></li>
+                  <li><a routerLink="#videoSec">About</a></li>
+                  <li><a routerLink="cart.html">Cart</a></li>
+                  <li><a routerLink="checkout.html">Check Out</a></li>
+                  <li><a routerLink="contact.html">Contact</a></li>
+                  <li><a routerLink="#newsSec">News</a></li>
+                  <li><a routerLink="#stores">Shop</a></li>
                 </ul>
               </li>
 
-              <li><a href="contact.html">Contact</a></li>
+              <li><a routerLink="contact.html">Contact</a></li>
               <ng-template #falseBlock>
                 <li>
-                  <a href="#newsSec">Account</a>
+                  <a routerLink="#newsSec">Account</a>
                   <ul class="sub-menu">
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Sign-up</a></li>
+                    <li><a routerLink="/login">Login</a></li>
+                    <li><a routerLink="/register">Sign-up</a></li>
                   </ul>
                 </li>
               </ng-template>
 
               <li *ngIf="user_data; else falseBlock">
-                <a href="/profile/{{ user_data.user_id }}">{{ user_data.user_name }}</a>
+                <a routerLink="/profile/{{ user_data.user_id }}">{{ user_data.user_name }}</a>
                 <ul class="sub-menu">
                   <li>
-                    <a href="/profile/{{ user_data.user_id }}">Profile</a>
+                    <a routerLink="/profile/{{ user_data.user_id }}">Profile</a>
                   </li>
                   <li><a (click)="logout()">Logout</a></li>
                 </ul>
@@ -86,10 +86,10 @@
                   ></a>
                 </div>
                 <div *ngIf="(user_data.role=='seller' || user_data.role=='admin') && count>0;">
-                  <a href="/orders" class="notifications-bell"><i id="cartIcon" class="fa-solid fa-bell fa-shake">{{count}}</i>‏</a>
+                  <a routerLink="/orders" class="notifications-bell"><i id="cartIcon" class="fa-solid fa-bell fa-shake">{{count}}</i>‏</a>
                 </div>
                 <div *ngIf="(user_data.role=='seller' || user_data.role=='admin') && count==0;">
-                  <a href="/orders" class="notifications-bell"><i id="cartIcon" class="fa-solid fa-bell"></i>‏</a>
+                  <a routerLink="/orders" class="notifications-bell"><i id="cartIcon" class="fa-solid fa-bell"></i>‏</a>
                 </div>
               </li>
             </ul>
@@ -186,7 +186,7 @@
                   </div>
                 </div>
               </div>
-              <a href="checkout"
+              <a routerLink="checkout"
                 ><button class="btn btn-dark">Proceed to Checkout</button></a
               >
             </div>
