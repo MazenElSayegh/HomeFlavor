@@ -20,7 +20,7 @@ userSchema = {
     gender: { type: "string", enum: ["male", "female"] },
     user_image: { type: "string" },
     role: { type: "string", enum: ["admin", "buyer", "seller"] },
-    mobile: { type: "number" },
+    mobile: { type: "string" },
     address: { type: "string" },
   },
   required: [
