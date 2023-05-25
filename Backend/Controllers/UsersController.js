@@ -84,7 +84,7 @@ let UpdateUser = async (req, res) => {
     gender: req.body.gender,
     role: req.body.role,
     address: req.body.address,
-    mobile: +req.body.mobile,
+    mobile: req.body.mobile,
   };
   const valid = userValid(data);
   if (!valid) {
