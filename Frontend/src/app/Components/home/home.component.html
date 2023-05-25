@@ -28,7 +28,6 @@
               <h1>100% Homemade Food</h1>
               <div class="hero-btns">
                 <a href="#stores" class="boxed-btn">Visit Stores</a>
-                <a href="contact.html" class="bordered-btn">Contact Us</a>
               </div>
             </div>
           </div>
@@ -47,7 +46,6 @@
               <h1>Get Summer Discount</h1>
               <div class="hero-btns">
                 <a href="#stores" class="boxed-btn">Visit Shop</a>
-                <a href="contact.html" class="bordered-btn">Contact Us</a>
               </div>
             </div>
           </div>
@@ -69,7 +67,7 @@
           </div>
           <div class="content">
             <h3>Free Shipping</h3>
-            <p>When order over $75</p>
+            <p>When order over E£ 500</p>
           </div>
         </div>
       </div>
@@ -91,7 +89,7 @@
           </div>
           <div class="content">
             <h3>Refund</h3>
-            <p>Get refund within 3 days!</p>
+            <p>Get refund within 1 day!</p>
           </div>
         </div>
       </div>
@@ -113,12 +111,12 @@
                 >Then go ahead and join our Family.</span
               >
             </h3>
-            <a href="stores/create"><input type="submit" value="From Here"/></a>
+            <a routerLink="stores/create"><input type="submit" value="From Here"/></a>
           </div>
           <h3><span class="orange-text">Our</span> Stores</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid,
-            fuga quas itaque eveniet beatae optio.
+            We can all agree that there is nothing like well-cooked homemade food.
+             Homemade food is made with care and devotion and with love, most importantly.
           </p>
         </div>
       </div>
@@ -128,7 +126,7 @@
       <div *ngFor="let store of stores" class="col-lg-4 col-md-6 text-center">
         <div class="single-product-item">
           <div class="product-image">
-            <a [href]="'/stores/' + store._id"
+            <a [routerLink]="'/stores/' + store._id"
               ><img [src]="localhost + store.image" alt="" id="storesImages"
             /></a>
           </div>
@@ -138,14 +136,14 @@
           </p>
           <a
             *ngIf="user_data && user_data.role !== 'buyer'; else buyerBlock"
-            [href]="'/stores/' + store._id"
+            [routerLink]="'/stores/' + store._id"
             class="cart-btn"
             style="text-decoration: none"
             ><i class="fas fa-shopping-cart"></i>Check it out</a
           >
           <ng-template #buyerBlock>
             <a
-              [href]="'/stores/' + store._id"
+              [routerLink]="'/stores/' + store._id"
               class="cart-btn"
               style="text-decoration: none"
               ><i class="fas fa-shopping-cart"></i>Order now</a
@@ -271,17 +269,11 @@
           <p class="top-sub">Since Year 2023</p>
           <h2>We are <span class="orange-text">Home Flavor</span></h2>
           <p>
-            Etiam vulputate ut augue vel sodales. In sollicitudin neque et massa
-            porttitor vestibulum ac vel nisi. Vestibulum placerat eget dolor sit
-            amet posuere. In ut dolor aliquet, aliquet sapien sed, interdum
-            velit. Nam eu molestie lorem.
+            If you want to start your homemade food or cottage food business to be able to supplement your income, then you must know that there is quite a great deal of competition, and to stay in business, you would need the aid of proper slogans and taglines.
           </p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
-            facilis illo repellat veritatis minus, et labore minima mollitia qui
-            ducimus.
+            It’s not that restaurant foods are made badly or in the wrong way, but very seldom is the proper care and hygiene maintained.
           </p>
-          <a href="about.html" class="boxed-btn mt-4">know more</a>
         </div>
       </div>
     </div>
@@ -293,7 +285,7 @@
 <section class="shop-banner">
   <div class="container">
     <h3>
-      December sale is on! <br />
+      May sale is on! <br />
       with big <span class="orange-text">Discount...</span>
     </h3>
     <div class="sale-percent">
@@ -315,8 +307,7 @@
         <div class="section-title">
           <h3><span class="orange-text">Our</span> News</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid,
-            fuga quas itaque eveniet beatae optio.
+            You must try all our new products because they are worth trying , You will enjoy the experience
           </p>
         </div>
       </div>
@@ -390,7 +381,7 @@
             </p>
             <p class="excerpt">
               Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus
-              nisi. Praesent vitae mattis nunc, egestas viverra eros.
+              nisi.
             </p>
           </div>
         </div>

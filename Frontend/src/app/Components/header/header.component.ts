@@ -89,6 +89,8 @@ export class HeaderComponent {
   // }
   // this.user_data =
 
+
+
   ngOnInit(): void {
     this.localStorageService.getData('jwt_token').subscribe((data) => {
       console.log(data);
