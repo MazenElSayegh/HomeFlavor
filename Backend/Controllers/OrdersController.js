@@ -34,7 +34,6 @@ let GetAllOrders = async (req, res) => {
       });
   }else{
     store= "none";
-    console.log(store);
     res.status(201).json(store);
 
   }} else {
@@ -53,7 +52,6 @@ let GetAllOrders = async (req, res) => {
 
 // Get order by ID
 let GetOrderByID = async (req, res) => {
-  console.log("get Order by id");
   let id = req.params.id;
   let order = null;
   try {
@@ -74,12 +72,10 @@ let GetOrderByID = async (req, res) => {
   } else {
     res.status(401).json("not found");
   }
-  console.log(order.user_id);
 };
 
 // Make new Order (USER)
 let CreateOrder = async (req, res) => {
-  console.log("add orders");
 
   let newOrder = req.body;
   if (validateOrder(newOrder)) {
@@ -93,7 +89,6 @@ let CreateOrder = async (req, res) => {
 
 // Update Order  -> when status:"pending" only  (ADMIN)  //products or status
 var UpdateOrderByID = async (req, res) => {
-  console.log("update order");
   if (true) {
     var ID = req.params.id;
     var updatedOrder = req.body;
