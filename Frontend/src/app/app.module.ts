@@ -30,6 +30,9 @@ import { ProfileComponent } from './Components/profile/profile/profile.component
 import { UpdateProfileComponent } from './Components/profile/update-profile/update-profile.component';
 import { CheckoutComponent } from './Components/orders/checkout/checkout.component';
 import { AuthInterceptor } from './Interceptors/auth.interceptor';
+import { ForgetpasswordComponent } from './Components/passwordreset/forgetpassword/forgetpassword.component';
+import { OtpComponent } from './Components/passwordreset/otp/otp.component';
+import { PasswordresetComponent } from './Components/passwordreset/passwordreset/passwordreset.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,9 @@ import { AuthInterceptor } from './Interceptors/auth.interceptor';
     UpdateMenuItemComponent,
     UpdateProfileComponent,
     CheckoutComponent,
+    ForgetpasswordComponent,
+    OtpComponent,
+    PasswordresetComponent,
   ],
   imports: [
     BrowserModule,

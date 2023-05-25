@@ -13,15 +13,21 @@
 </div>
 <!-- end breadcrumb section -->
 
+
+
 <section class="bg-yellow" style="background-color: #051922">
   <div class="container py-5">
     <div
+    tabindex="-1"
       class="alert alert-danger w-50 m-auto"
       *ngIf="!validatedForm"
       role="alert"
+      id="myAlert"
+      #myAlert
     >
       Please Enter Correct Data
     </div>
+
 
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
@@ -257,4 +263,15 @@
       </div>
     </div>
   </div>
+
 </section>
+
+<!-- <div class="modal" *ngIf="!validatedForm" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="alert alert-danger w-50 m-auto" role="alert">
+        Please Enter Correct Data
+      </div>
+    </div>
+  </div>
+</div> -->
