@@ -41,9 +41,7 @@ export class AllordersComponent {
   }
   ngOnInit(): void {
     this.localStorageService.getData('jwt_token').subscribe((data) => {
-      if (this.user_data) {
         this.user_data = data;
-      }
     });
   }
 
