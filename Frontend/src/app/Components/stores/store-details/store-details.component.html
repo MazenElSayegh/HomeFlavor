@@ -34,11 +34,30 @@
           Store
         </a>
       </button>
-      <button class="deleteStoreBtn btn btn-danger" *ngIf="checkAdminOrOwner">
-        <a [routerLink]="['/stores/delete', store._id]">
+      <button class="deleteStoreBtn btn btn-danger" *ngIf="checkAdminOrOwner" data-bs-toggle="modal" data-bs-target="#deleteStoreModel">
+        <a>
           <i class="fa-solid fa-trash" style="color: #ffffff"></i> Delete Store
+
         </a>
       </button>
+      <div class="modal fade" id="deleteStoreModel"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-danger" role="alert">
+          <div class="modal-content">
+            <div class="modal-header d-flex flex-column justify-content-center">
+              <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">Alert</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body  d-flex flex-column justify-content-center align-items-center">
+              <i class="fa-solid fa-check fa-4x"></i>
+             <div>are you sure to delete this store</div>
+            </div>
+            
+            <div class="modal-footer d-flex flex-column justify-content-center">
+              <input type="submit" [routerLink]="['/stores/delete', store._id]" value="OK" data-bs-dismiss="modal" class="btn okbtn waves-effect"/>
+            </div>
+          </div>
+        </div>
+    </div>
     </div>
   </div>
   <ng-template #falseBlock>
@@ -225,12 +244,30 @@
                   Edit Item
                 </a>
               </button>
-              <button class="deleteMenuBtn btn btn-danger">
-                <a [routerLink]="['/menu/delete', product._id]">
+              <button class="deleteMenuBtn btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMenuModel">
+                <a >
                   <i class="fa-solid fa-trash" style="color: #ffffff"></i>
                   Delete Item
                 </a>
               </button>
+              <div class="modal fade" id="deleteMenuModel"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-notify modal-danger" role="alert">
+                  <div class="modal-content">
+                    <div class="modal-header d-flex flex-column justify-content-center">
+                      <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">Alert</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body  d-flex flex-column justify-content-center align-items-center">
+                      <i class="fa-solid fa-check fa-4x"></i>
+                     <div>are you sure to delete this menu item</div>
+                    </div>
+                    
+                    <div class="modal-footer d-flex flex-column justify-content-center">
+                      <input type="submit" [routerLink]="['/menu/delete', product._id]" value="OK" data-bs-dismiss="modal" class="btn okbtn waves-effect"/>
+                    </div>
+                  </div>
+                </div>
+            </div>
             </div>
           </div>
         </div>
@@ -275,21 +312,28 @@
                     user_data.role === 'admin' ||
                     feedback.user_id._id == user_data.user_id
                   "
-                >
-                  <a [routerLink]="['/feedbacks/delete', feedback._id]">
-                    <i
+                  
+                ><a [routerLink]="['/feedbacks/delete', feedback._id]">
+                  <i
                       class="fa-solid fa-trash fa-2xl"
                       style="color: #ff0000"
                     ></i>
-                  </a>
+                </a>
+                  
+                    
                 </button>
+                
+                
                 <div class="last-icon">
                   <i class="fas fa-quote-right"></i>
                 </div>
+                
               </div>
             </div>
+            
             <hr />
           </div>
+          
         </div>
       </div>
     </div>
