@@ -26,18 +26,16 @@ export class HomeComponent {
         console.log(err);
       },
     });
-    if (this.user_data) {
-      ordersService.GetAllOrders().subscribe({
-        next: (data) => {
-          if (data == 'none') {
-            this.storeFlag = 0;
-          }
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-    }
+    ordersService.GetAllOrders().subscribe({
+      next: (data) => {
+        if (data == 'none') {
+          this.storeFlag = 0;
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
   ngOnInit(): void {
     this.localStorageService.getData('jwt_token').subscribe((data) => {
