@@ -136,14 +136,14 @@
           </p>
           <a
             *ngIf="user_data && user_data.role !== 'buyer'; else buyerBlock"
-            [routerLink]="'/stores/' + store._id"
+            [href]="'/stores/' + store._id"
             class="cart-btn"
             style="text-decoration: none"
             ><i class="fas fa-shopping-cart"></i>Check it out</a
           >
           <ng-template #buyerBlock>
             <a
-              [routerLink]="'/stores/' + store._id"
+              [href]="'/stores/' + store._id"
               class="cart-btn"
               style="text-decoration: none"
               ><i class="fas fa-shopping-cart"></i>Order now</a
