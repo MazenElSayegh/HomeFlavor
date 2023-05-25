@@ -75,7 +75,11 @@
                       data-bs-target="#offcanvasScrolling"
                       aria-controls="offcanvasScrolling"
                       id="cartIcon"
-                    ></i
+                    ><span
+                    id="ordersCount"
+                    class="position-absolute top-30 start-100 translate-middle"
+                    >{{ addedProducts.length}}</span
+                  ></i
                   ></a>
                 </div>
                 <div
@@ -192,7 +196,7 @@
                       </div>
                       <div class="offset-lg-1 mt-3">
                         <h5 class="m-auto ms-5">
-                          Price = ${{ product.price * product.quantity }}
+                          Price = E&#163;&nbsp;{{ product.price * product.quantity }}
                         </h5>
                       </div>
                       <div class="text-end">
