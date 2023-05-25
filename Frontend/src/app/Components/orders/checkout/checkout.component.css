@@ -16,6 +16,11 @@
   padding: 1vw;
   display: flex;
   justify-content:space-between;
+  margin-bottom: 5vh;
+  background-image: url("../../../../assets/img/checkout.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 #receipt{
   /* margin-top: auto; */
@@ -23,7 +28,7 @@
   max-height: 300px;
   display: flex;
   flex-direction: column;
-  background-color: aliceblue;
+  background-color: rgb(240, 248, 255,0.9);
   padding: 1.5vw;
   border-radius: 4px;
   box-shadow:
@@ -38,8 +43,9 @@
     rgb(213, 220, 226)
     rgb(184, 194, 204);
   color:#374b56 ;
+
 }
-#receipt input{
+.confirmButton{
   width: 40%;
   padding: 10px;
   position:relative ;
@@ -104,26 +110,56 @@ header{
   font-size: 1.2vw;
   /* font-weight: 600; */
 }
+.animated{
+  color: #051922;
+}
+.okbtn{
+  background-color: #051922;
+  color: bisque;
+  font-size: larger;
+  padding-inline: 40px;
+}
+.pay-choice{
+  font-weight: 700;
+}
+/* Hide the default radio button */
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #051922;
+  outline: none;
+  cursor: pointer;
+}
 
-/* card or hide info */
-.hideCardInfo{
+/* Add a custom style for the checked radio button */
+input[type="radio"]:checked {
+  background-color: rgb(242, 129, 35);
+}
+
+.hideButton{
   display: none;
 }
-.showCardInfo{
-  display: flex;
-  margin-top: 0px;
-  flex-direction: row;
-  flex-wrap: wrap;
+.showButton{
+  display: block;
+  text-align: center;
 }
-.showCardInfo section{
-  width: 50%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+.modal-header{
+  background-color:rgb(218, 109, 21,0.9);
 }
-.showCardInfo label{
-  margin-bottom: 10px;
-}
+.modal-content{
+  background-image: url('../../../../assets/img/modal.jpg');
+  width: 70%;
+  height: 80%;
+  border: #051922 2px solid;
+  border-radius: 20%;
+  overflow: hidden;
 
-.half{
-  width: 80px !important;
+}
+.modal-dialog{
+  display: flex;
+  justify-content: center;
 }

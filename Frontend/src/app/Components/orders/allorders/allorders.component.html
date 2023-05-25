@@ -25,6 +25,7 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Date</th>
+      <th scope="col">Time</th>
       <th scope="col">Status</th>
       <th scope="col">Total Price</th>
       <th scope="col">User</th>
@@ -37,6 +38,7 @@
     <tr *ngFor="let o of orders">
       <td>{{ o._id }}</td>
       <td>{{ o.date | date : "dd/MM/yyyy" }}</td>
+      <td>{{ o.date | date : "h:mm a" }}</td>
       <td>{{ o.status }}</td>
       <td>{{ o.total_price | number : "1.2-2" }}</td>
       <td>{{ o.user_id.user_name }}</td>
@@ -56,13 +58,17 @@
                 o.products
               )
             "
+
           >
             <input
               type="submit"
               class="btn btn-outline-primary"
               style="padding-left: 1rem; padding-right: 1rem"
               value="Accept"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
               routerLink="/orders"
+
             />
           </form>
           <form
@@ -81,8 +87,28 @@
               class="btn btn-outline-danger"
               style="padding-left: 1rem; padding-right: 1rem"
               value="Reject"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
             />
           </form>
+          <div class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notify modal-danger" role="alert">
+              <div class="modal-content">
+                <div class="modal-header d-flex flex-column justify-content-center">
+                  <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">Alert</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body  d-flex flex-column justify-content-center">
+                  <i class="fa-solid fa-check fa-4x"></i>
+                 <div>Updated Succesfully</div>
+                </div>
+                <div class="modal-footer d-flex flex-column justify-content-center">
+                  <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                  <input type="submit" (click)="reload()" value="OK" class="btn okbtn waves-effect"/>
+                </div>
+              </div>
+            </div>
+        </div>
         </div>
         <ng-template #ifBlock>
           <div *ngIf="o.status == 'Accepted'; else elseBlock">
@@ -151,7 +177,7 @@
                 >
                   <div class="mb-3">
                     <span class="float-right text-info"
-                      >Ordered on {{ o.date | date : "dd/MM/yyyy" }}
+                      >Ordered on {{ o.date | date : "dd/MM/yyyy" }} at {{ o.date | date : "h:mm a" }}
                       <i class="icofont-check-circled text-success"></i
                     ></span>
                   </div>
@@ -170,7 +196,7 @@
 
                   <p class="mb-0 text-black text-primary pt-2">
                     <span class="text-black font-weight-bold">
-                      Total Paid:</span
+                      Total Price:</span
                     >
                     {{ o.total_price | number : "1.2-2" }}
                   </p>
@@ -203,8 +229,28 @@
                       class="btn btn-outline-danger"
                       style="padding-left: 1rem; padding-right: 1rem"
                       value="Cancel"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal2"
                     />
                   </form>
+                  <div class="modal fade" id="exampleModal2"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-notify modal-danger" role="alert">
+                      <div class="modal-content">
+                        <div class="modal-header d-flex flex-column justify-content-center">
+                          <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">Alert</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body  d-flex flex-column justify-content-center align-items-center">
+                          <i class="fa-solid fa-check fa-4x"></i>
+                         <div><h3>Updated Succesfully</h3></div>
+                        </div>
+                        <div class="modal-footer d-flex flex-column justify-content-center">
+                          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                          <input type="submit" (click)="reload()" value="OK" class="btn okbtn waves-effect"/>
+                        </div>
+                      </div>
+                    </div>
+                </div>
                 </div>
                 </div>
               </div>

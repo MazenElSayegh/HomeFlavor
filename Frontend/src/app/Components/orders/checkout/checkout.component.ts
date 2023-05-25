@@ -34,9 +34,9 @@ import {
   ],
 })
 export class CheckoutComponent {
-  // allProducts:any;
+  paymentHandler: any = null;
   allProducts: any[] = [];
-  user_data:any;
+  user_data: any;
   totalCost = 0;
   order: any = {
     products: [],
@@ -44,9 +44,13 @@ export class CheckoutComponent {
     user_id: String,
   };
 
-  constructor(private OrdersService: OrdersService, private router: Router,private LocalStorageService:LocalStorageService) {
+  constructor(
+    private OrdersService: OrdersService,
+    private router: Router,
+    private LocalStorageService: LocalStorageService
+  ) {
     let data: any = localStorage.getItem('cart');
-    console.log(data)
+    console.log(data);
     this.LocalStorageService.getData('jwt_token').subscribe((data) => {
       this.user_data = data;
     });
@@ -59,7 +63,12 @@ export class CheckoutComponent {
     });
   }
 
+  ngOnInit() {
+    this.invokeStripe();
+  }
+
   AddOrder() {
+    console.log('ana gowa');
     this.allProducts.forEach((product) => {
       let newPrice = parseFloat(product.price);
       product.price = newPrice;
@@ -71,20 +80,55 @@ export class CheckoutComponent {
     });
 
     this.OrdersService.AddNewOrder(this.order).subscribe();
-    alert('Order confirmed');
     this.LocalStorageService.removeData('cart');
-    this.router.navigateByUrl('/orders');
+  }
+  reload() {
+    location.href = '/orders';
   }
 
-  showInfo(){
-    let cardContainer=document.querySelector(".cardContainer");
-    cardContainer?.classList.remove('hideCardInfo');
-    cardContainer?.classList.add('showCardInfo');
+  showButton() {
+    let confirmButton = document.querySelector('.confirmButton');
+    confirmButton?.classList.remove('hideButton');
+    confirmButton?.classList.add('showButton');
   }
-  hideInfo(){
-    let cardContainer=document.querySelector(".cardContainer");
-    cardContainer?.classList.remove('showCardInfo');
-    cardContainer?.classList.add('hideCardInfo');
+  hideButton() {
+    let confirmButton = document.querySelector('.confirmButton');
+    confirmButton?.classList.remove('showButton');
+    confirmButton?.classList.add('hideButton');
   }
-
+  makePayment(amount: any) {
+    const paymentHandler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51NBO2YI8Mgz307EgfWYcnNfk7ccSrtdKyhJpHtB477RX7Eh32wTZdpbjdJ0CQBasiflrNknBeeRGxMYevmyhbEB200vuQeWDLw',
+      locale: 'auto',
+      token: (stripeToken: any) => {
+        console.log(stripeToken);
+        this.AddOrder();
+        this.reload();
+      },
+    });
+    paymentHandler.open({
+      name: 'HomeFlavor',
+      description: 'Credit card details',
+      amount: amount * 100,
+    });
+  }
+  invokeStripe() {
+    if (!window.document.getElementById('stripe-script')) {
+      const script = window.document.createElement('script');
+      script.id = 'stripe-script';
+      script.type = 'text/javascript';
+      script.src = 'https://checkout.stripe.com/checkout.js';
+      script.onload = () => {
+        this.paymentHandler = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51NBO2YI8Mgz307EgfWYcnNfk7ccSrtdKyhJpHtB477RX7Eh32wTZdpbjdJ0CQBasiflrNknBeeRGxMYevmyhbEB200vuQeWDLw',
+          locale: 'auto',
+          token: function (stripeToken: any) {
+            console.log(stripeToken);
+            alert('Payment has been successfull!');
+          },
+        });
+      };
+      window.document.body.appendChild(script);
+    }
+  }
 }

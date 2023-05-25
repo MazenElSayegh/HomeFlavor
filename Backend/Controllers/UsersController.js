@@ -43,9 +43,8 @@ let AddNewUser = async (req, res, next) => {
     let Token = jwt.sign(
       {
         role: req.body.role,
-        user_name: req.body.user_name,
+
         user_id: newUserModel._id,
-        user_image: newUserModel.user_image,
       },
       "token"
     );

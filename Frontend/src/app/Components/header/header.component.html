@@ -13,49 +13,27 @@
 
           <!-- menu start -->
           <nav class="main-menu">
-            <ul>
-              <li class="current-list-item">
-                <a routerLinkActive="active" routerLink="/home">Home</a>
-              </li>
+            <ul class="headLinks">
               <li>
-                <a routerLink="/stores">Stores</a>
-                <ul class="sub-menu">
-                  <li><a routerLink="shop.html">Shop</a></li>
-                  <li><a routerLink="checkout.html">Check Out</a></li>
-                  <li><a routerLink="single-product.html">Single Product</a></li>
-                  <li><a routerLink="cart.html">Cart</a></li>
-                </ul>
+                <a href="/">Home</a>
               </li>
-              <li><a routerLink="#videoSec">About</a></li>
-              <li>
-                <a routerLink="#">Pages</a>
-                <ul class="sub-menu">
-                  <li><a routerLink="404.html">404 page</a></li>
-                  <li><a routerLink="#videoSec">About</a></li>
-                  <li><a routerLink="cart.html">Cart</a></li>
-                  <li><a routerLink="checkout.html">Check Out</a></li>
-                  <li><a routerLink="contact.html">Contact</a></li>
-                  <li><a routerLink="#newsSec">News</a></li>
-                  <li><a routerLink="#stores">Shop</a></li>
-                </ul>
+              <li *ngIf="user_data && user_data.role == 'seller' && storeID">
+                <a routerLink="/stores/{{ storeID }}">My Store</a>
+              </li>
+              <li><a href="#videoSec">About</a></li>
+              <li *ngIf="user_data;">
+                <a  routerLink="/orders">Orders</a>
               </li>
 
-              <li><a routerLink="contact.html">Contact</a></li>
-              <ng-template #falseBlock>
-                <li>
-                  <a routerLink="#newsSec">Account</a>
-                  <ul class="sub-menu">
-                    <li><a routerLink="/login">Login</a></li>
-                    <li><a routerLink="/register">Sign-up</a></li>
-                  </ul>
-                </li>
-              </ng-template>
+              <li><a href="#stores">Stores</a></li>
 
               <li *ngIf="user_data; else falseBlock">
-                <a routerLink="/profile/{{ user_data.user_id }}">{{ user_data.user_name }}</a>
+                <a routerLink="/profile/{{ user_data._id }}">{{
+                  user_data.user_name
+                }}</a>
                 <ul class="sub-menu">
                   <li>
-                    <a routerLink="/profile/{{ user_data.user_id }}">Profile</a>
+                    <a routerLink="/profile/{{ user_data._id }}">Profile</a>
                   </li>
                   <li><a (click)="logout()">Logout</a></li>
                 </ul>
@@ -72,9 +50,21 @@
                   "
                 />
               </li>
+              <ng-template #falseBlock>
+                <li>
+                  <a href="#newsSec">Account</a>
+                  <ul class="sub-menu">
+                    <li><a routerLink="/login">Login</a></li>
+                    <li><a routerLink="/register">Sign-up</a></li>
+                  </ul>
+                </li>
+              </ng-template>
 
               <li>
-                <div class="header-icons" *ngIf="user_data.role=='buyer' || user_data.role=='admin';">
+                <div
+                  class="header-icons"
+                  *ngIf="user_data.role == 'buyer' || user_data.role == 'admin'"
+                >
                   <a class="shopping-cart"
                     ><i
                       class="fas fa-shopping-cart"
@@ -85,11 +75,31 @@
                     ></i
                   ></a>
                 </div>
-                <div *ngIf="(user_data.role=='seller' || user_data.role=='admin') && count>0;">
-                  <a routerLink="/orders" class="notifications-bell"><i id="cartIcon" class="fa-solid fa-bell fa-shake">{{count}}</i>‏</a>
+                <div
+                  *ngIf="
+                    (user_data.role == 'seller' || user_data.role == 'admin') &&
+                    count > 0
+                  "
+                >
+                  <a routerLink="/orders" class="notifications-bell"
+                    ><i id="cartIcon" class="fa-solid fa-bell fa-shake"
+                      ><span
+                        id="ordersCount"
+                        class="position-absolute top-0 start-100 translate-middle"
+                        >{{ count }}</span
+                      ></i
+                    >‏</a
+                  >
                 </div>
-                <div *ngIf="(user_data.role=='seller' || user_data.role=='admin') && count==0;">
-                  <a routerLink="/orders" class="notifications-bell"><i id="cartIcon" class="fa-solid fa-bell"></i>‏</a>
+                <div
+                  *ngIf="
+                    (user_data.role == 'seller' || user_data.role == 'admin') &&
+                    count == 0
+                  "
+                >
+                  <a routerLink="/orders" class="notifications-bell"
+                    ><i id="cartIcon" class="fa-solid fa-bell"></i>‏</a
+                  >
                 </div>
               </li>
             </ul>
@@ -123,15 +133,10 @@
           <div
             class="row d-flex justify-content-center align-items-center h-100"
           >
-            <div class="col-10">
-              <div
-                class="d-flex justify-content-between align-items-center mb-4"
-              >
-                <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
-              </div>
+            <div class="col-10" *ngIf="addedProducts.length; else emptyBlock">
               <div *ngFor="let product of addedProducts">
                 <div class="card rounded-3 mb-4">
-                  <div class="card-body p-4">
+                  <div class="card-body p-2">
                     <div
                       class="row d-flex justify-content-between align-items-center"
                     >
@@ -139,19 +144,24 @@
                         <img
                           [src]="localhost + product.product_image"
                           class="img-fluid rounded-3"
-                          alt="Cotton T-shirt"
+                          alt="product-image"
                         />
                       </div>
-                      <div class="">
+                      <div
+                        class="d-flex flex-column justify-content-center align-items-center"
+                      >
                         <p class="lead fw-normal mb-2">
                           {{ product.product_title }}
                         </p>
-                        <p>
-                          <span class="text-muted">Size: </span>M
-                          <span class="text-muted">Color: </span>Grey
+                        <p class="text-center">
+                          <span class="text-muted">{{
+                            product.product_details
+                          }}</span>
                         </p>
                       </div>
-                      <div class="d-flex">
+                      <div
+                        class="d-flex justify-content-center align-items-center"
+                      >
                         <button
                           class="btn btn-link px-2"
                           (click)="decrementQuantity(product)"
@@ -161,10 +171,11 @@
 
                         <input
                           id="form1"
-                          min="0"
+                          min="1"
                           name="quantity"
                           value="{{ product.quantity }}"
                           class="form-control form-control-sm"
+                          style="width: 30%; text-align: center"
                         />
 
                         <button
@@ -174,8 +185,10 @@
                           <i class="fas fa-plus"></i>
                         </button>
                       </div>
-                      <div class="offset-lg-1">
-                        <h5 class="mb-0">${{ product.price }}</h5>
+                      <div class="offset-lg-1 mt-3">
+                        <h5 class="m-auto ms-5">
+                          Price = ${{ product.price * product.quantity }}
+                        </h5>
                       </div>
                       <div class="text-end">
                         <a class="text-danger" (click)="removeProduct(product)"
@@ -187,9 +200,21 @@
                 </div>
               </div>
               <a routerLink="checkout"
-                ><button class="btn btn-dark">Proceed to Checkout</button></a
-              >
+                ><input
+                  type="submit"
+                  value="Proceed to Checkout"
+                  style="width: 100%; font-size: 15px; padding: 7px"
+              /></a>
             </div>
+            <ng-template #emptyBlock>
+              <img src="assets/img/emptycart.png" alt="emptycart" />
+              <input
+                type="submit"
+                value="Continue Shopping"
+                data-bs-dismiss="offcanvas"
+                style="width: 50%; font-size: 13px; padding: 5px"
+              />
+            </ng-template>
           </div>
         </div>
       </section>
