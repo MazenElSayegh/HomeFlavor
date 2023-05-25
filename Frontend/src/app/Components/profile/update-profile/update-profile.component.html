@@ -12,13 +12,6 @@
   </div>
 </div>
 <!-- end breadcrumb section -->
-<div
-  class="alert alert-danger w-50 m-auto mt-5"
-  *ngIf="!validatedForm"
-  role="alert"
->
-  Please Enter Correct Data
-</div>
 
 <section class="bg-yellow" style="background-color: #051922">
   <div class="container py-5" *ngIf="user; else falseBlock">
@@ -72,6 +65,9 @@
                 <div class="row">
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
+                      <label class="form-label" for="form3Example1m"
+                        >First name</label
+                      >
                       <input
                         formControlName="user_name"
                         value="{{ user.user_name }}"
@@ -83,17 +79,19 @@
                         #user_name
                       />
                       <div class="mt-1" *ngIf="!is_user_name_valid">
-                        <p>enter a name greater than three characters.</p>
+                        <p style="color: red; font-size: 10px">
+                          enter a name greater than three characters.
+                        </p>
                       </div>
-                      <label class="form-label" for="form3Example1m"
-                        >First name</label
-                      >
                     </div>
                   </div>
                   <div class="col-md-6 mb-4"></div>
                 </div>
 
                 <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example9"
+                    >Mobile Number</label
+                  >
                   <input
                     formControlName="address"
                     type="text"
@@ -104,7 +102,9 @@
                     #address
                   />
                   <div class="mt-1" *ngIf="!is_user_address_valid">
-                    <p>Address is required</p>
+                    <p style="color: red; font-size: 10px">
+                      Address is required
+                    </p>
                   </div>
                   <label class="form-label" for="form3Example8">Address</label>
                 </div>
@@ -119,14 +119,14 @@
                     #mobile
                   />
                   <div class="mt-1" *ngIf="!is_user_mobile_valid">
-                    <p>not less than 11 numbers</p>
+                    <p style="color: red; font-size: 10px">
+                      not less than 11 numbers
+                    </p>
                   </div>
-                  <label class="form-label" for="form3Example9"
-                    >Mobile Number</label
-                  >
                 </div>
 
                 <div class="form-outline mb-4">
+                  <label class="form-label" for="password">Password</label>
                   <input
                     formControlName="password"
                     type="password"
@@ -136,9 +136,10 @@
                     #password
                   />
                   <div class="mt-1" *ngIf="!is_user_password_valid">
-                    <p>not less than 8 characters</p>
+                    <p style="color: red; font-size: 10px">
+                      not less than 8 characters
+                    </p>
                   </div>
-                  <label class="form-label" for="password">Password</label>
                 </div>
                 <div class="input-group mb-3">
                   <input
@@ -152,7 +153,7 @@
                   >
                 </div>
                 <div class="mt-1" *ngIf="!is_valid_user_image">
-                  <p>
+                  <p style="color: red; font-size: 10px">
                     Invalid file type. Only JPEG, Jpg and PNG images are
                     allowed.
                   </p>
