@@ -11,7 +11,7 @@ ajv.addFormat("email", {
 userSchema = {
   type: "object",
   properties: {
-    user_name: { type: "string", pattern: "^[a-zA-Z0-9]+$" },
+    user_name: { type: "string" },
     email: {
       type: "string",
       format: "email",
@@ -20,10 +20,18 @@ userSchema = {
     gender: { type: "string", enum: ["male", "female"] },
     user_image: { type: "string" },
     role: { type: "string", enum: ["admin", "buyer", "seller"] },
-    mobile: { type: "number"},
-    address: { type: "string"},
+    mobile: { type: "number" },
+    address: { type: "string" },
   },
-  required: ["user_name", "email", "password", "gender", "role","address","mobile"],
+  required: [
+    "user_name",
+    "email",
+    "password",
+    "gender",
+    "role",
+    "address",
+    "mobile",
+  ],
 };
 
 module.exports = ajv.compile(userSchema);
