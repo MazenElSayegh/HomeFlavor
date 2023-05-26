@@ -1,0 +1,116 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <h1>Create your own Store</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+<section class="vh-100 mt-5">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img
+          src="https://thefoxmagazine.com/wp-content/uploads/2020/02/ella-olsson-KPDbRyFOTnE-unsplash-scaled.jpg"
+          class="img-fluid"
+          alt="Sample image"
+        />
+      </div>
+
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
+        <form
+          [formGroup]="validationForm"
+          (ngSubmit)="
+            AddStore(name.value, image.value, city.value, about.value)
+          "
+        >
+          <!-- <div *ngIf="!NameValid" class="alert alert-danger mb-4">
+            Name must be at least 3 characters long.
+          </div> -->
+
+          <!-- Name input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3"
+              >Name Of Your Store</label
+            >
+            <input
+              #name
+              type="text"
+              formControlName="name"
+              class="form-control form-control-lg"
+              placeholder="Enter Name"
+            />
+          </div>
+          <div class="" *ngIf="!isNameValid">
+            <p class="alert alert-danger p-2">
+              Name Must be at least 5 characters
+            </p>
+          </div>
+
+          <!-- About input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3"
+              >About Of Your Store</label
+            >
+            <input
+              #about
+              type="text"
+              class="form-control form-control-lg"
+              formControlName="about"
+              placeholder="Enter store details"
+            />
+          </div>
+          <div class="" *ngIf="!isAboutValid">
+            <p class="alert alert-danger p-2">
+              About Must be at least 20 characters
+            </p>
+          </div>
+
+          <!-- Image input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">Image</label>
+            <input
+              #image
+              type="file"
+              class="form-control form-control-lg"
+              formControlName="image"
+              accept=".png,.jpg,.jpeg"
+              placeholder="Enter Image"
+              (change)="storeImgUpload($event)"
+            />
+          </div>
+          <div class="alert alert-danger" *ngIf="!isImageValid">
+            Invalid file extension. Please select a PNG, JPG, or JPEG file.
+          </div>
+
+          <!-- city input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">City</label>
+            <input
+              #city
+              type="text"
+              formControlName="city"
+              class="form-control form-control-lg"
+              placeholder="Enter city"
+            />
+          </div>
+          <div class="" *ngIf="!isCityValid">
+            <p class="alert alert-danger p-2">City is required</p>
+          </div>
+
+          <input
+            type="submit"
+            class="btn btn-outline-primary btn-lg"
+            style="padding-left: 2.5rem; padding-right: 2.5rem"
+            value="Create"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

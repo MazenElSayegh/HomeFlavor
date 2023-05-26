@@ -1,0 +1,140 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <h1 *ngIf="checkAdminOrOwner; else accessDeniedDiv">
+            Update your own Store
+          </h1>
+          <ng-template #accessDeniedDiv>
+            <h1>Access Denied</h1>
+            <p>Wait to be redirected</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+<section class="vh-100 mt-5" *ngIf="checkAdminOrOwner">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img
+          src="https://elwasfa.com/wp-content/uploads/2020/01/for-web-2020-05-04T145441.475.jpg"
+          class="img-fluid"
+          alt="Sample image"
+        />
+      </div>
+
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
+        <form
+          [formGroup]="validationForm"
+          (ngSubmit)="
+            updateStore(
+              userID.value,
+              name.value,
+              image.value,
+              city.value,
+              about.value
+            )
+          "
+        >
+          <!-- UserID input -->
+          <div class="form-outline">
+            <input
+              #userID
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Enter userID"
+              value="{{ store.user_id._id }}"
+              hidden
+            />
+            <label class="form-label" for="form3Example3" hidden>UserID</label>
+          </div>
+          <!-- <div *ngIf="!NameValid" class="alert alert-danger mb-4">
+            Name must be at least 3 characters long.
+          </div> -->
+
+          <!-- Name input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">Name</label>
+            <input
+              #name
+              type="text"
+              class="form-control form-control-lg"
+              formControlName="name"
+              placeholder="Enter Name"
+              value="{{ store.name }}"
+            />
+          </div>
+          <div class="" *ngIf="!isNameValid">
+            <p class="alert alert-danger p-2">
+              Name Must be at least 5 characters
+            </p>
+          </div>
+
+          <!-- about input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">About</label>
+            <input
+              #about
+              type="text"
+              class="form-control form-control-lg"
+              formControlName="about"
+              placeholder="Enter store details"
+              value="{{ store.about }}"
+            />
+          </div>
+          <div class="" *ngIf="!isAboutValid">
+            <p class="alert alert-danger p-2">
+              About Must be at least 20 characters
+            </p>
+          </div>
+
+          <!-- Image input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">Image</label>
+            <input
+              #image
+              type="file"
+              class="form-control form-control-lg"
+              formControlName="image"
+              placeholder="Enter Image"
+              accept=".png,.jpg,.jpeg"
+              (change)="storeImgUpload($event)"
+            />
+          </div>
+          <div class="alert alert-danger" *ngIf="!isImageValid">
+            Invalid file extension. Please select a PNG, JPG, or JPEG file.
+          </div>
+
+          <!-- city input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">City</label>
+            <input
+              #city
+              type="text"
+              class="form-control form-control-lg"
+              value="{{ store.city }}"
+              formControlName="city"
+              placeholder="Enter city"
+              value="{{ store.city }}"
+            />
+          </div>
+          <div class="" *ngIf="!isCityValid">
+            <p class="alert alert-danger p-2">City is required</p>
+          </div>
+
+          <input
+            type="submit"
+            class="btn btn-outline-primary btn-lg"
+            style="padding-left: 2.5rem; padding-right: 2.5rem"
+            value="Update"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

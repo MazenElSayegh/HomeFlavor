@@ -1,0 +1,277 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>sagel w eksab</p>
+          <h1>Registration</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+
+
+
+<section class="bg-yellow" style="background-color: #051922">
+  <div class="container py-5">
+    <div
+    tabindex="-1"
+      class="alert alert-danger w-50 m-auto"
+      *ngIf="!validatedForm"
+      role="alert"
+      id="myAlert"
+      #myAlert
+    >
+      Please Enter Correct Data
+    </div>
+
+
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <!-- <div>
+            <a (click)="logout()">Logout</a>
+          </div> -->
+          <div class="row g-0">
+            <div class="col-xl-6 d-none d-xl-block m-auto">
+              <img
+                src="/assets/img/meatballs.jpg"
+                alt="Sample photo"
+                class="img-fluid"
+                style="
+                  border-top-left-radius: 0.25rem;
+                  border-bottom-left-radius: 0.25rem;
+                "
+              />
+            </div>
+
+            <div class="col-xl-6">
+              <form
+                class="card-body p-md-5 text-black"
+                [formGroup]="validationForm"
+                (ngSubmit)="add(user_name.value)"
+              >
+                <div class="d-flex align-items-center mb-3 pb-1">
+                  <!-- <i
+                  class="fas fa-cubes fa-2x me-3"
+                  style="color: #ff6219"
+                ></i>
+                <span class="h1 fw-bold mb-0">Logo</span> -->
+                  <img class="w-25" src="assets/img/logo.png" alt="logo" />
+                </div>
+                <h3 class="mb-5 text-uppercase">hungry?! Signup now</h3>
+
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example1m"
+                        >User name</label
+                      >
+                      <input
+                        formControlName="user_name"
+                        type="text"
+                        class="form-control form-control-lg"
+                        id="user_name"
+                        aria-describedby="emailHelp"
+                        placeholder="User name"
+                        #user_name
+                      />
+                      <div class="mt-1" *ngIf="!is_user_name_valid">
+                        <p style="color: red; font-size: 10px">
+                          enter a name greater than three characters.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example1n"
+                        >Email</label
+                      >
+                      <input
+                        formControlName="email"
+                        type="email"
+                        class="form-control form-control-lg"
+                        id="email"
+                        placeholder="Email"
+                        [(ngModel)]="email"
+                      />
+                      <div class="mt-1" *ngIf="!is_user_email_valid">
+                        <p style="color: red; font-size: 10px">
+                          Enter correct Email
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example8">Address</label>
+                  <input
+                    formControlName="address"
+                    type="text"
+                    class="form-control form-control-lg"
+                    id="address"
+                    placeholder="Address"
+                    [(ngModel)]="address"
+                  />
+                  <div class="mt-1" *ngIf="!is_user_address_valid">
+                    <p style="color: red; font-size: 10px">
+                      Address is required
+                    </p>
+                  </div>
+                </div>
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example9"
+                    >Mobile Number</label
+                  >
+                  <input
+                    formControlName="mobile"
+                    type="text"
+                    class="form-control form-control-lg"
+                    id="mobile"
+                    placeholder="Mobile"
+                    [(ngModel)]="mobile"
+                  />
+                  <div class="mt-1" *ngIf="!is_user_mobile_valid">
+                    <p style="color: red; font-size: 10px">
+                      Phone number must be 11 numbers
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="d-md-flex justify-content-start align-items-center mb-4 py-2"
+                >
+                  <h6 class="mb-0 me-4">Gender:</h6>
+
+                  <div class="form-check form-check-inline mb-0 me-4">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      id="femaleGender"
+                      value="female"
+                      [(ngModel)]="gender"
+                      formControlName="gender"
+                    />
+                    <label class="form-check-label" for="gender">Female</label>
+                  </div>
+
+                  <div class="form-check form-check-inline mb-0 me-4">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      id="maleGender"
+                      value="male"
+                      [(ngModel)]="gender"
+                      formControlName="gender"
+                    />
+                    <label class="form-check-label" for="gender">Male</label>
+                  </div>
+                  <p
+                    *ngIf="!is_user_gender_valid"
+                    style="color: red; font-size: 10px"
+                  >
+                    Gender is required.
+                  </p>
+                </div>
+
+                <div
+                  class="d-md-flex justify-content-start align-items-center mb-4 py-2"
+                >
+                  <h6 class="mb-0 me-4">Role:</h6>
+
+                  <div class="form-check form-check-inline mb-0 me-4">
+                    <input
+                      formControlName="role"
+                      class="form-check-input"
+                      type="radio"
+                      id="buyer"
+                      value="buyer"
+                      [(ngModel)]="role"
+                    />
+                    <label class="form-check-label" for="role">Buyer</label>
+                  </div>
+
+                  <div class="form-check form-check-inline mb-0 me-4">
+                    <input
+                      formControlName="role"
+                      class="form-check-input"
+                      type="radio"
+                      id="seller"
+                      value="seller"
+                      [(ngModel)]="role"
+                    />
+                    <label class="form-check-label" for="role">Seller</label>
+                  </div>
+                  <p
+                    *ngIf="!is_user_role_valid"
+                    style="color: red; font-size: 10px"
+                  >
+                    Role is required.
+                  </p>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="password">Password</label>
+                  <input
+                    formControlName="password"
+                    type="password"
+                    class="form-control form-control-lg"
+                    id="password"
+                    placeholder="Password"
+                    [(ngModel)]="password"
+                  />
+                  <div class="mt-1" *ngIf="!is_user_password_valid">
+                    <p style="color: red; font-size: 10px">
+                      not less than 8 characters
+                    </p>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <input
+                    type="file"
+                    class="form-control form-control-lg"
+                    id="inputGroupFile02"
+                    (change)="upload($event)"
+                  />
+                  <label class="input-group-text" for="inputGroupFile02"
+                    >Upload</label
+                  >
+                </div>
+                <div class="mt-1" *ngIf="!is_valid_user_image">
+                  <p style="color: red; font-size: 10px">
+                    Invalid file type. Only JPEG, Jpg and PNG images are
+                    allowed.
+                  </p>
+                </div>
+
+                <div class="d-flex justify-content-end pt-3">
+                  <input
+                    type="submit"
+                    class="btn btn-primary btn-lg ms-2"
+                    value="Signup"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- <div class="modal" *ngIf="!validatedForm" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="alert alert-danger w-50 m-auto" role="alert">
+        Please Enter Correct Data
+      </div>
+    </div>
+  </div>
+</div> -->

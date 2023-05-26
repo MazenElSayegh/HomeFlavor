@@ -1,0 +1,184 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>3adel w efra7</p>
+          <h1>Update Profile</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+
+<section class="bg-yellow" style="background-color: #051922">
+  <div class="container py-5" *ngIf="user; else falseBlock">
+    <div
+      class="alert alert-danger w-50 m-auto"
+      *ngIf="!validatedForm"
+      role="alert"
+    >
+      Please Enter Correct Data
+    </div>
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="row g-0">
+            <div class="col-xl-6 d-none d-xl-block m-auto">
+              <img
+                src="/assets/img/meatballs.jpg"
+                alt="Sample photo"
+                class="img-fluid"
+                style="
+                  border-top-left-radius: 0.25rem;
+                  border-bottom-left-radius: 0.25rem;
+                "
+              />
+            </div>
+            <div class="col-xl-6">
+              <form
+                class="card-body p-md-5 text-black"
+                [formGroup]="validationForm"
+                (ngSubmit)="
+                  update(
+                    user_name.value,
+
+                    password.value,
+
+                    address.value,
+                    mobile.value
+                  )
+                "
+              >
+                <div class="d-flex align-items-center mb-3 pb-1">
+                  <!-- <i
+                  class="fas fa-cubes fa-2x me-3"
+                  style="color: #ff6219"
+                ></i>
+                <span class="h1 fw-bold mb-0">Logo</span> -->
+                  <img class="w-25" src="assets/img/logo.png" alt="logo" />
+                </div>
+                <h3 class="mb-5 text-uppercase">Update</h3>
+
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example1m"
+                        >First name</label
+                      >
+                      <input
+                        formControlName="user_name"
+                        value="{{ user.user_name }}"
+                        type="text"
+                        class="form-control form-control-lg"
+                        id="user_name"
+                        aria-describedby="emailHelp"
+                        placeholder="user_name"
+                        #user_name
+                      />
+                      <div class="mt-1" *ngIf="!is_user_name_valid">
+                        <p style="color: red; font-size: 10px">
+                          enter a name greater than three characters.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4"></div>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example9"
+                    >Mobile Number</label
+                  >
+                  <input
+                    formControlName="address"
+                    type="text"
+                    class="form-control form-control-lg"
+                    id="address"
+                    placeholder="Address"
+                    value="{{ user.address }}"
+                    #address
+                  />
+                  <div class="mt-1" *ngIf="!is_user_address_valid">
+                    <p style="color: red; font-size: 10px">
+                      Address is required
+                    </p>
+                  </div>
+                  <label class="form-label" for="form3Example8">Address</label>
+                </div>
+                <div class="form-outline mb-4">
+                  <input
+                    formControlName="mobile"
+                    type="text"
+                    class="form-control form-control-lg"
+                    id="mobile"
+                    value="{{ user.mobile }}"
+                    placeholder="Mobile"
+                    #mobile
+                  />
+                  <div class="mt-1" *ngIf="!is_user_mobile_valid">
+                    <p style="color: red; font-size: 10px">
+                      not less than 11 numbers
+                    </p>
+                  </div>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="password">Password</label>
+                  <input
+                    formControlName="password"
+                    type="password"
+                    class="form-control form-control-lg"
+                    id="password"
+                    placeholder="Password"
+                    #password
+                  />
+                  <div class="mt-1" *ngIf="!is_user_password_valid">
+                    <p style="color: red; font-size: 10px">
+                      not less than 8 characters
+                    </p>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <input
+                    type="file"
+                    class="form-control form-control-lg"
+                    id="inputGroupFile02"
+                    (change)="upload($event)"
+                  />
+                  <label class="input-group-text" for="inputGroupFile02"
+                    >Upload</label
+                  >
+                </div>
+                <div class="mt-1" *ngIf="!is_valid_user_image">
+                  <p style="color: red; font-size: 10px">
+                    Invalid file type. Only JPEG, Jpg and PNG images are
+                    allowed.
+                  </p>
+                </div>
+
+                <div class="d-flex justify-content-end pt-3">
+                  <input
+                    type="submit"
+                    class="btn btn-primary btn-lg ms-2"
+                    value="Update Profile"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #falseBlock>
+  <div class="loader">
+    <div class="loader-inner">
+      <div class="circle"></div>
+    </div>
+  </div>
+</ng-template>

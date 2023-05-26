@@ -1,0 +1,124 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>Home Flavor</p>
+          <h1>User Profile</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+
+<ng-template #falseBlock>
+  <div class="loader">
+    <div class="loader-inner">
+      <div class="circle"></div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="container mt-5" *ngIf="user; else falseBlock">
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img
+                [src]="localhost + user.user_image"
+                alt="Admin"
+                class="rounded-circle"
+                style="
+                  width: 150px;
+                  height: 150px;
+                  border: 0px solid;
+                  border-radius: 20px;
+                "
+              />
+              <div class="mt-3">
+                <h4>{{ user.user_name }}</h4>
+                <p class="text-secondary mb-1">User Role</p>
+                <p class="text-muted font-size-sm">
+                  {{ user.role }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Full Name</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">{{ user.user_name }}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <a
+                  href="/cdn-cgi/l/email-protection"
+                  class="__cf_email__"
+                  data-cfemail="62040b12220817090f170a4c030e"
+                  >{{ user.email }}</a
+                >
+              </div>
+            </div>
+            <hr />
+
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Gender</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">{{ user.gender }}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Mobile</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">{{ user.mobile }}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Address</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ user.address }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-12">
+                <a
+                  class="btn btn-info"
+                  routerLinkActive="active"
+                  routerLink="/profile/update/{{ user._id }}"
+                  >Edit</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a href="/orders"><input type="submit" value="My orders" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

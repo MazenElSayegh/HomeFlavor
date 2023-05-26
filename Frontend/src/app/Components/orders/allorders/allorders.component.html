@@ -1,0 +1,319 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>Home Flavor</p>
+          <h1>All orders</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+<!-- ********Beginning of admin's and store owner's orders page******** -->
+<table
+  class="table table-bordered border-dark text-center table-striped mt-5 container col-sm-5"
+  style="background-color: #f5f5f5"
+  *ngIf="user_data.role === 'seller' || user_data.role === 'admin'"
+>
+  <thead
+    class="table-bordered border-dark"
+    style="background-color: #051922; color: #f28123"
+  >
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+      <th scope="col">Status</th>
+      <th scope="col">Total Price</th>
+      <th scope="col">User</th>
+      <th scope="col">Store</th>
+      <th scope="col">Action</th>
+      <th scope="col">More</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr *ngFor="let o of orders">
+      <td>{{ o._id }}</td>
+      <td>{{ o.date | date : "dd/MM/yyyy" }}</td>
+      <td>{{ o.date | date : "h:mm a" }}</td>
+      <td>{{ o.status }}</td>
+      <td>{{ o.total_price | number : "1.2-2" }}</td>
+      <td>{{ o.user_id.user_name }}</td>
+      <td>{{ o.store_id.name }}</td>
+      <td>
+        <div
+          class="d-flex flex-row justify-content-around align-items-center"
+          *ngIf="o.status == 'Pending'; else ifBlock"
+        >
+          <form
+            (ngSubmit)="
+              Update(
+                o._id,
+                'Accepted',
+                o.user_id._id,
+                o.store_id._id,
+                o.products
+              )
+            "
+          >
+            <input
+              type="submit"
+              class="btn btn-outline-primary"
+              style="padding-left: 1rem; padding-right: 1rem"
+              value="Accept"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              routerLink="/orders"
+            />
+          </form>
+          <form
+            (ngSubmit)="
+              Update(
+                o._id,
+                'Cancelled',
+                o.user_id._id,
+                o.store_id._id,
+                o.products
+              )
+            "
+          >
+            <input
+              type="submit"
+              class="btn btn-outline-danger"
+              style="padding-left: 1rem; padding-right: 1rem"
+              value="Reject"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            />
+          </form>
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-notify modal-danger" role="alert">
+              <div class="modal-content">
+                <div
+                  class="modal-header d-flex flex-column justify-content-center"
+                >
+                  <h1
+                    class="modal-title modalheader fs-5"
+                    id="exampleModalLabel"
+                  >
+                    Alert
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div
+                  class="modal-body d-flex flex-column justify-content-center"
+                >
+                  <i class="fa-solid fa-check fa-4x"></i>
+                  <div>Updated Succesfully</div>
+                </div>
+                <div
+                  class="modal-footer d-flex flex-column justify-content-center"
+                >
+                  <input
+                    type="submit"
+                    (click)="reload()"
+                    value="OK"
+                    class="btn okbtn waves-effect"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #ifBlock>
+          <div *ngIf="o.status == 'Accepted'; else elseBlock">
+            <i class="fa-solid fa-check" style="color: #3f7e0c"></i>
+          </div>
+
+          <ng-template #elseBlock>
+            <div><i class="fas fa-times" style="color: #af0404"></i></div>
+          </ng-template>
+        </ng-template>
+      </td>
+      <td>
+        <input
+          type="submit"
+          routerLink="/orders/{{ o.id }}"
+          value="view"
+          class="btn btn-outline-warning"
+          style="padding-left: 1rem; padding-right: 1rem"
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- ********End of admin's and store owner's orders page******** -->
+
+<!-- ********Beginning of usesr's orders page******** -->
+<link
+  rel="stylesheet"
+  href="https://allyoucan.cloud/cdn/icofont/1.0.1/icofont.css"
+  integrity="sha384-jbCTJB16Q17718YM9U22iJkhuGbS0Gd2LjaWb4YJEZToOPmnKDjySVa323U+W7Fv"
+  crossorigin="anonymous"
+/>
+
+<div
+  *ngIf="user_data.role === 'buyer'"
+  class="container d-flex justify-content-around align-items-center"
+>
+  <div class="col-md-10">
+    <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade active show"
+          id="orders"
+          role="tabpanel"
+          aria-labelledby="orders-tab"
+        >
+          <div
+            class="bg-white mb-5 card p-1 px-5 order-list shadow-sm"
+            *ngFor="let o of orders"
+          >
+            <div class="gold-members py-4">
+              <div
+                class="media d-flex justify-content-around align-items-center gap-5"
+              >
+                <div class="imgContainer mr-2">
+                  <a href="#">
+                    <img
+                      class="img-fluid custom-img"
+                      [src]="localhost + o.store_id.image"
+                      alt="Generic placeholder image"
+                    />
+                  </a>
+                </div>
+                <div
+                  class="media-body d-flex flex-column justify-content-around ml-2"
+                >
+                  <div class="mb-3">
+                    <span class="float-right text-info"
+                      >Ordered on {{ o.date | date : "dd/MM/yyyy" }} at
+                      {{ o.date | date : "h:mm a" }}
+                      <i class="icofont-check-circled text-success"></i
+                    ></span>
+                  </div>
+                  <div>
+                    <h6 class="mb-2">
+                      <a href="#" class="text-black">{{ o.store_id.name }}</a>
+                    </h6>
+                  </div>
+                  <div class="text-gray mb-1">
+                    <i class="icofont-location-arrow"></i>Order ID: {{ o._id }}
+                  </div>
+                  <div class="text-gray mb-1">
+                    <i class="icofont-list"></i>{{ o.status }}
+                  </div>
+                  <hr />
+
+                  <p class="mb-0 text-black text-primary pt-2">
+                    <span class="text-black font-weight-bold">
+                      Total Price:</span
+                    >
+                    {{ o.total_price | number : "1.2-2" }}
+                  </p>
+                </div>
+                <div class="float-right d-flex flex-column">
+                  <input
+                    type="submit"
+                    routerLink="/orders/{{ o.id }}"
+                    value="view"
+                    class="btn btn-outline-warning"
+                    style="padding-left: 1rem; padding-right: 1rem"
+                  />
+                  <div
+                    class="d-flex flex-row justify-content-around align-items-center"
+                    *ngIf="o.status == 'Pending'"
+                  >
+                    <form
+                      (ngSubmit)="
+                        Update(
+                          o._id,
+                          'Cancelled',
+                          o.user_id._id,
+                          o.store_id._id,
+                          o.products
+                        )
+                      "
+                    >
+                      <input
+                        type="submit"
+                        class="btn btn-outline-danger"
+                        style="padding-left: 1rem; padding-right: 1rem"
+                        value="Cancel"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal2"
+                      />
+                    </form>
+                    <div
+                      class="modal fade"
+                      id="exampleModal2"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div
+                        class="modal-dialog modal-notify modal-danger"
+                        role="alert"
+                      >
+                        <div class="modal-content">
+                          <div
+                            class="modal-header d-flex flex-column justify-content-center"
+                          >
+                            <h1
+                              class="modal-title modalheader fs-5"
+                              id="exampleModalLabel"
+                            >
+                              Alert
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div
+                            class="modal-body d-flex flex-column justify-content-center align-items-center"
+                          >
+                            <i class="fa-solid fa-check fa-4x"></i>
+                            <div><h3>Updated Succesfully</h3></div>
+                          </div>
+                          <div
+                            class="modal-footer d-flex flex-column justify-content-center"
+                          >
+                            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                            <input
+                              type="submit"
+                              (click)="reload()"
+                              value="OK"
+                              class="btn okbtn waves-effect"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ********End of user's orders page******** -->
+</div>

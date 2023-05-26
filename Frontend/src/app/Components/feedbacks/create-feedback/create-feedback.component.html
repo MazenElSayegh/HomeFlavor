@@ -1,0 +1,90 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <h1>Create Feedback</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+<section class="vh-100 mt-5">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="img-fluid"
+          alt="Sample image"
+        />
+      </div>
+
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
+        <form
+          (ngSubmit)="
+            addFeedback(storeID.value, userID.value, comment.value, stars.value)
+          "
+        >
+          <!-- storeID input -->
+          <div class="form-outline">
+            <input
+              #storeID
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Enter storeID"
+            />
+            <label class="form-label" for="form3Example3">storeID</label>
+          </div>
+
+          <!-- UserID input -->
+          <div class="form-outline">
+            <input
+              #userID
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Enter userID"
+            />
+            <label class="form-label" for="form3Example3">UserID</label>
+          </div>
+          <!-- <div *ngIf="!NameValid" class="alert alert-danger mb-4">
+            Name must be at least 3 characters long.
+          </div> -->
+
+          <!-- comment input -->
+          <div class="form-outline">
+            <input
+              #comment
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Enter comment"
+            />
+            <label class="form-label" for="form3Example3">comment</label>
+          </div>
+
+          <!-- city input -->
+          <div class="form-outline">
+            <input
+              #stars
+              type="number"
+              min="1"
+              max="5"
+              class="form-control form-control-lg"
+              placeholder="Enter stars"
+            />
+            <label class="form-label" for="form3Example3">stars</label>
+          </div>
+
+          <input
+            type="submit"
+            class="btn btn-outline-primary btn-lg"
+            style="padding-left: 2.5rem; padding-right: 2.5rem"
+            value="Register"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,484 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>Home Flavor</p>
+          <h1>Store Details</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="outerContainer">
+    <div *ngIf="store; else falseBlock" class="storeDetailsContainer">
+      <img [src]="localhost + store.image" />
+      <div>
+        <h1>{{ store.name }}</h1>
+        <p>In: {{ store.city }}</p>
+        <p>{{ store.about }}</p>
+      </div>
+    </div>
+
+    <div class="paymentContainer" *ngIf="store">
+      <div class="payments">
+        <img src="https://www.talabat.com/assets/images/visa_blue.png" />
+        <img src="https://www.talabat.com/assets/images/logo-mastercard.svg" />
+        <img src="https://www.talabat.com/assets/images/logo-cash.svg" />
+      </div>
+      <button class="updateStoreBtn btn btn-dark" *ngIf="checkAdminOrOwner">
+        <a [routerLink]="['/stores/update', store._id]">
+          <i class="fa-solid fa-pen-to-square" style="color: #ffffff"></i> Edit
+          Store
+        </a>
+      </button>
+      <button
+        class="deleteStoreBtn btn btn-danger"
+        *ngIf="checkAdminOrOwner"
+        data-bs-toggle="modal"
+        data-bs-target="#deleteStoreModel"
+      >
+        <a>
+          <i class="fa-solid fa-trash" style="color: #ffffff"></i> Delete Store
+        </a>
+      </button>
+      <div
+        class="modal fade"
+        id="deleteStoreModel"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-notify modal-danger" role="alert">
+          <div class="modal-content">
+            <div class="modal-header d-flex flex-column justify-content-center">
+              <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">
+                Alert
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div
+              class="modal-body d-flex flex-column justify-content-center align-items-center"
+            >
+              <i class="fa-solid fa-check fa-4x"></i>
+              <div>are you sure to delete this store</div>
+            </div>
+
+            <div class="modal-footer d-flex flex-column justify-content-center">
+              <input
+                type="submit"
+                [routerLink]="['/stores/delete', store._id]"
+                value="OK"
+                data-bs-dismiss="modal"
+                class="btn okbtn waves-effect"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #falseBlock>
+    <div class="loader">
+      <div class="loader-inner">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<div class="tabsContainer mb-100">
+  <div class="menuTabContainer tabContainer active" (click)="showMenu()">
+    <i class="fa-solid fa-utensils"></i>
+    <p>Menu</p>
+  </div>
+  <div class="feedbackTabContainer tabContainer" (click)="showFeedback()">
+    <i class="fa-solid fa-comments"></i>
+    <p>Feedbacks</p>
+  </div>
+</div>
+
+<div class="product-section mb-150 show" id="stores">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-filters">
+          <ul>
+            <button class="addItemBtn" *ngIf="user_data && checkAdminOrOwner">
+              <a [routerLink]="['/menu/create']"> Add Menu Item </a>
+            </button>
+            <li class="active" data-filter="*" (click)="filterProducts('all')">
+              All
+            </li>
+            <li data-filter=".appetizer" (click)="filterProducts('Appetizer')">
+              Appetizers
+            </li>
+            <li data-filter=".main" (click)="filterProducts('Main')">Main</li>
+            <li data-filter=".drink" (click)="filterProducts('Drink')">
+              Drinks
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div
+        *ngFor="let product of menu"
+        class="col-lg-4 col-md-6 text-center singleProductOuterContainer {{
+          product.category
+        }}"
+      >
+        <div class="single-product-item singleProductContainer">
+          <div class="product-image">
+            <a href="single-product.html">
+              <img [src]="localhost + product.product_image"
+            /></a>
+          </div>
+          <h3>{{ product.product_title }}</h3>
+          <h5>E&#163; {{ product.price }}</h5>
+          <h5>{{ product.product_details }}</h5>
+          <div class="btnsContainer">
+            <div
+              class="addToCartBtnContainer"
+              *ngIf="user_data && user_data.role == 'buyer'"
+            >
+              <p class="product-price"></p>
+              <a
+                class="cart-btn"
+                (click)="addToCart(product)"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                ><i class="fas fa-shopping-cart"></i> add to cart</a
+              >
+            </div>
+
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-notify modal-danger" role="alert">
+                <div class="modal-content">
+                  <div
+                    class="modal-header d-flex flex-column justify-content-center"
+                  >
+                    <h1
+                      class="modal-title modalheader fs-4 fw-3"
+                      id="exampleModalLabel"
+                    >
+                      Alert
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div
+                    class="modal-body d-flex flex-column justify-content-center"
+                  >
+                    <i
+                      *ngIf="flag == false"
+                      class="fas fa-times fa-4x animated rotateIn"
+                    ></i>
+                    <i
+                      *ngIf="flag == true"
+                      class="fa-solid fa-check fa-4x animated"
+                    ></i>
+                    <div *ngIf="flag == false">
+                      <h3>
+                        Sorry,You cant add two products from different stores
+                      </h3>
+                    </div>
+                    <div *ngIf="flag == true"><h3>Added Succesfully</h3></div>
+                  </div>
+                  <div
+                    class="modal-footer d-flex flex-column justify-content-center"
+                  >
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+
+                    <input
+                      type="submit"
+                      class="btn okbtn waves-effect"
+                      data-bs-dismiss="modal"
+                      value="OK"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="addedSuccessfully"
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-notify modal-danger" role="alert">
+                <div class="modal-content">
+                  <div
+                    class="modal-header d-flex flex-column justify-content-center"
+                  >
+                    <h1
+                      class="modal-title modalheader fs-5"
+                      id="exampleModalLabel"
+                    >
+                      Alert
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div
+                    class="modal-body d-flex flex-column justify-content-center"
+                  >
+                    <i class="fas fa-times fa-4x animated rotateIn"></i>
+                    <div>Added Successfully</div>
+                  </div>
+                  <div
+                    class="modal-footer d-flex flex-column justify-content-center"
+                  >
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <a
+                      type="button"
+                      class="btn okbtn waves-effect"
+                      data-bs-dismiss="modal"
+                      >OK</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              *ngIf="user_data && checkAdminOrOwner"
+              class="updateDeleteMenuContainer"
+            >
+              <button class="updateMenuBtn btn btn-info">
+                <a [routerLink]="['/menu/update', product._id]">
+                  <i
+                    class="fa-solid fa-pen-to-square"
+                    style="color: #ffffff"
+                  ></i>
+                  Edit Item
+                </a>
+              </button>
+              <button
+                class="deleteMenuBtn btn btn-danger"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteMenuModel"
+              >
+                <a>
+                  <i class="fa-solid fa-trash" style="color: #ffffff"></i>
+                  Delete Item
+                </a>
+              </button>
+              <div
+                class="modal fade"
+                id="deleteMenuModel"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div
+                  class="modal-dialog modal-notify modal-danger"
+                  role="alert"
+                >
+                  <div class="modal-content">
+                    <div
+                      class="modal-header d-flex flex-column justify-content-center"
+                    >
+                      <h1
+                        class="modal-title modalheader fs-5"
+                        id="exampleModalLabel"
+                      >
+                        Alert
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div
+                      class="modal-body d-flex flex-column justify-content-center align-items-center"
+                    >
+                      <i class="fa-solid fa-check fa-4x"></i>
+                      <div>are you sure to delete this menu item</div>
+                    </div>
+
+                    <div
+                      class="modal-footer d-flex flex-column justify-content-center"
+                    >
+                      <input
+                        type="submit"
+                        [routerLink]="['/menu/delete', product._id]"
+                        value="OK"
+                        data-bs-dismiss="modal"
+                        class="btn okbtn waves-effect"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end product section -->
+
+<!-- testimonail-section -->
+<div class="testimonail-section mt-150 mb-150">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 text-center">
+        <div class="testimonial-sliders">
+          <div *ngFor="let feedback of feedbacks">
+            <div *ngIf="feedback.user_id" class="single-testimonial-slider">
+              <div class="client-avater">
+                <!-- <img src="{{ store.user_id.user_image }}" alt="" /> -->
+                <img [src]="localhost + feedback.user_id.user_image" />
+              </div>
+              <div class="client-meta">
+                <h3>{{ feedback.user_id.user_name }}</h3>
+                <div class="feedbackRating">
+                  <div class="dbStar-container">
+                    <i
+                      class="fa fa-star"
+                      *ngFor="let i of [1, 2, 3, 4, 5]"
+                      [ngClass]="{ filled: i <= feedback.stars }"
+                    ></i>
+                  </div>
+                </div>
+                <p class="testimonial-body">
+                  {{ feedback.comment }}
+                </p>
+                <p class="feedbackDate">
+                  {{ feedback.date | date : "longDate" }}
+                </p>
+                <button
+                  class="deleteFeedbackBtn btn"
+                  *ngIf="
+                    ( user_data.role === 'admin') ||
+                    (feedback.user_id._id == user_data.user_id)
+                  "
+                >
+                  <a [routerLink]="['/feedbacks/delete', feedback._id]">
+                    <i
+                      class="fa-solid fa-trash fa-2xl"
+                      style="color: #ff0000"
+                    ></i>
+                  </a>
+                </button>
+
+                <div class="last-icon">
+                  <i class="fas fa-quote-right"></i>
+                </div>
+              </div>
+            </div>
+
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feedback Form -->
+  <div
+    class="contact-from-section mt-150 mb-150"
+    *ngIf="user_data && checkUserMadeOrder"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="">
+          <div class="form-title">
+            <h2 class="feedbackTitle">Would you like to give us a feedback?</h2>
+            <p class="feedbackSubtitle">Your Opinion Matters</p>
+          </div>
+          <div id="form_status"></div>
+          <div class="contact-form" *ngIf="store">
+            <form
+              type="POST"
+              id="fruitkha-contact"
+              (ngSubmit)="addFeedback(storeID.value, comment.value)"
+              [formGroup]="validationForm"
+            >
+              <div>
+                <!-- StoreID -->
+                <input
+                  type="text"
+                  placeholder="storeID"
+                  name="storeID"
+                  id="storeID"
+                  value="{{ store._id }}"
+                  hidden
+                  #storeID
+                />
+
+                <!-- <p>
+                <input type="tel" placeholder="Phone" name="phone" id="phone" />
+                <input
+                  type="text"
+                  placeholder="Subject"
+                  name="subject"
+                  id="subject"
+                />
+              </p> -->
+                <p>
+                  <textarea
+                    name="feedback_detail"
+                    id="feedback_detail"
+                    cols="30"
+                    rows="10"
+                    placeholder="Feedback"
+                    #comment
+                    formControlName="comment"
+                  ></textarea>
+                  <small
+                    *ngIf="!validComment"
+                    class="alert alert-danger mb-4 cmntErrBlock"
+                  >
+                    Comment must be between 10 & 300 characters
+                  </small>
+                </p>
+                <div class="star-container">
+                  <i
+                    class="fa fa-star"
+                    *ngFor="let i of [1, 2, 3, 4, 5]"
+                    (click)="rate(i)"
+                    [ngClass]="{ filled: i <= rating }"
+                  ></i>
+                </div>
+              </div>
+              <p>
+                <input type="submit" value="Submit" class="feedbackSubmitBtn" />
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end testimonail-section -->

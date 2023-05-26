@@ -1,0 +1,117 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>Home Flavor</p>
+          <h1>Checkout</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+<div class="container" id="all-container">
+  <div class="container mt-5" id="container">
+    <div id="payment-method">
+      <header>Payment Method</header>
+      <div class="head">
+        <label class="pay-choice fs-5">
+          <input
+            type="radio"
+            name="payment"
+            value="cash"
+            (click)="showButton()"
+          />
+          Cash on Delivery
+        </label>
+        <label class="pay-choice fs-5">
+          <input
+            type="radio"
+            name="payment"
+            value="card"
+            (click)="hideButton()"
+            (click)="makePayment(totalCost * 1.1)"
+          />
+          Credit Card
+        </label>
+      </div>
+    </div>
+    <div id="receipt">
+      <div id="details" *ngFor="let product of allProducts">
+        <div id="products">
+          {{ product.product_title }} <span>x {{ product.quantity }}</span>
+          <p>{{ product.product_details }}</p>
+        </div>
+        <div id="price">
+          E&#163;&nbsp;{{ product.price * product.quantity | number : "1.1-1" }}
+        </div>
+      </div>
+      <hr />
+      <div id="subtotal">
+        <div id="sub">
+          Subtotal
+          <p>E&#163;&nbsp;{{ totalCost | number : "1.1-1" }}</p>
+        </div>
+        <div id="tax">
+          Tax
+          <p>E&#163;&nbsp;{{ totalCost * 0.1 | number : "1.1-1" }}</p>
+        </div>
+      </div>
+      <hr />
+      <div id="total">
+        <p>Total</p>
+        <p>E&#163;&nbsp;{{ totalCost * 1.1 | number : "1.1-1" }}</p>
+      </div>
+      <input
+        class="confirmButton hideButton"
+        type="submit"
+        (click)="AddOrder()"
+        value="Confirm Order"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      />
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-notify modal-danger" role="alert">
+          <div class="modal-content">
+            <div class="modal-header d-flex flex-column justify-content-center">
+              <h1 class="modal-title modalheader fs-5" id="exampleModalLabel">
+                Alert
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div
+              class="modal-body d-flex flex-column justify-content-center align-items-center"
+            >
+              <i class="fa-solid fa-check fa-4x"></i>
+              <div><h3>Order Confirmed</h3></div>
+            </div>
+            <div
+              class="modal-footer d-flex justify-content-center align-items-center"
+            >
+              <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+              <input
+                type="submit"
+                (click)="reload()"
+                value="OK"
+                class="btn okbtn waves-effect"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

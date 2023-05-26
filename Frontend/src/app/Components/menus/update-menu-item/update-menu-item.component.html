@@ -1,0 +1,152 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <h1 *ngIf="checkAdminOrOwner; else accessDeniedDiv">
+            Update Menu Item
+          </h1>
+          <ng-template #accessDeniedDiv>
+            <h1>Access Denied</h1>
+            <p>Wait to be redirected</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+<section class="vh-100 mt-5" *ngIf="checkAdminOrOwner">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img
+          src="https://elwasfa.com/wp-content/uploads/2020/01/for-web-2020-05-04T145441.475.jpg"
+          class="img-fluid"
+          alt="Sample image"
+        />
+      </div>
+
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-5">
+        <form
+          [formGroup]="validationForm"
+          (ngSubmit)="
+            updateMenuItem(
+              storeID.value,
+              productImage.value,
+              productTitle.value,
+              price.value,
+              productDetails.value,
+              category.value
+            )
+          "
+        >
+          <!-- storeID input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3" hidden>storeID</label>
+            <input
+              #storeID
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Enter storeID"
+              value="{{ itemDetails[0].store_id }}"
+              hidden
+            />
+          </div>
+
+          <!-- image input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">Image</label>
+            <input
+              #productImage
+              type="file"
+              class="form-control form-control-lg"
+              formControlName="product_image"
+              placeholder="Enter Image Name"
+              accept=".png,.jpg,.jpeg"
+              (change)="menuImageUpload($event)"
+            />
+          </div>
+          <div class="" *ngIf="!isProductImageValid">
+            <p class="alert alert-danger p-2">Image Must be uploaded</p>
+          </div>
+
+          <!-- title input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">title</label>
+            <input
+              #productTitle
+              type="text"
+              class="form-control form-control-lg"
+              formControlName="product_title"
+              placeholder="Enter title"
+              value="{{ itemDetails[0].product_title }}"
+            />
+          </div>
+          <div class="" *ngIf="!isProductTitleValid">
+            <p class="alert alert-danger p-2">
+              title Must be at least 5 characters
+            </p>
+          </div>
+          <label class="form-label" for="form3Example3">category</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            formControlName="category"
+            #category
+            value="{{ itemDetails[0].category }}"
+          >
+            <option selected>Open this select menu</option>
+            <option value="Appetizer">Appetizer</option>
+            <option value="Drink">Drink</option>
+            <option value="Main">Main</option>
+          </select>
+          <div class="" *ngIf="!isCategoryValid">
+            <p class="alert alert-danger p-2">category is required</p>
+          </div>
+
+          <!-- price input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">stars</label>
+            <input
+              #price
+              type="number"
+              formControlName="price"
+              class="form-control form-control-lg"
+              placeholder="Enter price"
+              value="{{ itemDetails[0].price }}"
+            />
+          </div>
+          <div class="" *ngIf="!isPriceValid">
+            <p class="alert alert-danger p-2">price must be required</p>
+          </div>
+          <!-- details input -->
+          <div class="form-outline">
+            <label class="form-label" for="form3Example3">stars</label>
+            <input
+              #productDetails
+              type="text"
+              class="form-control form-control-lg"
+              formControlName="product_details"
+              placeholder="Enter details"
+              value="{{ itemDetails[0].product_details }}"
+            />
+          </div>
+          <div class="" *ngIf="!isProductDetailsValid">
+            <p class="alert alert-danger p-2">
+              details Must be at least 20 characters
+            </p>
+          </div>
+
+          <input
+            type="submit"
+            class="btn btn-outline-primary btn-lg"
+            style="padding-left: 2.5rem; padding-right: 2.5rem"
+            value="Update"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,204 @@
+.outerContainer {
+  /* border: solid 3px brown; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4vh 2vw;
+  margin: 10px 0px;
+}
+
+.storeDetailsContainer {
+  width: 30vw;
+  display: flex;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  margin-right: 17px;
+}
+
+.storeDetails {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.paymentContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.paymentContainer a {
+  color: white;
+  text-decoration: none;
+}
+
+.updateStoreBtn {
+  margin: 15px 0px;
+}
+
+.paymentContainer .status {
+  color: green;
+  text-align: center;
+}
+
+.payments {
+  width: 10vw;
+}
+
+.payments img {
+  max-width: 35px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.tabsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabsContainer > div {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabContainer {
+  font-size: 50px;
+  cursor: pointer;
+  padding-bottom: 10px !important;
+}
+
+.tabContainer i {
+  color: orangered;
+}
+
+.tabContainer.active {
+  border-bottom: 5px solid orangered;
+}
+
+.tabContainer > * {
+  margin-right: 20px;
+}
+
+.testimonail-section,
+.product-section {
+  display: none;
+}
+
+.testimonail-section.show,
+.product-section.show {
+  display: block;
+}
+
+.fa-star::before,
+.fa-star {
+  font-size: 30px !important;
+  cursor: pointer;
+}
+
+.star-container .fa-star {
+  color: #ccc;
+}
+.star-container .filled {
+  color: #ffd700;
+}
+
+.feedbackTitle {
+  font-size: 35px !important;
+}
+
+.feedbackSubtitle {
+  font-size: 20px !important;
+}
+
+.feedbackSubmitBtn {
+  margin-top: 29px !important;
+  font-size: 20px !important;
+  width: 200px !important;
+}
+
+.dbStar-container .fa-star {
+  color: #ccc;
+}
+.dbStar-container .filled {
+  color: #ffd700;
+}
+
+.addItemBtn {
+  background-color: #051922;
+  color: white;
+  display: block;
+  width: 40%;
+  margin: 0px auto 20px;
+
+  font-weight: 700;
+  font-size: 18px;
+
+  border: 2px solid #051922;
+
+  cursor: pointer;
+  padding: 8px 20px;
+  border-radius: 25px;
+}
+
+.addItemBtn a {
+  color: white;
+}
+
+.updateMenuBtn a,
+.deleteMenuBtn a,
+.deleteFeedbackBtn a {
+  color: white;
+  text-decoration: none;
+}
+
+.updateMenuBtn {
+  margin-right: 10px;
+  background-color: #f28123;
+  border-color: #f28123;
+}
+
+.updateStoreBtn {
+  background-color: #f28123;
+  border-color: #f28123;
+}
+
+.client-avater img {
+  margin: 0px;
+}
+
+.cmntErrBlock {
+  display: block;
+}
+.animated{
+  color: #051922;
+}
+.okbtn{
+  background-color: #051922;
+  color: bisque;
+  font-size: larger;
+  padding-inline: 40px;
+}
+
+.modal-header{
+  background-color:rgb(218, 109, 21,0.9);
+}
+.modal-content{
+  background-image: url('../../../../assets/img/modal.jpg');
+  width: 70%;
+  height: 80%;
+  border: #051922 2px solid;
+  border-radius: 20%;
+  overflow: hidden;
+
+}
+.modal-dialog{
+  display: flex;
+  justify-content: center;
+}
+

@@ -1,0 +1,138 @@
+i{
+  font-size: 30px;
+}
+td{
+  vertical-align: middle;
+}
+body{
+  margin-top:20px;
+  background:#eee;
+}
+/* My Account */
+
+.order-list .btn {
+  border-radius: 2px;
+  min-width: 121px;
+  font-size: 13px;
+
+}
+.osahan-account-page-left .nav-link {
+
+  border: none;
+  font-weight: 600;
+  color: #535665;
+}
+.osahan-account-page-left .nav-link i {
+  width: 28px;
+  height: 28px;
+  background: #535665;
+  display: inline-block;
+  text-align: center;
+  line-height: 29px;
+  font-size: 15px;
+  border-radius: 50px;
+  margin: 0 7px 0 0px;
+  color: #fff;
+}
+.osahan-account-page-left .nav-link.active {
+  background: #f3f7f8;
+  color: #282c3f !important;
+}
+.osahan-account-page-left .nav-link.active i {
+  background: #282c3f !important;
+}
+.card offer-card h5.card-title {
+  border: 2px dotted #000;
+}
+.card.offer-card h5 {
+  border: 1px dotted #daceb7;
+  display: inline-table;
+  color: #17a2b8;
+
+  font-size: 15px;
+
+  border-radius: 2px;
+  background: #fffae6;
+  position: relative;
+}
+
+.card.offer-card h5:after {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #daceb7;
+  content: "";
+  left: 30px;
+  position: absolute;
+  bottom: 0;
+}
+.card.offer-card h5:before {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #daceb7;
+  content: "";
+  left: 30px;
+  position: absolute;
+  top: 0;
+}
+.payments-item .media {
+  align-items: center;
+}
+
+.reviews-members .media .mr-3 {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+}
+
+.osahan-cart-item p.text-gray.float-right {
+  margin: 3px 0 0 0;
+  font-size: 12px;
+}
+.osahan-cart-item .food-item {
+  vertical-align: bottom;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  color: #000000;
+}
+
+.shadow-sm {
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+.rounded-pill {
+  border-radius: 50rem!important;
+}
+a:hover{
+  text-decoration:none;
+}
+img {
+  max-width: 12vw;
+}
+.animated{
+  color: #051922;
+}
+.okbtn{
+  background-color: #051922;
+  color: bisque;
+  font-size: larger;
+  padding-inline: 40px;
+}
+
+.modal-header{
+  background-color:rgb(218, 109, 21,0.9);
+}
+.modal-content{
+  background-image: url('../../../../assets/img/modal.jpg');
+  width: 70%;
+  height: 80%;
+  border: #051922 2px solid;
+  border-radius: 20%;
+  overflow: hidden;
+
+}
+.modal-dialog{
+  display: flex;
+  justify-content: center;
+}
+

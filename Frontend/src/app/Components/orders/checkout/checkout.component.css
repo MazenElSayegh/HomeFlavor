@@ -1,0 +1,165 @@
+#container{
+  width: 70vw;
+  min-height: 25vw;
+  margin: auto;
+  box-shadow:
+    rgba(0, 0, 0, 0.024) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
+    rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
+    rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
+  border-radius: 10px;
+  border: 1px solid;
+  border-color:
+    rgb(213, 220, 226)
+    rgb(213, 220, 226)
+    rgb(184, 194, 204);
+  padding: 1vw;
+  display: flex;
+  justify-content:space-between;
+  margin-bottom: 5vh;
+  background-image: url("../../../../assets/img/checkout.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+#receipt{
+  /* margin-top: auto; */
+  min-width: 50%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(240, 248, 255,0.9);
+  padding: 1.5vw;
+  border-radius: 4px;
+  box-shadow:
+    rgba(0, 0, 0, 0.024) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
+    rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
+    rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
+  border-radius: 10px;
+  border: 1px solid;
+  border-color:
+    rgb(213, 220, 226)
+    rgb(213, 220, 226)
+    rgb(184, 194, 204);
+  color:#374b56 ;
+
+}
+.confirmButton{
+  width: 40%;
+  padding: 10px;
+  position:relative ;
+  left: 10vw;
+}
+#details{
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5vw;
+}
+span{
+  font-size: 1vw;
+}
+#products > p{
+  font-size: 0.8vw;
+}
+#sub,#tax{
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5vw;
+}
+#price{
+  font-size: 1.5vw;
+}
+#subtotal p, #tax p{
+  font-size: 1.5vw;
+}
+#total{
+  display: flex;
+  justify-content: space-between;
+}
+#total p{
+  font-size: 1.8vw;
+  color: #f28123;
+}
+#all-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+input{
+  font-size: 1.2vw;
+}
+header{
+  color: #f28123;
+  font-weight: 600;
+  font-size: 2vw;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  /* margin-bottom: 1vh; */
+}
+#payment-method .head{
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+#payment-method p{
+  color:#051922 ;
+  font-size: 1.2vw;
+  /* font-weight: 600; */
+}
+.animated{
+  color: #051922;
+}
+.okbtn{
+  background-color: #051922;
+  color: bisque;
+  font-size: larger;
+  padding-inline: 40px;
+}
+.pay-choice{
+  font-weight: 700;
+}
+/* Hide the default radio button */
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #051922;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Add a custom style for the checked radio button */
+input[type="radio"]:checked {
+  background-color: rgb(242, 129, 35);
+}
+
+.hideButton{
+  display: none;
+}
+.showButton{
+  display: block;
+  text-align: center;
+}
+.modal-header{
+  background-color:rgb(218, 109, 21,0.9);
+}
+.modal-content{
+  background-image: url('../../../../assets/img/modal.jpg');
+  width: 70%;
+  height: 80%;
+  border: #051922 2px solid;
+  border-radius: 20%;
+  overflow: hidden;
+
+}
+.modal-dialog{
+  display: flex;
+  justify-content: center;
+}

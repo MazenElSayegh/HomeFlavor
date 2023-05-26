@@ -1,0 +1,24 @@
+#formContainer {
+  padding: 50px;
+  margin: 50px auto;
+  width: 50%;
+  box-shadow: #051922;
+  background-color: #012738;
+}
+#formContainer label {
+  color: #f28123;
+}
+
+#formContainer p {
+  color: red;
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: .75em;
+  padding-right: .75em;
+  }
+  .card-registration .select-arrow {
+  top: 13px;
+  }
