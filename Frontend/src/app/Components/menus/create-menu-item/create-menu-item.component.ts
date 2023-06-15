@@ -16,7 +16,7 @@ import { LocalStorageService } from 'src/app/Services/local-storage.service';
   styleUrls: ['./create-menu-item.component.css'],
 })
 export class CreateMenuItemComponent {
-  menuImage: any;
+  menuImage: any = true;
   storeIDReceived: any;
   store: any;
   user_data: any;

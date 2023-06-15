@@ -68,7 +68,7 @@
               (change)="menuImageUpload($event)"
             />
           </div>
-          <div class="" *ngIf="!isProductImageValid">
+          <div class="" *ngIf="!menuImage">
             <p class="alert alert-danger p-2">Image Must be uploaded</p>
           </div>
 
@@ -83,7 +83,13 @@
               placeholder="Enter title"
             />
           </div>
-          <div class="" *ngIf="!isProductTitleValid">
+          <div
+            class=""
+            *ngIf="
+              !isProductTitleValid &&
+              validationForm.get('productTitle')?.touched
+            "
+          >
             <p class="alert alert-danger p-2">
               title Must be at least 5 characters
             </p>
@@ -100,7 +106,10 @@
               placeholder="Enter price"
             />
           </div>
-          <div class="" *ngIf="!isPriceValid">
+          <div
+            class=""
+            *ngIf="!isPriceValid && validationForm.get('price')?.touched"
+          >
             <p class="alert alert-danger p-2">price must be required</p>
           </div>
           <!-- details input -->
@@ -114,7 +123,13 @@
               placeholder="Enter details"
             />
           </div>
-          <div class="" *ngIf="!isProductDetailsValid">
+          <div
+            class=""
+            *ngIf="
+              !isProductDetailsValid &&
+              validationForm.get('productDetails')?.touched
+            "
+          >
             <p class="alert alert-danger p-2">
               details Must be at least 20 characters
             </p>
@@ -141,7 +156,10 @@
             <option value="Drink">Drink</option>
             <option value="Main">Main</option>
           </select>
-          <div class="" *ngIf="!isCategoryValid">
+          <div
+            class=""
+            *ngIf="!isCategoryValid && validationForm.get('category')?.touched"
+          >
             <p class="alert alert-danger p-2">category is required</p>
           </div>
 
