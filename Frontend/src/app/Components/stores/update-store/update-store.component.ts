@@ -67,13 +67,16 @@ export class UpdateStoreComponent {
 
   updateStore(userID: any, name: any, image: any, city: any, about: any) {
     if (this.validationForm.valid) {
+      if (!this.storeImg) {
+        this.storeImg = this.store.image;
+      }
+
       const formData = new FormData();
       formData.append('user_id', userID);
       formData.append('name', name);
       formData.append('image', this.storeImg);
       formData.append('city', city);
       formData.append('about', about);
-
       this.myService.updateStoreByID(this.id, formData).subscribe({
         next: (data) => {
           console.log(formData);

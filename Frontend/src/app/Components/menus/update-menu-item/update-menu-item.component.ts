@@ -115,6 +115,10 @@ export class UpdateMenuItemComponent {
     productDetails: any,
     category: any
   ) {
+    if (!productImage) {
+      this.menuImage = this.itemDetails[0].product_image;
+    }
+
     const formData = new FormData();
     formData.append('store_id', storeID);
     formData.append('product_image', this.menuImage);
@@ -135,7 +139,6 @@ export class UpdateMenuItemComponent {
   }
   menuImageUpload(event: any) {
     this.menuImage = event.target.files[0];
-    console.log(this.menuImage);
   }
 
   get checkAdminOrOwner() {
