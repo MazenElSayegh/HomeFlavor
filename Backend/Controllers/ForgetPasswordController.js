@@ -123,7 +123,9 @@ class ForgetPasswordController {
         throw new Error("User not found");
       }
 
-      userpass.password = newPassword;
+      var salt = await bcrypt.genSalt(10);
+      var hashedPassword = await bcrypt.hash(newPassword, salt);
+      userpass.password = hashedPassword;
       userpass.resetToken = null;
 
       await userpass.save();

@@ -31,6 +31,7 @@ import { AuthInterceptor } from './Interceptors/auth.interceptor';
 import { ForgetpasswordComponent } from './Components/passwordreset/forgetpassword/forgetpassword.component';
 import { OtpComponent } from './Components/passwordreset/otp/otp.component';
 import { PasswordresetComponent } from './Components/passwordreset/passwordreset/passwordreset.component';
+import { RouteReuseStrategy } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { PasswordresetComponent } from './Components/passwordreset/passwordreset
       useClass: AuthInterceptor,
       multi: true,
     },
+   
   ],
   bootstrap: [AppComponent],
 })

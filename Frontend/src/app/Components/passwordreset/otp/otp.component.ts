@@ -14,16 +14,6 @@ export class OtpComponent {
   constructor(private forgetPasswordService: ForgetPasswordService, public myRouter: Router) {}
 
   onSubmit(otp:any ,) {
-    this.forgetPasswordService.verifyOTP(otp).subscribe(
-      response => {
-        console.log(response);
-        this.resetToken = response.resetToken;
-        // Handle successful response
-      },
-      error => {
-        console.error(error);
-        // Handle error
-      }
-    );
+    this.forgetPasswordService.verifyOTP(otp)
   }
 }

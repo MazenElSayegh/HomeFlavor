@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
 import { OrdersService } from 'src/app/Services/orders.service';
 import { StoresService } from 'src/app/Services/stores.service';
+import { RouteReuseStrategy } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  
 })
 export class HomeComponent {
   stores: any;
