@@ -5,7 +5,7 @@
         <div class="main-menu-wrap">
           <!-- logo -->
           <div class="site-logo">
-            <a href="/">
+            <a routerLink="/">
               <img src="assets/img/logo.png" alt="" />
             </a>
           </div>
@@ -15,7 +15,7 @@
           <nav class="main-menu">
             <ul class="headLinks">
               <li>
-                <a href="/">Home</a>
+                <a  routerLink="/">Home</a>
               </li>
               <li *ngIf="user_data && user_data.role == 'seller' && storeID">
                 <a routerLink="/stores/{{ storeID }}">My Store</a>
