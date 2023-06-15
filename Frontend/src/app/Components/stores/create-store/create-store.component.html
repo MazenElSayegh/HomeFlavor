@@ -46,7 +46,10 @@
               placeholder="Enter Name"
             />
           </div>
-          <div class="" *ngIf="!isNameValid">
+          <div
+            class=""
+            *ngIf="!isNameValid && validationForm.get('name')?.touched"
+          >
             <p class="alert alert-danger p-2">
               Name Must be at least 5 characters
             </p>
@@ -65,7 +68,10 @@
               placeholder="Enter store details"
             />
           </div>
-          <div class="" *ngIf="!isAboutValid">
+          <div
+            class=""
+            *ngIf="!isAboutValid && validationForm.get('about')?.touched"
+          >
             <p class="alert alert-danger p-2">
               About Must be at least 20 characters
             </p>
@@ -84,7 +90,8 @@
               (change)="storeImgUpload($event)"
             />
           </div>
-          <div class="alert alert-danger" *ngIf="!isImageValid">
+          <!-- <div class="alert alert-danger" *ngIf="!isImageValid"> -->
+          <div class="alert alert-danger" *ngIf="!storeImg">
             Invalid file extension. Please select a PNG, JPG, or JPEG file.
           </div>
 
@@ -99,7 +106,10 @@
               placeholder="Enter city"
             />
           </div>
-          <div class="" *ngIf="!isCityValid">
+          <div
+            class=""
+            *ngIf="!isCityValid && validationForm.get('city')?.touched"
+          >
             <p class="alert alert-danger p-2">City is required</p>
           </div>
 

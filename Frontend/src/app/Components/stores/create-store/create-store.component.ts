@@ -15,9 +15,13 @@ import {
   styleUrls: ['./create-store.component.css'],
 })
 export class CreateStoreComponent {
-  storeImg: any;
-  user_data:any;
-  constructor(private myService: StoresService, private router: Router,private LocalStorageService:LocalStorageService) {
+  storeImg: any = true;
+  user_data: any;
+  constructor(
+    private myService: StoresService,
+    private router: Router,
+    private LocalStorageService: LocalStorageService
+  ) {
     this.LocalStorageService.getData('jwt_token').subscribe((data) => {
       this.user_data = data;
     });
@@ -74,7 +78,7 @@ export class CreateStoreComponent {
 
   storeImgUpload(event: any) {
     this.storeImg = event.target.files[0];
-    console.log(this.storeImg);
+    console.log(event);
   }
 }
 export function imageExtensionValidator(

@@ -68,7 +68,7 @@ npm i
 nodemon server
 ```
 
-Open your web browser and navigate to `http://localhost:4200` to access the Threads & Beads website.
+Open your web browser and navigate to `http://localhost:7005` to access the Threads & Beads website.
 
   # Contributors
 
