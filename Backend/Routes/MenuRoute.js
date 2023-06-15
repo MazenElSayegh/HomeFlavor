@@ -2,6 +2,10 @@ const express = require("express");
 const Router = express.Router();
 const MenuController = require("../Controllers/MenuController");
 const multer = require("multer");
+let adminauth = require("../Middlewares/adminMW");
+let sellerauth = require("../Middlewares/sellerMW");
+let buyerauth = require("../Middlewares/buyerMW");
+
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -16,14 +20,14 @@ const upload = multer({ storage });
 
 Router.get("/:id_store", MenuController.getAllMenu);
 Router.get("/item/:id_item", MenuController.getMenuByID);
-Router.delete("/:id_item", MenuController.deleteMenuItemByID);
+Router.delete("/:id_item", adminauth, sellerauth,MenuController.deleteMenuItemByID);
 Router.put(
-  "/:id",
+  "/:id",adminauth, sellerauth,
   upload.single("product_image"),
   MenuController.updateItemByID
 );
 Router.post(
-  "/create",
+  "/create",adminauth, sellerauth,
   upload.single("product_image"),
   MenuController.CreateMenuItem
 );
