@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage });
-router.get("/", auth, UsersController.GetAllUsers);
+router.get("/", auth,adminauth, UsersController.GetAllUsers);
 //Get user By ID
 router.get("/:id",  UsersController.GetUserById);
 //Create New user
