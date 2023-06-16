@@ -31,6 +31,7 @@ import { AuthInterceptor } from './Interceptors/auth.interceptor';
 import { ForgetpasswordComponent } from './Components/passwordreset/forgetpassword/forgetpassword.component';
 import { OtpComponent } from './Components/passwordreset/otp/otp.component';
 import { PasswordresetComponent } from './Components/passwordreset/passwordreset/passwordreset.component';
+import { SidebarComponent } from './Components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { PasswordresetComponent } from './Components/passwordreset/passwordreset
     ForgetpasswordComponent,
     OtpComponent,
     PasswordresetComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

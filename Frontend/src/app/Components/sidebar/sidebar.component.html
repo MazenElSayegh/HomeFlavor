@@ -1,0 +1,59 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasDarkNavbar"
+      aria-controls="offcanvasDarkNavbar"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" [routerLink]="">Admin Dashboard</a>
+    <div
+      class="offcanvas offcanvas-start custom-offcanvas text-bg-dark"
+      tabindex="-1"
+      id="offcanvasDarkNavbar"
+      aria-labelledby="offcanvasDarkNavbarLabel"
+    >
+      <div class="offcanvas-header bg-dark">
+        <h3 class="offcanvas-title text-light" id="offcanvasDarkNavbarLabel">
+          Admin Dashboard
+        </h3>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body bg-dark fixed-start">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 fs-5">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/profile/' + user_data.user_id"
+              >My Profile</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Stores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/orders">Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

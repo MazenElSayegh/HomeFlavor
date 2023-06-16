@@ -1,5 +1,10 @@
-<app-header [addedProducts]="addedProducts"></app-header>
+<div *ngIf="user_data && user_data.role == 'admin'; else notAdmin">
+  <app-sidebar></app-sidebar>
+  <router-outlet (activate)="getData($event)"></router-outlet>
+</div>
 
-<router-outlet (activate)="getData($event)"></router-outlet>
-
-<app-footer></app-footer>
+<ng-template #notAdmin>
+  <app-header [addedProducts]="addedProducts"></app-header>
+  <router-outlet (activate)="getData($event)"></router-outlet>
+  <app-footer></app-footer>
+</ng-template>

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { StoreDetailsComponent } from './Components/stores/store-details/store-details.component';
+import { LocalStorageService } from './Services/local-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,10 @@ import { StoreDetailsComponent } from './Components/stores/store-details/store-d
 export class AppComponent {
   title = 'Home Flavor';
   addedProducts: any[] = [];
+  user_data: any;
 
-  constructor() {
+  constructor(private localStorageService: LocalStorageService) {
     interface MyData {
-
       price: number;
       product_details: string;
       product_image: string;
@@ -32,6 +33,12 @@ export class AppComponent {
       myData = [];
       this.addedProducts = myData;
     }
+  }
+  ngOnInit(): void {
+    this.localStorageService.getData('jwt_token').subscribe((data) => {
+      this.user_data = data;
+      console.log("app",this.user_data)
+    });
   }
   getData(data: any) {
     if (data instanceof StoreDetailsComponent) {
@@ -58,14 +65,14 @@ export class AppComponent {
         } else {
           myData = [];
         }
-        let flag=0;
-        myData.forEach(product => {
-          if(product._id==data._id){
-            flag=1;
-            ++product.quantity
+        let flag = 0;
+        myData.forEach((product) => {
+          if (product._id == data._id) {
+            flag = 1;
+            ++product.quantity;
           }
         });
-        if(flag==0){
+        if (flag == 0) {
           myData.push(data);
         }
         this.addedProducts = myData;
