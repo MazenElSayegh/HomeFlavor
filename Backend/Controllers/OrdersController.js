@@ -4,8 +4,10 @@ let OrderModel = require("../Models/OrdersModel");
 let StoreModel = require("../Models/StoresModel");
 let jwt = require("jsonwebtoken");
 
+class OrdersController{
+
 // Get all orders (ADMIN only)
-let GetAllOrders = async (req, res) => {
+ GetAllOrders = async (req, res) => {
   var token = req.headers.authorization?.split(" ")[1];
   var loggedInUser = jwt.verify(token, "token");
   if (loggedInUser.role == "admin") {
@@ -51,7 +53,7 @@ let GetAllOrders = async (req, res) => {
 };
 
 // Get order by ID
-let GetOrderByID = async (req, res) => {
+ GetOrderByID = async (req, res) => {
   let id = req.params.id;
   let order = null;
   try {
@@ -75,7 +77,7 @@ let GetOrderByID = async (req, res) => {
 };
 
 // Make new Order (USER)
-let CreateOrder = async (req, res) => {
+ CreateOrder = async (req, res) => {
 
   let newOrder = req.body;
   if (validateOrder(newOrder)) {
@@ -88,7 +90,7 @@ let CreateOrder = async (req, res) => {
 };
 
 // Update Order  -> when status:"pending" only  (ADMIN)  //products or status
-var UpdateOrderByID = async (req, res) => {
+ UpdateOrderByID = async (req, res) => {
   if (true) {
     var ID = req.params.id;
     var updatedOrder = req.body;
@@ -114,11 +116,7 @@ var UpdateOrderByID = async (req, res) => {
     res.status(401).send("Unauthorized");
   }
 };
+}
 
 //Export to route
-module.exports = {
-  GetAllOrders,
-  GetOrderByID,
-  CreateOrder,
-  UpdateOrderByID,
-};
+module.exports = new OrdersController();

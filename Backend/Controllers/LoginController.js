@@ -3,7 +3,9 @@ let validate = require("../Utils/loginValidation");
 let bcrypt = require("bcrypt");
 let jwt = require("jsonwebtoken");
 
-var loginUser = async (req, res) => {
+class LoginController{
+
+  loginUser = async (req, res) => {
   var data = req.body;
   console.log(req.body);
   const valid = validate(data);
@@ -32,6 +34,6 @@ var loginUser = async (req, res) => {
 
  
 };
-module.exports = {
-  loginUser,
-};
+
+}
+module.exports = new LoginController();

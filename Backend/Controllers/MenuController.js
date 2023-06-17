@@ -4,8 +4,10 @@ let MenusModel = require("../Models/MenusModel");
 let StoreModel = require("../Models/StoresModel");
 let jwt = require("jsonwebtoken");
 
+class MenuController {
+
 // Get all menu
-let getAllMenu = async (req, res) => {
+ getAllMenu = async (req, res) => {
   let id = req.params.id_store;
   
   let menus = await MenusModel.find({ store_id: id });
@@ -14,7 +16,7 @@ let getAllMenu = async (req, res) => {
 };
 
 // Get Menu By ID
-let getMenuByID = async (req, res) => {
+ getMenuByID = async (req, res) => {
   let menuId = req.params.id_item;
 
   try {
@@ -30,7 +32,7 @@ let getMenuByID = async (req, res) => {
 };
 
 //creatr menu item
-let CreateMenuItem = async (req, res) => {
+ CreateMenuItem = async (req, res) => {
   var store = await StoreModel.findById({ _id: req.body.store_id });
   var store_owner = store.user_id;
   var token = req.headers.authorization?.split(" ")[1];
@@ -65,7 +67,7 @@ else {
 
 //updateitem
 
-var updateItemByID = async (req, res) => {
+ updateItemByID = async (req, res) => {
   var store = await StoreModel.findById({ _id: req.body.store_id });
   console.log( req.body.store_id);
   var store_owner = store.user_id._id;
@@ -102,7 +104,7 @@ else {
 };
 
 //delete item from menu
-var deleteMenuItemByID = async (req, res) => {
+ deleteMenuItemByID = async (req, res) => {
   var ID = req.params.id_item;
   var itemToDelete = await MenusModel.find({ _id: ID });
   console.log(itemToDelete[0].store_id._id);
@@ -119,12 +121,6 @@ var deleteMenuItemByID = async (req, res) => {
     console.log("you not have permission")
   }
 };
-
+}
 //Export to route
-module.exports = {
-  getAllMenu,
-  getMenuByID,
-  deleteMenuItemByID,
-  CreateMenuItem,
-  updateItemByID,
-};
+module.exports = new MenuController();

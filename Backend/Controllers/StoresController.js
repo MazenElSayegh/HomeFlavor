@@ -4,8 +4,9 @@ let StoreModel = require("../Models/StoresModel");
 let jwt = require("jsonwebtoken");
 
 // Get all stores
+class StoresController{
 
-let getAllStores = async (req, res) => {
+ getAllStores = async (req, res) => {
   let stores = await StoreModel.find({}).populate("user_id");
   res.status(201).json(stores);
 };
@@ -13,7 +14,7 @@ let getAllStores = async (req, res) => {
 
 
 // Get store by ID
-let getStoreByID = async (req, res) => {
+ getStoreByID = async (req, res) => {
   let id = req.params.id;
   let store = null;
   try {
@@ -29,7 +30,7 @@ let getStoreByID = async (req, res) => {
 };
 
 // Make new Store only for admin or seller
-let createStore = async (req, res) => {
+ createStore = async (req, res) => {
   var token = req.headers.authorization?.split(" ")[1];
   var loggedInUser = jwt.verify(token, "token");
   if (loggedInUser.role == "admin" ||loggedInUser.role == "seller") {
@@ -61,7 +62,7 @@ else {
 };
 
 // Update Store
-var updateStoreByID = async (req, res) => {
+ updateStoreByID = async (req, res) => {
   var token = req.headers.authorization?.split(" ")[1];
   var loggedInUser = jwt.verify(token, "token");
   if (loggedInUser.role == "admin" ||(loggedInUser.role == "seller" &&loggedInUser.user_id==req.body.user_id)) {
@@ -93,7 +94,7 @@ else {
   
 };
 
-var deleteStoreByID = async (req, res) => {
+ deleteStoreByID = async (req, res) => {
   var store = await StoreModel.findById({ _id: req.params.id });
   var store_owner=store.user_id;
   console.log(store_owner);
@@ -110,12 +111,6 @@ var deleteStoreByID = async (req, res) => {
     console.log("you not have permission")
   }
 };
-
+}
 //Export to route
-module.exports = {
-  getAllStores,
-  getStoreByID,
-  createStore,
-  updateStoreByID,
-  deleteStoreByID,
-};
+module.exports = new StoresController();

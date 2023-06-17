@@ -1,12 +1,13 @@
 let UserModel = require("../Models/UsersModel");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
-
 const userValid = require("../Utils/UserValidation");
 let jwt = require("jsonwebtoken");
 
+class UsersController{
+
 id = 0;
-let AddNewUser = async (req, res, next) => {
+ AddNewUser = async (req, res, next) => {
   const file = req.file;
   let image_path;
   if (file) {
@@ -55,17 +56,17 @@ let AddNewUser = async (req, res, next) => {
   }
 };
 
-let GetAllUsers = async (req, res) => {
+ GetAllUsers = async (req, res) => {
   let users = await UserModel.find({});
   res.status(201).json(users);
 };
 
-let GetUserById = async (req, res) => {
+ GetUserById = async (req, res) => {
   let Id = req.params.id;
   let user = await UserModel.findOne({ _id: Id });
   res.json(user);
 };
-let UpdateUser = async (req, res) => {
+ UpdateUser = async (req, res) => {
   const file = req.file;
   let image_path;
   if (file) {
@@ -109,17 +110,12 @@ let UpdateUser = async (req, res) => {
   }
 };
 
-let DeleteUser = async (req, res) => {
+ DeleteUser = async (req, res) => {
   var ID = req.params.id;
   var UserToDelete = await UserModel.find({ _id: ID });
   await UserModel.deleteOne({ _id: ID });
   res.json(UserToDelete || "Not Found");
 };
+}
 
-module.exports = {
-  AddNewUser,
-  GetAllUsers,
-  GetUserById,
-  UpdateUser,
-  DeleteUser,
-};
+module.exports = new UsersController();
