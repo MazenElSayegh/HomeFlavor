@@ -1,0 +1,57 @@
+<div *ngIf="user_data.role === 'admin'; else notAdmin">
+  <!-- breadcrumb-section -->
+  <div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="breadcrumb-text">
+            <p>Home Flavor</p>
+            <h1>All Stores</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end breadcrumb section -->
+  <table
+    class="table table-bordered border-dark text-center table-striped mt-5 container col-sm-5"
+    style="background-color: #f5f5f5"
+  >
+    <thead
+      class="table-bordered border-dark"
+      style="background-color: #051922; color: #f28123"
+    >
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">City</th>
+        <th scope="col">About</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr *ngFor="let store of stores">
+        <td>{{ store._id }}</td>
+        <td>{{ store.name }}</td>
+        <td>{{ store.city }}</td>
+        <td>{{ store.about }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #notAdmin>
+  <!-- breadcrumb-section -->
+  <div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="breadcrumb-text">
+            <p>Home Flavor</p>
+            <h1>You're not authorized</h1>
+            <h3>You'll be redirected to home</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end breadcrumb section -->
+</ng-template>

@@ -20,14 +20,14 @@ const upload = multer({ storage });
 
 Router.get("/:id_store", MenuController.getAllMenu);
 Router.get("/item/:id_item", MenuController.getMenuByID);
-Router.delete("/:id_item", adminauth, sellerauth,MenuController.deleteMenuItemByID);
+Router.delete("/:id_item", sellerauth,MenuController.deleteMenuItemByID);
 Router.put(
-  "/:id",adminauth, sellerauth,
+  "/:id",sellerauth,
   upload.single("product_image"),
   MenuController.updateItemByID
 );
 Router.post(
-  "/create",adminauth, sellerauth,
+  "/create",sellerauth,
   upload.single("product_image"),
   MenuController.CreateMenuItem
 );

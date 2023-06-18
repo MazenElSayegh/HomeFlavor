@@ -28,4 +28,8 @@ export class BackendService {
   updateUserByID(id: any, user: any) {
     return this.serverClient.put(this.Base_URL + 'users' + '/' + id, user);
   }
+
+  getAllUsers() {
+    return this.serverClient.get(this.Base_URL + 'users');
+  }
 }

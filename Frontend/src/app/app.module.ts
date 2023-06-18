@@ -32,6 +32,8 @@ import { ForgetpasswordComponent } from './Components/passwordreset/forgetpasswo
 import { OtpComponent } from './Components/passwordreset/otp/otp.component';
 import { PasswordresetComponent } from './Components/passwordreset/passwordreset/passwordreset.component';
 import { SidebarComponent } from './Components/sidebar/sidebar.component';
+import { AllStoresComponent } from './Components/stores/all-stores/all-stores.component';
+import { UsersComponent } from './Components/users/users.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { SidebarComponent } from './Components/sidebar/sidebar.component';
     OtpComponent,
     PasswordresetComponent,
     SidebarComponent,
+    AllStoresComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,

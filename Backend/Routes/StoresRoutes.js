@@ -21,8 +21,8 @@ const upload = multer({ storage });
 
 Router.get("/", StoresController.getAllStores);
 Router.get("/:id", StoresController.getStoreByID);
-Router.post("/create",adminauth,sellerauth, upload.single("image"), StoresController.createStore);
-Router.put("/:id",adminauth,sellerauth, upload.single("image"), StoresController.updateStoreByID);
-Router.delete("/:id", adminauth,sellerauth,StoresController.deleteStoreByID);
+Router.post("/create",sellerauth, upload.single("image"), StoresController.createStore);
+Router.put("/:id",sellerauth, upload.single("image"), StoresController.updateStoreByID);
+Router.delete("/:id", sellerauth,StoresController.deleteStoreByID);
 
 module.exports = Router;

@@ -30,7 +30,6 @@ export class AuthInterceptor implements HttpInterceptor {
     else {
       return next.handle(request).pipe(
         tap((event) => {
-          if (event instanceof HttpResponse) console.log(event.headers);
           if (
             event instanceof HttpResponse &&
             event.headers.has('X-Auth-Token')
