@@ -8,6 +8,7 @@ const UsersController = require("../Controllers/UsersController");
 const auth = require("../Middlewares/authMW");
 const adminauth = require("../Middlewares/adminMW");
 const sellerauth = require("../Middlewares/sellerMW");
+const buyerauth = require("../Middlewares/buyerMW");
 
 // Adding new User
 
@@ -31,5 +32,8 @@ router.post("/", upload.single("user_image"), UsersController.AddNewUser);
 router.put("/:id", upload.single("user_image"), UsersController.UpdateUser);
 //Delete user
 router.delete("/:id", UsersController.DeleteUser);
+
+//Subscribe user
+router.post("/subscribe", UsersController.SubscribeUser)
 
 module.exports = router;

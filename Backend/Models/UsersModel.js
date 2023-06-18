@@ -28,6 +28,8 @@ var userSchema = new mongoose.Schema({
   role: { type: String, enum: ["admin", "seller", "buyer"], required: true },
   mobile: { type: String, required: true },
   address: { type: String, required: true },
+  is_subscribed:{type: Boolean,
+    default: false}
 });
 
 module.exports = mongoose.model("users", userSchema);
