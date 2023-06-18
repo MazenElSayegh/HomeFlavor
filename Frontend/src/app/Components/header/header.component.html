@@ -37,6 +37,7 @@
                   </li>
                   <li><a (click)="logout()">Logout</a></li>
                 </ul>
+
               </li>
               <!-- //user image -->
               <li *ngIf="user_data">
@@ -50,6 +51,7 @@
                   "
                 />
               </li>
+              <li *ngIf="user_data && user_data.is_subscribed==false"><button (click)="makePayment(50)" class="btn btn-primary animate__animated animate__pulse">Subscribe</button></li>
               <ng-template #falseBlock>
                 <li>
                   <a href="#newsSec">Account</a>
@@ -61,6 +63,7 @@
               </ng-template>
 
               <li>
+
                 <div
                   class="header-icons"
                   *ngIf="

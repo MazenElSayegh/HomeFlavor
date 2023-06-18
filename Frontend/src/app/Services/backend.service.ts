@@ -32,4 +32,10 @@ export class BackendService {
   getAllUsers() {
     return this.serverClient.get(this.Base_URL + 'users');
   }
+  subscribeUser(user: any) {
+    console.log("hi")
+    console.log(user)
+    console.log(this.Base_URL  + 'users/subscribe')
+    return this.serverClient.post(this.Base_URL  + 'users' + '/' +'subscribe', user);
+  }
 }

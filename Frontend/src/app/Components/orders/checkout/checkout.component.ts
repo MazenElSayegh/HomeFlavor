@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrdersService } from 'src/app/Services/orders.service';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
+import { BackendService } from 'src/app/Services/backend.service';
 import {
   trigger,
   state,
@@ -34,6 +35,7 @@ import {
   ],
 })
 export class CheckoutComponent {
+  subscriptionDiscount: any = 0;
   paymentHandler: any = null;
   allProducts: any[] = [];
   user_data: any;
@@ -46,12 +48,29 @@ export class CheckoutComponent {
 
   constructor(
     private OrdersService: OrdersService,
+    private myService: BackendService,
     private router: Router,
     private LocalStorageService: LocalStorageService
   ) {
     let data: any = localStorage.getItem('cart');
     this.LocalStorageService.getData('jwt_token').subscribe((data) => {
       this.user_data = data;
+      if (this.user_data) {
+        this.myService.getUserByID(this.user_data.user_id).subscribe({
+          next: (data) => {
+            this.user_data = data;
+            if(this.user_data.is_subscribed){
+              console.log(this.user_data.is_subscribed)
+              this.subscriptionDiscount=0.2;
+              this.totalCost=this.totalCost*0.8
+            }
+          },
+          error: (err) => {
+            console.log(err);
+            console.log("innnn")
+          },
+        });
+      }
     });
     this.allProducts = JSON.parse(data);
     this.order.store_id = this.allProducts[0].store_id;
@@ -59,17 +78,26 @@ export class CheckoutComponent {
     this.allProducts.forEach((product) => {
       this.totalCost += product.price * product.quantity;
     });
+    console.log("user",this.user_data)
+    if(this.user_data.is_subscribed){
+      console.log(this.user_data.is_subscribed)
+      this.subscriptionDiscount=0.2;
+      this.totalCost=this.totalCost*0.8
+    }
   }
 
   ngOnInit() {
     this.invokeStripe();
+    console.log(this.user_data.is_subscribed)
   }
 
   AddOrder() {
-    console.log('ana gowa');
     this.allProducts.forEach((product) => {
       let newPrice = parseFloat(product.price);
       product.price = newPrice;
+      if(this.user_data.is_subscribed){
+        product.price=newPrice*0.9/1.1
+      }
       product.product_name = product.product_title;
       delete product.product_title;
       delete product.store_id;

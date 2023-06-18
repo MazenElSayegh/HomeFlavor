@@ -32,7 +32,7 @@
             name="payment"
             value="card"
             (click)="hideButton()"
-            (click)="makePayment(totalCost * 1.1)"
+            (click)="makePayment( totalCost +  totalCost/(1-subscriptionDiscount) * 0.1)"
           />
           Credit Card
         </label>
@@ -52,17 +52,21 @@
       <div id="subtotal">
         <div id="sub">
           Subtotal
-          <p>E&#163;&nbsp;{{ totalCost | number : "1.1-1" }}</p>
+          <p>E&#163;&nbsp;{{ totalCost/(1-subscriptionDiscount) | number : "1.1-1" }}</p>
         </div>
         <div id="tax">
           Tax
-          <p>E&#163;&nbsp;{{ totalCost * 0.1 | number : "1.1-1" }}</p>
+          <p>E&#163;&nbsp;{{ totalCost/(1-subscriptionDiscount) * 0.1 | number : "1.1-1" }}</p>
+        </div>
+        <div id="tax"  *ngIf="user_data.is_subscribed">
+          Subscription Discount
+          <p>E&#163;&nbsp;{{totalCost/(1-subscriptionDiscount) * 0.2 | number : "1.1-1" }}</p>
         </div>
       </div>
       <hr />
       <div id="total">
         <p>Total</p>
-        <p>E&#163;&nbsp;{{ totalCost * 1.1 | number : "1.1-1" }}</p>
+        <p>E&#163;&nbsp;{{ totalCost +  totalCost/(1-subscriptionDiscount) * 0.1 | number : "1.1-1" }}</p>
       </div>
       <input
         class="confirmButton hideButton"

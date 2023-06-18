@@ -7,6 +7,7 @@ let jwt = require("jsonwebtoken");
 
 id = 0;
 let AddNewUser = async (req, res, next) => {
+  console.log("inside new user")
   const file = req.file;
   let image_path;
   if (file) {
@@ -116,10 +117,30 @@ let DeleteUser = async (req, res) => {
   res.json(UserToDelete || "Not Found");
 };
 
+let SubscribeUser=async (req, res) => {
+  console.log("inside back")
+  try {
+    const user = await UserModel.findById(req.body._id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    console.log("inside back")
+    user.is_subscribed = true;
+    await user.save();
+
+    res.json({ message: 'Subscription successful' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
 module.exports = {
   AddNewUser,
   GetAllUsers,
   GetUserById,
   UpdateUser,
   DeleteUser,
+  SubscribeUser
 };

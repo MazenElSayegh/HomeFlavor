@@ -30,4 +30,7 @@ router.put("/:id", upload.single("user_image"), UsersController.UpdateUser);
 //Delete user
 router.delete("/:id", UsersController.DeleteUser);
 
+//Subscribe user
+router.post("/subscribe", UsersController.SubscribeUser)
+
 module.exports = router;

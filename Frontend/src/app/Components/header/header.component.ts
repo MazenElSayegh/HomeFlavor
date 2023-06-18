@@ -9,6 +9,7 @@ import { OrdersService } from 'src/app/Services/orders.service';
 })
 export class HeaderComponent {
   @Input() addedProducts: any;
+  paymentHandler: any = null;
   user_data: any;
   user_image: any;
   count: any;
@@ -82,6 +83,7 @@ export class HeaderComponent {
   }
 
   ngOnInit(): void {
+    this.invokeStripe();
     this.localStorageService.getData('jwt_token').subscribe((data) => {
       this.user_data = data;
 
@@ -104,6 +106,48 @@ export class HeaderComponent {
     this.myService.userLogout({}).subscribe();
     this.localStorageService.removeData('jwt_token');
     this.localStorageService.removeData('cart');
+    location.href = '/';
+  }
+  subscribe(){
+    console.log(this.user_data)
+    this.myService.subscribeUser(this.user_data).subscribe();
+  }
+
+  invokeStripe() {
+    if (!window.document.getElementById('stripe-script')) {
+      const script = window.document.createElement('script');
+      script.id = 'stripe-script';
+      script.type = 'text/javascript';
+      script.src = 'https://checkout.stripe.com/checkout.js';
+      script.onload = () => {
+        this.paymentHandler = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51NBO2YI8Mgz307EgfWYcnNfk7ccSrtdKyhJpHtB477RX7Eh32wTZdpbjdJ0CQBasiflrNknBeeRGxMYevmyhbEB200vuQeWDLw',
+          locale: 'auto',
+          token: function (stripeToken: any) {
+            alert('Payment has been successfull!');
+          },
+        });
+      };
+      window.document.body.appendChild(script);
+    }
+  }
+
+  makePayment(amount: any) {
+    const paymentHandler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51NBO2YI8Mgz307EgfWYcnNfk7ccSrtdKyhJpHtB477RX7Eh32wTZdpbjdJ0CQBasiflrNknBeeRGxMYevmyhbEB200vuQeWDLw',
+      locale: 'auto',
+      token: (stripeToken: any) => {
+        this.subscribe();
+        this.reload();
+      },
+    });
+    paymentHandler.open({
+      name: 'HomeFlavor',
+      description: 'Credit card details',
+      amount: amount * 100,
+    });
+  }
+  reload() {
     location.href = '/';
   }
 }
