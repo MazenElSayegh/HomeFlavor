@@ -1,11 +1,15 @@
 let jwt = require("jsonwebtoken");
-module.exports = (req, res, next) => {
+module.exports = (requiredRoles) => (req, res, next) => {
   var token = req.headers.authorization?.split(" ")[1];
 
-  if (!token) return res.status(400).send("Not Login");
+  if (!token) {
+    return res.status(400).send("Not Logged in");
+  }
 
-  var decodePayload = jwt.verify(token, "token");
-  if (decodePayload.role === "seller") {
+  var loggedUser = jwt.verify(token, "token");
+  console.log(requiredRoles);
+  if (requiredRoles.includes(loggedUser.role)) {
+    console.log("success");
     next();
   } else {
     return res.send("Access Denied...");
