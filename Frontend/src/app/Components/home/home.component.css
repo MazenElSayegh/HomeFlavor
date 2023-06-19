@@ -47,3 +47,11 @@
   width: 280px;
   height: 280px;
 }
+
+#search,#button-addon1{
+  height:8vh;
+  font-size: large;
+}
+#search::placeholder{
+  font-size: large;
+}
