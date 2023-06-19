@@ -34,7 +34,7 @@ import { PasswordresetComponent } from './Components/passwordreset/passwordreset
 import { SidebarComponent } from './Components/sidebar/sidebar.component';
 import { AllStoresComponent } from './Components/stores/all-stores/all-stores.component';
 import { UsersComponent } from './Components/users/users.component';
-
+import { DataTablesModule } from "angular-datatables";
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +72,7 @@ import { UsersComponent } from './Components/users/users.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DataTablesModule
   ],
   providers: [
     {

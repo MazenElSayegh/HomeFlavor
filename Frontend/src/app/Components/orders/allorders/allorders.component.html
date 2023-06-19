@@ -14,7 +14,8 @@
 <!-- end breadcrumb section -->
 <!-- ********Beginning of admin's and store owner's orders page******** -->
 <table
-  class="table table-bordered border-dark text-center table-striped mt-5 container col-sm-5"
+datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+  class="table table-bordered border-dark text-center table-striped mt-5 container col-sm-5 row-border hover"
   style="background-color: #f5f5f5"
   *ngIf="user_data.role === 'seller' || user_data.role === 'admin'"
 >

@@ -1,6 +1,6 @@
 <div *ngIf="user_data.role === 'admin'; else notAdmin">
   <!-- breadcrumb-section -->
-  <div class="breadcrumb-section breadcrumb-bg">
+  <div class="breadcrumb-section breadcrumb-bg ">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2 text-center">
@@ -14,7 +14,8 @@
   </div>
   <!-- end breadcrumb section -->
   <table
-    class="table table-bordered border-dark text-center table-striped mt-5 container col-sm-5"
+  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+    class="table table-bordered border-dark text-center table-striped mt-5 container col-sm-5 row-border hover"
     style="background-color: #f5f5f5"
   >
     <thead
