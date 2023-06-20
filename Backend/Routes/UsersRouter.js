@@ -5,7 +5,7 @@ const router = new express.Router();
 const multer = require("multer");
 
 const UsersController = require("../Controllers/UsersController");
-const adminauth = require("../Middlewares/adminMW");
+let auth = require("../Middlewares/authMW");
 
 // Adding new User
 
@@ -19,9 +19,9 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage });
-router.get("/", adminauth, UsersController.GetAllUsers);
+router.get("/", auth(["admin"]), UsersController.GetAllUsers);
 //Get user By ID
-router.get("/:id",  UsersController.GetUserById);
+router.get("/:id", UsersController.GetUserById);
 //Create New user
 router.post("/", upload.single("user_image"), UsersController.AddNewUser);
 
@@ -31,6 +31,6 @@ router.put("/:id", upload.single("user_image"), UsersController.UpdateUser);
 router.delete("/:id", UsersController.DeleteUser);
 
 //Subscribe user
-router.post("/subscribe", UsersController.SubscribeUser)
+router.post("/subscribe", UsersController.SubscribeUser);
 
 module.exports = router;
