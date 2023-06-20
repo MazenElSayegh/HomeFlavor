@@ -21,6 +21,7 @@
   padding: 3px !important;
   border-radius: 70%;
 }
+
 .notifications-bell:hover{
   #ordersCount{
     color:white !important;
