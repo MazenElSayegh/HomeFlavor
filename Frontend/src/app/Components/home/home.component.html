@@ -1,4 +1,8 @@
-<div *ngIf="user_data && user_data.role == 'admin'; else notAdmin"></div>
+<div *ngIf="user_data && user_data.role == 'admin'; else notAdmin">
+  <div class="p-5 m-4">
+    <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}" (chartInstance)="getChartInstance($event)"></canvasjs-chart>
+</div>
+</div>
 
 <ng-template #notAdmin>
   <div class="homepage-slider">
