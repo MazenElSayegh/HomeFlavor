@@ -25,7 +25,7 @@ export class StoreDetailsComponent {
   productInCartStoreID: any;
   cart: any[] = [];
   allOrders: any;
-  localhost = 'http://localhost:7005';
+  localhost = 'https://homeflavor-backend.onrender.com';
   @Output() addedToCart = new EventEmitter<any>();
   constructor(
     myRoute: ActivatedRoute,

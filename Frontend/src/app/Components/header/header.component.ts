@@ -37,7 +37,7 @@ export class HeaderComponent {
       });
   }
 
-  localhost = 'http://localhost:7005';
+  localhost = 'https://homeflavor-backend.onrender.com';
   removeProduct(product: any) {
     let arrayOfProducts = localStorage.getItem('cart');
     if (arrayOfProducts) {
