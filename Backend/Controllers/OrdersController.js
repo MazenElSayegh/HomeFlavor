@@ -78,6 +78,12 @@ let GetOrderByID = async (req, res) => {
 let CreateOrder = async (req, res) => {
 
   let newOrder = req.body;
+  if(newOrder.user_id.is_subscribed){
+    newOrder.products.forEach(product=> {
+      product.price*=0.8
+      
+    });
+  }
   if (validateOrder(newOrder)) {
     let order = new OrderModel(newOrder);
     await order.save();

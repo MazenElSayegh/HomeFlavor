@@ -25,6 +25,8 @@ import { CheckoutComponent } from './Components/orders/checkout/checkout.compone
 import { ForgetpasswordComponent } from './Components/passwordreset/forgetpassword/forgetpassword.component';
 import { PasswordresetComponent } from './Components/passwordreset/passwordreset/passwordreset.component';
 import { OtpComponent } from './Components/passwordreset/otp/otp.component';
+import { AllStoresComponent } from './Components/stores/all-stores/all-stores.component';
+import { UsersComponent } from './Components/users/users.component';
 
 const routes: Routes = [
   // -------------------- user routes ------------------------------------------------------
@@ -35,6 +37,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'profile/update/:id', component: UpdateProfileComponent },
+  { path: 'users', component: UsersComponent },
   { path: 'forgetpassword', component: ForgetpasswordComponent },
   { path: 'resetpassword', component: PasswordresetComponent },
   { path: 'otp', component: OtpComponent },
@@ -44,7 +47,7 @@ const routes: Routes = [
   { path: 'orders/:id', component: OrderdetailsComponent },
   { path: 'checkout', component: CheckoutComponent },
   // -------------------- stores routes ------------------------------------------------------
-
+  { path: 'stores', component: AllStoresComponent },
   { path: 'stores/create', component: CreateStoreComponent },
   { path: 'stores/update/:id', component: UpdateStoreComponent },
   { path: 'stores/delete/:id', component: DeleteStoreComponent },

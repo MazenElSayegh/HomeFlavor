@@ -1,15 +1,55 @@
-<div class="homepage-slider">
-  <!-- single home slider -->
-  <div class="single-homepage-slider homepage-bg-2">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
-          <div class="hero-text">
-            <div class="hero-text-tablecell">
-              <p class="subtitle">Fresh & Organic</p>
-              <h1>Delicious Homemade Food</h1>
-              <div class="hero-btns">
-                <a href="#stores" class="boxed-btn">Go To Stores</a>
+<div *ngIf="user_data && user_data.role == 'admin'; else notAdmin"></div>
+
+<ng-template #notAdmin>
+  <div class="homepage-slider">
+    <!-- single home slider -->
+    <div class="single-homepage-slider homepage-bg-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
+            <div class="hero-text">
+              <div class="hero-text-tablecell">
+                <p class="subtitle">Fresh & Organic</p>
+                <h1>Delicious Homemade Food</h1>
+                <div class="hero-btns">
+                  <a href="#stores" class="boxed-btn">Go To Stores</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- single home slider -->
+    <div class="single-homepage-slider homepage-bg-1">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 offset-lg-1 text-center">
+            <div class="hero-text">
+              <div class="hero-text-tablecell">
+                <p class="subtitle">Freshly Cooked Everyday</p>
+                <h1>100% Homemade Food</h1>
+                <div class="hero-btns">
+                  <a href="#stores" class="boxed-btn">Visit Stores</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- single home slider -->
+    <div class="single-homepage-slider homepage-bg-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 offset-lg-1 text-right">
+            <div class="hero-text">
+              <div class="hero-text-tablecell">
+                <p class="subtitle">Mega Sale Going On!</p>
+                <h1>Get Summer Discount</h1>
+                <div class="hero-btns">
+                  <a href="#stores" class="boxed-btn">Visit Shop</a>
+                </div>
               </div>
             </div>
           </div>
@@ -17,404 +57,388 @@
       </div>
     </div>
   </div>
-  <!-- single home slider -->
-  <div class="single-homepage-slider homepage-bg-1">
+  <!-- end home page slider -->
+
+  <!-- features list section -->
+  <div class="list-section pt-80 pb-80">
     <div class="container">
       <div class="row">
-        <div class="col-lg-10 offset-lg-1 text-center">
-          <div class="hero-text">
-            <div class="hero-text-tablecell">
-              <p class="subtitle">Freshly Cooked Everyday</p>
-              <h1>100% Homemade Food</h1>
-              <div class="hero-btns">
-                <a href="#stores" class="boxed-btn">Visit Stores</a>
-              </div>
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+          <div class="list-box d-flex align-items-center">
+            <div class="list-icon">
+              <i class="fas fa-shipping-fast"></i>
+            </div>
+            <div class="content">
+              <h3>Free Shipping</h3>
+              <p>When order over E£ 500</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+          <div class="list-box d-flex align-items-center">
+            <div class="list-icon">
+              <i class="fas fa-phone-volume"></i>
+            </div>
+            <div class="content">
+              <h3>24/7 Support</h3>
+              <p>Get support all day</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="list-box d-flex justify-content-start align-items-center">
+            <div class="list-icon">
+              <i class="fas fa-sync"></i>
+            </div>
+            <div class="content">
+              <h3>Refund</h3>
+              <p>Get refund within 1 day!</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- single home slider -->
-  <div class="single-homepage-slider homepage-bg-3">
+  <!-- end features list section -->
+
+  <!-- product section -->
+  <div class="product-section mt-150 mb-150" id="stores">
     <div class="container">
       <div class="row">
-        <div class="col-lg-10 offset-lg-1 text-right">
-          <div class="hero-text">
-            <div class="hero-text-tablecell">
-              <p class="subtitle">Mega Sale Going On!</p>
-              <h1>Get Summer Discount</h1>
-              <div class="hero-btns">
-                <a href="#stores" class="boxed-btn">Visit Shop</a>
-              </div>
+        <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="section-title">
+            <div
+              *ngIf="storeFlag == 0"
+              style="margin-bottom: 100px; margin-top: 0px"
+            >
+              <h3>
+                Don't have a store yet?
+                <span class="orange-text"
+                  >Then go ahead and join our Family.</span
+                >
+              </h3>
+              <a routerLink="stores/create"
+                ><input type="submit" value="From Here"
+              /></a>
+            </div>
+            <h3><span class="orange-text">Our</span> Stores</h3>
+            <p>
+              We can all agree that there is nothing like well-cooked homemade
+              food. Homemade food is made with care and devotion and with love,
+              most importantly.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="p-1 bg-light rounded p-4 shadow-sm mb-4 d-flex flex-column justify-content-center align-items-center">
+          <div class="input-group w-50 d-flex flex-row justify-content-around">
+            <input id="search" type="search" [(ngModel)]="searchTerm" (input)="filterStores()" placeholder="Find your favorite kitchen" aria-describedby="button-addon1" class="form-control border-4 bg-light">
+            <div class="input-group-append">
+              <button id="button-addon1" type="submit" class="btn btn-link text-warning mx-5 fs-3"><i class="fa fa-search"></i></button>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end home page slider -->
-
-<!-- features list section -->
-<div class="list-section pt-80 pb-80">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-        <div class="list-box d-flex align-items-center">
-          <div class="list-icon">
-            <i class="fas fa-shipping-fast"></i>
-          </div>
-          <div class="content">
-            <h3>Free Shipping</h3>
-            <p>When order over E£ 500</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-        <div class="list-box d-flex align-items-center">
-          <div class="list-icon">
-            <i class="fas fa-phone-volume"></i>
-          </div>
-          <div class="content">
-            <h3>24/7 Support</h3>
-            <p>Get support all day</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="list-box d-flex justify-content-start align-items-center">
-          <div class="list-icon">
-            <i class="fas fa-sync"></i>
-          </div>
-          <div class="content">
-            <h3>Refund</h3>
-            <p>Get refund within 1 day!</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end features list section -->
-
-<!-- product section -->
-<div class="product-section mt-150 mb-150" id="stores">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <div class="section-title">
-          <div *ngIf="storeFlag == 0" style="margin-bottom: 100px; margin-top: 0px;">
-            <h3>
-              Don't have a store yet?
-              <span class="orange-text"
-                >Then go ahead and join our Family.</span
-              >
-            </h3>
-            <a routerLink="stores/create"><input type="submit" value="From Here"/></a>
-          </div>
-          <h3><span class="orange-text">Our</span> Stores</h3>
-          <p>
-            We can all agree that there is nothing like well-cooked homemade food.
-             Homemade food is made with care and devotion and with love, most importantly.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div *ngFor="let store of stores" class="col-lg-4 col-md-6 text-center">
-        <div class="single-product-item">
-          <div class="product-image">
-            <a [routerLink]="'/stores/' + store._id"
-              ><img [src]="localhost + store.image" alt="" id="storesImages"
-            /></a>
-          </div>
-          <h3>{{ store.name }}</h3>
-          <p class="product-price">
-            <span class="mx-5"> {{ store.about }}</span>
-          </p>
-          <a
-            *ngIf="user_data && user_data.role !== 'buyer'; else buyerBlock"
-            [href]="'/stores/' + store._id"
-            class="cart-btn"
-            style="text-decoration: none"
-            ><i class="fas fa-shopping-cart"></i>Check it out</a
-          >
-          <ng-template #buyerBlock>
+        <div *ngFor="let store of displayedStores" class="col-lg-4 col-md-6 text-center">
+          <div class="single-product-item">
+            <div class="product-image">
+              <a [routerLink]="'/stores/' + store._id"
+                ><img [src]="localhost + store.image" alt="" id="storesImages"
+              /></a>
+            </div>
+            <h3>{{ store.name }}</h3>
+            <p class="product-price">
+              <span class="mx-5"> {{ store.about }}</span>
+            </p>
             <a
+              *ngIf="user_data && user_data.role !== 'buyer'; else buyerBlock"
               [href]="'/stores/' + store._id"
               class="cart-btn"
               style="text-decoration: none"
-              ><i class="fas fa-shopping-cart"></i>Order now</a
+              ><i class="fas fa-shopping-cart"></i>Check it out</a
             >
-          </ng-template>
+            <ng-template #buyerBlock>
+              <a
+                [href]="'/stores/' + store._id"
+                class="cart-btn"
+                style="text-decoration: none"
+                ><i class="fas fa-shopping-cart"></i>Order now</a
+              >
+            </ng-template>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- end product section -->
+  <!-- end product section -->
 
-<!-- cart banner section -->
-<section class="cart-banner pt-100 pb-100" id="dealSec">
-  <div class="container">
-    <div class="row clearfix">
-      <!--Image Column-->
-      <div class="image-column col-lg-6">
-        <div class="image">
-          <div class="price-box">
-            <div class="inner-price">
-              <span class="price">
-                <strong>30%</strong> <br />
-                off per order
-              </span>
+  <!-- cart banner section -->
+  <section class="cart-banner pt-100 pb-100" id="dealSec">
+    <div class="container">
+      <div class="row clearfix">
+        <!--Image Column-->
+        <div class="image-column col-lg-6">
+          <div class="image">
+            <div class="price-box">
+              <div class="inner-price">
+                <span class="price">
+                  <strong>30%</strong> <br />
+                  off per order
+                </span>
+              </div>
+            </div>
+            <img src="assets/img/mahshy.jpg" alt="" />
+          </div>
+        </div>
+        <!--Content Column-->
+        <div class="content-column col-lg-6">
+          <h3><span class="orange-text">Deal</span> of the month</h3>
+          <h4>Abeer's Ma7shy</h4>
+          <div class="text">
+            Quisquam minus maiores repudiandae nobis, minima saepe id, fugit
+            ullam similique! Beatae, minima quisquam molestias facere ea.
+            Perspiciatis unde omnis iste natus error sit voluptatem accusant
+          </div>
+          <!--Countdown Timer-->
+          <div class="time-counter">
+            <div class="time-countdown clearfix" data-countdown="2023/05/30">
+              <div class="counter-column">
+                <div class="inner"><span class="count">00</span>Days</div>
+              </div>
+              <div class="counter-column">
+                <div class="inner"><span class="count">00</span>Hours</div>
+              </div>
+              <div class="counter-column">
+                <div class="inner"><span class="count">00</span>Mins</div>
+              </div>
+              <div class="counter-column">
+                <div class="inner"><span class="count">00</span>Secs</div>
+              </div>
             </div>
           </div>
-          <img src="assets/img/mahshy.jpg" alt="" />
         </div>
       </div>
-      <!--Content Column-->
-      <div class="content-column col-lg-6">
-        <h3><span class="orange-text">Deal</span> of the month</h3>
-        <h4>Khayria's Ma7shy</h4>
-        <div class="text">
-          Quisquam minus maiores repudiandae nobis, minima saepe id, fugit ullam
-          similique! Beatae, minima quisquam molestias facere ea. Perspiciatis
-          unde omnis iste natus error sit voluptatem accusant
+    </div>
+  </section>
+  <!-- end cart banner section -->
+  <!-- Slider trial -->
+  <div
+    id="carouselExampleSlidesOnly"
+    class="carousel slide m-5"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner" *ngIf="stores">
+      <div class="carousel-item active">
+        <img
+          [src]="localhost + stores[0].image"
+          class="d-block justify-content-center w-25"
+          alt="..."
+        />
+        <h1>{{ stores[0].name }}</h1>
+        <p class="city">{{ stores[0].city }}</p>
+        <p>
+          {{ stores[0].about }}
+        </p>
+        <div class="last-icon">
+          <i class="fa fa-quote-right"></i>
         </div>
-        <!--Countdown Timer-->
-        <div class="time-counter">
-          <div class="time-countdown clearfix" data-countdown="2023/05/30">
-            <div class="counter-column">
-              <div class="inner"><span class="count">00</span>Days</div>
+      </div>
+      <div class="carousel-item" *ngFor="let store of stores.slice(1)">
+        <img
+          [src]="localhost + store.image"
+          class="d-block justify-content-center w-25"
+          alt="..."
+        />
+        <h1>{{ store.name }}</h1>
+        <p class="city">{{ store.city }}</p>
+        <p>
+          {{ store.about }}
+        </p>
+        <div class="last-icon">
+          <i class="fa fa-quote-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Slider trial -->
+
+  <!-- advertisement section -->
+  <div class="abt-section mb-150 mt-5" id="videoSec">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-12">
+          <div class="abt-bg">
+            <a
+              href="https://www.youtube.com/watch?v=mhDJNfV7hjk"
+              class="video-play-btn popup-youtube"
+              ><i class="fas fa-play"></i
+            ></a>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+          <div class="abt-text">
+            <p class="top-sub">Since Year 2023</p>
+            <h2>We are <span class="orange-text">Home Flavor</span></h2>
+            <p>
+              If you want to start your homemade food or cottage food business
+              to be able to supplement your income, then you must know that
+              there is quite a great deal of competition, and to stay in
+              business, you would need the aid of proper slogans and taglines.
+            </p>
+            <p>
+              It’s not that restaurant foods are made badly or in the wrong way,
+              but very seldom is the proper care and hygiene maintained.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end advertisement section -->
+
+  <!-- shop banner -->
+  <section class="shop-banner">
+    <div class="container">
+      <h3>
+        May sale is on! <br />
+        with big <span class="orange-text">Discount...</span>
+      </h3>
+      <div class="sale-percent">
+        <span
+          >Sale! <br />
+          Upto</span
+        >50% <span>off</span>
+      </div>
+      <a href="#stores" class="cart-btn btn-lg">Shop Now</a>
+    </div>
+  </section>
+  <!-- end shop banner -->
+
+  <!-- latest news -->
+  <div class="latest-news pt-150 pb-150" id="newsSec">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="section-title">
+            <h3><span class="orange-text">Our</span> News</h3>
+            <p>
+              You must try all our new products because they are worth trying ,
+              You will enjoy the experience
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="stores">
+        <div class="col-lg-4 col-md-6">
+          <div class="single-latest-news">
+            <a href="single-news.html"
+              ><div class="latest-news-bg news-bg-1"></div
+            ></a>
+            <div class="news-text-box">
+              <h3>
+                <a href="single-news.html"
+                  >You have to try {{ stores[4].name }}'s new sandwich!</a
+                >
+              </h3>
+              <p class="blog-meta">
+                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                <span class="date"
+                  ><i class="fas fa-calendar"></i> 27 December, 2019</span
+                >
+              </p>
+              <p class="excerpt">
+                Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus
+                nisi. Praesent vitae mattis nunc, egestas viverra eros.
+              </p>
             </div>
-            <div class="counter-column">
-              <div class="inner"><span class="count">00</span>Hours</div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="single-latest-news">
+            <a href="single-news.html"
+              ><div class="latest-news-bg news-bg-2"></div
+            ></a>
+            <div class="news-text-box">
+              <h3>
+                <a href="single-news.html"
+                  >Don't miss out on {{ stores[1].name }}'s offers!</a
+                >
+              </h3>
+              <p class="blog-meta">
+                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                <span class="date"
+                  ><i class="fas fa-calendar"></i> 27 December, 2019</span
+                >
+              </p>
+              <p class="excerpt">
+                Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus
+                nisi. Praesent vitae mattis nunc, egestas viverra eros.
+              </p>
             </div>
-            <div class="counter-column">
-              <div class="inner"><span class="count">00</span>Mins</div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
+          <div class="single-latest-news">
+            <a href="single-news.html"
+              ><div class="latest-news-bg news-bg-3"></div
+            ></a>
+            <div class="news-text-box">
+              <h3>
+                <a href="single-news.html"
+                  >{{ stores[2].name }} is the most 5 star reviewed this
+                  month!</a
+                >
+              </h3>
+              <p class="blog-meta">
+                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                <span class="date"
+                  ><i class="fas fa-calendar"></i> 27 December, 2019</span
+                >
+              </p>
+              <p class="excerpt">
+                Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus
+                nisi.
+              </p>
             </div>
-            <div class="counter-column">
-              <div class="inner"><span class="count">00</span>Secs</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <a href="news.html" class="boxed-btn">More News</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end latest news -->
+
+  <!-- logo carousel -->
+  <div class="logo-carousel-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="logo-carousel-inner">
+            <div class="single-logo-item">
+              <img src="assets/img/company-logos/1.png" alt="" />
+            </div>
+            <div class="single-logo-item">
+              <img src="assets/img/company-logos/2.png" alt="" />
+            </div>
+            <div class="single-logo-item">
+              <img src="assets/img/company-logos/3.png" alt="" />
+            </div>
+            <div class="single-logo-item">
+              <img src="assets/img/company-logos/4.png" alt="" />
+            </div>
+            <div class="single-logo-item">
+              <img src="assets/img/company-logos/5.png" alt="" />
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
-<!-- end cart banner section -->
-<!-- Slider trial -->
-<div
-  id="carouselExampleSlidesOnly"
-  class="carousel slide m-5"
-  data-bs-ride="carousel"
->
-  <div class="carousel-inner" *ngIf="stores">
-    <div class="carousel-item active">
-      <img
-      [src]="localhost + stores[0].image"
-        class="d-block justify-content-center w-25"
-        alt="..."
-      />
-      <h1>{{ stores[0].name }}</h1>
-      <p class="city">{{ stores[0].city }}</p>
-      <p>
-        {{ stores[0].about }}
-      </p>
-      <div class="last-icon">
-        <i class="fa fa-quote-right"></i>
-      </div>
-    </div>
-    <div class="carousel-item" *ngFor="let store of stores.slice(1)">
-      <img
-        [src]="localhost + store.image"
-        class="d-block justify-content-center w-25"
-        alt="..."
-      />
-      <h1>{{ store.name }}</h1>
-      <p class="city">{{ store.city }}</p>
-      <p>
-        {{ store.about }}
-      </p>
-      <div class="last-icon">
-        <i class="fa fa-quote-right"></i>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End Slider trial -->
-
-<!-- advertisement section -->
-<div class="abt-section mb-150 mt-5" id="videoSec">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 col-md-12">
-        <div class="abt-bg">
-          <a
-            href="https://www.youtube.com/watch?v=mhDJNfV7hjk"
-            class="video-play-btn popup-youtube"
-            ><i class="fas fa-play"></i
-          ></a>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-12">
-        <div class="abt-text">
-          <p class="top-sub">Since Year 2023</p>
-          <h2>We are <span class="orange-text">Home Flavor</span></h2>
-          <p>
-            If you want to start your homemade food or cottage food business to be able to supplement your income, then you must know that there is quite a great deal of competition, and to stay in business, you would need the aid of proper slogans and taglines.
-          </p>
-          <p>
-            It’s not that restaurant foods are made badly or in the wrong way, but very seldom is the proper care and hygiene maintained.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end advertisement section -->
-
-<!-- shop banner -->
-<section class="shop-banner">
-  <div class="container">
-    <h3>
-      May sale is on! <br />
-      with big <span class="orange-text">Discount...</span>
-    </h3>
-    <div class="sale-percent">
-      <span
-        >Sale! <br />
-        Upto</span
-      >50% <span>off</span>
-    </div>
-    <a href="#stores" class="cart-btn btn-lg">Shop Now</a>
-  </div>
-</section>
-<!-- end shop banner -->
-
-<!-- latest news -->
-<div class="latest-news pt-150 pb-150" id="newsSec">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <div class="section-title">
-          <h3><span class="orange-text">Our</span> News</h3>
-          <p>
-            You must try all our new products because they are worth trying , You will enjoy the experience
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="row" *ngIf="stores">
-      <div class="col-lg-4 col-md-6">
-        <div class="single-latest-news">
-          <a href="single-news.html"
-            ><div class="latest-news-bg news-bg-1"></div
-          ></a>
-          <div class="news-text-box">
-            <h3>
-              <a href="single-news.html"
-                >You have to try {{ stores[4].name }}'s new sandwich!</a
-              >
-            </h3>
-            <p class="blog-meta">
-              <span class="author"><i class="fas fa-user"></i> Admin</span>
-              <span class="date"
-                ><i class="fas fa-calendar"></i> 27 December, 2019</span
-              >
-            </p>
-            <p class="excerpt">
-              Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus
-              nisi. Praesent vitae mattis nunc, egestas viverra eros.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="single-latest-news">
-          <a href="single-news.html"
-            ><div class="latest-news-bg news-bg-2"></div
-          ></a>
-          <div class="news-text-box">
-            <h3>
-              <a href="single-news.html"
-                >Don't miss out on {{ stores[1].name }}'s offers!</a
-              >
-            </h3>
-            <p class="blog-meta">
-              <span class="author"><i class="fas fa-user"></i> Admin</span>
-              <span class="date"
-                ><i class="fas fa-calendar"></i> 27 December, 2019</span
-              >
-            </p>
-            <p class="excerpt">
-              Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus
-              nisi. Praesent vitae mattis nunc, egestas viverra eros.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
-        <div class="single-latest-news">
-          <a href="single-news.html"
-            ><div class="latest-news-bg news-bg-3"></div
-          ></a>
-          <div class="news-text-box">
-            <h3>
-              <a href="single-news.html"
-                >{{ stores[2].name }} is the most 5 star reviewed this month!</a
-              >
-            </h3>
-            <p class="blog-meta">
-              <span class="author"><i class="fas fa-user"></i> Admin</span>
-              <span class="date"
-                ><i class="fas fa-calendar"></i> 27 December, 2019</span
-              >
-            </p>
-            <p class="excerpt">
-              Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus
-              nisi.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <a href="news.html" class="boxed-btn">More News</a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end latest news -->
-
-<!-- logo carousel -->
-<div class="logo-carousel-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="logo-carousel-inner">
-          <div class="single-logo-item">
-            <img src="assets/img/company-logos/1.png" alt="" />
-          </div>
-          <div class="single-logo-item">
-            <img src="assets/img/company-logos/2.png" alt="" />
-          </div>
-          <div class="single-logo-item">
-            <img src="assets/img/company-logos/3.png" alt="" />
-          </div>
-          <div class="single-logo-item">
-            <img src="assets/img/company-logos/4.png" alt="" />
-          </div>
-          <div class="single-logo-item">
-            <img src="assets/img/company-logos/5.png" alt="" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</ng-template>
 <!-- end logo carousel -->

@@ -13,13 +13,7 @@ const menuSchema = {
       enum: ["Appetizer", "Drink", "Main"],
     },
   },
-  required: [
-    "product_title",
-    "product_image",
-    "price",
-    "product_details",
-    "category",
-  ],
+  required: ["product_title", "price", "product_details", "category"],
 };
 
 module.exports = ajv.compile(menuSchema);

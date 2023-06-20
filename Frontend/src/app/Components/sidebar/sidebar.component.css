@@ -1,0 +1,7 @@
+.custom-offcanvas {
+  width: 300px;
+  position: fixed;
+}
+.nav-link:hover{
+  color: #f28123 !important;
+}

@@ -1,16 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendService } from 'src/app/Services/backend.service';
 import { OrdersService } from 'src/app/Services/orders.service';
 import { StoresService } from 'src/app/Services/stores.service';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-allorders',
   templateUrl: './allorders.component.html',
   styleUrls: ['./allorders.component.css'],
 })
-export class AllordersComponent {
+export class AllordersComponent implements OnInit {
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
   orders: any[] = [];
   localhost = 'http://localhost:7005';
   test: any;
@@ -21,6 +25,7 @@ export class AllordersComponent {
     private router: Router,
     private localStorageService: LocalStorageService
   ) {
+
     ordersService.GetAllOrders().subscribe({
       next: (data: any) => {
         // To show latest orders first
@@ -33,6 +38,7 @@ export class AllordersComponent {
           return dateB.getTime() - dateA.getTime();
         });
         this.orders = sortedOrders;
+        this.dtTrigger.next(null);
       },
       error: (err) => {
         console.log(err);
@@ -42,6 +48,12 @@ export class AllordersComponent {
   ngOnInit(): void {
     this.localStorageService.getData('jwt_token').subscribe((data) => {
         this.user_data = data;
+         this.dtOptions = {
+      paging: true,
+    ordering: true,
+    searching: true
+    };
+
     });
   }
 
@@ -51,5 +63,8 @@ export class AllordersComponent {
   }
   reload() {
     window.location.reload();
+  }
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
   }
 }

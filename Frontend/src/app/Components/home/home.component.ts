@@ -3,13 +3,23 @@ import { LocalStorageService } from 'src/app/Services/local-storage.service';
 import { OrdersService } from 'src/app/Services/orders.service';
 import { StoresService } from 'src/app/Services/stores.service';
 
+interface Store {
+  _id: string;
+  user_id: string;
+  name: string;
+ image: string;
+  city: string;
+  about: string;
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  stores: any;
+  searchTerm:any;
+  stores: any=[]
+  displayedStores: any = this.stores;
   localhost = 'http://localhost:7005';
   user_data: any;
   storeFlag = 1;
@@ -21,6 +31,7 @@ export class HomeComponent {
     storesService.getAllStores().subscribe({
       next: (data) => {
         this.stores = data;
+        this.displayedStores=data;
       },
       error: (err) => {
         console.log(err);
@@ -43,6 +54,17 @@ export class HomeComponent {
         this.user_data = data;
       }
     });
+  }
+  filterStores(): void {
+    if (!this.searchTerm) {
+      // If the search term is empty, display all stores
+      this.displayedStores = this.stores;
+    } else {
+      // Filter stores by name
+      this.displayedStores = this.stores.filter((store:Store) =>
+        store.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
   }
   onLinkClick(e: any) {
     e.preventDefault();

@@ -31,7 +31,10 @@ import { AuthInterceptor } from './Interceptors/auth.interceptor';
 import { ForgetpasswordComponent } from './Components/passwordreset/forgetpassword/forgetpassword.component';
 import { OtpComponent } from './Components/passwordreset/otp/otp.component';
 import { PasswordresetComponent } from './Components/passwordreset/passwordreset/passwordreset.component';
-
+import { SidebarComponent } from './Components/sidebar/sidebar.component';
+import { AllStoresComponent } from './Components/stores/all-stores/all-stores.component';
+import { UsersComponent } from './Components/users/users.component';
+import { DataTablesModule } from "angular-datatables";
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +62,9 @@ import { PasswordresetComponent } from './Components/passwordreset/passwordreset
     ForgetpasswordComponent,
     OtpComponent,
     PasswordresetComponent,
+    SidebarComponent,
+    AllStoresComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +72,7 @@ import { PasswordresetComponent } from './Components/passwordreset/passwordreset
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DataTablesModule
   ],
   providers: [
     {
