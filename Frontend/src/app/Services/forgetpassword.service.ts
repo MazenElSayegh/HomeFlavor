@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ForgetPasswordService {
   constructor(private http: HttpClient) {}
-  private readonly Base_URL = 'http://127.0.0.1:7005/api/forgetpassword';
+  private readonly Base_URL = 'https://homeflavor-backend.onrender.com/api/forgetpassword';
 
   sendOTP(email: string) {
     return this.http.post(`${this.Base_URL}/send-otp`, { email });

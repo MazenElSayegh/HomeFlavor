@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class StoresService {
   constructor(private myClient: HttpClient) {}
-  private Base_URL = 'http://localhost:7005/api/stores';
+  private Base_URL = 'https://homeflavor-backend.onrender.com/api/stores';
 
   public user: any;
   getAllStores() {

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class FeedbacksService {
   constructor(private myClient: HttpClient) {}
-  private Base_URL = 'http://localhost:7005/api/feedback';
+  private Base_URL = 'https://homeflavor-backend.onrender.com/api/feedback';
 
   getAllFeedbacks(id: any) {
     return this.myClient.get(`${this.Base_URL}/${id}`);

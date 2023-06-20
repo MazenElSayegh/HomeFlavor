@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class OrdersService {
 
   constructor(private myClient:HttpClient) { }
-  private Base_URL = "http://localhost:7005/api/orders";
+  private Base_URL = "https://homeflavor-backend.onrender.com/api/orders";
 
   public user:any;
   GetAllOrders(){

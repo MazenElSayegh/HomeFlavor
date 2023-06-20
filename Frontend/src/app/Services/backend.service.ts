@@ -7,7 +7,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class BackendService {
   constructor(private serverClient: HttpClient) {}
-  private readonly Base_URL = 'http://127.0.0.1:7005/api/';
+  private readonly Base_URL = 'https://homeflavor-backend.onrender.com/api/';
 
   addNewUser(newUser: any) {
     return this.serverClient.post(this.Base_URL + 'users', newUser);
