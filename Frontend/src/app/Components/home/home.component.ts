@@ -20,7 +20,7 @@ export class HomeComponent {
   searchTerm:any;
   stores: any=[]
   displayedStores: any = this.stores;
-  localhost = 'http://localhost:7005';
+  localhost = 'https://homeflavor-backend.onrender.com';
   user_data: any;
   storeFlag = 1;
   constructor(
