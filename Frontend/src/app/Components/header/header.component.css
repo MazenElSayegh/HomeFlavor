@@ -21,14 +21,14 @@
   padding: 3px !important;
   border-radius: 70%;
 }
-/* .notifications-bell:hover{
+.notifications-bell:hover{
   #ordersCount{
     color:white !important;
   }
   #cartIcon{
     color: #f28123;
   }
-} */
+}
 .headLinks li a{
   text-decoration: none;
   font-size: 16px;
