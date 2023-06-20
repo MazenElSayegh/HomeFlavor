@@ -14,7 +14,9 @@
   </div>
   <!-- end breadcrumb section -->
   <table
-    datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+    datatable
+    [dtOptions]="dtOptions"
+    [dtTrigger]="dtTrigger"
     class="table table-bordered border-dark text-center table-striped mt-5 container col-sm-5"
     style="background-color: #f5f5f5"
   >
@@ -30,6 +32,8 @@
         <th scope="col">Gender</th>
         <th scope="col">Mobile</th>
         <th scope="col">Address</th>
+        <th scope="col">Actions</th>
+        <th scope="col">More</th>
       </tr>
     </thead>
     <tbody class="table-group-divider">
@@ -41,6 +45,80 @@
         <td>{{ user.gender }}</td>
         <td>{{ user.mobile }}</td>
         <td>{{ user.address }}</td>
+        <td>
+          <div
+            class="d-flex flex-row justify-content-around align-items-center"
+          >
+            <input
+              type="submit"
+              class="btn btn-outline-primary"
+              style="padding-left: 1rem; padding-right: 1rem"
+              value="Update"
+              [routerLink]="'/profile/update/' + user._id"
+            />
+            <input
+              type="submit"
+              class="btn btn-outline-danger"
+              style="padding-left: 1rem; padding-right: 1rem"
+              value="Delete"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            />
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-notify modal-danger" role="alert">
+                <div class="modal-content">
+                  <div
+                    class="modal-header d-flex flex-column justify-content-center"
+                  >
+                    <h1
+                      class="modal-title modalheader fs-5"
+                      id="exampleModalLabel"
+                    >
+                      Alert
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div
+                    class="modal-body d-flex flex-column justify-content-center"
+                  >
+                    <i class="fa-solid fa-check fa-4x"></i>
+                    <div>Deleted Successfully</div>
+                  </div>
+                  <div
+                    class="modal-footer d-flex flex-column justify-content-center"
+                  >
+                    <input
+                      type="submit"
+                      (click)="reload()"
+                      value="OK"
+                      class="btn okbtn waves-effect"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <input
+            type="submit"
+            [routerLink]="'profile/'+user._id"
+            value="view"
+            class="btn btn-outline-warning"
+            style="padding-left: 1rem; padding-right: 1rem"
+          />
+        </td>
       </tr>
     </tbody>
   </table>

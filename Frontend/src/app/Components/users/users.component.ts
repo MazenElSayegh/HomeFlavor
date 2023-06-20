@@ -41,4 +41,7 @@ export class UsersComponent implements OnInit{
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
+  reload() {
+    window.location.reload();
+  }
 }
