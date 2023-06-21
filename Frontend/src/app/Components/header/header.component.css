@@ -38,3 +38,15 @@
 #userData{
   margin-right: -1.5vw;
 }
+#subsBtn{
+  margin-left: 30px;
+  background-color: #f28123;
+  border: 1px solid #012738;
+  border-radius: 20px;
+  font-weight: 700;
+}
+#subsBtn:hover{
+  background-color: #012738;
+  color: white;
+  border: 1px solid #f28123;
+}
