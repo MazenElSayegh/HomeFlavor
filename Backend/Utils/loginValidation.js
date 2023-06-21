@@ -1,12 +1,13 @@
 const Ajv = require("ajv");
 const ajv = new Ajv();
 
+
 const loginSchema = {
   type: "object",
   properties: {
     email: {
       type: "string",
-      pattern: "^[a-zA-Z0-9]+@{1}[a-zA-Z0-9]+(.com){1}$",
+      pattern: "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
     },
     password: { type: "string", minLength: 5 },
   },
