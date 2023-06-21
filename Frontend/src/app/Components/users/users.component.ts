@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from 'src/app/Services/backend.service';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -15,7 +16,8 @@ export class UsersComponent implements OnInit{
   user_data: any;
   constructor(
     private usersService: BackendService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) {
     usersService.getAllUsers().subscribe({
       next: (data: any) => {
@@ -43,5 +45,15 @@ export class UsersComponent implements OnInit{
   }
   reload() {
     window.location.reload();
+  }
+  deleteUser(id: any) {
+    this.usersService.deleteUser(id).subscribe({
+      next: (data) => {
+        this.router.navigateByUrl('/users');
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

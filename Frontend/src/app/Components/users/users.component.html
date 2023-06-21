@@ -1,4 +1,4 @@
-<div *ngIf="user_data.role === 'admin'; else notAdmin">
+<div *ngIf="user_data && user_data.role === 'admin'; else notAdmin">
   <!-- breadcrumb-section -->
   <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
@@ -13,116 +13,128 @@
     </div>
   </div>
   <!-- end breadcrumb section -->
-  <table
-    datatable
-    [dtOptions]="dtOptions"
-    [dtTrigger]="dtTrigger"
-    class="table table-bordered border-dark text-center table-striped mt-5 container col-sm-5"
-    style="background-color: #f5f5f5"
-  >
-    <thead
-      class="table-bordered border-dark"
-      style="background-color: #051922; color: #f28123"
+  <div class="container">
+    <table
+      datatable
+      [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"
+      class="table table-bordered border-dark text-center table-striped mt-5 col-sm-5"
+      style="background-color: #f5f5f5"
     >
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Role</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Mobile</th>
-        <th scope="col">Address</th>
-        <th scope="col">Actions</th>
-        <th scope="col">More</th>
-      </tr>
-    </thead>
-    <tbody class="table-group-divider">
-      <tr *ngFor="let user of users">
-        <td>{{ user._id }}</td>
-        <td>{{ user.user_name }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.role }}</td>
-        <td>{{ user.gender }}</td>
-        <td>{{ user.mobile }}</td>
-        <td>{{ user.address }}</td>
-        <td>
-          <div
-            class="d-flex flex-row justify-content-around align-items-center"
-          >
-            <input
-              type="submit"
-              class="btn btn-outline-primary"
-              style="padding-left: 1rem; padding-right: 1rem"
-              value="Update"
-              [routerLink]="'/profile/update/' + user._id"
-            />
-            <input
-              type="submit"
-              class="btn btn-outline-danger"
-              style="padding-left: 1rem; padding-right: 1rem"
-              value="Delete"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            />
+      <thead
+        class="table-bordered border-dark"
+        style="background-color: #051922; color: #f28123"
+        *ngIf="users"
+      >
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Actions</th>
+          <th scope="col">More</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider" *ngIf="users; else falseBlock">
+        <tr *ngFor="let user of users">
+          <td>{{ user._id }}</td>
+          <td>{{ user.user_name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>
             <div
-              class="modal fade"
-              id="exampleModal"
-              tabindex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
+              class="d-flex flex-row justify-content-around align-items-center"
             >
-              <div class="modal-dialog modal-notify modal-danger" role="alert">
-                <div class="modal-content">
-                  <div
-                    class="modal-header d-flex flex-column justify-content-center"
-                  >
-                    <h1
-                      class="modal-title modalheader fs-5"
-                      id="exampleModalLabel"
+              <input
+                type="submit"
+                class="btn btn-outline-primary"
+                style="padding-left: 1rem; padding-right: 1rem"
+                value="Update"
+                [routerLink]="'/profile/update/' + user._id"
+              />
+              <input
+                type="submit"
+                class="btn btn-outline-danger"
+                style="padding-left: 1rem; padding-right: 1rem"
+                value="Delete"
+                data-bs-toggle="modal"
+                [attr.data-bs-target]="'#exampleModal' + user._id"
+              />
+              <div
+                class="modal fade"
+                [id]="'exampleModal' + user._id"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div
+                  class="modal-dialog modal-notify modal-danger"
+                  role="alert"
+                >
+                  <div class="modal-content">
+                    <div
+                      class="modal-header d-flex flex-column justify-content-center"
                     >
-                      Alert
-                    </h1>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div
-                    class="modal-body d-flex flex-column justify-content-center"
-                  >
-                    <i class="fa-solid fa-check fa-4x"></i>
-                    <div>Deleted Successfully</div>
-                  </div>
-                  <div
-                    class="modal-footer d-flex flex-column justify-content-center"
-                  >
-                    <input
-                      type="submit"
-                      (click)="reload()"
-                      value="OK"
-                      class="btn okbtn waves-effect"
-                    />
+                      <h1
+                        class="modal-title modalheader fs-5"
+                        id="exampleModalLabel"
+                      >
+                        Alert
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div
+                      class="modal-body d-flex flex-column justify-content-center align-items-center"
+                    >
+                      <i class="fa-solid fa-check fa-4x"></i>
+                      <div>
+                        Are you sure to delete this user? {{ user.user_name }}
+                      </div>
+                    </div>
+
+                    <div
+                      class="modal-footer d-flex flex-column justify-content-center"
+                    >
+                      <input
+                        type="submit"
+                        (click)="deleteUser(user._id)"
+                        value="OK"
+                        data-bs-dismiss="modal"
+                        class="btn okbtn waves-effect"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </td>
+          <td>
+            <input
+              type="submit"
+              [routerLink]="'/profile/' + user._id"
+              value="view"
+              class="btn btn-outline-warning"
+              style="padding-left: 1rem; padding-right: 1rem"
+            />
+          </td>
+        </tr>
+      </tbody>
+      <ng-template #falseBlock>
+        <div class="loader">
+          <div class="loader-inner">
+            <div class="circle"></div>
           </div>
-        </td>
-        <td>
-          <input
-            type="submit"
-            [routerLink]="'profile/'+user._id"
-            value="view"
-            class="btn btn-outline-warning"
-            style="padding-left: 1rem; padding-right: 1rem"
-          />
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </div>
+      </ng-template>
+    </table>
+  </div>
 </div>
+
 <ng-template #notAdmin>
   <!-- breadcrumb-section -->
   <div class="breadcrumb-section breadcrumb-bg">
@@ -131,8 +143,8 @@
         <div class="col-lg-8 offset-lg-2 text-center">
           <div class="breadcrumb-text">
             <p>Home Flavor</p>
-            <h1>You're not authorized</h1>
-            <h3>You'll be redirected to home</h3>
+            <h1>You are not authorized</h1>
+            <input value="Back to home" routerLink="/" type="submit" />
           </div>
         </div>
       </div>

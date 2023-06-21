@@ -38,4 +38,7 @@ export class BackendService {
     console.log(this.Base_URL  + 'users/subscribe')
     return this.serverClient.post(this.Base_URL  + 'users' + '/' +'subscribe', user);
   }
+  deleteUser(id:any){
+    return this.serverClient.delete(this.Base_URL+'users/'+id);
+  }
 }

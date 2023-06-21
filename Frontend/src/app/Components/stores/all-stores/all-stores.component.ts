@@ -1,19 +1,25 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
 import { StoresService } from 'src/app/Services/stores.service';
 import { Subject } from 'rxjs';
+import { data } from 'jquery';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-stores',
   templateUrl: './all-stores.component.html',
-  styleUrls: ['./all-stores.component.css']
+  styleUrls: ['./all-stores.component.css'],
 })
 export class AllStoresComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
   dtOptions: DataTables.Settings = {};
-  stores:any
-  user_data:any
-  constructor(private storesService: StoresService, private localStorageService: LocalStorageService){
+  stores: any;
+  user_data: any;
+  constructor(
+    private storesService: StoresService,
+    private localStorageService: LocalStorageService,
+    private router: Router
+  ) {
     storesService.getAllStores().subscribe({
       next: (data: any) => {
         data.sort((a: any, b: any) => a.name.localeCompare(b.name));
@@ -27,17 +33,22 @@ export class AllStoresComponent implements OnInit {
   }
   ngOnInit(): void {
     this.localStorageService.getData('jwt_token').subscribe((data) => {
-        this.user_data = data;
+      this.user_data = data;
     });
     this.dtOptions = {
       paging: true,
-    ordering: true,
-    searching: true
+      ordering: true,
+      searching: true,
     };
-
   }
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
-
+  deleteStore(id: any) {
+    this.storesService.deleteStoreByID(id).subscribe({
+      next: (data) => {
+        this.router.navigateByUrl('/stores')
+      },
+    });
+  }
 }
