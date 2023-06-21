@@ -2,9 +2,7 @@ const express = require("express");
 const Router = express.Router();
 const MenuController = require("../Controllers/MenuController");
 const multer = require("multer");
-let adminauth = require("../Middlewares/adminMW");
-let sellerauth = require("../Middlewares/sellerMW");
-let buyerauth = require("../Middlewares/buyerMW");
+let auth = require("../Middlewares/authMW");
 
 
 const storage = multer.diskStorage({
@@ -20,14 +18,14 @@ const upload = multer({ storage });
 
 Router.get("/:id_store", MenuController.getAllMenu);
 Router.get("/item/:id_item", MenuController.getMenuByID);
-Router.delete("/:id_item", sellerauth,MenuController.deleteMenuItemByID);
+Router.delete("/:id_item", auth(["admin","seller"]),MenuController.deleteMenuItemByID);
 Router.put(
-  "/:id",sellerauth,
+  "/:id",auth(["admin","seller"]),
   upload.single("product_image"),
   MenuController.updateItemByID
 );
 Router.post(
-  "/create",sellerauth,
+  "/create",auth(["admin","seller"]),
   upload.single("product_image"),
   MenuController.CreateMenuItem
 );

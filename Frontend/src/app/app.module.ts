@@ -35,6 +35,7 @@ import { SidebarComponent } from './Components/sidebar/sidebar.component';
 import { AllStoresComponent } from './Components/stores/all-stores/all-stores.component';
 import { UsersComponent } from './Components/users/users.component';
 import { DataTablesModule } from "angular-datatables";
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,8 @@ import { DataTablesModule } from "angular-datatables";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
+    CanvasJSAngularChartsModule
   ],
   providers: [
     {

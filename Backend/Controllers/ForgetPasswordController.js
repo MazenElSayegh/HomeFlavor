@@ -44,12 +44,14 @@ class ForgetPasswordController {
 
       // Send the OTP to the user's email address
       const transporter = nodemailer.createTransport({
-        service: "gmail",
+        host: "smtp.office365.com",
+        port: 587,
+        secure: false,
         auth: {
           user: process.env.EMAIL_USERNAME,
-          pass: process.env.EMAIL_PASSWORD
-        },
-      });
+          pass: process.env.EMAIL_PASSWORD,
+        },
+      });
 
       const mailOptions = {
         from: process.env.EMAIL_USERNAME,
@@ -123,7 +125,9 @@ class ForgetPasswordController {
         throw new Error("User not found");
       }
 
-      userpass.password = newPassword;
+      var salt = await bcrypt.genSalt(10);
+      var hashedPassword = await bcrypt.hash(newPassword, salt);
+      userpass.password = hashedPassword;
       userpass.resetToken = null;
 
       await userpass.save();

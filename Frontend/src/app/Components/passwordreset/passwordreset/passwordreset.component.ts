@@ -19,7 +19,7 @@ export class PasswordresetComponent {
   ) {}
 
   resetPassword() {
-    this.resetPasswordService.resetPassword(this.resetToken, this.newPassword).subscribe(
+    this.resetPasswordService.resetPassword( this.newPassword).subscribe(
       response => {
         console.log(response);
         // Handle successful response
@@ -34,7 +34,7 @@ export class PasswordresetComponent {
 
   onSubmit() {
     if (this.newPassword !== this.confirmPassword) {
-      
+
       this.isPasswordMatching= false;
       return;
     }

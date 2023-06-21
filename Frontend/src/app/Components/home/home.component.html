@@ -1,4 +1,11 @@
-<div *ngIf="user_data && user_data.role == 'admin'; else notAdmin"></div>
+<div *ngIf="user_data && user_data.role == 'admin'; else notAdmin" class="container">
+  <div class="p-5 m-4">
+    <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}" (chartInstance)="getChartInstance($event)"></canvasjs-chart>
+</div>
+<div class="p-5 m-4">
+  <canvasjs-chart [options]="ordersChartOptions" [styles]="{width: '100%', height:'360px'}" (chartInstance)="ordersGetChartInstance($event)"></canvasjs-chart>
+</div>
+</div>
 
 <ng-template #notAdmin>
   <div class="homepage-slider">
@@ -12,7 +19,7 @@
                 <p class="subtitle">Fresh & Organic</p>
                 <h1>Delicious Homemade Food</h1>
                 <div class="hero-btns">
-                  <a href="#stores" class="boxed-btn">Go To Stores</a>
+                  <a routerLink="#stores" class="boxed-btn">Go To Stores</a>
                 </div>
               </div>
             </div>
@@ -30,7 +37,7 @@
                 <p class="subtitle">Freshly Cooked Everyday</p>
                 <h1>100% Homemade Food</h1>
                 <div class="hero-btns">
-                  <a href="#stores" class="boxed-btn">Visit Stores</a>
+                  <a routerLink="#stores" class="boxed-btn">Visit Stores</a>
                 </div>
               </div>
             </div>
@@ -48,7 +55,7 @@
                 <p class="subtitle">Mega Sale Going On!</p>
                 <h1>Get Summer Discount</h1>
                 <div class="hero-btns">
-                  <a href="#stores" class="boxed-btn">Visit Shop</a>
+                  <a routerLink="#stores" class="boxed-btn">Visit Shop</a>
                 </div>
               </div>
             </div>
@@ -132,15 +139,34 @@
       </div>
 
       <div class="row">
-        <div class="p-1 bg-light rounded p-4 shadow-sm mb-4 d-flex flex-column justify-content-center align-items-center">
+        <div
+          class="p-1 bg-light rounded p-4 shadow-sm mb-4 d-flex flex-column justify-content-center align-items-center"
+        >
           <div class="input-group w-50 d-flex flex-row justify-content-around">
-            <input id="search" type="search" [(ngModel)]="searchTerm" (input)="filterStores()" placeholder="Find your favorite kitchen" aria-describedby="button-addon1" class="form-control border-4 bg-light">
+            <input
+              id="search"
+              type="search"
+              [(ngModel)]="searchTerm"
+              (input)="filterStores()"
+              placeholder="Find your favorite kitchen"
+              aria-describedby="button-addon1"
+              class="form-control border-4 bg-light"
+            />
             <div class="input-group-append">
-              <button id="button-addon1" type="submit" class="btn btn-link text-warning mx-5 fs-3"><i class="fa fa-search"></i></button>
+              <button
+                id="button-addon1"
+                type="submit"
+                class="btn btn-link text-warning mx-5 fs-3"
+              >
+                <i class="fa fa-search"></i>
+              </button>
             </div>
           </div>
         </div>
-        <div *ngFor="let store of displayedStores" class="col-lg-4 col-md-6 text-center">
+        <div
+          *ngFor="let store of displayedStores"
+          class="col-lg-4 col-md-6 text-center"
+        >
           <div class="single-product-item">
             <div class="product-image">
               <a [routerLink]="'/stores/' + store._id"
@@ -153,14 +179,14 @@
             </p>
             <a
               *ngIf="user_data && user_data.role !== 'buyer'; else buyerBlock"
-              [href]="'/stores/' + store._id"
+              [routerLink]="'/stores/' + store._id"
               class="cart-btn"
               style="text-decoration: none"
               ><i class="fas fa-shopping-cart"></i>Check it out</a
             >
             <ng-template #buyerBlock>
               <a
-                [href]="'/stores/' + store._id"
+                [routerLink]="'/stores/' + store._id"
                 class="cart-btn"
                 style="text-decoration: none"
                 ><i class="fas fa-shopping-cart"></i>Order now</a
@@ -270,7 +296,7 @@
         <div class="col-lg-6 col-md-12">
           <div class="abt-bg">
             <a
-              href="https://www.youtube.com/watch?v=mhDJNfV7hjk"
+              routerLink="https://www.youtube.com/watch?v=mhDJNfV7hjk"
               class="video-play-btn popup-youtube"
               ><i class="fas fa-play"></i
             ></a>
@@ -310,7 +336,7 @@
           Upto</span
         >50% <span>off</span>
       </div>
-      <a href="#stores" class="cart-btn btn-lg">Shop Now</a>
+      <a routerLink="#stores" class="cart-btn btn-lg">Shop Now</a>
     </div>
   </section>
   <!-- end shop banner -->
@@ -333,13 +359,13 @@
       <div class="row" *ngIf="stores">
         <div class="col-lg-4 col-md-6">
           <div class="single-latest-news">
-            <a href="single-news.html"
+            <a routerLink="single-news.html"
               ><div class="latest-news-bg news-bg-1"></div
             ></a>
             <div class="news-text-box">
               <h3>
-                <a href="single-news.html"
-                  >You have to try {{ stores[4].name }}'s new sandwich!</a
+                <a routerLink="single-news.html"
+                  >You have to try {{ stores[1].name }}'s new sandwich!</a
                 >
               </h3>
               <p class="blog-meta">
@@ -357,12 +383,12 @@
         </div>
         <div class="col-lg-4 col-md-6">
           <div class="single-latest-news">
-            <a href="single-news.html"
+            <a routerLink="single-news.html"
               ><div class="latest-news-bg news-bg-2"></div
             ></a>
             <div class="news-text-box">
               <h3>
-                <a href="single-news.html"
+                <a routerLink="single-news.html"
                   >Don't miss out on {{ stores[1].name }}'s offers!</a
                 >
               </h3>
@@ -381,12 +407,12 @@
         </div>
         <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
           <div class="single-latest-news">
-            <a href="single-news.html"
+            <a routerLink="single-news.html"
               ><div class="latest-news-bg news-bg-3"></div
             ></a>
             <div class="news-text-box">
               <h3>
-                <a href="single-news.html"
+                <a routerLink="single-news.html"
                   >{{ stores[2].name }} is the most 5 star reviewed this
                   month!</a
                 >
@@ -407,7 +433,7 @@
       </div>
       <div class="row">
         <div class="col-lg-12 text-center">
-          <a href="news.html" class="boxed-btn">More News</a>
+          <a routerLink="news.html" class="boxed-btn">More News</a>
         </div>
       </div>
     </div>
