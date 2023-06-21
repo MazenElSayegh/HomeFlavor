@@ -250,6 +250,7 @@ export class StoreDetailsComponent {
   get checkUserMadeOrder() {
     for (let i = 0; i < this.allOrders.length; i++) {
       if (
+        this.user_data.role=='buyer' &&
         this.user_data.user_id === this.allOrders[i].user_id._id &&
         this.id === this.allOrders[i].store_id._id
       ) {
