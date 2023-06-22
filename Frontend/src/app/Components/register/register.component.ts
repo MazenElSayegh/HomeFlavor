@@ -1,16 +1,24 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BackendService } from 'src/app/Services/backend.service';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
+import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
+declare const google: any;
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   user_image: any;
   // user_name: any;
   email: any;
@@ -29,12 +37,79 @@ export class RegisterComponent {
   is_user_address_valid = true;
   is_user_mobile_valid = true;
   validatedForm = true;
-
+  clientId =
+    '129503736404-5ngv63pcim0njm3pbb5ev32hli36t18b.apps.googleusercontent.com';
   constructor(
     private myService: BackendService,
     public myRouter: Router,
     private localStorageService: LocalStorageService
   ) {}
+
+  ngOnInit() {
+    // google.accounts.id.initialize({
+    //   client_id: this.clientId,
+    //   callback: this.handleCredentialResponse.bind(this),
+    //   auto_select: false,
+    //   cancel_on_tap_outside: true,
+    // });
+
+    // google.accounts.id.renderButton(document.getElementById('g_id_onload'), {
+    //   theme: 'outline',
+    //   size: 'large',
+    //   width: '600',
+    //   locale: 'en',
+    //   text: 'continue_with',
+    //   logo_alignment: 'center',
+    // });
+
+    // @ts-ignore
+    google.accounts.id.initialize({
+      client_id: this.clientId,
+      callback: this.handleCredentialResponse.bind(this),
+      auto_select: false,
+      cancel_on_tap_outside: true,
+    });
+    // @ts-ignore
+    google.accounts.id.renderButton(
+      // @ts-ignore
+      document.getElementById('g_id_onload'),
+      {
+        theme: 'outline',
+        size: 'large',
+        width: '600',
+        locale: 'en',
+        text: 'continue_with',
+        logo_alignment: 'center',
+        color: '#FF0000',
+      }
+    );
+    // @ts-ignore
+    google.accounts.id.prompt((notification: PromptMomentNotification) => {});
+  }
+
+  async handleCredentialResponse(credential: CredentialResponse) {
+    console.log(credential);
+    // await this.myService.googleLogin(credential).subscribe({
+    //   next: (res: any) => {
+    //     this.localStorageService.getData('jwt_token').subscribe((data) => {
+    //       console.log(data);
+
+    //       if (data.role == 'seller') location.href = '/stores/create';
+    //       else location.href = '/';
+    //     });
+
+    //     // if(res.body.success){
+    //     //   localStorage.setItem("X-Auth-Token",res.headers.get("X-Auth-Token"));
+    //     //   this.router.navigateByUrl("/home");
+    //     // }
+    //     // console.log(res.headers.get("X-Auth-Token"))
+    //     console.log('data');
+    //   },
+    //   error: (err) => {
+    //     console.log('errrrrrrrror');
+    //   },
+    // });
+  }
 
   validationForm = new FormGroup({
     user_name: new FormControl(null, [

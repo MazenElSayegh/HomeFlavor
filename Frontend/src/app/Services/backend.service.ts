@@ -17,6 +17,13 @@ export class BackendService {
     console.log(user);
     return this.serverClient.post(this.Base_URL + 'login', user);
   }
+
+  public googleLogin(userCredential: any) {
+    return this.serverClient.post(
+      this.Base_URL + 'users/googleAuth',
+      userCredential
+    );
+  }
   userLogout(user: any) {
     console.log(user);
     return this.serverClient.post(this.Base_URL + 'logout', user);
@@ -33,12 +40,15 @@ export class BackendService {
     return this.serverClient.get(this.Base_URL + 'users');
   }
   subscribeUser(user: any) {
-    console.log("hi")
-    console.log(user)
-    console.log(this.Base_URL  + 'users/subscribe')
-    return this.serverClient.post(this.Base_URL  + 'users' + '/' +'subscribe', user);
+    console.log('hi');
+    console.log(user);
+    console.log(this.Base_URL + 'users/subscribe');
+    return this.serverClient.post(
+      this.Base_URL + 'users' + '/' + 'subscribe',
+      user
+    );
   }
-  deleteUser(id:any){
-    return this.serverClient.delete(this.Base_URL+'users/'+id);
+  deleteUser(id: any) {
+    return this.serverClient.delete(this.Base_URL + 'users/' + id);
   }
 }

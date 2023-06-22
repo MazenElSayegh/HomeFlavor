@@ -22,6 +22,7 @@
     "@canvasjs/charts": "^3.7.9",
     "@canvasjs/stockcharts": "^1.7.9",
     "@fortawesome/fontawesome-free": "^6.4.0",
+    "@types/google-one-tap": "^1.2.2",
     "angular-datatables": "^15.0.1",
     "angular-jwt": "^0.1.11",
     "bootstrap": "^5.2.3",
