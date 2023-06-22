@@ -21,20 +21,20 @@ export class HeaderComponent {
     private ordersService: OrdersService
   ) {
     this.count = 0;
-      ordersService.GetAllOrders().subscribe({
-        next: (data: any) => {
-          this.orders = data;
-          this.orders.forEach((order) => {
-            this.storeID = order.store_id._id;
-            if (order.status == 'Pending') {
-              this.count = this.count + 1;
-            }
-          });
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+    ordersService.GetAllOrders().subscribe({
+      next: (data: any) => {
+        this.orders = data;
+        this.orders.forEach((order) => {
+          this.storeID = order.store_id._id;
+          if (order.status == 'Pending') {
+            this.count = this.count + 1;
+          }
+        });
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   localhost = 'http://localhost:7005';
@@ -91,7 +91,12 @@ export class HeaderComponent {
         this.myService.getUserByID(this.user_data.user_id).subscribe({
           next: (data) => {
             this.user_data = data;
-            this.user_image = `http://localhost:7005${this.user_data.user_image}`;
+            if (this.user_data.user_image.charAt(0) == '/') {
+              this.user_image = `http://localhost:7005${this.user_data.user_image}`;
+            } else {
+              this.user_image = this.user_data.user_image;
+            }
+            // this.user_image = `http://localhost:7005${this.user_data.user_image}`;
           },
           error: (err) => {
             console.log(err);
@@ -108,8 +113,8 @@ export class HeaderComponent {
     this.localStorageService.removeData('cart');
     location.href = '/';
   }
-  subscribe(){
-    console.log(this.user_data)
+  subscribe() {
+    console.log(this.user_data);
     this.myService.subscribeUser(this.user_data).subscribe();
   }
 

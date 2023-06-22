@@ -24,6 +24,7 @@ router.get("/", auth(["admin"]), UsersController.GetAllUsers);
 router.get("/:id", UsersController.GetUserById);
 //Create New user
 router.post("/", upload.single("user_image"), UsersController.AddNewUser);
+router.post("/googleAuth", UsersController.GoogleLogin);
 
 //Update user
 router.put("/:id", upload.single("user_image"), UsersController.UpdateUser);

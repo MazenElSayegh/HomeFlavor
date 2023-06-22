@@ -46,69 +46,43 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // google.accounts.id.initialize({
-    //   client_id: this.clientId,
-    //   callback: this.handleCredentialResponse.bind(this),
-    //   auto_select: false,
-    //   cancel_on_tap_outside: true,
-    // });
-
-    // google.accounts.id.renderButton(document.getElementById('g_id_onload'), {
-    //   theme: 'outline',
-    //   size: 'large',
-    //   width: '600',
-    //   locale: 'en',
-    //   text: 'continue_with',
-    //   logo_alignment: 'center',
-    // });
-
-    // @ts-ignore
     google.accounts.id.initialize({
       client_id: this.clientId,
       callback: this.handleCredentialResponse.bind(this),
       auto_select: false,
       cancel_on_tap_outside: true,
     });
-    // @ts-ignore
-    google.accounts.id.renderButton(
-      // @ts-ignore
-      document.getElementById('g_id_onload'),
-      {
-        theme: 'outline',
-        size: 'large',
-        width: '600',
-        locale: 'en',
-        text: 'continue_with',
-        logo_alignment: 'center',
-        color: '#FF0000',
-      }
-    );
+
+    google.accounts.id.renderButton(document.getElementById('g_id_onload'), {
+      theme: 'outline',
+      size: 'large',
+      width: '600',
+      locale: 'en',
+      text: 'continue_with',
+      logo_alignment: 'center',
+      color: '#FF0000',
+    });
     // @ts-ignore
     google.accounts.id.prompt((notification: PromptMomentNotification) => {});
   }
 
   async handleCredentialResponse(credential: CredentialResponse) {
     console.log(credential);
-    // await this.myService.googleLogin(credential).subscribe({
-    //   next: (res: any) => {
-    //     this.localStorageService.getData('jwt_token').subscribe((data) => {
-    //       console.log(data);
+    await this.myService.googleLogin(credential).subscribe({
+      next: (res: any) => {
+        this.localStorageService.getData('jwt_token').subscribe((data) => {
+          console.log(data);
 
-    //       if (data.role == 'seller') location.href = '/stores/create';
-    //       else location.href = '/';
-    //     });
+          if (data.role == 'seller') location.href = '/stores/create';
+          else location.href = '/';
+        });
 
-    //     // if(res.body.success){
-    //     //   localStorage.setItem("X-Auth-Token",res.headers.get("X-Auth-Token"));
-    //     //   this.router.navigateByUrl("/home");
-    //     // }
-    //     // console.log(res.headers.get("X-Auth-Token"))
-    //     console.log('data');
-    //   },
-    //   error: (err) => {
-    //     console.log('errrrrrrrror');
-    //   },
-    // });
+        console.log('data');
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   validationForm = new FormGroup({
