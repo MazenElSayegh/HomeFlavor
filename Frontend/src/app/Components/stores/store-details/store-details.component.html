@@ -379,8 +379,8 @@
                 <button
                   class="deleteFeedbackBtn btn"
                   *ngIf="
-                    ( user_data.role === 'admin') ||
-                    (feedback.user_id._id == user_data.user_id)
+                    user_data.role === 'admin' ||
+                    feedback.user_id._id == user_data.user_id
                   "
                 >
                   <a [routerLink]="['/feedbacks/delete', feedback._id]">
@@ -456,7 +456,9 @@
                     formControlName="comment"
                   ></textarea>
                   <small
-                    *ngIf="!validComment"
+                    *ngIf="
+                      !validComment && validationForm.get('comment')?.touched
+                    "
                     class="alert alert-danger mb-4 cmntErrBlock"
                   >
                     Comment must be between 10 & 300 characters
