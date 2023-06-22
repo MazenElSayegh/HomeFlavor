@@ -2,9 +2,8 @@ let UserModel = require("../Models/UsersModel");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
 const { OAuth2Client } = require("google-auth-library");
-const CLIENT_ID =
-  "129503736404-5ngv63pcim0njm3pbb5ev32hli36t18b.apps.googleusercontent.com";
-const CLIENT_Secret = "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";
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const CLIENT_Secret = process.env.GOOGLE_CLIENT_SECRET;
 const client = new OAuth2Client(CLIENT_ID);
 const userValid = require("../Utils/UserValidation");
 let jwt = require("jsonwebtoken");
