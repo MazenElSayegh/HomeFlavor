@@ -357,7 +357,7 @@
             <div *ngIf="feedback.user_id" class="single-testimonial-slider">
               <div class="client-avater">
                 <!-- <img src="{{ store.user_id.user_image }}" alt="" /> -->
-                <img [src]="localhost + feedback.user_id.user_image" />
+                <img [src]="localhost + feedback.user_id.user_image" class="h-50" />
               </div>
               <div class="client-meta">
                 <h3>{{ feedback.user_id.user_name }}</h3>
